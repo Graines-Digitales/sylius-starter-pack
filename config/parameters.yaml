@@ -1,0 +1,215 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: fr_FR
+    sylius_installer_currency: EUR
+    directory_media: /media/image
+    directory_cache_prefix: media/cache/resolve
+    path_directory_media: '%kernel.project_dir%/public/media/image'
+    path_directory_icon: '%kernel.project_dir%/templates/bundles/App/web/components/svg'
+    developers: [ 'developpeurs@delit-dinfluence.fr' ]
+    
+    # la configuration du projet est 
+    # bien entendu différente de la configuration de l'application!
+    # 
+    configuration_project:
+        slug: xxx # main-website-organization
+
+        # web page not to be deleted
+        # product:
+        #     exclude_categories: [ 'root', 'point-de-vente' ]
+        #     local_business:
+        #         slug: 'point-de-vente'
+
+                
+        # parametres des categories nécéssaire au fonctionnement 
+        # de ce projet spécifiquement
+        categories:
+            landing_page:
+                name: Landing page
+                slug: landing-page
+                type: true
+            organization:
+                name: Organization
+                slug: organization
+                type: true
+            article:
+                name: Blog
+                slug: blog
+                type: true
+            social_link:
+                name: Réseau social
+                slug: reseau-social
+                type: true
+
+        
+        # sera ramplacé par le menu éditable en backoffice
+        menu:
+            main:
+                accueil: 
+                    route: sylius_shop_homepage
+                about: 
+                    route: app_webpage_about
+                articles: 
+                    route: app_webpage_articles
+                contact:
+                    route: app_webpage_contact
+                legal_notice:
+                    route: app_webpage_show
+            footer:
+                accueil: 
+                    route: sylius_shop_homepage
+                about: 
+                    route: app_webpage_about
+                articles: 
+                    route: app_webpage_articles
+                contact:
+                    route: app_webpage_contact
+                legal_notice:
+                    route: app_webpage_show
+                
+        # paramétrage de l'application ou du projet ?
+        media_encoding_formats:
+            image: [ 'image/jpg', 'image/jpeg', 'image/png', 'image/webp' ]
+            document: [ 'text/plain', 'application/pdf' ]
+            video: [ 'video/youtube' ]
+            icon: [ 'image/svg+xml' ]
+
+        forms:
+            contact_default:
+                slug: form-contact-default
+            # contact_quote:
+            #     slug: form-contact-quote
+            # contact_appointment:
+            #     slug: form-contact-appointment
+            # contact_special_announcement:
+            #     slug: form-contact-special-anouncement
+            # contact_special_announcement_free:
+            #     slug: form-contact-special-announcement-free
+                
+        search_action:
+            mainEntityOfPage:
+                article:
+                    default:
+                        name: Article
+            order:
+                ASC: asc
+                DESC: desc
+
+        ## Value For INIT ##
+        web_pages:
+            accueil:
+                slug : accueil
+                headline: Accueil
+                isLocked: true
+            about:
+                slug: qui-sommes-nous
+                headline: Qui sommes nous ?
+                isLocked: true
+
+            contact:
+                slug: contact
+                headline: Contact
+                isLocked: true
+
+            articles:
+                slug: articles
+                headline: Articles
+                isLocked: true
+  
+            legal_notice:
+                slug: mentions-legales
+                headline: Mentions légales
+                isLocked: true
+                    
+        articles:
+            news-1:
+                slug: news-1
+                headline: News 1
+                locale:
+                    fr: fr_FR
+
+        components:
+            component_breadcrumb:
+                name: Composant BreadCrumb
+                code: component_breadcrumb
+                template:
+                    default:
+                        name: Défaut
+                        code: component_breadcrumb_default
+            component_cards:
+                name: Composant Cartes
+                code: component_cards
+                template:
+                    default:
+                        name: Défaut
+                        code: component_cards_default
+            component_card:
+                name: Composant carte
+                code: component_card
+                template:
+                    default:
+                        name: Défaut
+                        code: component_card_default
+            component_contact_form:
+                name: Composant Formulaire de contact
+                code: component_contact_form
+                template:
+                    default:
+                        name: Défaut
+                        code: component_contact_form_default
+            component_documents:
+                name: Composant documents
+                code: component_documents
+                template:
+                    default:
+                        name: Défaut
+                        code: component_document_default
+            component_hero:
+                name: Composant Hero
+                code: component_hero
+                template:
+                    default:
+                        name: Défaut
+                        code: component_hero_default
+            component_iframe:
+                name: Composant Iframe
+                code: component_iframe
+                template:
+                    default:
+                        name: Défaut
+                        code: component_iframe_default
+            component_link:
+                name: Composant Lien - Bouton
+                code: component_link
+                template:
+                    default:
+                        name: Défaut
+                        code: component_link_default
+            component_slider:
+                name: Composant Slider
+                code: component_slider
+                template:
+                    default:
+                        name: Défaut
+                        code: component_slider_default
+        organization:
+            main:
+                code: main
+                name: XXX
+                phone: XXX
+                email: XXX
+                url: XXX
+                address:
+                    main:
+                        name: Principale
+                        address: XXX
+                        postcode: XXX
+                        city: XXX
+                        country: XXX
+
+        ## END Value For INIT ##
+
+
+            
+            

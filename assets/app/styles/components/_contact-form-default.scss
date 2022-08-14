@@ -1,0 +1,71 @@
+.contact-form-default {
+    padding: 45px 0;
+    background-color: $color-light-gray;
+
+    &__row {
+        margin-bottom: 25px;
+    }
+
+    &__form {
+
+
+        label {
+            font-family: $font-primary-bold;
+        }
+
+        label.error {
+            font-family: $font-primary-regular;
+            font-size: .875rem;
+            color: $color-primary;
+        }
+
+        input, select, textarea  {
+            border: 0px;
+            border-radius: 0;
+        }
+
+        select {
+            border-bottom: 2px solid $color-primary;
+        }
+
+        input[type="radio"] {
+
+        }
+
+        .form-check-input {
+            width: 2em;
+            height: 2em;
+            margin-top: -0.25em;
+            margin-right: 6px;
+
+            &:checked {
+                background-color: $color-primary;
+                border-color: $color-primary;
+            }
+        }
+
+        .button-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1em;
+
+            .svg-wrap {
+                margin-right: 5px;
+                display: inline-block;
+                width: 25px;
+                height: auto;
+
+                svg {
+                    width: 100%;
+                    height: auto;
+                    fill: $color-white;
+                }
+            }
+        }
+    }
+
+
+
+
+}

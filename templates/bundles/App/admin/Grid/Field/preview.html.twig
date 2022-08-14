@@ -1,0 +1,15 @@
+
+{% if data.encodingFormat is defined 
+    and data.encodingFormat in configuration_project.media_encoding_formats.image 
+%}
+    <img 
+        class="ui tiny bordered image" 
+        src="{{ data|imagine_filter('mini_webp') }}"
+    />
+{% else %}
+    <img 
+        class="ui tiny bordered image" 
+        src="{{ asset('build/app/images/image-not-found.jpg') }}" 
+        alt="Image not found"
+    >
+{% endif %}

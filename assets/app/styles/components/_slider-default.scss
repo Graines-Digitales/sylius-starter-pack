@@ -1,0 +1,119 @@
+.slider-default {
+    $slide-height : 680px;
+
+    &__slide-wrapper {
+        position: relative;
+        height: $slide-height;
+
+    }
+
+    &__img-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        height: $slide-height;
+
+        .overlay {
+            position: absolute;
+            z-index: 20;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,.4);
+        }
+
+        img {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            // text-indent: -99999px;
+            color: transparent;
+        }
+    }
+
+    &__text-wrap {
+        position: relative;
+        z-index: 30;
+
+
+
+
+        .card-default {
+            &__text-wrap {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: $slide-height;
+                width: 100%;
+                max-width: 500px;
+                color: $color-white;
+            }
+
+            &__text-content-wrap {
+                position: relative;
+                margin-bottom: 35px;
+                padding-right: 15px;
+                border-right: 1px solid $color-white;
+
+                .svg-wrap {
+                    position: absolute;
+                    top: calc(50% - 18px);
+                    right: -65px;
+                    width: 24px;
+
+                    svg {
+                        width: 100%;
+                        height: auto;
+                        fill: $color-primary
+                    }
+                }
+            }
+
+            &__title,
+            &__subtitle {
+                margin: 0;
+                font-size: 2.875rem;
+                line-height: 1.2em;
+                color: inherit;
+            }
+
+            &__content-wrap {
+                margin-top: 35px;
+                margin-bottom: 0;
+                font-size: 1rem;
+                color: inherit;
+            }
+
+            &__link {
+                padding: .75rem 1.75rem;
+                width: fit-content;
+            }
+
+            @media screen and (max-width: 636px) {
+                &__text-content-wrap {
+                    border-right: none;
+
+                    .svg-wrap {
+                        display: none;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+
+    &--hero-slider {
+        .card-default__text-wrap {
+            padding-top: 95px;
+        }
+    }
+}
+
+

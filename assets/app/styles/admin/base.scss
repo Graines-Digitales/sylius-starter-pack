@@ -1,0 +1,42 @@
+@import "../imports";
+@import "./components/form.scss";
+
+// General
+body.centered {
+	background-color: #fff;
+}
+.ui[class*="center aligned"].grid {
+
+	background: $bo-background-color;
+}
+
+
+// To sort
+.ui.segment  div.preview_icon {
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+.ui.inverted.menu {
+	background: $bo-menu-background-color;
+}
+
+#sidebar.ui.sidebar.vertical.menu .item.active {
+	background: $color-primary !important;
+}
+
+.ui.header .circular.icon {
+	color: $bo-color-primary;
+	background: rgba(26, 187, 156, 0.1);
+}
+
+a {
+	color: $bo-color-primary;
+}
+.ui.negative.message {
+	color: $color-primary;
+}
+.ui.info.message {
+	color: $color-category-actu-darked;
+}

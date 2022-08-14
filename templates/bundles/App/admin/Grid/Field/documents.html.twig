@@ -1,0 +1,5 @@
+{% if data.messageAttachments is not empty %}
+    {% for messageAttachment in data.messageAttachments %}
+        <a target="_BLANK" href="{{ asset(messageAttachment.filename, 'media') }}">{{ messageAttachment.originalFilename }}</a><br>
+    {% endfor %}
+{% endif %}

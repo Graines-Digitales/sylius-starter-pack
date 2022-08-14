@@ -1,0 +1,94 @@
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% set header = configuration.vars.header|default(metadata.applicationName~'.ui.edit_'~metadata.name) %}
+{% set event_prefix = metadata.applicationName ~ '.admin.' ~ metadata.name ~ '.update' %}
+
+{% block title %}{{ header|trans }} {{ parent() }}{% endblock %}
+
+
+
+{% block content %}
+    
+    {% import '@SyliusUi/Macro/headers.html.twig' as headers %}
+
+    {{ headers.default('sylius.ui.show'|trans, configuration.vars.icon|default('image'), configuration.vars.subheader|default('')|trans) }}
+
+    {% import '@SyliusAdmin/Macro/breadcrumb.html.twig' as breadcrumb %}
+
+    {% set index_url = path(
+            configuration.vars.index.route.name|default(configuration.getRouteName('index')),
+            configuration.vars.index.route.parameters|default(configuration.vars.route.parameters|default({}))
+        )
+    %}
+
+    {% set breadcrumbs = [
+            { label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard') },
+            { label: (metadata.applicationName~'.ui.'~metadata.pluralName)|trans, url: index_url },
+            { label: resource.name|default(resource.code|default(resource.id)) }
+        ]
+    %}
+
+    {{ breadcrumb.crumble(breadcrumbs) }}
+
+    <table class="ui sortable stackable very basic celled table">
+        <tbody>
+            <tr class="item">
+                <td>{{ 'app.ui.subject'|trans }}</td>
+                <td>{{ resource.subject }}</td>
+            </tr>
+            <tr class="item">
+                <td>{{ 'app.ui.message'|trans }}</td>
+                <td>{{ resource.text }}</td>
+            </tr>
+            <tr class="item">
+                <td>{{ 'app.ui.subject'|trans }}</td>
+                <td>{{ resource.origin }}</td>
+            </tr>
+            {% if resource.localBusiness.name is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.local_business'|trans }}</td>
+                <td>{{ resource.localBusiness.name }}</td>
+            </tr>
+            {% endif %}
+            <tr class="item">
+                <td>{{ 'app.ui.sender.firstname'|trans }}</td>
+                <td>{{ resource.sender.firstname }}</td>
+            </tr>
+            <tr class="item">
+                <td>{{ 'app.ui.sender.lastname'|trans }}</td>
+                <td>{{ resource.sender.lastname }}</td>
+            </tr>
+            <tr class="item">
+                <td>{{ 'app.ui.sender.email'|trans }}</td>
+                <td>{{ resource.sender.email }}</td>
+            </tr>
+            <tr class="item">
+                <td>{{ 'app.ui.sender.phone'|trans }}</td>
+                <td>{{ resource.sender.phone }}</td>
+            </tr>
+            <tr class="item">
+                <td>{{ 'app.ui.messageAttachments'|trans }}</td>
+                <td>
+                {% if resource.messageAttachments is not empty %}
+                    {% for messageAttachment in resource.messageAttachments %}
+                        <a target="_BLANK" href="{{ asset(messageAttachment.filename, 'media') }}">{{ messageAttachment.originalFilename }}</a><br>
+                    {% endfor %}
+                {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ sylius_template_event([event_prefix ~ '.stylesheets', 'sylius.admin.update.stylesheets'], { 'metadata': metadata }) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ sylius_template_event([event_prefix ~ '.javascripts', 'sylius.admin.update.javascripts'], { 'metadata': metadata }) }}
+{% endblock %}

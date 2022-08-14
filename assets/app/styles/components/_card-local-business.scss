@@ -1,0 +1,54 @@
+.card-local-business {
+    position: relative;
+    margin-bottom: 10px;
+    padding: 5px;
+    break-inside: avoid;
+    transition: .3s;
+
+    &:hover,
+    &.active {
+        background-color: $color-primary;
+
+        .card-local-business__title,
+        .card-local-business__address,
+        .card-local-business__phone,
+        .card-local-business__categories {
+            color: $color-white;
+        }
+    }
+
+    &__link {
+
+    }
+
+    &__title {
+        margin: 0;
+        font-family: $font-primary-bold;
+        font-size: 1rem;
+        line-height: 1.25em;
+        text-transform: uppercase;
+        color: $color-primary;
+    }
+
+    &__address,
+    &__phone {
+        margin: 0;
+        font-family: $font-secondary-regular;
+        font-size: .875rem;
+        line-height: 1.25em;
+    }
+
+    &__phone {
+
+    }
+
+    &__categories {
+        margin: 0;
+        font-size: .75rem;
+        line-height: 1.25em;
+        text-transform: uppercase;
+        color: $color-gray-text;
+    }
+
+
+}

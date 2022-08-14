@@ -1,0 +1,275 @@
+Enabled: Actif
+IsEnabled: Est actif
+Name: Nom
+Created at: Créé le
+Updated at: Modifié le
+Headline: Titre principal
+Text: Texte
+Text resume: Texté résumé
+Description: Description
+Primary Image: Image principale
+Components: Composants
+Media: Médias
+Announcements: Offres
+Manufacturers: Partenaires Industriels
+Points of sale: Points de vente
+Link for external media (Youtube, Vimeo... etc): Lien pour les médias externes (Youtube, Vimeo...etc)
+If empty the file name will be automatically generated: Si vide le nom du fichier sera généré automatiquement
+The file name is generated automatically: Le nom du fichier est généré automatiquement
+If empty, the file name will be generated automatically: Si vide, le nom du fichier sera généré automatiquement
+File: Fichier
+Filename: Nom du fichier
+Dimensions: Dimensions 
+SEO ALT Balise: SEO Balise ALT
+Content size: Taille du fichier
+Caption: Légende
+Encoding format: Format d'encodage
+Original filename: Nom du fichier original
+The filename will be automatically generated: Le nom du fichier sera généré automatiquement
+This field will be automatically edited: Ce champ sera automatiquement édité
+Push forward: Mise en avant (slogan)
+Component: Composant
+Alternative headline: Titre alternatif
+Category: Catégorie
+Is enabled: Actif
+Is indexed: Indexé
+Primary image: Image principale
+March: Mars
+Opening hours: Horaires d'ouvertures
+Icon: Icônes
+Icon media: Icône
+Search action: Action de la recherche
+Main entity of page: Entité principale
+Order by date: Trier par date
+Limit result: Limite de résultat
+Special Announcements: Annonces spéciales
+Product types: Types de produit
+Local businesses: Points de vente
+Services: Services
+Organization: Organisation
+Addresses: Adresses
+Secondary image: Image secondaire
+Products: Produits
+Gmap: URL Google Map
+Mobile phone: Téléphone Mobile
+Translations: Traductions
+Brands: Marques
+Categories: Catégories
+Organizations: Organisations
+Social links: Réseaux sociaux
+Quote: Devis
+Appointment: Rendez-vous
+firstname: prénom
+lastname: nom
+local_business: point_de_vente
+email: email
+phone: téléphone
+subject: objet
+origin: provenance
+Recruitment: Recrutement
+
+sylius:
+    ui:
+        devkey: Clé développeur
+
+app:
+    ui:
+        landing_page: Landing Page
+        landing_pages: Landing Pages
+        new_landing_page: Nouvelle landing page
+        edit_landing_page: Édition de la landing page
+        web_page: Page
+        web_pages: Pages
+        article: Article
+        articles: Articles
+        category: Catégorie
+        categories: Catégories
+        new_category: Nouvelle Catégorie
+        message: Message
+        messages: Messages
+        media: Média
+        medias: Médias
+        person: Personne
+        persons: Personnes
+        new_web_page: Nouvelle page
+        edit_web_page: Édition de la page
+        form:
+            page_general: Général
+            page_translation: Contenu traduisible
+            page_info: Informations de la page
+            page_content: Contenu
+            page_meta_data: Méta données
+        cms_components: Composants CMS
+        cms_component: Composant CMS
+        new_cms_component: Nouveau composant CMS
+        edit_cms_component: Edition du composant CMS
+        user_groups: Groupes d'utilisateurs
+        user_group: Groupe d'utilisateurs
+        edit_user_group: Edition du groupe d'utilisateurs
+        media_objects: Médias
+        media_object: Média
+        alt: Balise ALT 
+        preview: Aperçu
+        new_media_object: Nouveau Média
+        headline: Titre
+        meta_title: SEO Titre
+        meta_description: SEO Description
+        primary_image: Image Principale
+        special_announcements: Annonces spéciales
+        edit_special_announcement: Édition de l'annonce spécial
+        special_announcement: Annonce spécial
+        local_businesses: Points de vente
+        local_business: Point de vente
+        edit_local_business: Édition du point de vente
+        new_local_business: Nouveau point de vente
+        parent: Parent
+        category_product_types: Type de produits
+        category_product_type: Type de produit
+        new_category_product_type: Nouveau type de produit
+        edit_category_product_type: Édition du type de produit
+        services: Services
+        service: Service
+        new_service: Nouveau service
+        edit_service: Édition du service
+        manufacturers: Partenaires industriels
+        manufacturer: Partenaire industriel
+        new_manufacturer: Nouveau partenaire industriel
+        edit_manufacturer: Édition du partenaire industriel
+        message_contacts: Demandes de contact
+        message_contact: Demande de contact
+        message_quotes: Demandes de devis
+        message_quote: Demande de devis
+        message_appointments: Demandes de rendez-vous
+        message_appointment: Demande de rendez-vous
+        message_special_announcements: Demandes de recrutement
+        message_special_announcement: Demande de recrutement
+        media_images: Images
+        media_image: Image
+        new_media_image: Nouvelle image
+        edit_media_image: Édition de l'image
+        media_videos: Vidéos
+        media_video: Vidéo
+        new_media_video: Nouvelle vidéo
+        edit_media_video: Édition de la vidéo
+        media_documents: Documents
+        media_document: Document
+        new_media_document: Nouveau document
+        edit_media_document: Édition du document
+        brands: Marques
+        brand: Marque
+        new_brand: Nouvelle marque
+        edit_brand: Édition de la marque
+        organizations: Organisations
+        organization: Organisation
+        new_organization: Nouvelle organisation
+        edit_organization: Édition de l'organisation
+        social_links: Réseaux sociaux
+        social_link: Réseau social
+        new_social_links: Nouveau réseau social
+        edit_social_links: Édition du réseau social
+        subject: Objet
+        templates: Templates
+    ui_element:
+        field:
+            devkey: Clé développeur
+            title: Titre
+            name: Nom
+            description: Description
+            subtitle: Sous-titre
+            link: 'Lien'
+            content: Contenu
+            image: Image
+            alt: Texte alternatif
+            label: Label
+            select_article: Sélectionner un article
+            select_web_page: Sélectionner une page web
+            search_name: Nom de la recherche
+            select_option: Sélectionner une option
+            select_category: Sélectionner une catégorie
+            select_primary_image: Sélectionner une image
+            select_parent: Sélectionner un parent
+            select_icon: Sélectionner un icône
+            select_type: Sélectionner un type
+            select_video: Sélectionner une vidéo
+            define_label: Définir un libellé
+            define_article_label: Définir un libellé pour votre article
+            define_web_page_label: Définir un libellé pour votre page web
+            define_external_link_label: Définir un libellé pour votre lien externe
+            designation: Désignation
+            enter_url: Saisir une URL
+            enter_external_url: Saisir une URL externe
+            link_to_webpage: Lien vers une page web
+            link_to_article: Lien vers un article
+            link_to_external_link: Lien vers une page web externe
+            is_locked: Vérrouillé
+            enabled: Activé
+            product_type: Type de produit
+            icon: Icône
+            encoding: Format d'encodage
+            url: URL
+            category_type: Type de catégorie
+            icon_media: Icône
+            link_collection:
+                default: Liens - Boutons
+            card_collection:
+                default: Cartes
+        form:
+            item_list: Liste des éléments
+            add_item: Ajouter un élément
+        component_iframe:
+            title: 'Composant Iframe'
+            short_description: 'Pour insérer une Iframe'
+            description: 'Une section avec un lien Iframe (Google, Facebook, Youtube...)'
+            link: 'Link'
+        component_card:
+            title: 'Composant Carte'
+            short_description: 'Carte avec image et textes'
+            description: 'Une section avec titre texte et une collection de carte'
+        component_cards:
+            title: 'Composant Cartes Liste'
+            short_description: 'Liste de cartes avec image et textes'
+            description: 'Une section avec titre texte et une collection de cartes'
+        component_documents:
+            title: 'Composant Documents'
+            description: 'Une section pour télécharger des documents'
+        component_hero:
+            title: 'Composant Hero'
+            description: 'Une section avec titre, texte, bouton et Call to Action'
+        component_contact:
+            title: 'Composant Contact'
+            description: 'Carte coordonnées'
+        component_search_action:
+            title: 'Composant Search Action'
+            description: 'Composant pour créer une collection sur différent type de données'
+        component_rich_search_action:
+            title: 'Composant Rich Search Action'
+            description: 'Composant pour créer une collection sur différent type de données avec des champs supplémentaires'
+        component_slider:
+            title: 'Composant Slider'
+            short_description: 'Slider avec image et textes'
+            description: 'Une section avec titre texte et une collection de cartes'
+        component_contact_form:
+            title: 'Composant Contact Form'
+            short_description: 'Composant pour un formulaire de contact'
+            description: 'Composant pour un formulaire de contact'
+        component_breadcrumb:
+            title: 'Composant Breadcrumb'
+            short_description: 'Composant pour afficher un fil d Ariane'
+            description: 'Composant pour afficher un fil d Ariane'
+        component_page_header:
+            title: 'Composant Page Header'
+            short_description: 'Composant pour afficher un titre de page et un texte d introduction'
+            description: 'Composant pour afficher un titre de page et un texte d introduction'
+        component_popin_form:
+            title: 'Composant Popin Form'
+            short_description: 'Composant pour afficher une fenêtre modale contenant un formulaire'
+            description: 'Composant pour afficher une fenêtre modale contenant un formulaire'
+        component_local_business_map:
+            title: 'Composant Carte svg points de vente'
+            short_description: 'Composant pour afficher une carte svg des points de vente'
+            description: 'Composant pour afficher une carte svg des points de vente'
+        component_popins_from_buttons:
+            title: 'Composant Popins From Buttons'
+            short_description: 'Composant affichant les boutons pour les formulaire de demande de devis et de rv'
+            description: 'Composant affichant les boutons pour les formulaire de demande de devis et de rv'
+

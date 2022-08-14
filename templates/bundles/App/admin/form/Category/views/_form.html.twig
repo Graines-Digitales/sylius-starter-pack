@@ -1,0 +1,39 @@
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationForm %}
+
+{% set translationForm = form.translations %}
+{{ form.offsetUnset('translations') }}
+
+    <h4 class="ui horizontal divider header">
+        <i class="info icon"></i>
+        {{ 'app.ui.form.page_general' | trans }}
+    </h4>
+    <div class="ui segment">
+        {{ form_errors(form) }}
+        {# Issue with Symfony 5, Sylius 1.9 : https://github.com/Sylius/Sylius/pull/12439 #}
+        {# So we render the fields #}
+        {{ form_row(form.type) }}
+        {# {{ form_row(form.icon) }} #}
+
+
+		<div class="ui two column divided grid"> <div class="row">
+			<div class="column">
+				{{ form_row(form.primaryImage) }}
+			</div>
+			<div class="column">
+				{% if category.primaryImage is not null and category.primaryImage.filename is not null and category.primaryImage.filename != '' %}
+					<div class="ui centered medium image">
+						<img src="{{ asset('media/image/' ~ category.primaryImage.filename) }}">
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{# Instead of #}
+	{# {{ form_rest(form) }} #}
+</div>
+<h4 class="ui horizontal divider header">
+	<i class="flag icon"></i>
+	{{ 'app.ui.form.page_translation' | trans }}
+</h4>
+
+{{ translationForm(translationForm) }}

@@ -1,0 +1,125 @@
+// articles list
+// ---------------------------
+
+$articles-container-max-width: 820px;
+
+
+.articles-filter {
+    margin-bottom: 60px;
+    &__wrapper {
+        margin: auto;
+        width: 100%;
+        max-width: $articles-container-max-width;
+    }
+
+    &__row {
+
+    }
+
+    &__input-wrap {
+        input,
+        .input-group-text {
+            border: 0px;
+            border-radius: 0;
+            border-bottom: 2px solid $color-primary;
+            background-color: transparent;
+        }
+         .input-group-text {
+            svg {
+                width: 20px;
+                height: auto;
+            }
+         }
+
+        .form-control:focus {
+
+            border-color: $color-primary;
+            box-shadow: none;
+        }
+    }
+
+    &__buttons-wrap {
+        .button-category {
+            margin-right: 15px;
+            &:last-child {
+                margin-right: 0;
+            }
+            .svg-wrap {
+                margin-right: 5px;
+                svg {
+                    height: 18px;
+                    width: auto;
+                    .st-actu,
+                    .st-video,
+                    .st-tendance {
+                        fill: $color-white;
+                    }
+                }
+            }
+
+            &--tutos {
+                &.disabled {
+                    background-color: $color-primary-darked;
+                }
+            }
+
+            &--actus {
+                background-color: $color-category-actu;
+                &.disabled {
+                    background-color: $color-category-actu-darked;
+                }
+            }
+
+            &--tendances {
+                background-color: $color-category-tendance;
+                &.disabled {
+                    background-color: $color-category-tendance-darked;
+                }
+            }
+        }
+    }
+}
+
+
+.articles-default {
+    padding: 60px 0;
+    background-color: $color-light-gray;
+
+    .articles-wrapper {
+        margin: auto;
+        width: 100%;
+        max-width: $articles-container-max-width;
+        // display: none;
+        // &.active{
+        //     display: block;
+        // }
+    }
+
+    .card-news-default {
+        margin-bottom: 30px;
+        &__text-wrap {
+
+        }
+        &__date {
+            line-height: 1.2em;
+        }
+
+        &__content-wrap {
+            font-size: 1rem;
+        }
+
+        &__img-wrap{
+            flex-shrink: 0;
+        }
+    }
+}
+
+.pagination--articles {
+
+    .pagination-wrap {
+        margin: auto;
+        width: 100%;
+        max-width: $articles-container-max-width;
+        // display: none;
+    }
+}

@@ -1,0 +1,66 @@
+sylius_paypal_webhook:
+    resource: "@SyliusPayPalPlugin/Resources/config/webhook_routing.yaml"
+
+app_schema_constraints_from_form_type:
+    path: /schema/constraints/form/{form}
+    methods: [GET,POST]
+    defaults:
+        _controller: app.controller.schema::constraintsFromFormType
+
+app_schema_constraints_from_entity:
+    path: /schema/constraints/entity/{entity}
+    methods: [GET,POST]
+    defaults:
+        _controller: app.controller.schema::constraintsFromEntity
+
+app_schema_save_form_contact:
+    path: /schema/save/form/message
+    methods: [POST]
+    defaults:
+        _controller: app.controller.schema::saveFormMessage
+        
+app_sitemap:
+    path: /sitemap
+    methods: [GET]
+    defaults:
+        _controller: app.controller.sitemap::index
+        format: xml
+        
+# app_page_landing_page:
+#     path: /{_locale}/landing-page/{slug}
+#     methods: [GET]
+#     defaults:
+#         _controller: sylius.controller.shop.homepage::landingPage
+        
+app_webpage_about:
+    path: /{_locale}/qui-sommes-nous
+    methods: [GET]
+    defaults:
+        _controller: app.controller.webpage::aboutPage
+
+app_webpage_contact:
+    path: /{_locale}/contactez-nous
+    methods: [GET]
+    defaults:
+        _controller: app.controller.webpage::contactPage
+
+app_webpage_articles:
+    path: /{_locale}/blog
+    methods: [GET]
+    defaults:
+        _controller: app.controller.webpage::articles
+
+app_webpage_article:
+    path: /{_locale}/news/{category}/{slug}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.webpage::article
+        
+app_webpage_show:
+    path: /{_locale}/{slug}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.webpage::showPage
+    requirements:
+        slug: .+
+    

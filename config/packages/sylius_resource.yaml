@@ -1,0 +1,214 @@
+# config/packages/sylius_resource.yaml
+sylius_resource:
+    resources:
+        app.web_page:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\WebPage
+                form: App\Form\Type\WebPageType
+                # controller: App\Controller\Admin\WebPageController
+            translation:
+                classes:
+                    model: App\Entity\WebPageTranslation
+                    form: App\Form\Type\WebPageTranslationType
+                    
+        app.user_group:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\UserGroup
+                repository: App\Repository\UserGroupRepository
+
+        app.cms_component:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\CmsComponent
+                form: App\Form\Type\CmsComponentType
+                repository: App\Repository\CmsComponentRepository
+
+        app.cms_component_menu:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\CmsComponent
+                form: App\Form\Type\CmsComponentType
+                repository: App\Repository\CmsComponentRepository
+
+        app.cms_template:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\CmsTemplate
+                form: App\Form\Type\CmsTemplateType
+                repository: App\Repository\CmsTemplateRepository
+                
+        app.cms_style:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\CmsStyle
+                form: App\Form\Type\CmsStyleType
+                repository: App\Repository\CmsStyleRepository
+
+        app.article:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Article
+                form: App\Form\Type\ArticleType
+                # repository: App\Repository\ArticleRepository 
+            translation:
+                classes:
+                    model: App\Entity\ArticleTranslation 
+                    form: App\Form\Type\ArticleTranslationType     
+
+        app.category:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Category
+                form: App\Form\Type\CategoryType
+                repository: App\Repository\CategoryRepository 
+            translation:
+                classes:
+                    model: App\Entity\CategoryTranslation 
+                    form: App\Form\Type\CategoryTranslationType
+                    repository: App\Repository\CategoryTranslationRepository 
+
+        app.category_product_type:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Category
+                form: App\Form\Type\CategoryTypeProductType
+                repository: App\Repository\CategoryRepository 
+            translation:
+                classes:
+                    model: App\Entity\CategoryTranslation 
+                    form: App\Form\Type\CategoryTranslationType
+                    repository: App\Repository\CategoryTranslationRepository 
+
+        app.message_contact:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Message
+                form: App\Form\Type\MessageType
+                repository: App\Repository\MessageRepository
+
+        app.message_quote:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Message
+                form: App\Form\Type\MessageType
+                repository: App\Repository\MessageRepository
+
+        app.message_appointment:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Message
+                form: App\Form\Type\MessageType
+                repository: App\Repository\MessageRepository
+
+        app.message_special_announcement:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Message
+                form: App\Form\Type\MessageType
+                repository: App\Repository\MessageRepository
+
+        app.person:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Person
+                # form: App\Form\Type\MessageType
+                # repository: App\Repository\MessageRepository  
+
+        app.media_image:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\MediaObject
+                form: App\Form\Type\MediaObjectImageType
+                repository: App\Repository\MediaObjectRepository
+
+        app.media_video:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\MediaObject
+                form: App\Form\Type\MediaObjectVideoType
+                repository: App\Repository\MediaObjectRepository
+
+        app.media_document:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\MediaObject
+                form: App\Form\Type\MediaObjectDocumentType
+                repository: App\Repository\MediaObjectRepository
+
+        app.media_icon:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\MediaObject
+                form: App\Form\Type\MediaObjectSvgType
+                repository: App\Repository\MediaObjectRepository
+
+        app.search_action:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\SearchAction
+                form: App\Form\Type\SearchActionType
+                repository: App\Repository\SearchActionRepository 
+        
+        app.organization:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Organization
+                form: App\Form\Type\OrganizationType
+                repository: App\Repository\OrganizationRepository 
+        
+        # app.organizations:
+        #     driver: doctrine/orm # You can use also different driver here
+        #     classes:
+        #         model: App\Entity\Organization
+        #         form: App\Form\Type\OrganizationType
+        #         repository: App\Repository\OrganizationRepository 
+
+        app.manufacturer:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Organization
+                form: App\Form\Type\ManufacturerType
+        
+        app.social_links:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Organization
+                form: App\Form\Type\SocialLinkType
+
+        app.local_business:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\LocalBusiness
+                form: App\Form\Type\LocalBusinessType
+        
+        app.brand:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Organization
+                form: App\Form\Type\OrganizationBrandType
+
+        app.service:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Service
+                form: App\Form\Type\ServiceType
+
+        app.special_announcement:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\SpecialAnnouncement
+                form: App\Form\Type\SpecialAnnouncementType
+                repository: App\Repository\SpecialAnnouncementRepository 
+            translation:
+                classes:
+                    model: App\Entity\SpecialAnnouncementTranslation 
+                    form: App\Form\Type\SpecialAnnouncementTranslationType
+        app.address:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Address
+                form: App\Form\Type\AddressType
+                repository: App\Repository\AddressRepository 
+            

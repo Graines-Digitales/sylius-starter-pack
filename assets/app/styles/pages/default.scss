@@ -1,0 +1,124 @@
+@import "includes/header";
+@import "includes/footer";
+
+
+
+//------------------------------
+// GENERAL
+//------------------------------
+html {
+    font-size: 16px;
+}
+body {
+    font-family: $font-primary-regular;
+}
+
+.ui {
+    position: relative;
+}
+
+.wrapper-narrow {
+    margin: auto;
+    width: 100%;
+    max-width: 620px;
+}
+
+.button {
+    padding: .75rem .75rem;
+    display: inline-block;
+    font-family: $font-primary-bold;
+    font-size: .875rem;
+    color: $color-white;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: center;
+
+    cursor: pointer;
+    user-select: none;
+
+    border: none;
+    border-radius: .25rem;
+    background-color: $color-primary;
+    transition: .3s;
+
+    &:hover {
+        color: $color-light-gray;
+        background-color: $color-primary-darked;
+    }
+}
+
+
+
+//------------------------------
+// PAGINATION
+//------------------------------
+.pagination {
+    .container {
+        z-index: 1;
+    }
+    .pagination-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__nav {
+        cursor: pointer;
+
+        &:hover {
+            svg {
+                fill: $color-primary-darked;
+            }
+        }
+
+        svg {
+            width: 15px;
+            height: auto;
+            fill: $color-primary;
+            transition: .3s;
+        }
+
+        &--prev {
+            transform: rotate(180deg);
+        }
+
+        &.disabled {
+            cursor: default;
+            svg {
+                fill: $color-gray-text;
+            }
+        }
+    }
+
+    &__items-wrap {
+
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        list-style: none;
+    }
+
+    &__item {
+        padding: 5px;
+        color: $color-gray-text;
+        transition: .3s;
+
+        &:hover,
+        &.active {
+            .pagination__link {
+
+            color: $color-primary;
+            }
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: inherit;
+
+    }
+}

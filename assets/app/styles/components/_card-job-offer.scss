@@ -1,0 +1,71 @@
+.card-job-offer {
+
+    &__ower-offer {
+        margin: 0;
+        font-family: $font-primary-bold;
+        font-size: 0.75rem;
+        line-height: 1em;
+        text-transform: uppercase;
+        color: $color-primary;
+    }
+
+    &__title {
+        margin-bottom: 30px;
+        font-family: $font-secondary-bold;
+        font-size: 1.25rem;
+        line-height: 1em;
+        text-transform: uppercase;
+    }
+
+    &__place {
+        margin-bottom: 30px;
+        font-family: $font-secondary-regular;
+        font-size: 0.75rem;
+        line-height: 1em;
+        text-transform: uppercase;
+        color: $color-gray-text;
+    }
+
+    &__links-wrap {
+
+    }
+    .card-default__link {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 190px;
+
+        .btn-icon-wrap {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            svg {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                fill: $color-primary;
+                transition: .3s;
+            }
+        }
+    }
+
+    &__share {
+        margin-top: 10px!important;
+        justify-content: space-around!important;
+        color: $color-primary;
+        background-color: $color-white;
+        border: 1px solid $color-primary;
+
+        &:hover {
+            .btn-icon-wrap {
+                svg {
+                    fill: $color-white;
+                }
+            }
+        }
+    }
+
+
+
+}

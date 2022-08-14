@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="{{ app.request.locale|slice(0, 2) }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% if meta_data is defined %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="language" content="{{ app.request.locale|slice(0, 2) }}">
+        <title>{{ meta_data.page.meta_title }}</title>
+        <meta name="description" content="{{ meta_data.page.meta_description }}"/>
+        <meta name="robots" content="{{ (page.isIndexed) ? 'index, follow': 'noindex, follow' }}">
+
+        {# SOCIAL NETWORKS - TWITTER #}
+        <meta name="twitter:site" content="{{ meta_data.organization_name }}">
+        <meta name="twitter:title" content="{{ meta_data.page.meta_title }}">
+        <meta name="twitter:description" content="{{ meta_data.page.meta_description }}">
+        <meta name="twitter:url" content="{{ app.request.uri }}"/>
+        <meta name="twitter:domain" content="{{ app.request.getSchemeAndHttpHost() }}"/>
+        {# <meta name="twitter:image:src"
+                                content="{% block twitter_image %}{{ uri.protocol ~ uri.host ~ '/assets/media/images/uploads/' ~ sn.image_social_networks }}{% endblock %}"> #}
+
+        {# SOCIAL NETWORKS #}
+        <meta property="og:title" content="{{ meta_data.page.meta_title }}">
+        <meta property="og:description" content="{{ meta_data.page.meta_description }}">
+        <meta property="og:url" content="{{ app.request.uri }}">
+        <meta property="og:language" content="fr">
+        <meta property="og:image" content=""/>
+        <meta property="og:type" content="website">
+
+        <link rel="canonical" href="{{ app.request.uri }}">
+        <link rel="manifest" href="{{ asset('build/manifest.json') }}">
+        {% block metatags %}{% endblock %}
+    {% endif %}
+
+
+    {# FAVICON #}
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('build/app/images/favicon/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('build/app/images/favicon/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('build/app/images/favicon/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('build/app/images/favicon/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('build/app/images/favicon/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('build/app/images/favicon/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('build/app/images/favicon/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('build/app/images/favicon/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('build/app/images/favicon/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('build/app/images/favicon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('build/app/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('build/app/images/favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('build/app/images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('build/app/images/favicon/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('build/app/images/favicon/ms-icon-144x144.png') }}">
+    <meta name="theme-color" content="#ffffff">
+
+    {# STYLES #}
+    {% block stylesheets %}
+        {# tiny-slider #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+        <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+
+        {{ sylius_template_event('sylius.shop.layout.stylesheets') }}
+        {{ encore_entry_link_tags('app-entry', null, 'app') }}
+    {% endblock %}
+
+    {{ sylius_template_event('sylius.shop.layout.head') }}
+</head>
+
+
+<body class="pushable">
+{{ sylius_template_event('sylius.shop.layout.before_body') }}
+<div class="pusher">
+    {% block top %}
+        {# <div id="menu" class="ui large sticky inverted stackable menu">#}
+        {# {{ sylius_template_event('sylius.shop.layout.topbar') }}#}
+        {# </div>#}
+    {% endblock %}
+
+    <div class="ui">
+        {% block header %}
+             <header>
+                {{ sylius_template_event('sylius.shop.layout.header') }}
+             </header>
+        {% endblock %}
+
+        {% include '@SyliusShop/_flashes.html.twig' %}
+        {{ sylius_template_event('sylius.shop.layout.before_content') }}
+
+        {% block content %}{% endblock %}
+
+        {{ sylius_template_event('sylius.shop.layout.after_content') }}
+    </div>
+
+    {% block footer %}
+        {# {% include '@SyliusShop/_footer.html.twig' %} #}
+        <div
+            style="font-size:2.5rem; font-weight:bold; text-align:center; padding-top:25px; padding-bottom:25px; border:solid; margin:10px 10px;">
+            FOOTER GENERAL
+        </div>
+    {% endblock %}
+
+</div>
+
+    {% include '@SyliusUi/Modal/_confirmation.html.twig' %}
+    {{ sylius_template_event('sylius.shop.layout.after_body') }}
+
+    {% block javascripts %}
+        {# {{ sylius_template_event('sylius.shop.layout.javascripts') }} #}
+        <script src="{{ asset('vendor/jquery-3.6.0/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/jquery-3.6.0/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('vendor/jquery-3.6.0/additional-methods.min.js') }}"></script>
+        {{ encore_entry_script_tags('app-entry', null, 'app') }}
+    {% endblock %}
+</body>
+</html>

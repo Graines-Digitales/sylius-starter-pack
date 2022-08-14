@@ -1,0 +1,13 @@
+@import "../../imports";
+
+
+.ui.primary.button {
+	background-color: $color-primary;
+}
+.ui.primary.button:hover, .ui.primary.button:focus {
+	background-color: $color-primary-darked;
+}
+
+.ui.red.buttons .button, .ui.red.button {
+	background-color: $color-primary;
+}

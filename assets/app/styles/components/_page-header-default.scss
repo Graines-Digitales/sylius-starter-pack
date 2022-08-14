@@ -1,0 +1,20 @@
+.page-header-default {
+    margin-bottom: 60px;
+
+    &__title {
+        font-family: $font-primary-regular;
+        font-size: 2.25rem;
+        line-height: 1.25em;
+        margin-bottom: 0.5em
+    }
+
+    &__content-wrap {
+        font-family: $font-secondary-regular;
+        font-size: 1rem;
+        color: $color-gray-text;
+
+        p {
+            margin-bottom: 0.25rem;
+        }
+    }
+}

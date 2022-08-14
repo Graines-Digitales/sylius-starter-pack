@@ -1,0 +1,246 @@
+sylius_admin:
+    resource: "@SyliusAdminBundle/Resources/config/routing.yml"
+    prefix: '/%sylius_admin.path_name%'
+    
+sylius_paypal_admin:
+    resource: "@SyliusPayPalPlugin/Resources/config/admin_routing.yml"
+    prefix: '/%sylius_admin.path_name%'
+
+# APP Custom routes
+app_admin_web_page:
+    resource: |
+        alias: app.web_page
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_web_page
+        vars:
+            all:
+                subheader: app.ui.web_page
+                templates:
+                       form: "@App/admin/form/WebPage/views/_form.html.twig"
+            index:
+                icon: 'edit outline'
+    type: sylius.resource
+    prefix: /admin
+
+app_admin_cms_component:
+    resource: |
+        alias: app.cms_component
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_cms_component
+        vars:
+            all:
+                subheader: app.ui.cms_component
+                templates:
+                    form: "@App/admin/form/Component/views/_form.html.twig"
+            index:
+                icon: 'microchip'
+    type: sylius.resource
+    prefix: /admin
+
+app_admin_cms_component_menu:
+    resource: |
+        alias: app.cms_component_menu
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_cms_component_menu
+        vars:
+            all:
+                subheader: app.ui.cms_component_menu
+                templates:
+                    form: "@App/admin/form/Component/views/_form.html.twig"
+            index:
+                icon: 'list'
+    type: sylius.resource
+    prefix: /admin
+
+app_admin_article:
+    resource: |
+        alias: app.article
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_article
+        vars:
+            all:
+                subheader: app.ui.article
+                templates:
+                    form: "@App/admin/form/Article/views/_form.html.twig"
+            index:
+                icon: 'newspaper outline'
+    type: sylius.resource
+    prefix: /admin   
+
+app_admin_category:
+    resource: |
+        alias: app.category
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_category
+        vars:
+            all:
+                subheader: app.ui.category
+                templates:
+                    form: "@App/admin/form/Category/views/_form.html.twig"
+            index:
+                icon: 'object ungroup outline'
+    type: sylius.resource
+    prefix: /admin   
+
+app_admin_message_contact:
+    resource: |
+        alias: app.message_contact
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_message_contact
+        vars:
+            all:
+                subheader: app.ui.message_contact
+            index:
+                icon: 'comment alternate outline'
+    type: sylius.resource
+    prefix: /admin   
+
+
+app_admin_person:
+    resource: |
+        alias: app.person
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_person
+        vars:
+            all:
+                subheader: app.ui.person
+            index:
+                icon: 'address card outline'
+    type: sylius.resource
+    prefix: /admin   
+
+app_admin_media_image:
+    resource: |
+        alias: app.media_image
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_media_image
+        vars:
+            all:
+                subheader: app.ui.media_image
+            index:
+                icon: 'images outline'
+    type: sylius.resource
+    prefix: /admin   
+
+app_admin_media_video:
+    resource: |
+        alias: app.media_video
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_media_video
+        vars:
+            all:
+                subheader: app.ui.media_video
+            index:
+                icon: 'play circle outline'
+    type: sylius.resource
+    prefix: /admin   
+
+app_admin_media_document:
+    resource: |
+        alias: app.media_document
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_media_document
+        vars:
+            all:
+                subheader: app.ui.media_document
+            index:
+                icon: 'file alternate outline'
+    type: sylius.resource
+    prefix: /admin   
+
+app_admin_media_icon:
+    resource: |
+        alias: app.media_icon
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_media_icon
+        vars:
+            all:
+                subheader: app.ui.media_icon
+            index:
+                icon: 'hand peace outline'
+    type: sylius.resource
+    prefix: /admin  
+
+app_admin_organizations:
+    resource: |
+        alias: app.organization
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_organization
+        vars:
+            all:
+                subheader: app.ui.organization
+            index:
+                icon: 'building outline'
+    type: sylius.resource
+    prefix: /admin 
+
+app_admin_organization:
+    resource: |
+        alias: app.organization
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_organization
+        vars:
+            all:
+                subheader: app.ui.organization
+            index:
+                icon: 'building outline'
+    type: sylius.resource
+    prefix: /admin 
+
+app_admin_service:
+    resource: |
+        alias: app.service
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_service
+        vars:
+            all:
+                subheader: app.ui.service
+                
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: /admin
+
+app_admin_social_links:
+    resource: |
+        alias: app.social_links
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_social_links
+        vars:
+            all:
+                subheader: app.ui.social_links
+            index:
+                icon: 'facebook square'
+    type: sylius.resource
+    prefix: /admin/
+    

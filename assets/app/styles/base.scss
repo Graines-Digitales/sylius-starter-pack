@@ -1,0 +1,39 @@
+@import "~bootstrap/scss/bootstrap";
+
+
+//GENERAL
+//----------------------------------
+@import "imports";
+
+
+//PAGES
+//----------------------------------
+@import "pages/default";
+
+
+
+//COMPONENTS
+//----------------------------------
+//BREADCRUMB
+@import "components/contact-form-default";
+@import "components/breadcrumb-default";
+
+//CARD
+
+//CONTACT FORM
+@import "components/contact-form-default";
+
+//CARDS
+@import "components/cards-default";
+
+//HERO
+@import "components/hero-default";
+
+//PAGE HEADER
+@import "components/page-header-default";
+
+
+
+
+
+

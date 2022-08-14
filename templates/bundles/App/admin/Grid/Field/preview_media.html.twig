@@ -1,0 +1,20 @@
+{% if data.encodingFormat is defined 
+    and data.encodingFormat in configuration_project.media_encoding_formats.image 
+%}
+    <img 
+        class="ui tiny bordered image" 
+        src="{{ data.filename|imagine_filter('mini_webp') }}"
+    />
+{% elseif 
+    data.encodingFormat is defined 
+    and data.encodingFormat in configuration_project.media_encoding_formats.document 
+%}
+    <a target="_BLANK" href="{{ asset(data.filename, 'media') }}">Voir le document</a>
+{% elseif 
+    data.encodingFormat is defined 
+    and data.encodingFormat in configuration_project.media_encoding_formats.video
+%}
+    <a target="_BLANK" href="{{ data.url }}">Voir la vidéo</a>
+{% else %}
+    <span class="label">Aucun(e)</span>
+{% endif %}

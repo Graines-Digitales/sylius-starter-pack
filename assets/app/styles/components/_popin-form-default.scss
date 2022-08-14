@@ -1,0 +1,156 @@
+.popin-form-default {
+    position: fixed;
+    z-index: 300;
+    left: 0;
+    top: 0;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease;
+
+    &.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &__bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: $color-dark-80pc;
+    }
+
+    &__popin-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        max-height: 100%;
+        padding: 60px 30px 30px;
+        background: $color-white;
+        overflow-y: scroll;
+    }
+
+    &__btn-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        outline: none;
+        border: 0px;
+        appearance: none;
+        color: $color-primary;
+        background: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-family: $font-primary-bold;
+    }
+
+    // TITRE
+    // -------------------
+    &__title-wrap {
+        display: flex;
+
+        .svg-wrap {
+            width: auto;
+            height: 50px;
+
+            svg {
+                width: auto;
+                height: 100%;
+                fill: $color-primary
+            }
+        }
+
+        h3 {
+            position: relative;
+            margin-left: 15px;
+            margin-bottom: 45px;
+            padding-bottom: 5px;
+            font-family: $font-primary-bold;
+            font-size: 2rem;
+            text-transform: uppercase;
+            line-height: 1.2em;
+
+            &::after {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 60px;
+                height: 4px;
+                content: "";
+                background-color: $color-primary;
+            }
+        }
+    }
+
+    // FORMULAIRE
+    // -------------------
+     .contact-form-default__form {
+        .contact-form-default__row {
+            margin-bottom: 20px;
+
+            .row {
+                margin-bottom: 0;
+            }
+        }
+
+         input, textarea  {
+             border: 1px solid $color-light-gray-2;
+         }
+
+         select {
+             border: 2px solid $color-primary;
+         }
+
+         .spinner-border {
+        
+            width: 1rem;
+            height: 1rem;
+     
+        }
+     }
+
+    @media screen and (max-width: 600px){
+
+        &__popin-wrapper {
+            padding-top: 30px;
+        }
+
+        &__btn-close {
+            top: 10px;
+            right: 10px;
+            font-size: 1rem;
+        }
+
+        &__title-wrap {
+            .svg-wrap{
+                height: 25px;
+            }
+
+            h3 {
+                margin-bottom: 15px;
+                font-size: 1rem;
+            }
+        }
+
+        .contact-form-default__form{
+            .contact-form-default__row {
+                margin-bottom: 5px;
+                margin-top: 0!important;
+            }
+            .col-form-label {
+                padding-top: 0px;
+                padding-bottom: 3px;
+                font-size: .8125rem;
+            }
+            input, select, textarea {
+                font-size: .8125rem;
+            }
+        }
+
+    }
+}

@@ -1,0 +1,17 @@
+twig:
+    paths: 
+        '%kernel.project_dir%/templates/bundles/App' : App
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        configuration_project: '%configuration_project%'
+        # To define a service as a global Twig variable, prefix the string with @.
+        # menu: '@App\WebContent\Menu'
+        # media_encoding_formats: '%configuration_project.media_encoding_formats%'
+services:
+    _defaults:
+        public: false
+        autowire: true
+        autoconfigure: true
+
+#    Twig\Extra\Intl\IntlExtension: ~

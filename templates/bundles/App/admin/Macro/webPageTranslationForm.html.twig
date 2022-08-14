@@ -1,0 +1,51 @@
+{% macro translationForm(translations) %}
+	{% import '@SyliusUi/Macro/flags.html.twig' as flags %}
+
+	<div class="ui styled fluid accordion">
+		{% for locale, translationForm in translations %}
+			<div data-locale="{{ locale }}">
+				<div class="title{% if loop.first %} active{% endif %}">
+					<i class="dropdown icon"></i>
+					{{ flags.fromLocaleCode(locale) }}
+					{{ locale|sylius_locale_name }}
+				</div>
+				<div class="ui content{% if loop.first %} active{% endif %}">
+                    {# <div class="title">
+						<i class="dropdown icon"></i>
+						{{ 'app.ui.form.page_info' | trans }}
+					</div>
+					<div class="content">
+                        {{ form_row(translationForm.name)}}
+					    {{ form_row(translationForm.description)}}
+					</div> #}
+					<div class="title active">
+						<i class="dropdown icon"></i>
+						{{ 'app.ui.form.page_content' | trans }}
+					</div>
+					<div class="content active">
+                        {{ form_row(translationForm.headline)}}
+                        {{ form_row(translationForm.alternativeHeadline)}}
+                        {{ form_row(translationForm.pushForward)}}
+                        {{ form_row(translationForm.text)}}
+                        {{ form_row(translationForm.textResume)}}
+                        {{ form_row(translationForm.component)}}
+					</div>
+
+					<div class="title">
+						<i class="dropdown icon"></i>
+						{{ 'app.ui.form.page_meta_data' | trans }}
+					</div>
+					<div class="content">
+						{% if translationForm.slug is defined %}
+							{{ form_row(translationForm.slug)}}
+						{% endif %}
+						{{ form_row(translationForm.metaTitle)}}
+						{{ form_row(translationForm.metaDescription)}}
+					</div>
+
+
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endmacro %}

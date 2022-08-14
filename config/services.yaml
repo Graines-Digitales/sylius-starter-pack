@@ -1,0 +1,226 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+imports:
+    - { resource: parameters.yaml }
+       
+services:
+    # Default configuration for services in *this* file
+    _defaults:
+        # Automatically injects dependencies in your services
+        autowire: true
+
+        # Automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+
+        # Allows optimizing the container by removing unused services; this also means
+        # fetching services directly from the container via $container->get() won't work
+        public: false
+
+    _instanceof:
+        Sylius\Bundle\ResourceBundle\Controller\ResourceController:
+            autowire: false
+        Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType:
+            autowire: false
+
+    redis_connection_factory:
+        class: Enqueue\Redis\RedisConnectionFactory
+        
+    # Makes classes in src/ available to be used as services;
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+
+    # Controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    app.form.extension.type.admin:
+        class: App\Form\Extension\AdminUserTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\AdminUserType }
+
+    app.controller.schema:
+        class: App\Controller\Web\SchemaController
+        autowire: true
+        tags: ['controller.service_arguments']
+
+    app.controller.sitemap:
+        class: App\Controller\Web\SitemapController
+        autowire: true
+        tags: ['controller.service_arguments']
+
+     # WebPage controller that handle CMS management
+    app.controller.webpage:
+        class: App\Controller\Web\WebPageController
+        autowire: true
+        tags: ['controller.service_arguments']
+    
+    App\EventListener\ArticleListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    App\EventListener\WebPageListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            # - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: postUpdate }
+
+    App\EventListener\CategoryListener:
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }
+
+    App\EventListener\MediaObjectListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }
+
+     # Menu Listener
+    app.listener.admin.menu_builder:
+        class: App\EventListener\AdminMenuListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: reorderMenu, priority: -256 }
+        # arguments: [ '@service_container' ]
+
+    # Forms
+    app.web_page.form.type:
+        class: App\Form\Type\WebPageType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '%app.model.web_page.class%', ['sylius']]
+
+    app.web_page_translation.form.type:
+        class: App\Form\Type\WebPageTranslationType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.web_page_translation.class%', ['sylius']]
+
+    app.special_announcement.form.type:
+        class: App\Form\Type\SpecialAnnouncementType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '%app.model.special_announcement.class%', ['sylius']]
+
+    app.special_announcement_translation.form.type:
+        class: App\Form\Type\SpecialAnnouncementTranslationType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.special_announcement_translation.class%', ['sylius']]
+
+    app.cms_component.form.type:
+        class: App\Form\Type\CmsComponentType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.cms_component.class%', ['sylius']]
+
+    app.cms_template.form.type:
+        class: App\Form\Type\CmsTemplateType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.cms_template.class%', ['sylius']]
+
+    app.cms_style.form.type:
+        class: App\Form\Type\CmsStyleType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.cms_style.class%', ['sylius']]
+
+    app.article.form.type:
+        class: App\Form\Type\ArticleType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '%app.model.article.class%', ['sylius']]
+        
+    app.article_translation.form.type:
+        class: App\Form\Type\ArticleTranslationType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.article_translation.class%', ['sylius']]
+    
+    app.category.form.type:
+        class: App\Form\Type\CategoryType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '@doctrine.orm.default_entity_manager', '@App\Configuration\Project', '%app.model.category.class%', ['sylius']]
+
+    app.category_product_type.form.type:
+        class: App\Form\Type\CategoryTypeProductType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '@doctrine.orm.default_entity_manager', '@App\Configuration\Project', '@App\WebContent\WebPage', '%app.model.category.class%', ['sylius']]
+
+    app.category_translation.form.type:
+        class: App\Form\Type\CategoryTranslationType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.category_translation.class%', ['sylius']]     
+    
+    app.search_action.form.type:
+        class: App\Form\Type\SearchActionType
+        tags:
+            - { name: form.type }
+        arguments: [ '@service_container', '@doctrine.orm.default_entity_manager', '@App\Configuration\Project', '%app.model.search_action.class%', ['sylius']]
+
+    app.local_business.form.type:
+        class: App\Form\Type\LocalBusinessType
+        tags:
+            - { name: form.type }
+        arguments: [ '@service_container', '%app.model.local_business.class%', ['sylius']]
+
+    app.organization_local_business.form.type:
+        class: App\Form\Type\OrganizationLocalBusinessType
+        tags:
+            - { name: form.type }
+        arguments: [ '@service_container', '@App\WebContent\WebPage', '%app.model.organization.class%', ['sylius']]
+
+    app.organization.form.type:
+        class: App\Form\Type\OrganizationType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '%app.model.organization.class%', ['sylius']]
+
+    app.brand.form.type:
+        class: App\Form\Type\OrganizationBrandType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '%app.model.organization.class%', ['sylius']]
+
+    app.service.form.type:
+        class: App\Form\Type\ServiceType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '%app.model.organization.class%', ['sylius']]
+
+    app.manufacturer.form.type:
+        class: App\Form\Type\ManufacturerType
+        tags:
+            - { name: form.type }
+        arguments: [ '@service_container', '@App\WebContent\WebPage', '%app.model.organization.class%', ['sylius']]
+
+    app.social_link.form.type:
+        class: App\Form\Type\SocialLinkType
+        tags:
+            - { name: form.type }
+        arguments: [ '@service_container', '@App\WebContent\WebPage', '@App\Tools\Media', '%app.model.organization.class%', ['sylius']]
+
+    # app.message.form.type:
+    #     class: App\Form\Type\MessageType
+    #     tags:
+    #         - { name: form.type }
+    #     arguments: [ '%app.model.message.class%', ['sylius']]
+
+
+    # Override LandingPageController
+    sylius.controller.shop.homepage:
+        class: App\Controller\Shop\HomepageController
+        autowire: true
+        tags: ['controller.service_arguments']
+
+    Liip\ImagineBundle\Service\FilterService:
+        alias: 'liip_imagine.service.filter'

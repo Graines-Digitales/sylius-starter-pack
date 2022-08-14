@@ -1,0 +1,70 @@
+@import "../../imports";
+
+
+.ui.form .field:last-child {
+    margin-bottom: 1em;
+}
+
+.ui.form .field > label {
+	font-weight: 700;
+	color: $bo-color-label;
+	// text-transform: uppercase;
+	font-size: 1rem;
+}
+
+.ui.form .field > p.help-text {
+	color: $color-category-tendance-darked;
+	font-style: italic;
+	font-size: 0.85rem;
+	font-weight: 400;
+}
+
+.ui.teal.labels .label, .ui.teal.label {
+	background-color: $color-category-tendance !important;
+	border-color: $color-category-tendance !important;
+	color: #FFFFFF !important;
+}
+
+.ui.toggle.checkbox input:checked ~ .box::before, .ui.toggle.checkbox input:checked ~ label::before, .ui.toggle.checkbox input:focus:checked ~ .box::before, .ui.toggle.checkbox input:focus:checked ~ label::before {
+	background-color: $bo-color-checkbox !important;
+}
+
+div.collection-widget {
+	border: none;
+	border-radius: 5px;
+	padding: 0px;
+
+}
+
+.ui.form .field > label.collection-widget {
+	text-align: center;
+	font-size: 1.5em;
+	text-transform: uppercase;
+	color: $color-category-actu
+}
+
+div.collection-widget > div > div {
+    border-radius: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+div.collection-widget > div > div .ui.labeled.icon.button {
+	margin-left: 10px;
+}
+
+// div.collection-widget > div > div:nth-child(even) {
+//     background: rgba(41,89,47, 0.5)
+// }
+
+// div.collection-widget > div > div:nth-child(odd) {
+//     background: rgba(0,108,143, 0.5);
+// }
+
+div.collection-widget > div > div > div {
+    padding: 10px;
+}
+
+div.collection-widget .accordion {
+    margin-bottom: 1rem;
+}

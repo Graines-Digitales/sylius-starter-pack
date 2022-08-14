@@ -1,0 +1,12 @@
+{# Zone à supprimer #}
+<h1>
+    Vous pouvez modifier le logo dans templates/bundles/SyliusAdminBundle/Security/_content.html.twig, en changeant la source. 
+</h1>
+<h2>Et par la même enlever ces messages :)</h2>
+{# Fin de zone à supprimer  #}
+{% include '@SyliusUi/Security/_login.html.twig'
+    with {
+        'action': path('sylius_admin_login_check'),
+        'paths': {'logo': asset('build/admin/images/logo.png', 'admin')}
+    }
+%}

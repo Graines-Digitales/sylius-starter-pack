@@ -1,0 +1,41 @@
+.card-products-services {
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__icon-wrap {
+        margin-right: 30px;
+        width: 40px;
+        height: 40px;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            fill: $color-primary;
+            transition: .3s;
+        }
+    }
+
+    &__title {
+        font-family: $font-primary-bold;
+        font-size: 1rem;
+        line-height: 1.125em;
+        text-transform: uppercase;
+        text-align: right;
+        transition: .3s;
+    }
+
+    &--disabled {
+        .card-products-services__icon-wrap {
+            .picto-st0 {
+                fill: $color-gray-text
+            }
+        }
+
+        .card-products-services__title {
+            color: $color-gray-text;
+        }
+    }
+}
