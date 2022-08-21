@@ -180,16 +180,6 @@ class MediaObject implements ResourceInterface
     private $message;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="mediaObjects")
-     */
-    private $category;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="mediaObjects")
-     */
-    private $tags;
-
-    /**
      * @ORM\OneToMany(targetEntity=WebPage::class, mappedBy="secondaryImage")
      */
     private $webPages;
@@ -205,6 +195,16 @@ class MediaObject implements ResourceInterface
     private $videoWebPages;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Category::class)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="mediaObjects")
+     */
+    private $tags;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -212,10 +212,10 @@ class MediaObject implements ResourceInterface
         $this->articles = new ArrayCollection();
         $this->organizations = new ArrayCollection();
         $this->services = new ArrayCollection();
-        $this->tags = new ArrayCollection();
         $this->webPages = new ArrayCollection();
         $this->secondaryImageArticles = new ArrayCollection();
         $this->videoWebPages = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function __toString()
@@ -559,42 +559,6 @@ class MediaObject implements ResourceInterface
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Category>
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    public function addTag(Category $tag): self
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Category $tag): self
-    {
-        $this->tags->removeElement($tag);
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, WebPage>
      */
@@ -681,6 +645,42 @@ class MediaObject implements ResourceInterface
                 $videoWebPage->setVideo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Category $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Category $tag): self
+    {
+        $this->tags->removeElement($tag);
 
         return $this;
     }

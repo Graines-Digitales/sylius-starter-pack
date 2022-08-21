@@ -11,6 +11,7 @@
         {{ form_errors(form) }}
         {# Issue with Symfony 5, Sylius 1.9 : https://github.com/Sylius/Sylius/pull/12439 #}
         {# So we render the fields #}
+        {{ form_row(form.isEnabled) }}
         {{ form_row(form.type) }}
         {# {{ form_row(form.icon) }} #}
 

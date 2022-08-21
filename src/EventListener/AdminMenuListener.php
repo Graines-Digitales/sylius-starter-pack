@@ -138,17 +138,17 @@ final class AdminMenuListener
 
         $organization = $this->configurationService->getOrganization();
         
-        $configurationMenu
-            ->addChild(
-                'app_organization',
-                [
-                    'route' => 'app_admin_organization_update',
-                    'routeParameters' => [ 'id' => $organization->getId() ]
-                ]
-            )
-            ->setLabel('Organization')
-            ->setLabelAttribute('icon', 'file')
-        ;
+        // $configurationMenu
+        //     ->addChild(
+        //         'app_organization',
+        //         [
+        //             'route' => 'app_admin_organization_update',
+        //             'routeParameters' => [ 'id' => $organization->getId() ]
+        //         ]
+        //     )
+        //     ->setLabel('Organization')
+        //     ->setLabelAttribute('icon', 'file')
+        // ;
 
         $configurationMenu
             ->addChild('app_social_links', ['route' => 'app_admin_social_links_index'])

@@ -43,9 +43,9 @@ class CategoryType extends AbstractResourceType
 
         $configurationProject = $this->container->getParameter('configuration_project');
         $builder
-            // ->add('isLocked', CheckboxType::class, [
-            //     'required' => false,
-            // ])
+            ->add('isLocked', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('isEnabled', CheckboxType::class, [
                 'required' => false,
             ])
@@ -54,13 +54,13 @@ class CategoryType extends AbstractResourceType
                 'placeholder' => 'app.ui_element.field.select_type',
                 'required' => false,
             ])
-            ->add('icon', EntityType::class, [
-                'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_icon',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingSvg($configurationProject);
-                }
-            ])
+            // ->add('icon', EntityType::class, [
+            //     'class' => MediaObject::class,
+            //     'placeholder' => 'app.ui_element.field.select_icon',
+            //     'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
+            //         return $repo->createQueryBuilderByEncodingSvg($configurationProject);
+            //     }
+            // ])
             ->add('primaryImage', EntityType::class, [
                 'class' => MediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',

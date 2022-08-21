@@ -58,12 +58,12 @@ class CategoryTypeProductType extends AbstractResourceType
             ->add('isEnabled', CheckboxType::class, [
                 'required' => false,
             ])
-            ->add('type', ChoiceType::class, [
-                'choices' => $categoryTypeSlugs,
-                'placeholder' => 'app.ui_element.field.select_type',
-                'required' => false,
-                'data' => $category,
-            ])
+            // ->add('type', ChoiceType::class, [
+            //     'choices' => $categoryTypeSlugs,
+            //     'placeholder' => 'app.ui_element.field.select_type',
+            //     'required' => false,
+            //     'data' => $category,
+            // ])
             // ->add('type', EntityType::class, [
             //     'class' => Category::class,
             //     'data' => $category,
@@ -72,13 +72,13 @@ class CategoryTypeProductType extends AbstractResourceType
             //     }
             //     // 'disabled' => true
             // ])
-            ->add('icon', EntityType::class, [
-                'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_icon',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingSvg($configurationProject);
-                }
-            ])
+            // ->add('icon', EntityType::class, [
+            //     'class' => MediaObject::class,
+            //     'placeholder' => 'app.ui_element.field.select_icon',
+            //     'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
+            //         return $repo->createQueryBuilderByEncodingSvg($configurationProject);
+            //     }
+            // ])
             ->add('primaryImage', EntityType::class, [
                 'class' => MediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',

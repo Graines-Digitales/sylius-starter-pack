@@ -68,12 +68,6 @@ class Category implements ResourceInterface , TranslatableInterface
     private $organizations;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
-    private $primaryImage;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $type;
@@ -83,7 +77,6 @@ class Category implements ResourceInterface , TranslatableInterface
      * 
      */
     private $searchActions;
-
 
     /**
      * @ORM\ManyToMany(targetEntity=LocalBusiness::class, inversedBy="categories")
@@ -97,9 +90,15 @@ class Category implements ResourceInterface , TranslatableInterface
     private $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="category")
+     * @ORM\ManyToMany(targetEntity=MediaObject::class, mappedBy="tags")
      */
     private $mediaObjects;
+    
+        /**
+     * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $primaryImage;
     
     public function __toString()
     {
@@ -325,7 +324,7 @@ class Category implements ResourceInterface , TranslatableInterface
     {
         if (!$this->mediaObjects->contains($mediaObject)) {
             $this->mediaObjects[] = $mediaObject;
-            $mediaObject->setCategory($this);
+            $mediaObject->addTag($this);
         }
 
         return $this;
@@ -334,10 +333,7 @@ class Category implements ResourceInterface , TranslatableInterface
     public function removeMediaObject(MediaObject $mediaObject): self
     {
         if ($this->mediaObjects->removeElement($mediaObject)) {
-            // set the owning side to null (unless already changed)
-            if ($mediaObject->getCategory() === $this) {
-                $mediaObject->setCategory(null);
-            }
+            $mediaObject->removeTag($this);
         }
 
         return $this;
