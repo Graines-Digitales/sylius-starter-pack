@@ -137,16 +137,16 @@ class WebPage implements ResourceInterface, TranslatableInterface
         return $this->getTranslation()->getAlternativeHeadline();
     }
 
-    public function getComponent(): ?string
+    public function getComponents(): ?string
     {
 //        return $this->getTranslation()->getComponent();
-        return $this->getTranslation('fr_FR')->getComponent();
+        return $this->getTranslation('fr_FR')->getComponents();
     }
 
-    public function setComponent(string $component): self
+    public function setComponents(string $components): self
     {
 //        $this->getTranslation()->setComponent($component);
-        $this->getTranslation('fr_FR')->setComponent($component);
+        $this->getTranslation('fr_FR')->setComponents($components);
 
         return $this;
     }

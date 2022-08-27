@@ -23,8 +23,8 @@ class ComponentTranslationType extends AbstractResourceType
             //     'disabled' => true,
             // ])
         ;
-        $builder->remove('component');
-        $builder->add('component', RichEditorType::class, [
+        $builder->remove('components');
+        $builder->add('components', RichEditorType::class, [
             'required' => false,
         ]);
     }

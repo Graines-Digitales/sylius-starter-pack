@@ -50,8 +50,8 @@ class LandingPageTranslationType extends AbstractResourceType
             ])
         ;
 
-        $builder->remove('component');
-        $builder->add('component', RichEditorType::class, [
+        $builder->remove('components');
+        $builder->add('components', RichEditorType::class, [
                 'required' => false,
         ]);
     }

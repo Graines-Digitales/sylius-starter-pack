@@ -33,8 +33,8 @@ class Import
     {
         $locales = $this->container->get('sylius.repository.locale')->findAll();
         foreach($locales as $locale) {
-            $code = $locale->getCode();
-            $locale = current(explode('_', $code));
+            $localeCode = $locale->getCode();
+            $locale = current(explode('_', $localeCode));
             if('fr' === $locale) {
                 /**
                  * MEDIA OBJECTS
@@ -145,8 +145,6 @@ class Import
                         $absoluteFilePath = $file->getRealPath();
                         $filename = pathinfo($file->getRelativePathname(), PATHINFO_FILENAME);
                         $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-                        dump($filename);
-                        dump($filename);
                         if('md' === $extension && 'main' !== $filename) {
                             $result = $parser->parse(file_get_contents($absoluteFilePath), false);
                             $data = $result->getYaml();
@@ -160,6 +158,37 @@ class Import
                             );
                             $organization = $this->dataService->createOrganizationDemand($data);
                             $this->entityManager->persist($organization);
+                        }
+                    }
+                    $this->entityManager->flush();
+                }
+
+                 /**
+                 * COMPONENTS
+                 */
+                $parser = new Parser();
+                $finder = new Finder();
+                $path = $contentPath . DIRECTORY_SEPARATOR  . $locale . DIRECTORY_SEPARATOR . 'components';
+                $finder->depth('== 0');
+                $finder->files()->in($path);
+                if ($finder->hasResults()) {
+                    foreach ($finder as $file) {
+                        $absoluteFilePath = $file->getRealPath();
+                        $filename = pathinfo($file->getRelativePathname(), PATHINFO_FILENAME);
+                        $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
+                        if('md' === $extension && 'main' !== $filename) {
+                            $result = $parser->parse(file_get_contents($absoluteFilePath), false);
+                            $data = $result->getYaml();
+                            // $data['description'] = $result->getContent();
+                            $component = $this->dataService->createComponentDemand($data, $localeCode);
+                            $this->entityManager->persist($component);
+                        } else if('json' === $extension) {
+                            $data = json_decode(
+                                file_get_contents($absoluteFilePath)
+                                , true
+                            );
+                            $component = $this->dataService->createComponentDemand($data, $localeCode);
+                            $this->entityManager->persist($component);
                         }
                         
                     }

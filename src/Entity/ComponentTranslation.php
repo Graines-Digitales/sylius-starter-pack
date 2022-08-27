@@ -45,7 +45,7 @@ class ComponentTranslation extends AbstractTranslation implements ResourceInterf
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $component;
+    private $components;
 
 
     /**
@@ -61,14 +61,14 @@ class ComponentTranslation extends AbstractTranslation implements ResourceInterf
         return $this->id;
     }
 
-    public function getComponent(): ?string
+    public function getComponents(): ?string
     {
-        return $this->component;
+        return $this->components;
     }
 
-    public function setComponent(?string $component): self
+    public function setComponents(?string $components): self
     {
-        $this->component = $component;
+        $this->components = $components;
 
         return $this;
     }

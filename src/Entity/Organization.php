@@ -44,7 +44,7 @@ class Organization implements ResourceInterface
     private $id;
     
     /**
-     * @Gedmo\Slug(fields={"name"}, updatable=true)
+     * @Gedmo\Slug(fields={"name"}, updatable=false)
      * @ORM\Column(length=128)
      */
     private $slug;

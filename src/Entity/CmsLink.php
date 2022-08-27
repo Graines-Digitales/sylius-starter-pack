@@ -68,7 +68,7 @@ class CmsLink implements ResourceInterface, TranslatableInterface
     /**
      * @ORM\ManyToOne(targetEntity=Component::class, inversedBy="cmsLinks")
      */
-    private $component;
+    private $components;
 
     public function __construct()
     {
@@ -198,14 +198,14 @@ class CmsLink implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getComponent(): ?Component
+    public function getComponents(): ?string
     {
-        return $this->component;
+        return $this->components;
     }
 
-    public function setComponent(?Component $component): self
+    public function setComponents(?string $components): self
     {
-        $this->component = $component;
+        $this->components = $components;
 
         return $this;
     }

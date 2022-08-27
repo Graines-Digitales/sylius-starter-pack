@@ -17,6 +17,7 @@ use App\Entity\MediaObject;
 use App\Entity\Organization;
 use App\Entity\PropertyValue;
 use App\Entity\SlideMediaObject;
+use App\Entity\ArticleTranslation;
 use App\Entity\WebPageTranslation;
 use App\Entity\CategoryTranslation;
 use Doctrine\ORM\EntityManagerInterface;
@@ -72,13 +73,13 @@ class Action
 
     public function createArticleDemand($data = [], $locale = 'fr_FR')
     {
-        $webPage = new WebPage();
-        $webPage->setCurrentLocale($locale);
-        $webPageTranslation = new WebPageTranslation();
-        $webPage->addTranslation($webPageTranslation); 
-        $webPage = $this->hydrateWebPageDemand($data, $webPage, $locale);
+        $article = new Article();
+        $article->setCurrentLocale($locale);
+        $articleTranslation = new ArticleTranslation();
+        $article->addTranslation($articleTranslation); 
+        $article = $this->hydrateArticleDemand($data, $article, $locale);
        
-        return $webPage;
+        return $article;
     }
 
     public function createPersonDemand($data = [])
@@ -100,11 +101,19 @@ class Action
         return $message;
     }
 
+    public function createComponentDemand($data = [], $locale)
+    {
+        $component = new Component();
+        $component = $this->hydrateComponentDemand($data, $component, $locale);
+        
+        return $component;
+    }
+
     public function createOrganizationDemand($data = [])
     {
         $organization = new Organization();
         $organization = $this->hydrateOrganizationDemand($data, [], $organization);
-        dump($data);
+        
         return $organization;
     }
 
@@ -167,7 +176,7 @@ class Action
         if (isset($data['components'])) {
             $components = $data['component'];
         }
-        $webPage->setComponent($components, 'fr_FR');
+        $webPage->setComponents($components, 'fr_FR');
 
         return $webPage;
     }
@@ -178,7 +187,7 @@ class Action
         $article->getTranslation()->setTranslatable($article);
 
         if(isset($data['headline'])){
-            $article->setHeadline($data['headline']);
+            $article->getTranslation()->setHeadline($data['headline']);
         }
 
         if(isset($data['category'])){
@@ -200,19 +209,19 @@ class Action
         }
 
         if(isset($data['alternativeHeadline'])){
-            $article->setAlternativeHeadline($data['alternativeHeadline']);
+            $article->getTranslation()->setAlternativeHeadline($data['alternativeHeadline']);
         }
 
         if(isset($data['articleBody'])){
-            $article->setArticleBody($data['articleBody']);
+            $article->getTranslation()->setArticleBody($data['articleBody']);
         }
 
         if (isset($data['pushForward'])) {
-            $article->setPushForward($data['pushForward']);
+            $article->getTranslation()->setPushForward($data['pushForward']);
         }
 
         if(isset($data['textResume'])){
-            $article->setTextResume($data['textResume']);
+            $article->getTranslation()->setTextResume($data['textResume']);
         }
 
         // if (isset($data['components'])) {
@@ -258,7 +267,6 @@ class Action
 
     public function hydrateAddressDemand($data = [], $address)
     {
-        // dump($data);die;
         $address->setAddress($data['streetAddress']);
         $address->setCity($data['addressLocality']);
         $address->setPostcode($data['postalCode']);
@@ -273,6 +281,33 @@ class Action
 
         return $address;
     }
+
+    public function hydrateComponentDemand($data = [], $component, $locale)
+    {
+        if(isset($data['name'])) {
+            $component->setName($data['name']);
+            $component->getTranslation($locale)->setHeadline($data['name']);
+        }
+
+        if (isset($data['components'])) {
+            $components = [];
+            
+            foreach($data['components'] as $result) {
+                $array = [];
+                $array['code'] = $result['code'];
+                unset($result['code']);
+                $array['data'] = $result;
+                array_push($components, $array);
+            }
+            
+            $component->getTranslation($locale)->setComponents(
+                json_encode($components)
+            );
+        }
+
+        return $component;
+    }
+
 
     public function hydrateOrganizationDemand($data = [], $addresses = [], $organization)
     {
@@ -353,6 +388,8 @@ class Action
 
         return $organization;
     }
+
+
 
     /**
      * En dessous à revoir en fonction des besoins
@@ -540,7 +577,7 @@ class Action
         return $entity;
     }
 
-    public function createComponentDemand($value = [], $index = 0)
+    public function _createComponentDemand($value = [], $index = 0)
     {
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
         $entity = $this->manager->getRepository(Component::class)
@@ -685,7 +722,7 @@ class Action
         return $entity;
     }
 
-    public function hydrateComponentDemand($value = [], $index = 0)
+    public function _hydrateComponentDemand($value = [], $index = 0)
     {
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
         $entity = $this->manager->getRepository(Component::class)

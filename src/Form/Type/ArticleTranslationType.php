@@ -52,8 +52,8 @@ class ArticleTranslationType extends AbstractResourceType
                 'required' => false
             ])
         ;
-        $builder->remove('component');
-        $builder->add('component', RichEditorType::class, [
+        $builder->remove('components');
+        $builder->add('components', RichEditorType::class, [
             'required' => false,
         ]);
     }
