@@ -62,14 +62,16 @@ class SpecialAnnouncementType extends AbstractResourceType
             //     'placeholder' => 'app.ui_element.field.select_option',
             // ])
             // ->addEventSubscriber(new AddCodeFormSubscriber())
-            ->add('createdAt', DateTimeType::class, [
-                'disabled' => true,
-                'widget' => 'single_text'
-            ])
-            ->add('updatedAt', DateTimeType::class, [
-                'disabled' => true,
-                'widget' => 'single_text'
-            ])
+            // ->add('createdAt', DateTimeType::class, [
+            //     'disabled' => true,
+            //     'widget' => 'single_text',
+            //     'required' => false,
+            // ])
+            // ->add('updatedAt', DateTimeType::class, [
+            //     'disabled' => true,
+            //     'widget' => 'single_text',
+            //     'required' => false,
+            // ])
         ;
     }
 

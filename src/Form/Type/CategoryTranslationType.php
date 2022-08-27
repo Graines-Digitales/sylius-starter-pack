@@ -2,10 +2,11 @@
 
 namespace App\Form\Type;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 
 class CategoryTranslationType extends AbstractResourceType
 {
@@ -13,7 +14,10 @@ class CategoryTranslationType extends AbstractResourceType
     {
         $builder
             ->add('name', TextType::class, [
-                'required' => true
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['sylius']])
+                ]
             ])
             ->add('description', TextareaType::class, [
                 'required' => false

@@ -11,6 +11,8 @@ use Symfony\Component\Form\AbstractType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -29,18 +31,23 @@ class MediaObjectImageType extends AbstractType
     {
         $configurationProject = $this->container->getParameter('configuration_project');
         $builder
-            ->add('file')
+            ->add('file', null, [
+                'constraints' => [
+                    new File([
+                        'groups' => ['media_object_image_validation'],
+                        'mimeTypesMessage' => "Formats autorisés : png,jpeg,gif",
+                        'maxSize' => "5M",
+                        'mimeTypes' => ["image/png","image/jpeg","image/jpg","image/gif",]
+                    ])
+                ]
+            ])
             ->add('isEnabled', CheckboxType::class, [
                 'required' => false,
                 'data' => true
             ])
             ->add('name')
-            ->add('alt', null, [ 'label' => 'SEO ALT Balise' ])
-            ->add(
-                'filename',
-                null,
-                [
-                    'disabled' => true,
+            ->add('alt', null, [ 
+                    'label' => 'SEO ALT Balise',
                     'help' => 'If empty, the file name will be generated automatically',
                 ]
             )
@@ -48,23 +55,30 @@ class MediaObjectImageType extends AbstractType
                 null,
                 [
                     'disabled' => true,
-                    'help' => 'This field will be automatically edited',
+                    // 'help' => 'This field will be automatically edited',
                 ]
             )
             ->add('category', EntityType::class, [
+                'required' => false,
                 'class' => Category::class,
-                'placeholder' => 'app.ui_element.field.select_category',
-                'query_builder' => function(CategoryRepository $repo) use ($configurationProject) {
-                    return $repo->createQueryBuilderByTypeArticle($configurationProject);
-                }
+                'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('tags', EntityType::class, [
+                'required' => false,
                 'class'         => Category::class,
                 'expanded'      => true,
                 'multiple'      => true,
                 'by_reference' => false,
                 'placeholder' => 'app.ui_element.field.select_option',
             ])
+            ->add(
+                'filename',
+                null,
+                [
+                    'disabled' => true,
+                    'help' => 'This field will be automatically edited',
+                ]
+            )
         ;
     }
 
@@ -72,6 +86,7 @@ class MediaObjectImageType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => MediaObject::class,
+            'validation_groups' => ['media_object_image_validation']
         ]);
     }
 
@@ -80,6 +95,6 @@ class MediaObjectImageType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'app_media_object';
+        return 'app_media_object_image';
     }
 }

@@ -20,6 +20,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 
 /**
@@ -27,6 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @see http://schema.org/MediaObject Documentation on Schema.org
  *
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=MediaObjectRepository::class)
  * @ORM\Table(name="app_media_object")
  * @Vich\Uploadable
@@ -105,17 +107,6 @@ class MediaObject implements ResourceInterface
 
     /**
      * @var File
-     * @Assert\File(
-     *     maxSize = "1G",
-     *     mimeTypes = {
-     *          "image/png",
-     *          "image/jpeg",
-     *          "image/jpg",
-     *          "image/gif",
-     *          "application/pdf"
-     *      },
-     *     mimeTypesMessage = "Formats autorisés : pdf, png, jpeg, jpg, gif"
-     * )
      * @Vich\UploadableField(
      *    mapping="default_media_object"
      *  , fileNameProperty="slug"
@@ -123,6 +114,23 @@ class MediaObject implements ResourceInterface
      *  , mimeType="encodingFormat"
      *  , originalName="originalFilename"
      *  , dimensions="dimensions"
+     * )
+     * 
+     * @Assert\NotBlank(groups={
+     *     "media_object_image",
+     *     "media_object_document",
+     *     "media_object_svg"
+     * })
+     * 
+     * @Assert\File(
+     *     mimeTypes = {
+     *          "image/png",
+     *          "image/jpeg",
+     *          "image/jpg",
+     *          "image/gif",
+     *          "application/pdf",
+     *          "image/svg+xml"
+     *     }
      * )
      */
     private $file;
@@ -133,11 +141,6 @@ class MediaObject implements ResourceInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $tmpFile;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $link;
 
     /**
      * @ORM\Column(type="boolean", options={"default": true})
@@ -160,12 +163,12 @@ class MediaObject implements ResourceInterface
     private $icon;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="iconMedias")
+     * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="icons")
      */
     private $organization;
 
     /**
-     * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="iconMedia")
+     * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="icon")
      */
     private $organizations;
 
@@ -201,8 +204,22 @@ class MediaObject implements ResourceInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="mediaObjects")
+     * @ORM\JoinTable(
+     *    name="app_media_objects_categories",
+     *    joinColumns={
+     *      @ORM\JoinColumn(name="media_object_id", referencedColumnName="id")
+     *    },
+     *    inverseJoinColumns={
+     *      @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     *    }
+     * )
      */
     private $tags;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Component::class, mappedBy="primaryImage")
+     */
+    private $components;
 
     /**
      * Constructor.
@@ -216,14 +233,15 @@ class MediaObject implements ResourceInterface
         $this->secondaryImageArticles = new ArrayCollection();
         $this->videoWebPages = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->components = new ArrayCollection();
     }
 
     public function __toString()
     {   
-        if(!empty($this->getOriginalFilename())) {
+        // if(!empty($this->getOriginalFilename())) {
             
-            return $this->getOriginalFilename();
-        }
+        //     return $this->getOriginalFilename();
+        // }
 
         return $this->getFilename();
     }
@@ -375,18 +393,6 @@ class MediaObject implements ResourceInterface
         return $this->caption;
     }
 
-    public function getLink(): ?string
-    {
-        return $this->link;
-    }
-
-    public function setLink(string $link): self
-    {
-        $this->link = $link;
-
-        return $this;
-    }
-
     public function getIsActived(): ?bool
     {
         return $this->isActived;
@@ -499,7 +505,7 @@ class MediaObject implements ResourceInterface
     {
         if (!$this->organizations->contains($organization)) {
             $this->organizations[] = $organization;
-            $organization->setIconMedia($this);
+            $organization->setIcon($this);
         }
 
         return $this;
@@ -509,8 +515,8 @@ class MediaObject implements ResourceInterface
     {
         if ($this->organizations->removeElement($organization)) {
             // set the owning side to null (unless already changed)
-            if ($organization->getIconMedia() === $this) {
-                $organization->setIconMedia(null);
+            if ($organization->getIcon() === $this) {
+                $organization->setIcon(null);
             }
         }
 
@@ -681,6 +687,36 @@ class MediaObject implements ResourceInterface
     public function removeTag(Category $tag): self
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Component>
+     */
+    public function getComponents(): Collection
+    {
+        return $this->components;
+    }
+
+    public function addComponent(Component $component): self
+    {
+        if (!$this->components->contains($component)) {
+            $this->components[] = $component;
+            $component->setPrimaryImage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComponent(Component $component): self
+    {
+        if ($this->components->removeElement($component)) {
+            // set the owning side to null (unless already changed)
+            if ($component->getPrimaryImage() === $this) {
+                $component->setPrimaryImage(null);
+            }
+        }
 
         return $this;
     }

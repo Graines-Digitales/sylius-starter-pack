@@ -33,7 +33,7 @@ class OrganizationRepository extends EntityRepository
 
     public function createQueryBuilderByCategoryManufacturer($configurationProject)
     {
-        $slug = $configurationProject['categories']['manufacturer']['slug'];
+        $slug = 'manufacturer';
 
         return $this->createQueryBuilder('entity')
             ->innerJoin('entity.category', 'category')
@@ -53,7 +53,7 @@ class OrganizationRepository extends EntityRepository
 
     public function createQueryBuilderByCategoryLocalBusiness($configurationProject)
     {
-        $slug = $configurationProject['categories']['local_business']['slug'];
+        $slug = 'local-business';
 
         return $this->createQueryBuilder('entity')
             ->innerJoin('entity.category', 'category')
@@ -65,7 +65,7 @@ class OrganizationRepository extends EntityRepository
     
     public function createQueryBuilderByCategorySocialLink($configurationProject)
     {
-        $slug = $configurationProject['categories']['social_link']['slug'];
+        $slug = 'reseau-social';
 
         return $this->createQueryBuilder('entity')
             ->innerJoin('entity.category', 'category')
@@ -85,7 +85,7 @@ class OrganizationRepository extends EntityRepository
 
     public function createQueryBuilderByCategoryBrand($configurationProject)
     {
-        $slug = $configurationProject['categories']['brand']['slug'];
+        $slug = 'brand';
 
         return $this->createQueryBuilder('entity')
             ->innerJoin('entity.category', 'category')

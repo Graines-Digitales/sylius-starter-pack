@@ -10,6 +10,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -39,6 +40,8 @@ class CategoryTranslation extends AbstractTranslation implements ResourceInterfa
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank()
      */
     private $name;
 

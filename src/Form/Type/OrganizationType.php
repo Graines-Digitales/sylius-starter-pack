@@ -11,6 +11,7 @@ use App\Repository\MediaObjectRepository;
 use App\Repository\OrganizationRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -34,8 +35,13 @@ class OrganizationType extends AbstractType
             ->add('slug', TextType::class, [
                 'disabled' => true,
             ])
-            ->addEventSubscriber(new AddCodeFormSubscriber())
-            ->add('name')
+            // ->addEventSubscriber(new AddCodeFormSubscriber())
+            ->add('name', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['sylius']])
+                ]
+            ])
             ->add('legalName')
             ->add('phone')
             ->add('email')
@@ -58,13 +64,14 @@ class OrganizationType extends AbstractType
                 'delete_empty' => true,
             ])
             ->add('primaryImage', EntityType::class, [
+                'attr' => ['class' => 'select2-image'],
                 'class' => MediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
                 'query_builder' => function (MediaObjectRepository $repo) use ($configurationProject) {
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
-            ->add('iconMedia', EntityType::class, [
+            ->add('icon', EntityType::class, [
                 'class' => MediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
                 'query_builder' => function (MediaObjectRepository $repo) use ($configurationProject) {
@@ -91,11 +98,13 @@ class OrganizationType extends AbstractType
             // ])
             ->add('socialLinks', EntityType::class, [
                 'class' => Organization::class,
+                'expanded'      => true,
+                'multiple'      => true,
+                // 'by_reference' => false,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
                 'query_builder' => function (OrganizationRepository $repo) use ($configurationProject) {
                     return $repo->createQueryBuilderByCategorySocialLink($configurationProject);
-                },
-                'multiple' => true
+                }
             ]);
     }
 

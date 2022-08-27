@@ -153,7 +153,7 @@ class AppExtension extends AbstractExtension
     function getFeaturesFromProduct($data) 
     {
         $configurationProject = $this->container->getParameter('configuration_project');
-        $excludes = ['root', $configurationProject['categories']['local_business']['slug']];
+        $excludes = ['root', 'local-business'];
         $array = [];
         foreach($data->getTaxons() as $taxon) {
             if(!in_array($taxon->getParent()->getSlug(), $excludes)){

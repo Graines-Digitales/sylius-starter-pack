@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -39,7 +40,19 @@ class ArticleType extends AbstractResourceType
             ->add('isIndexed', CheckboxType::class, [
                 'required' => false,
             ])
+            // ->add('createdAt', DateTimeType::class, [
+            //     'disabled' => true,
+            //     'widget' => 'single_text',
+            //     'required' => false,
+            // ])
+            // ->add('updatedAt', DateTimeType::class, [
+            //     'disabled' => true,
+            //     'widget' => 'single_text',
+            //     'required' => false,
+            // ])
             ->add('primaryImage', EntityType::class, [
+                'required' => false,
+                'attr' => ['class' => 'select2-image'],
                 'class' => MediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
@@ -47,41 +60,46 @@ class ArticleType extends AbstractResourceType
                 }
             ])
             ->add('secondaryImage', EntityType::class, [
+                'required' => false,
+                'attr' => ['class' => 'select2-image'],
                 'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_secondary_image',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
             ->add('video', EntityType::class, [
+                'required' => false,
                 'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_video',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingVideo($configurationProject);
                 }
             ])
             ->add('category', EntityType::class, [
+                'required' => false,
                 'class' => Category::class,
-                'placeholder' => 'app.ui_element.field.select_category',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(CategoryRepository $repo) use ($configurationProject) {
                     return $repo->createQueryBuilderByTypeArticle($configurationProject);
                 }
             ])
             ->add('tags', EntityType::class, [
+                'required' => false,
                 'class'         => Category::class,
                 'expanded'      => true,
                 'multiple'      => true,
                 'by_reference' => false,
                 'placeholder' => 'app.ui_element.field.select_option',
             ])
-            ->add('datePublished', DateType::class, [
-                'required' => false,
-                 'widget' => 'single_text',
-            ])
-            ->add('lastReview', DateType::class, [
-                'required' => false,
-                 'widget' => 'single_text',
-            ])
+            // ->add('datePublished', DateType::class, [
+            //     'required' => false,
+            //      'widget' => 'single_text',
+            // ])
+            // ->add('lastReview', DateType::class, [
+            //     'required' => false,
+            //      'widget' => 'single_text',
+            // ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => ArticleTranslationType::class,
             ])

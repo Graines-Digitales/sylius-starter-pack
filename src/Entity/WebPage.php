@@ -17,6 +17,7 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\TranslatableInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -57,6 +58,8 @@ class WebPage implements ResourceInterface, TranslatableInterface
     /**
      * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
+     * 
+     * @Assert\NotBlank()
      */
     private $primaryImage;
 
@@ -85,6 +88,11 @@ class WebPage implements ResourceInterface, TranslatableInterface
      * @ORM\ManyToOne(targetEntity=MediaObject::class, inversedBy="videoWebPages")
      */
     private $video;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class)
+     */
+    private $type;
 
 
     public function __toString()
@@ -250,6 +258,18 @@ class WebPage implements ResourceInterface, TranslatableInterface
     public function setVideo(?MediaObject $video): self
     {
         $this->video = $video;
+
+        return $this;
+    }
+
+    public function getType(): ?Category
+    {
+        return $this->type;
+    }
+
+    public function setType(?Category $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

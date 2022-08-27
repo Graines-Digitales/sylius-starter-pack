@@ -2,8 +2,11 @@
 
 namespace App\Form\Type;
 
+use App\Entity\ArticleTranslation;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
@@ -16,7 +19,10 @@ class ArticleTranslationType extends AbstractResourceType
     {
         $builder
             ->add('headline', TextType::class, [
-                'required' => false
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['article_translation_validation']])
+                ]
             ])
             ->add('text', WysiwygType::class, [
                 'required' => false
@@ -49,6 +55,14 @@ class ArticleTranslationType extends AbstractResourceType
         $builder->remove('component');
         $builder->add('component', RichEditorType::class, [
             'required' => false,
+        ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => ArticleTranslation::class,
+            'validation_groups' => ['article_translation_validation'],
         ]);
     }
 

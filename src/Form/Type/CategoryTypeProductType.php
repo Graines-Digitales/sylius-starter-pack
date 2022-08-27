@@ -47,10 +47,10 @@ class CategoryTypeProductType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $configurationProject = $this->container->getParameter('configuration_project');
-        $categoryTypeSlugs =  $this->configurationService->getCategoryTypeSlugs($configurationProject['categories']['product']['slug']);
+        $categoryTypeSlugs =  $this->configurationService->getCategoryTypeSlugs('product');
 
-        // $slug = $configurationProject['categories']['product']['slug'];
-        $category = $configurationProject['categories']['product']['slug'];// $this->webPageService->getCategory($slug);
+        // $slug = 'product';
+        $category = 'product';// $this->webPageService->getCategory($slug);
         $builder
             // ->add('isLocked', CheckboxType::class, [
             //     'required' => false,

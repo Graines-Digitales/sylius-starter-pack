@@ -4,6 +4,7 @@ namespace App\EventListener;
 
 use App\Tools\Media;
 use App\Entity\MediaObject;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -11,15 +12,19 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class MediaObjectListener
 {
     protected $container;
+    
+    protected $entityManager;
 
     protected $toolsMediaService;
 
     public function __construct(
         ContainerInterface $container
         , Media $toolsMediaService
+        , EntityManagerInterface $entityManager
     )
     {
         $this->container = $container;
+        $this->entityManager = $entityManager;
         $this->toolsMediaService = $toolsMediaService;
     }
 
@@ -30,7 +35,6 @@ class MediaObjectListener
         if (!$entity instanceof MediaObject) {
             return;
         }
-
         // $entityManager = $args->getObjectManager();
         $this->toolsMediaService->defineEntityMediaFromFile($entity);
         // $entityManager->persist($entity);
@@ -59,6 +63,10 @@ class MediaObjectListener
 
         $configurationProject = $this->container->getParameter('configuration_project');
         $mimeTypes = $configurationProject['media_encoding_formats']['image'];
+        
+        $entity = $this->toolsMediaService->defineEntityMediaFromFile($entity);
+        $this->entityManager->persist($entity);
+        $this->entityManager->flush();
         if (in_array($entity->getEncodingFormat(), $mimeTypes)) {
             $this->toolsMediaService->generateFiltersForMediaObject($entity);
         }

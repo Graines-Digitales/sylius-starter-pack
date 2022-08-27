@@ -51,7 +51,7 @@ class CategoryType extends AbstractResourceType
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => $categoryTypeSlugs,
-                'placeholder' => 'app.ui_element.field.select_type',
+                'placeholder' => 'app.ui_element.field.choose',
                 'required' => false,
             ])
             // ->add('icon', EntityType::class, [
@@ -62,8 +62,10 @@ class CategoryType extends AbstractResourceType
             //     }
             // ])
             ->add('primaryImage', EntityType::class, [
+                'required' => false,
+                'attr' => ['class' => 'select2-image'],
                 'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }

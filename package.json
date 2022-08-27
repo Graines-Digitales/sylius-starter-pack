@@ -12,10 +12,11 @@
     "jquery-bridget": "^3.0.1",
     "jquery.dirtyforms": "^2.0.0",
     "lightbox2": "^2.9.0",
-    "semantic-ui-css": "^2.2.0",
+    "semantic-ui-css": "^2.4.1",
     "slick-carousel": "^1.8.1",
     "tiny-slider": "^2.9.4",
-    "toastr": "^2.1.4"
+    "toastr": "^2.1.4",
+    "select2": "^4.1.0-rc.0"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^1.2.0",

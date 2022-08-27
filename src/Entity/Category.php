@@ -38,6 +38,7 @@ class Category implements ResourceInterface , TranslatableInterface
         $this->localBusinesses = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->mediaObjects = new ArrayCollection();
+        $this->components = new ArrayCollection();
     }
 
     /**
@@ -99,6 +100,11 @@ class Category implements ResourceInterface , TranslatableInterface
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $primaryImage;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Component::class, mappedBy="category")
+     */
+    private $components;
     
     public function __toString()
     {
@@ -334,6 +340,36 @@ class Category implements ResourceInterface , TranslatableInterface
     {
         if ($this->mediaObjects->removeElement($mediaObject)) {
             $mediaObject->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Component>
+     */
+    public function getComponents(): Collection
+    {
+        return $this->components;
+    }
+
+    public function addComponent(Component $component): self
+    {
+        if (!$this->components->contains($component)) {
+            $this->components[] = $component;
+            $component->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComponent(Component $component): self
+    {
+        if ($this->components->removeElement($component)) {
+            // set the owning side to null (unless already changed)
+            if ($component->getCategory() === $this) {
+                $component->setCategory(null);
+            }
         }
 
         return $this;

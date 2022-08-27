@@ -42,7 +42,7 @@ class SEO
         
         $organization = $this->manager->getRepository(Organization::class)
             ->findOneBy(['slug' => $slug]);
-        $suffixe = (null === $organization)? '- Nom du site': ' - ' . $organization->getName();
+        $suffixe = (null === $organization)? ' - Nom du site': ' - ' . $organization->getName();
 
 
 
@@ -77,8 +77,6 @@ class SEO
 
     public function defineAltImage($media)
     {
-       
-
         return $media->getName();
     }
 

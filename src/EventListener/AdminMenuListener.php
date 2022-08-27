@@ -2,11 +2,13 @@
 
 namespace App\EventListener;
 
-use Symfony\Component\HttpKernel\KernelInterface;
-use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 use App\Configuration\Project;
-use Symfony\Component\HttpFoundation\RequestStack;
+use App\Entity\Component;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 
 final class AdminMenuListener
 {
@@ -21,6 +23,8 @@ final class AdminMenuListener
     
     private $user;
 
+    private $entityManager;
+
     /**
      * Your Service constructor.
      */
@@ -28,12 +32,14 @@ final class AdminMenuListener
         KernelInterface $kernel,
         Project $configurationService,
         RequestStack $requestStack,
-        Security $security
+        Security $security,
+        EntityManagerInterface $entityManager
     ) {
         $this->environment = $kernel->getEnvironment();
         $this->request = $requestStack->getCurrentRequest();
         $this->configurationService = $configurationService;
         $this->user = $security->getUser();
+        $this->entityManager = $entityManager;
     }
 
     public function addAdminMenuItems(MenuBuilderEvent $event): void
@@ -54,6 +60,8 @@ final class AdminMenuListener
             ->addChild('app_pages', ['route' => 'app_admin_web_page_index'])
             ->setLabel('Pages')
             ->setLabelAttribute('icon', 'edit outline');
+        
+     
 
         // $cmsMenu
         //     ->addChild('app_category', ['route' => 'app_admin_category_index'])
@@ -63,18 +71,54 @@ final class AdminMenuListener
         $cmsMenu
             ->addChild('app_articles', ['route' => 'app_admin_article_index'])
             ->setLabel('Articles')
-            ->setLabelAttribute('icon', 'newspaper outline');
+            ->setLabelAttribute('icon', 'newspaper outline')
+        ;
         
-        if (in_array('ROLE_DEV', $this->user->getRoles())) {
-            $componentMenu = $menu
-            ->addChild('app_component')
-            ->setLabel('Components');
+        
 
-            // $componentMenu
-            //     ->addChild('app_cms_component_menu', ['route' => 'app_admin_cms_component_menu_index'])
-            //     ->setLabel('Menu')
-            //     ->setLabelAttribute('icon', 'list');
+        // $menuMenu = $menu
+        //     ->addChild('app_menu')
+        //     ->setLabel('Menu')
+        // ;
+
+        $componentsMenu = $menu
+            ->addChild('app_components')
+            ->setLabel('Components')
+        ;
+
+        $results = $this->entityManager->getRepository(Component::class)->findBy(['isEnabled' => true]);
+        foreach($results as $component) {
+            $componentsMenu
+                ->addChild(
+                    'app_component_menu_item_' . $component->getId(),
+                [
+                    'route' => 'app_admin_component_update',
+                    'routeParameters' => [ 'id' => $component->getId() ]
+                ]
+                )
+                ->setLabel($component->getName())
+                ->setLabelAttribute('icon', 'microchip');
         }
+        // if (in_array('ROLE_DEV', $this->user->getRoles())) {
+
+        //     $componentMenu = $menu
+        //         ->addChild('app_component')
+        //         ->setLabel('Components');
+
+        //     $componentMenu
+        //         ->addChild('app_cms_component_menu', ['route' => 'app_admin_cms_component_menu_index'])
+        //         ->setLabel('Menu')
+        //         ->setLabelAttribute('icon', 'list');
+        // }
+        
+        $crmMenu = $menu
+            ->addChild('app_crm')
+            ->setLabel('CRM');
+        
+        $crmMenu
+            ->addChild('app_landing_pages', ['route' => 'app_admin_landing_page_index'])
+            ->setLabel('Landing Pages')
+            ->setLabelAttribute('icon', 'edit outline');
 
         $mediaMenu = $menu
             ->addChild('app_media')
@@ -87,7 +131,7 @@ final class AdminMenuListener
 
         $mediaMenu
             ->addChild('app_media_video', ['route' => 'app_admin_media_video_index'])
-            ->setLabel('Video')
+            ->setLabel('Videos')
             ->setLabelAttribute('icon', 'play circle outline');
 
         $mediaMenu
@@ -97,7 +141,7 @@ final class AdminMenuListener
 
         $mediaMenu
             ->addChild('app_media_icon', ['route' => 'app_admin_media_icon_index'])
-            ->setLabel('Icon')
+            ->setLabel('Icons')
             ->setLabelAttribute('icon', 'hand peace outline');
 
         $formMenu = $menu
@@ -138,27 +182,41 @@ final class AdminMenuListener
 
         $organization = $this->configurationService->getOrganization();
         
-        // $configurationMenu
-        //     ->addChild(
-        //         'app_organization',
-        //         [
-        //             'route' => 'app_admin_organization_update',
-        //             'routeParameters' => [ 'id' => $organization->getId() ]
-        //         ]
-        //     )
-        //     ->setLabel('Organization')
-        //     ->setLabelAttribute('icon', 'file')
-        // ;
+        $configurationMenu
+            ->addChild(
+                'app_organization',
+                [
+                    'route' => 'app_admin_organization_update',
+                    'routeParameters' => [ 'id' => $organization->getId() ]
+                ]
+            )
+            ->setLabel('Organization')
+            ->setLabelAttribute('icon', 'file')
+        ;
 
         $configurationMenu
             ->addChild('app_social_links', ['route' => 'app_admin_social_links_index'])
             ->setLabel('Social Links')
-            ->setLabelAttribute('icon', 'facebook square');
+            ->setLabelAttribute('icon', 'facebook square')
+        ;
         
+
         $configurationMenu
-            ->addChild('app_cms_component', ['route' => 'app_admin_cms_component_index'])
+            ->addChild('app_component', ['route' => 'app_admin_component_index'])
             ->setLabel('Components')
-            ->setLabelAttribute('icon', 'microchip');
+            ->setLabelAttribute('icon', 'microchip')
+        ;
+
+        // $configurationMenu
+        //     ->addChild('app_cms_component_menu', ['route' => 'app_admin_cms_menu_index'])
+        //     ->setLabel('Menus')
+        //     ->setLabelAttribute('icon', 'list')
+        // ;
+
+        // $configurationMenu
+        //     ->addChild('app_cms_component', ['route' => 'app_admin_cms_component_index'])
+        //     ->setLabel('Components')
+        //     ->setLabelAttribute('icon', 'microchip');
 
         // $configurationMenu
         //     ->addChild('app_person', ['route' => 'app_admin_person_index'])
@@ -172,18 +230,22 @@ final class AdminMenuListener
 
         $itemMenuList = ['app_cms'];
 
-        if (in_array('ROLE_DEV', $this->user->getRoles())) {
-            $itemMenuList[] = 'app_component';
-        }
+        // if (in_array('ROLE_DEV', $this->user->getRoles())) {
+        //     $itemMenuList[] = 'app_component';
+        // }
 
         $restItem = [
+            'app_components',
             'app_media',
             'app_form',
+            'app_crm',
+            // 'app_menu',
             // 'catalog',
             // 'sales',
             // 'customers',
             // 'marketing',
-            'configuration',
+            'configuration'
+            
         ];
         $menu->reorderChildren(array_merge($itemMenuList, $restItem));
     }

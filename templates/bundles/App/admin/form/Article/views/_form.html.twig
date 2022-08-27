@@ -8,16 +8,38 @@
     {{ 'app.ui.form.page_general' | trans }}
 </h4>
 <div class="ui segment">
-    {{ form_errors(form) }}
-    {# Issue with Symfony 5, Sylius 1.9 : https://github.com/Sylius/Sylius/pull/12439 #}
-    {# So we render the fields #}
-    {% for item in form.children %}
-        {% if item.vars.name != '_token' %}
-            {{ form_row(item) }}
-        {% endif %}
-    {% endfor %}
-    {# Instead of #}
-    {# {{ form_rest(form) }} #}
+     {{ form_errors(form) }}
+        {# Issue with Symfony 5, Sylius 1.9 : https://github.com/Sylius/Sylius/pull/12439 #}
+        {# So we render the fields #}
+        {{ form_row(form.isEnabled) }}
+        {{ form_row(form.isIndexed) }}
+        {# {{ form_row(form.createdAt) }}
+        {{ form_row(form.updatedAt) }} #}
+      
+
+
+		<div class="ui two column divided grid"> 
+			<div class="row">
+				<div class="column">
+					{{ form_row(form.primaryImage) }}
+				</div>
+				<div class="column">
+				{% if article.primaryImage is not null and article.primaryImage.filename is not null and article.primaryImage.filename != '' %}
+					<div class="ui centered medium image">
+						<img src="{{ asset('media/image/' ~ article.primaryImage.filename) }}">
+					</div>
+				{% endif %}
+				</div>
+			</div>
+		</div>
+        {{ form_row(form.secondaryImage) }}
+        {{ form_row(form.video) }}
+        {{ form_row(form.category) }}
+        {{ form_row(form.tags) }}
+        
+	
+	{# Instead of #}
+	{# {{ form_rest(form) }} #}
 </div>
 <h4 class="ui horizontal divider header">
     <i class="flag icon"></i>

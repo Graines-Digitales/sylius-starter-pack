@@ -59,17 +59,6 @@ monsieurbiz_sylius_richeditor:
                 admin_render: '@App/admin/UiElement/component_card.html.twig'
                 front_render: '/shop/UiElement/component_card.html.twig'
             tags: []
-        app.component_documents:
-            title: 'app.ui_element.component_documents.title'
-            description: 'app.ui_element.component_documents.description'
-            icon: file alternate outline
-            classes:
-                form: App\Form\Type\UiElement\ComponentDocumentsType
-                #ui_element: App\UiElement\MyUiElement
-            templates:
-                admin_render: '@App/admin/UiElement/component_documents.html.twig'
-                front_render: '/shop/UiElement/component_documents.html.twig'
-            tags: []
         app.component_hero:
             title: 'app.ui_element.component_hero.title'
             description: 'app.ui_element.component_hero.description'
@@ -81,20 +70,8 @@ monsieurbiz_sylius_richeditor:
                 admin_render: '@App/admin/UiElement/component_hero.html.twig'
                 front_render: '/shop/UiElement/component_hero.html.twig'
             tags: []
-        app.component_contact:
-            enabled: false
-            title: 'app.ui_element.component_contact.title'
-            description: 'app.ui_element.component_contact.description'
-            icon: address card outline
-            classes:
-                form: App\Form\Type\UiElement\ComponentContactType
-                #ui_element: App\UiElement\MyUiElement
-            templates:
-                admin_render: '@App/admin/UiElement/component_contact.html.twig'
-                front_render: '/shop/UiElement/component_contact.html.twig'
-            tags: [] 
         app.component_search_action:
-            enabled: false
+            enabled: true
             title: 'app.ui_element.component_search_action.title'
             description: 'app.ui_element.component_search_action.description'
             icon: address card outline
@@ -104,19 +81,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@App/admin/UiElement/component_search_action.html.twig'
                 front_render: '/shop/UiElement/component_search_action.html.twig'
-            tags: []          
-        app.component_rich_search_action:
-            enabled: false
-            title: 'app.ui_element.component_rich_search_action.title'
-            description: 'app.ui_element.component_rich_search_action.description'
-            icon: address card outline
-            classes:
-                form: App\Form\Type\UiElement\ComponentRichSearchActionType
-                #ui_element: App\UiElement\MyUiElement
-            templates:
-                admin_render: '@App/admin/UiElement/component_rich_search_action.html.twig'
-                front_render: '/shop/UiElement/component_rich_search_action.html.twig'
-            tags: []            
+            tags: []                 
         app.component_slider:
             title: 'app.ui_element.component_slider.title'
             description: 'app.ui_element.component_slider.description'
@@ -149,15 +114,4 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@App/admin/UiElement/component_iframe.html.twig'
                 front_render: '/app/UiElement/component_iframe.html.twig'
-            tags: []
-        app.component_breadcrumb:
-            title: 'app.ui_element.component_breadcrumb.title'
-            description: 'app.ui_element.component_breadcrumb.description'
-            icon: list ul
-            classes:
-                form: App\Form\Type\UiElement\ComponentBreadcrumbType
-                #ui_element: App\UiElement\MyUiElement
-            templates:
-                admin_render: '@App/admin/UiElement/component_breadcrumb.html.twig'
-                front_render: '/shop/UiElement/component_breadcrumb.html.twig'
             tags: []

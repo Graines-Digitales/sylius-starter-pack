@@ -17,6 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -28,7 +29,7 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
  * @ORM\Entity@ORM\Entity(repositoryClass=OrganizationRepository::class)
  * @ORM\Table(name="app_organization")
  */
-class Organization implements ResourceInterface, CodeAwareInterface
+class Organization implements ResourceInterface
 {
     use SeoTrait;
     use ThingTrait;
@@ -52,6 +53,8 @@ class Organization implements ResourceInterface, CodeAwareInterface
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * 
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -176,11 +179,6 @@ class Organization implements ResourceInterface, CodeAwareInterface
     private $localBusinesses;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $icon;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Organization::class, inversedBy="organizations")
      * @ORM\JoinTable(name="app_social_link_organization")
      */
@@ -204,22 +202,17 @@ class Organization implements ResourceInterface, CodeAwareInterface
     /**
      * @ORM\ManyToOne(targetEntity=MediaObject::class, inversedBy="organizations")
      */
-    private $iconMedia;
+    private $icon;
     
     /**
      * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="organization")
      */
-    private $iconMedias;
+    private $icons;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $fax;
-
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
-    private $code;
 
     public function getSlug()
     {
@@ -494,18 +487,6 @@ class Organization implements ResourceInterface, CodeAwareInterface
         return $this;
     }
 
-    public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(string $icon): self
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, self>
      */
@@ -602,19 +583,19 @@ class Organization implements ResourceInterface, CodeAwareInterface
     /**
      * @return Collection<int, self>
      */
-    public function getIconMedias(): Collection
+    public function getIcons(): Collection
     {
-        return $this->iconMedias;
+        return $this->icons;
     }
 
-    public function getIconMedia(): ?MediaObject
+    public function getIcon(): ?MediaObject
     {
-        return $this->iconMedia;
+        return $this->icon;
     }
 
-    public function setIconMedia(?MediaObject $iconMedia): self
+    public function setIcon(?MediaObject $icon): self
     {
-        $this->iconMedia = $iconMedia;
+        $this->icon = $icon;
 
         return $this;
     }
@@ -631,19 +612,4 @@ class Organization implements ResourceInterface, CodeAwareInterface
         return $this;
     }
 
-     /**
-     * @return string|null
-     */
-    public function getCode(): ?string
-    {
-        return $this->code;
-    }
-
-    /**
-     * @param string|null $code
-     */
-    public function setCode(?string $code): void
-    {
-        $this->code = $code;
-    }
 }

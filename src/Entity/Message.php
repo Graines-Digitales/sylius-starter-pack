@@ -12,6 +12,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Controller\Api\MessageController;
 
 
 /**
@@ -19,7 +20,20 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @see http://schema.org/Message Documentation on Schema.org
  *
- * @ApiResource()
+ * @ApiResource(
+  *  collectionOperations={
+ *      "get"={
+ *          "method"="GET",  
+ *       },
+ *   "save_form_contact"={
+ *              "method"="POST",
+ *              "path"="/api/v2/messages/save",
+ *              "controller"=MessageController::class,
+ *              
+ *              
+ *          }
+ *   }
+ * )
  * @ORM\Entity
  * @ORM\Table(name="app_message")
  */

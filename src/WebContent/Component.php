@@ -104,22 +104,22 @@ class Component extends AbstractWebContent
     public function getIcons($code)
     {
         $icons = [];
-        $path = $this->container->getParameter('path_directory_icon');
-        if($this->filesystem->exists($path)) {
-            $this->finder->depth('== 0');
-            $this->finder->files()->in($path);
-            if ($this->finder->hasResults()) {
-                foreach ($this->finder as $file) {
-                    $absoluteFilePath = $file->getRealPath();
-                    $filePath = $file->getPath();
-                    $fileNameWithExtension = $file->getRelativePathname();
-                    $ext = pathinfo($fileNameWithExtension, PATHINFO_EXTENSION);
-                    $filename = pathinfo($fileNameWithExtension,  PATHINFO_FILENAME);
-                    $icons[$fileNameWithExtension] = $filename;
-                }
-            }
+        // $path = $this->container->getParameter('path_directory_icon');
+        // if($this->filesystem->exists($path)) {
+        //     $this->finder->depth('== 0');
+        //     $this->finder->files()->in($path);
+        //     if ($this->finder->hasResults()) {
+        //         foreach ($this->finder as $file) {
+        //             $absoluteFilePath = $file->getRealPath();
+        //             $filePath = $file->getPath();
+        //             $fileNameWithExtension = $file->getRelativePathname();
+        //             $ext = pathinfo($fileNameWithExtension, PATHINFO_EXTENSION);
+        //             $filename = pathinfo($fileNameWithExtension,  PATHINFO_FILENAME);
+        //             $icons[$fileNameWithExtension] = $filename;
+        //         }
+        //     }
     
-        }
+        // }
         
         return $icons;
     }

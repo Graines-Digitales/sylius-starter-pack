@@ -1,5 +1,5 @@
-{% if data.iconMedia.filename is defined and data.iconMedia.filename is not empty %}
+{% if data.icon.filename is defined and data.icon.filename is not empty %}
     <div class="preview_icon">
-        {% include '@App/web/components/svg/' ~ data.iconMedia.filename ~ '.twig' ignore missing %}
+        {% include '@App/web/components/svg/' ~ data.icon.filename ~ '.twig' ignore missing %}
     </div>
 {% endif %}

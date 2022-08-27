@@ -11,13 +11,35 @@ sylius_resource:
                 classes:
                     model: App\Entity\WebPageTranslation
                     form: App\Form\Type\WebPageTranslationType
-                    
+
+        app.landing_page:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\WebPage
+                form: App\Form\Type\LandingPageType
+                # controller: App\Controller\Admin\WebPageController
+            translation:
+                classes:
+                    model: App\Entity\WebPageTranslation
+                    form: App\Form\Type\LandingPageTranslationType
+
         app.user_group:
             driver: doctrine/orm # You can use also different driver here
             classes:
                 model: App\Entity\UserGroup
                 repository: App\Repository\UserGroupRepository
 
+        app.component:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Component
+                form: App\Form\Type\ComponentType
+                repository: App\Repository\ComponentRepository
+            translation:
+                classes:
+                    model: App\Entity\ComponentTranslation
+                    form: App\Form\Type\ComponentTranslationType
+                    
         app.cms_component:
             driver: doctrine/orm # You can use also different driver here
             classes:
@@ -25,12 +47,31 @@ sylius_resource:
                 form: App\Form\Type\CmsComponentType
                 repository: App\Repository\CmsComponentRepository
 
-        app.cms_component_menu:
+
+        # app.cms_component_menu:
+        #     driver: doctrine/orm # You can use also different driver here
+        #     classes:
+        #         model: App\Entity\CmsComponent
+        #         form: App\Form\Type\CmsComponentType
+        #         repository: App\Repository\CmsComponentRepository
+
+        app.cms_menu:
             driver: doctrine/orm # You can use also different driver here
             classes:
-                model: App\Entity\CmsComponent
-                form: App\Form\Type\CmsComponentType
-                repository: App\Repository\CmsComponentRepository
+                model: App\Entity\CmsMenu
+                form: App\Form\Type\CmsMenuType
+                repository: App\Repository\CmsMenuRepository
+
+        app.cms_link:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\CmsLink
+                form: App\Form\Type\CmsLinkType
+                repository: App\Repository\CmsLinkRepository
+            translation:
+                classes:
+                    model: App\Entity\CmsLinkTranslation
+                    form: App\Form\Type\CmsLinkTranslationType
 
         app.cms_template:
             driver: doctrine/orm # You can use also different driver here

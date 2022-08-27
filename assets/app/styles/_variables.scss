@@ -1,7 +1,16 @@
 // COLORS
 // ----------------------
-$color-primary: #c9002b;
-$color-primary-darked: #941633;
+$color-primary: #95a595;
+$color-primary-darked: #c1c8c1;
+// END PERSONALISATION
+
+
+// Back-office variables
+$bo-background-color: #191a1a;
+$bo-menu-background-color: #191a1a;
+$bo-color-label: rgb(45, 50, 55);
+$bo-color-checkbox: #BADA55;
+$bo-color-primary: #BADA55;
 
 
 //$color-light-gray: #f3f3f3;
@@ -17,12 +26,6 @@ $color-dark-80pc: rgba(25,26,26,.8);
 $color-gray-text: #808080;
 $color-white : #ffffff;
 
-// Back-office variables
-$bo-background-color: #fff;
-$bo-menu-background-color: #191a1a;
-$bo-color-label: rgb(45, 50, 55);
-$bo-color-checkbox: #BADA55;
-$bo-color-primary: #BADA55;
 
 // Header
 $header-height: 95px;

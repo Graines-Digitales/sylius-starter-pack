@@ -50,6 +50,26 @@ class WebPageRepository extends EntityRepository
         return $data;
     }
 
+    public function createQueryBuilderByTypeWebPage($configurationProject)
+    {
+        $type = 'web-page';
+
+        return $this->createQueryBuilder('entity')
+            ->andWhere('entity.type in (:type)')
+            ->setParameter('type', $type)
+        ;
+    }
+
+    public function createQueryBuilderByTypeLandingPage($configurationProject)
+    {
+        $type = 'landing-page';
+
+        return $this->createQueryBuilder('entity')
+            ->andWhere('entity.type in (:type)')
+            ->setParameter('type', $type)
+        ;
+    }
+
 /*     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, WebPage::class);
