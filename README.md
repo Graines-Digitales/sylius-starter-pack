@@ -1,6 +1,8 @@
 Starter Pack Digital Management System
 ---
-  
+
+**SETUP**
+
 - `composer install`
 - `yarn install`
 - `nano .env.local : DATABASE_URL=`
@@ -10,6 +12,11 @@ Starter Pack Digital Management System
 - `yarn encore production`
 - `symfony serve -d`
     
+**VARIABLES ET LOGOS**
+
+- `assets/app/styles/_variables.scss`
+- `assets/images/admin-logo.png`
+- `assets/images/logo.png`
 
 ---
 
