@@ -1,6 +1,6 @@
 Starter Pack Digital Management System
 ---
-test  
+  
 - `composer install`
 - `yarn install`
 - `nano .env.local : DATABASE_URL=`
