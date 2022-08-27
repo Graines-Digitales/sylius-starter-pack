@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/9",
+    "@type": "http://schema.org/?",
+    "label": "MERCI!!!",
+    "slug": "jus-frais-fruits-pain-maison-crepe-pancake-beignet-oeufs-cafe-et-the",
+    "value": "jus frais, Fruits, pain maison, cr\u00eape, pancake, beignet, \u0153ufs, caf\u00e9 et th\u00e9\u2026",
+    "hotelTypicalDay": "/api/hotel_typical_days/2",
+    "primaryImage": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+    "secondaryImage": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+    "hours": "8h30",
+    "labelBgTransparent": true,
+    "description": "jus frais, Fruits, pain maison, cr\u00eape, pancake, beignet, \u0153ufs, caf\u00e9 et th\u00e9\u2026",
+    "isActive": true,
+    "category": "/api/tags/15",
+    "event": null,
+    "id": 9,
+    "dateCreated": "2021-10-12T22:30:40+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

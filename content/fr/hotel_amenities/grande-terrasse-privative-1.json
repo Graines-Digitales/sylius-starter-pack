@@ -1,0 +1,24 @@
+{
+    "@id": "/api/hotel_amenities/20",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/44",
+        "@type": "http://schema.org/Thing",
+        "slug": "chambre-30m2",
+        "name": "Chambre 30m2",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/43",
+            "@type": "http://schema.org/Thing",
+            "slug": "suite-moyenne",
+            "name": "Suite Moyenne",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "de 100 m2 orient\u00e9e nord avec vue sur l\u2019oc\u00e9an",
+    "slug": "grande-terrasse-privative-1"
+}

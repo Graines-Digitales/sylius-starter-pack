@@ -1,0 +1,65 @@
+{
+    "@id": "/api/hotel_activities/5",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": {
+        "@id": "/api/media_objects/slug=demo-desert-1979000-1920-jpg;id=18",
+        "@type": "http://schema.org/MediaObject",
+        "slug": "demo-desert-1979000-1920-jpg",
+        "contentSize": 214540,
+        "encodingFormat": "image/jpg",
+        "caption": null,
+        "filename": "demo-desert-1979000-1920.jpg",
+        "originalFilename": "desert-1979000_1920.jpg",
+        "dimensions": [
+            "1920",
+            "1280",
+            "2",
+            "width=\"1920\" height=\"1280\"",
+            "8",
+            "3",
+            "image/jpeg"
+        ],
+        "file": null,
+        "isConform": false,
+        "link": null,
+        "isActive": true,
+        "originalStampedImage": false,
+        "alt": "Demo Desert 1979000 1920",
+        "name": "Demo Desert 1979000 1920",
+        "description": null,
+        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-desert-1979000-1920.jpg",
+        "mainEntityOfPage": null
+    },
+    "category": {
+        "@id": "/api/tags/32",
+        "@type": "http://schema.org/Thing",
+        "slug": "sportives",
+        "name": "Sportives",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/32",
+            "@type": "http://schema.org/Thing",
+            "slug": "sportives",
+            "name": "Sportives",
+            "isActive": true
+        }
+    ],
+    "slug": "quad",
+    "name": "Quad",
+    "description": "Mettez une pointe de frissons dans votre s\u00e9jour et partez en quad pour un circuit inoubliable, \u00e0 la beaut\u00e9 \u00e9poustouflante ! Vous sillonnerez le bord de mer, en passant par les dunes et la lisi\u00e8re de la for\u00eat lors d\u02bcune sortie de 1 \u00e0 3 heures selon votre choix. Amateurs de sensations, vous appr\u00e9cierez la pointe de vitesse sur la plage ou la descente d\u02bcune dune \u00e0 pic !",
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": "De prodigieuses sensations!",
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

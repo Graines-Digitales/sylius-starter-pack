@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/21",
+    "@type": "http://schema.org/?",
+    "label": "AUTHENTIQUE",
+    "slug": "les-ruelles-les-artisans-le-marche-aux-epices",
+    "value": "Les ruelles, les artisans, le march\u00e9 aux \u00e9pices\u2026",
+    "hotelTypicalDay": "/api/hotel_typical_days/3",
+    "primaryImage": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+    "secondaryImage": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+    "hours": "17h",
+    "labelBgTransparent": true,
+    "description": "Les ruelles, les artisans, le march\u00e9 aux \u00e9pices\u2026",
+    "isActive": true,
+    "category": "/api/tags/30",
+    "event": null,
+    "id": 21,
+    "dateCreated": "2021-10-12T22:30:48+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

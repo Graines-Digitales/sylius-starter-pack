@@ -1,0 +1,24 @@
+{
+    "@id": "/api/hotel_amenities/28",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/47",
+        "@type": "http://schema.org/Thing",
+        "slug": "salon-chambre-45m2",
+        "name": "Salon/Chambre 45m2",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/46",
+            "@type": "http://schema.org/Thing",
+            "slug": "grande-suite",
+            "name": "Grande Suite",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "vue-sur-mer-2"
+}

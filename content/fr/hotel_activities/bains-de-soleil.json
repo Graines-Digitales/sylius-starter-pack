@@ -1,0 +1,37 @@
+{
+    "@id": "/api/hotel_activities/46",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": null,
+    "category": {
+        "@id": "/api/tags/38",
+        "@type": "http://schema.org/Thing",
+        "slug": "cerebrales-et-emotionnelles",
+        "name": "C\u00e9r\u00e9brales et \u00e9motionnelles",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/38",
+            "@type": "http://schema.org/Thing",
+            "slug": "cerebrales-et-emotionnelles",
+            "name": "C\u00e9r\u00e9brales et \u00e9motionnelles",
+            "isActive": true
+        }
+    ],
+    "slug": "bains-de-soleil",
+    "name": "Bains de soleil",
+    "description": null,
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": null,
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

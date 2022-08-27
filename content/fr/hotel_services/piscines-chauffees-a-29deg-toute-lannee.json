@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/37",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/54",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-votre-confort",
+        "name": "Pour votre Confort",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/54",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-votre-confort",
+            "name": "Pour votre Confort",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "piscines-chauffees-a-29deg-toute-lannee",
+    "name": "Piscines chauff\u00e9es \u00e0 29\u00b0 toute l\u2019ann\u00e9e"
+}

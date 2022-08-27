@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/59",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/56",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-vos-enfants",
+        "name": "Pour vos Enfants",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/56",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-vos-enfants",
+            "name": "Pour vos Enfants",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "poussette",
+    "name": "Poussette"
+}

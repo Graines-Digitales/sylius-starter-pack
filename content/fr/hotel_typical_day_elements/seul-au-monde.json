@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/20",
+    "@type": "http://schema.org/?",
+    "label": "A COUPER LE SOUFFLE!",
+    "slug": "seul-au-monde",
+    "value": "Seul au monde",
+    "hotelTypicalDay": "/api/hotel_typical_days/3",
+    "primaryImage": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+    "secondaryImage": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+    "hours": "14h30",
+    "labelBgTransparent": true,
+    "description": "Seul au monde",
+    "isActive": true,
+    "category": "/api/tags/29",
+    "event": null,
+    "id": 20,
+    "dateCreated": "2021-10-12T22:30:47+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

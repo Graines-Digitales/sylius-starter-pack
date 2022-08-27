@@ -1,0 +1,24 @@
+{
+    "@id": "/api/hotel_amenities/21",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/45",
+        "@type": "http://schema.org/Thing",
+        "slug": "salon-chambre-20m2",
+        "name": "Salon/Chambre 20m2",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/43",
+            "@type": "http://schema.org/Thing",
+            "slug": "suite-moyenne",
+            "name": "Suite Moyenne",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "ou par la porte communicante avec la chambre",
+    "slug": "entree-independante"
+}

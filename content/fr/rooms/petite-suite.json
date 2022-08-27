@@ -1,0 +1,272 @@
+{
+    "@id": "/api/rooms/4",
+    "@type": "http://schema.org/Room",
+    "slug": "petite-suite",
+    "alternateName": null,
+    "primaryImage": {
+        "@id": "/api/media_objects/slug=petite-suite-img-35871-jpg;id=105",
+        "@type": "http://schema.org/MediaObject",
+        "filename": "petite-suite-img-35871.jpg",
+        "name": "Petite Suite Img 35871",
+        "description": null,
+        "url": "http://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/petite-suite-img-35871.jpg",
+        "mainEntityOfPage": null
+    },
+    "secondaryImage": null,
+    "maximumOccupants": 4,
+    "price": null,
+    "labelBgTransparent": true,
+    "numberOfRooms": 1,
+    "amenities": [
+        {
+            "@id": "/api/hotel_amenities/1",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/39",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-confort",
+                    "name": "Chambre Confort",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/40",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-superieure",
+                    "name": "Chambre Sup\u00e9rieure",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/41",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-prestige",
+                    "name": "Chambre Prestige",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/42",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "petite-suite",
+                    "name": "Petite Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "lit-double-160-200",
+            "name": "Lit double 160/200",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/3",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/39",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-confort",
+                    "name": "Chambre Confort",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/42",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "petite-suite",
+                    "name": "Petite Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "commune aux 4 chambres face au jardin",
+            "slug": "terrasse-sur-jardin-orientee-ouest",
+            "name": "Terrasse sur jardin orient\u00e9e ouest",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/14",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/42",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "petite-suite",
+                    "name": "Petite Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "salle-de-bains-douche-toilettes",
+            "name": "Salle de bains, douche, toilettes",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/15",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/42",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "petite-suite",
+                    "name": "Petite Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "canap\u00e9s pouvant \u00eatre transform\u00e9s en 2 lits simples suppl\u00e9mentaires pour les enfants (suppl\u00e9ment pour occupation)",
+            "slug": "salon",
+            "name": "Salon",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        }
+    ],
+    "gallery": {
+        "@id": "/api/galleries/13",
+        "@type": "http://schema.org/ImageGallery",
+        "name": "Petite Suite",
+        "width": null,
+        "height": null,
+        "imageGalleries": [
+            {
+                "@id": "/api/image_galleries/61",
+                "@type": "http://schema.org/ImageGallery",
+                "image": {
+                    "@id": "/api/media_objects/slug=petite-suite-img-35871-jpg;id=105",
+                    "@type": "http://schema.org/MediaObject",
+                    "filename": "petite-suite-img-35871.jpg",
+                    "name": "Petite Suite Img 35871",
+                    "description": null,
+                    "url": "http://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/petite-suite-img-35871.jpg",
+                    "mainEntityOfPage": null
+                },
+                "position": 1,
+                "inSlider": false,
+                "name": null,
+                "description": null,
+                "url": null,
+                "mainEntityOfPage": null
+            },
+            {
+                "@id": "/api/image_galleries/62",
+                "@type": "http://schema.org/ImageGallery",
+                "image": {
+                    "@id": "/api/media_objects/slug=petite-suite-img-35981-jpg;id=106",
+                    "@type": "http://schema.org/MediaObject",
+                    "filename": "petite-suite-img-35981.jpg",
+                    "name": "Petite Suite Img 35981",
+                    "description": null,
+                    "url": "http://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/petite-suite-img-35981.jpg",
+                    "mainEntityOfPage": null
+                },
+                "position": 1,
+                "inSlider": false,
+                "name": null,
+                "description": null,
+                "url": null,
+                "mainEntityOfPage": null
+            },
+            {
+                "@id": "/api/image_galleries/63",
+                "@type": "http://schema.org/ImageGallery",
+                "image": {
+                    "@id": "/api/media_objects/slug=petite-suite-img-35951-jpg;id=107",
+                    "@type": "http://schema.org/MediaObject",
+                    "filename": "petite-suite-img-35951.jpg",
+                    "name": "Petite Suite Img 35951",
+                    "description": null,
+                    "url": "http://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/petite-suite-img-35951.jpg",
+                    "mainEntityOfPage": null
+                },
+                "position": 3,
+                "inSlider": false,
+                "name": null,
+                "description": null,
+                "url": null,
+                "mainEntityOfPage": null
+            }
+        ],
+        "description": null,
+        "url": null,
+        "mainEntityOfPage": null
+    },
+    "loungeAmenities": [],
+    "offers": [
+        {
+            "@id": "/api/aggregate_offers/7",
+            "@type": "http://schema.org/AggregateOffer",
+            "highPrice": null,
+            "lowPrice": null,
+            "offerCount": null,
+            "addOn": null,
+            "name": "Basse saison",
+            "price": 107,
+            "priceCurrency": null,
+            "availabilityEnd": "2021-06-30T00:00:00+02:00",
+            "availabilityStart": "2021-01-01T00:00:00+01:00"
+        },
+        {
+            "@id": "/api/aggregate_offers/8",
+            "@type": "http://schema.org/AggregateOffer",
+            "highPrice": null,
+            "lowPrice": null,
+            "offerCount": null,
+            "addOn": null,
+            "name": "Haute saison",
+            "price": 107,
+            "priceCurrency": null,
+            "availabilityEnd": "2021-12-31T00:00:00+01:00",
+            "availabilityStart": "2021-07-01T00:00:00+02:00"
+        }
+    ],
+    "category": {
+        "@id": "/api/tags/59",
+        "@type": "http://schema.org/Thing",
+        "slug": "suite",
+        "name": "suite",
+        "isActive": true
+    },
+    "minimumOccupants": 2,
+    "name": "Petite Suite",
+    "description": "Environ 25m\u00b2, au bas de la Villa. Parfaite pour un s\u00e9jour en famille, la Petite Suite est spacieuse et raffin\u00e9e, le petit salon, pouvant \u00eatre transform\u00e9 en deux lits simples suppl\u00e9mentaires pour les enfants (15\u20ac/enfant/nuit avec petit d\u00e9jeuner). Vous pourrez admirer le coucher de soleil depuis sa terrasse. Pr\u00e9cision : Hauteur sous plafond de 1,75m sur une partie de la chambre",
+    "url": null,
+    "mainEntityOfPage": null
+}

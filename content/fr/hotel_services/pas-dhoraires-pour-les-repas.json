@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/13",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/52",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-votre-sejour-de-reve",
+        "name": "Pour votre s\u00e9jour de r\u00eave",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/52",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-votre-sejour-de-reve",
+            "name": "Pour votre s\u00e9jour de r\u00eave",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "nos records: dernier petit d\u00e9jeuner servi \u00e0 15h30, dernier d\u00e9jeuner \u00e0 18h et dernier d\u00eener \u00e0 3h15",
+    "slug": "pas-dhoraires-pour-les-repas",
+    "name": "Pas d\u2019horaires pour les repas"
+}

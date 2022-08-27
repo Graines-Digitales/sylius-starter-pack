@@ -1,0 +1,31 @@
+{
+    "@id": "/api/hotel_amenities/8",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/13",
+        "@type": "http://schema.org/Thing",
+        "slug": "accueil",
+        "name": "accueil",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/40",
+            "@type": "http://schema.org/Thing",
+            "slug": "chambre-superieure",
+            "name": "Chambre Sup\u00e9rieure",
+            "isActive": true
+        },
+        {
+            "@id": "/api/tags/41",
+            "@type": "http://schema.org/Thing",
+            "slug": "chambre-prestige",
+            "name": "Chambre Prestige",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "toilettes-separees"
+}

@@ -1,0 +1,37 @@
+{
+    "@id": "/api/hotel_activities/2",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": null,
+    "category": {
+        "@id": "/api/tags/32",
+        "@type": "http://schema.org/Thing",
+        "slug": "sportives",
+        "name": "Sportives",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/32",
+            "@type": "http://schema.org/Thing",
+            "slug": "sportives",
+            "name": "Sportives",
+            "isActive": true
+        }
+    ],
+    "slug": "sports-nautiques",
+    "name": "SPORTS NAUTIQUES",
+    "description": "Essaouira, Sidi Kaouki, Moulay\u2026 La c\u00f4te atlantique marocaine offre elle aussi des spots r\u00e9put\u00e9s ! Equipez-vous d\u02bcun kite, une planche \u00e0 voile, un surf ou un bodyboard et partez \u00e0 l\u02bcassaut des vagues ! P\u00e9tole ? Profitez-en pour faire du kayak de mer et contourner l\u02bc\u00eele de Mogador. Les nombreux clubs bordant le littoral proposent des stages d\u02bcinitiation ou de perfectionnement et du mat\u00e9riel de qualit\u00e9 en location.",
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": "Fantastique!",
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

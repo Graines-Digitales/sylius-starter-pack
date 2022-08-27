@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/65",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/57",
+        "@type": "http://schema.org/Thing",
+        "slug": "une-equipe-a-votre-service-pour-rendre-tout-cela-possible",
+        "name": "Une \u00e9quipe \u00e0 votre service pour rendre tout cela possible",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/57",
+            "@type": "http://schema.org/Thing",
+            "slug": "une-equipe-a-votre-service-pour-rendre-tout-cela-possible",
+            "name": "Une \u00e9quipe \u00e0 votre service pour rendre tout cela possible",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "tour-daccueil",
+    "name": "Tour d\u2019accueil"
+}

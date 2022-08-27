@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/8",
+    "@type": "http://schema.org/?",
+    "label": "UN DELICE",
+    "slug": "aux-chandelles-en-amoureux-a-gonatouki",
+    "value": "Aux chandelles en amoureux \u00e0 Gonatouki",
+    "hotelTypicalDay": "/api/hotel_typical_days/1",
+    "primaryImage": "/api/media_objects/slug=piscines-img-33321-jpg;id=141",
+    "secondaryImage": "/api/media_objects/slug=piscines-img-33321-jpg;id=141",
+    "hours": "20h30",
+    "labelBgTransparent": true,
+    "description": "Aux chandelles en amoureux \u00e0 Gonatouki",
+    "isActive": true,
+    "category": "/api/tags/21",
+    "event": null,
+    "id": 8,
+    "dateCreated": "2021-10-12T22:30:40+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

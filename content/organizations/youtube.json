@@ -1,0 +1,21 @@
+{
+    "@id": "/api/organizations/3",
+    "@type": "http://schema.org/Organization",
+    "slug": "youtube",
+    "name": "Youtube",
+    "legalName": null,
+    "phone": null,
+    "email": null,
+    "foundingDate": null,
+    "addresses": [],
+    "numberOfEmployees": null,
+    "type": null,
+    "primaryImage": null,
+    "secondaryImage": null,
+    "numberOfProjects": null,
+    "mobilePhone": null,
+    "id": 3,
+    "description": null,
+    "url": "https://www.youtube.com/channel/UC_5LBYKZCyI3C54KmHjiTWQ",
+    "mainEntityOfPage": null
+}

@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/18",
+    "@type": "http://schema.org/?",
+    "label": "ETONNANT",
+    "slug": "le-port-et-son-marche-aux-poissons",
+    "value": "Le port et son march\u00e9 aux poissons",
+    "hotelTypicalDay": "/api/hotel_typical_days/3",
+    "primaryImage": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+    "secondaryImage": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+    "hours": "11h30",
+    "labelBgTransparent": true,
+    "description": "Le port et son march\u00e9 aux poissons",
+    "isActive": true,
+    "category": "/api/tags/27",
+    "event": null,
+    "id": 18,
+    "dateCreated": "2021-10-12T22:30:46+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

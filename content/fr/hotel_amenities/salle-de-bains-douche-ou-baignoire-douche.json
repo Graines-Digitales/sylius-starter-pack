@@ -1,0 +1,24 @@
+{
+    "@id": "/api/hotel_amenities/2",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/13",
+        "@type": "http://schema.org/Thing",
+        "slug": "accueil",
+        "name": "accueil",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/39",
+            "@type": "http://schema.org/Thing",
+            "slug": "chambre-confort",
+            "name": "Chambre Confort",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "salle-de-bains-douche-ou-baignoire-douche"
+}

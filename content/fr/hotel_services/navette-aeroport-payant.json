@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/9",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/51",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-vos-deplacements",
+        "name": "Pour vos d\u00e9placements",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/51",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-vos-deplacements",
+            "name": "Pour vos d\u00e9placements",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "navette-aeroport-payant",
+    "name": "Navette a\u00e9roport (payant)"
+}

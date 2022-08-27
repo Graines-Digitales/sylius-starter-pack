@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/39",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/54",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-votre-confort",
+        "name": "Pour votre Confort",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/54",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-votre-confort",
+            "name": "Pour votre Confort",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "solarium",
+    "name": "Solarium"
+}

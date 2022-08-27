@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/13",
+    "@type": "http://schema.org/?",
+    "label": "QUEL SPECTACLE!",
+    "slug": "en-bordure-de-mer-dietetique-et-tres-bon",
+    "value": "En bordure de mer: di\u00e9t\u00e9tique et tr\u00e8s bon",
+    "hotelTypicalDay": "/api/hotel_typical_days/2",
+    "primaryImage": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+    "secondaryImage": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+    "hours": "14h30",
+    "labelBgTransparent": true,
+    "description": "En bordure de mer: di\u00e9t\u00e9tique et tr\u00e8s bon",
+    "isActive": true,
+    "category": "/api/tags/17",
+    "event": null,
+    "id": 13,
+    "dateCreated": "2021-10-12T22:30:43+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

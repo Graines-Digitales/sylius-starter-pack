@@ -1,0 +1,37 @@
+{
+    "@id": "/api/hotel_activities/36",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": null,
+    "category": {
+        "@id": "/api/tags/37",
+        "@type": "http://schema.org/Thing",
+        "slug": "les-cours",
+        "name": "Les cours",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/37",
+            "@type": "http://schema.org/Thing",
+            "slug": "les-cours",
+            "name": "Les cours",
+            "isActive": true
+        }
+    ],
+    "slug": "atelier-de-cuisine",
+    "name": "Atelier de cuisine",
+    "description": "Ramenez plus que vos souvenirs de vacances, prolongez l\u02bcexp\u00e9rience en apprenant les secrets de la cuisine locale avec notre chef Layla. Elle cuisine avec son c\u0153ur et adore partager ! Couscous, tajines, safa, soupes, p\u00e2tisseries... La cuisine marocaine est riche en saveurs issues du m\u00e9lange des traditions culinaires berb\u00e8re, arabe et m\u00eame andalouse. Avec Layla, d\u00e9couvrez des recettes typiques et savoureuses, simples \u00e0 refaire \u00e0 la maison.",
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": "Un savoir-faire ancestral \u00e0 partager",
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

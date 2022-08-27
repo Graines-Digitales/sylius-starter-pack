@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/23",
+    "@type": "http://schema.org/?",
+    "label": "ENCORE!",
+    "slug": "avec-le-sourire-dhafssa-de-laperitif-au-dessert",
+    "value": "Avec le sourire d\u2019Hafssa de l\u2019ap\u00e9ritif au dessert",
+    "hotelTypicalDay": "/api/hotel_typical_days/3",
+    "primaryImage": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+    "secondaryImage": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+    "hours": "21h",
+    "labelBgTransparent": true,
+    "description": "Avec le sourire d\u2019Hafssa de l\u2019ap\u00e9ritif au dessert",
+    "isActive": true,
+    "category": "/api/tags/21",
+    "event": null,
+    "id": 23,
+    "dateCreated": "2021-10-12T22:30:49+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

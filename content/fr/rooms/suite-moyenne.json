@@ -1,0 +1,330 @@
+{
+    "@id": "/api/rooms/5",
+    "@type": "http://schema.org/Room",
+    "slug": "suite-moyenne",
+    "alternateName": null,
+    "primaryImage": {
+        "@id": "/api/media_objects/slug=petite-suite-img-35871-jpg;id=105",
+        "@type": "http://schema.org/MediaObject",
+        "filename": "petite-suite-img-35871.jpg",
+        "name": "Petite Suite Img 35871",
+        "description": null,
+        "url": "http://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/petite-suite-img-35871.jpg",
+        "mainEntityOfPage": null
+    },
+    "secondaryImage": null,
+    "maximumOccupants": 4,
+    "price": null,
+    "labelBgTransparent": true,
+    "numberOfRooms": 1,
+    "amenities": [
+        {
+            "@id": "/api/hotel_amenities/16",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "lit-double-160-200-1",
+            "name": "Lit double 160/200",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/17",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "salle-de-bains-2-vasques-douche-1",
+            "name": "Salle de bains 2 vasques, douche",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/18",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "toilettes-separees-1",
+            "name": "Toilettes s\u00e9par\u00e9es",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/19",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "cheminee-1",
+            "name": "Chemin\u00e9e",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/20",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "de 100 m2 orient\u00e9e nord avec vue sur l\u2019oc\u00e9an",
+            "slug": "grande-terrasse-privative-1",
+            "name": "Grande terrasse privative",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/21",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/45",
+                "@type": "http://schema.org/Thing",
+                "slug": "salon-chambre-20m2",
+                "name": "Salon/Chambre 20m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "ou par la porte communicante avec la chambre",
+            "slug": "entree-independante",
+            "name": "Entr\u00e9e ind\u00e9pendante",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/22",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/45",
+                "@type": "http://schema.org/Thing",
+                "slug": "salon-chambre-20m2",
+                "name": "Salon/Chambre 20m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "possibilit\u00e9 d\u2019ajouter un lit suppl\u00e9mentaire (15\u20ac)",
+            "slug": "2-lits-simples-90-200-ou-3-banquettes-salon",
+            "name": "2 lits simples 90/200 ou 3 banquettes salon",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        }
+    ],
+    "gallery": {
+        "@id": "/api/galleries/8",
+        "@type": "http://schema.org/ImageGallery",
+        "name": "Suite Moyenne",
+        "width": null,
+        "height": null,
+        "imageGalleries": [
+            {
+                "@id": "/api/image_galleries/30",
+                "@type": "http://schema.org/ImageGallery",
+                "image": {
+                    "@id": "/api/media_objects/slug=suite-moyenne-img-34381-jpg;id=67",
+                    "@type": "http://schema.org/MediaObject",
+                    "filename": "suite-moyenne-img-34381.jpg",
+                    "name": "Suite Moyenne Img 34381",
+                    "description": null,
+                    "url": "http://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/suite-moyenne-img-34381.jpg",
+                    "mainEntityOfPage": null
+                },
+                "position": 1,
+                "inSlider": false,
+                "name": null,
+                "description": null,
+                "url": null,
+                "mainEntityOfPage": null
+            },
+            {
+                "@id": "/api/image_galleries/31",
+                "@type": "http://schema.org/ImageGallery",
+                "image": {
+                    "@id": "/api/media_objects/slug=suite-moyenne-img-34491-jpg;id=68",
+                    "@type": "http://schema.org/MediaObject",
+                    "filename": "suite-moyenne-img-34491.jpg",
+                    "name": "Suite Moyenne Img 34491",
+                    "description": null,
+                    "url": "http://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/suite-moyenne-img-34491.jpg",
+                    "mainEntityOfPage": null
+                },
+                "position": 1,
+                "inSlider": false,
+                "name": null,
+                "description": null,
+                "url": null,
+                "mainEntityOfPage": null
+            }
+        ],
+        "description": null,
+        "url": null,
+        "mainEntityOfPage": null
+    },
+    "loungeAmenities": [],
+    "offers": [
+        {
+            "@id": "/api/aggregate_offers/9",
+            "@type": "http://schema.org/AggregateOffer",
+            "highPrice": null,
+            "lowPrice": null,
+            "offerCount": null,
+            "addOn": 15,
+            "name": "Basse saison",
+            "price": 152,
+            "priceCurrency": null,
+            "availabilityEnd": "2021-06-30T00:00:00+02:00",
+            "availabilityStart": "2021-01-01T00:00:00+01:00"
+        },
+        {
+            "@id": "/api/aggregate_offers/10",
+            "@type": "http://schema.org/AggregateOffer",
+            "highPrice": null,
+            "lowPrice": null,
+            "offerCount": null,
+            "addOn": 15,
+            "name": "Haute saison",
+            "price": 152,
+            "priceCurrency": null,
+            "availabilityEnd": "2021-12-31T00:00:00+01:00",
+            "availabilityStart": "2021-07-01T00:00:00+02:00"
+        }
+    ],
+    "category": {
+        "@id": "/api/tags/59",
+        "@type": "http://schema.org/Thing",
+        "slug": "suite",
+        "name": "suite",
+        "isActive": true
+    },
+    "minimumOccupants": 2,
+    "name": "Suite Moyenne",
+    "description": "D'environ 50m2 avec chemin\u00e9e, situ\u00e9e au premier \u00e9tage de la Villa, elle est orient\u00e9e nord et est (vue mer). Elle dispose de deux chambres s\u00e9par\u00e9es par une porte, d'une salle de bains en tadelaekt avec toilettes s\u00e9par\u00e9es et d'une grande terrasse privative de 100m2.",
+    "url": null,
+    "mainEntityOfPage": null
+}

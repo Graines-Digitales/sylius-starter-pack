@@ -1,0 +1,65 @@
+{
+    "@id": "/api/hotel_activities/24",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": {
+        "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+        "@type": "http://schema.org/MediaObject",
+        "slug": "activities-rag180331-essaouira-chr-020072-jpeg",
+        "contentSize": 739874,
+        "encodingFormat": "image/jpeg",
+        "caption": null,
+        "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+        "originalFilename": "rag180331-essaouira-chr-020072.jpeg",
+        "dimensions": [
+            "3840",
+            "2560",
+            "2",
+            "width=\"3840\" height=\"2560\"",
+            "8",
+            "3",
+            "image/jpeg"
+        ],
+        "file": null,
+        "isConform": false,
+        "link": null,
+        "isActive": true,
+        "originalStampedImage": false,
+        "alt": "Activities Rag180331 Essaouira Chr 020072",
+        "name": "Activities Rag180331 Essaouira Chr 020072",
+        "description": null,
+        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+        "mainEntityOfPage": null
+    },
+    "category": {
+        "@id": "/api/tags/34",
+        "@type": "http://schema.org/Thing",
+        "slug": "sport-et-exterieur",
+        "name": "Sport et Ext\u00e9rieur",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/34",
+            "@type": "http://schema.org/Thing",
+            "slug": "sport-et-exterieur",
+            "name": "Sport et Ext\u00e9rieur",
+            "isActive": true
+        }
+    ],
+    "slug": "visites",
+    "name": "Visites",
+    "description": "D\u00e9ambulez dans la c\u00e9l\u00e8bre m\u00e9dina grouillante d'artisans et de commer\u00e7ants pour d\u00e9couvrir bijoux berb\u00e8res, \u00e9pices ou poteries en tous genres. A l\u2019occasion de la visite d\u2019une coop\u00e9rative, d\u00e9nichez la c\u00e9l\u00e8bre huile d'argan, v\u00e9ritable \u00e9lixir de beaut\u00e9 pour la peau et les cheveux. Profitez des randonn\u00e9es p\u00e9destres en for\u00eat, fl\u00e2nez le long des plages de sable fin (grandiose), visitez les cascades, admirez les panoramas du littoral ou furetez dans les march\u00e9s locaux (retour au XIX si\u00e8cle garanti). Essaouira et ses environs vous offrent un choix consid\u00e9rable de balades relaxantes et d\u00e9paysantes.",
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": "Epoustouflant, d\u00e9paysant!",
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

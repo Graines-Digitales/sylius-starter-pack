@@ -1,0 +1,37 @@
+{
+    "@id": "/api/hotel_activities/22",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": null,
+    "category": {
+        "@id": "/api/tags/33",
+        "@type": "http://schema.org/Thing",
+        "slug": "balades",
+        "name": "Balades",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/33",
+            "@type": "http://schema.org/Thing",
+            "slug": "balades",
+            "name": "Balades",
+            "isActive": true
+        }
+    ],
+    "slug": "pique-niques",
+    "name": "Pique niques",
+    "description": null,
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": null,
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

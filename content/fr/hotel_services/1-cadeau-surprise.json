@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/53",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/55",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-encore-plus-de-plaisir",
+        "name": "Pour encore plus de plaisir",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/55",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-encore-plus-de-plaisir",
+            "name": "Pour encore plus de plaisir",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "1-cadeau-surprise",
+    "name": "+ 1 cadeau surprise"
+}

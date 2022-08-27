@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/14",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/52",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-votre-sejour-de-reve",
+        "name": "Pour votre s\u00e9jour de r\u00eave",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/52",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-votre-sejour-de-reve",
+            "name": "Pour votre s\u00e9jour de r\u00eave",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "repas-vegetariens-ou-menus-specifiques-a-la-demande",
+    "name": "Repas v\u00e9g\u00e9tariens ou menus sp\u00e9cifiques \u00e0 la demande"
+}

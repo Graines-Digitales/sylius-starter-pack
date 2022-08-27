@@ -1,0 +1,37 @@
+{
+    "@id": "/api/hotel_activities/26",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": null,
+    "category": {
+        "@id": "/api/tags/34",
+        "@type": "http://schema.org/Thing",
+        "slug": "sport-et-exterieur",
+        "name": "Sport et Ext\u00e9rieur",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/34",
+            "@type": "http://schema.org/Thing",
+            "slug": "sport-et-exterieur",
+            "name": "Sport et Ext\u00e9rieur",
+            "isActive": true
+        }
+    ],
+    "slug": "les-marches",
+    "name": "Les march\u00e9s",
+    "description": "Had\u2019dra, un march\u00e9 gigantesque. Retour direct au 19\u00e8me si\u00e8cle. Une exp\u00e9rience inoubliable.",
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": null,
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

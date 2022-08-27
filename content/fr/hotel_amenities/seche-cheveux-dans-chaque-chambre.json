@@ -1,0 +1,16 @@
+{
+    "@id": "/api/hotel_amenities/49",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/13",
+        "@type": "http://schema.org/Thing",
+        "slug": "accueil",
+        "name": "accueil",
+        "isActive": true
+    },
+    "tags": [],
+    "moreInfo": null,
+    "slug": "seche-cheveux-dans-chaque-chambre"
+}

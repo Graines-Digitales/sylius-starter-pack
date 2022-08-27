@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/14",
+    "@type": "http://schema.org/?",
+    "label": "PASSIONNANT",
+    "slug": "la-nego-une-sacree-experience",
+    "value": "La n\u00e9go: une sacr\u00e9e exp\u00e9rience",
+    "hotelTypicalDay": "/api/hotel_typical_days/2",
+    "primaryImage": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+    "secondaryImage": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+    "hours": "16h",
+    "labelBgTransparent": true,
+    "description": "La n\u00e9go: une sacr\u00e9e exp\u00e9rience",
+    "isActive": true,
+    "category": "/api/tags/25",
+    "event": null,
+    "id": 14,
+    "dateCreated": "2021-10-12T22:30:43+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

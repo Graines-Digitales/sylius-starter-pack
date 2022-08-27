@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/12",
+    "@type": "http://schema.org/?",
+    "label": "JE M\u2019\u00c9CLATE!",
+    "slug": "materiel-top-et-conditions-parfaites-merci-pour-les-conseils",
+    "value": "Mat\u00e9riel top et conditions parfaites. Merci pour les conseils.",
+    "hotelTypicalDay": "/api/hotel_typical_days/2",
+    "primaryImage": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+    "secondaryImage": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+    "hours": "12h",
+    "labelBgTransparent": true,
+    "description": "Mat\u00e9riel top et conditions parfaites. Merci pour les conseils.",
+    "isActive": true,
+    "category": "/api/tags/24",
+    "event": null,
+    "id": 12,
+    "dateCreated": "2021-10-12T22:30:42+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

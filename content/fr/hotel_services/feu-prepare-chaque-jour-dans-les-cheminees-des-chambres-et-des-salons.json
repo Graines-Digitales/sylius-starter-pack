@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/47",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/54",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-votre-confort",
+        "name": "Pour votre Confort",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/54",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-votre-confort",
+            "name": "Pour votre Confort",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "feu-prepare-chaque-jour-dans-les-cheminees-des-chambres-et-des-salons",
+    "name": "Feu pr\u00e9par\u00e9 chaque jour dans les chemin\u00e9es des chambres et des salons"
+}

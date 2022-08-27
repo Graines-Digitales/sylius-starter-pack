@@ -1,0 +1,286 @@
+{
+    "@id": "/api/hotel_typical_days/3",
+    "@type": "http://schema.org/?",
+    "elements": [
+        {
+            "@id": "/api/hotel_typical_day_elements/17",
+            "@type": "http://schema.org/?",
+            "label": "DEPAYSANT",
+            "value": "Retour direct au 19\u00e8me si\u00e8cle",
+            "slug": "retour-direct-au-19eme-siecle",
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "day-type-img-ftour.jpg",
+                "name": "Day Type Img Ftour",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-ftour.jpg",
+                "mainEntityOfPage": null
+            },
+            "secondaryImage": {
+                "@id": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "day-type-img-ftour.jpg",
+                "name": "Day Type Img Ftour",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-ftour.jpg",
+                "mainEntityOfPage": null
+            },
+            "hours": "9h30",
+            "labelBgTransparent": true,
+            "description": "Retour direct au 19\u00e8me si\u00e8cle",
+            "isActive": true,
+            "category": {
+                "@id": "/api/tags/26",
+                "@type": "http://schema.org/Thing",
+                "slug": "le-marche-dhaddra",
+                "name": "Le march\u00e9 d\u2019Had\u2019Dra",
+                "isActive": true
+            },
+            "event": null
+        },
+        {
+            "@id": "/api/hotel_typical_day_elements/18",
+            "@type": "http://schema.org/?",
+            "label": "ETONNANT",
+            "value": "Le port et son march\u00e9 aux poissons",
+            "slug": "le-port-et-son-marche-aux-poissons",
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "day-type-img-pool.jpg",
+                "name": "Day Type Img Pool",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-pool.jpg",
+                "mainEntityOfPage": null
+            },
+            "secondaryImage": {
+                "@id": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "day-type-img-pool.jpg",
+                "name": "Day Type Img Pool",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-pool.jpg",
+                "mainEntityOfPage": null
+            },
+            "hours": "11h30",
+            "labelBgTransparent": true,
+            "description": "Le port et son march\u00e9 aux poissons",
+            "isActive": true,
+            "category": {
+                "@id": "/api/tags/27",
+                "@type": "http://schema.org/Thing",
+                "slug": "le-port",
+                "name": "Le port",
+                "isActive": true
+            },
+            "event": null
+        },
+        {
+            "@id": "/api/hotel_typical_day_elements/19",
+            "@type": "http://schema.org/?",
+            "label": "SURPRENANT",
+            "value": "A la d\u00e9couverte de l\u2019objet improbable",
+            "slug": "a-la-decouverte-de-lobjet-improbable",
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=activities-img-nautique-inversed-jpeg;id=81",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "activities-img-nautique-inversed.jpeg",
+                "name": "Activities Img Nautique Inversed",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-img-nautique-inversed.jpeg",
+                "mainEntityOfPage": null
+            },
+            "secondaryImage": {
+                "@id": "/api/media_objects/slug=activities-img-nautique-inversed-jpeg;id=81",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "activities-img-nautique-inversed.jpeg",
+                "name": "Activities Img Nautique Inversed",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-img-nautique-inversed.jpeg",
+                "mainEntityOfPage": null
+            },
+            "hours": "13h30",
+            "labelBgTransparent": true,
+            "description": "A la d\u00e9couverte de l\u2019objet improbable",
+            "isActive": true,
+            "category": {
+                "@id": "/api/tags/28",
+                "@type": "http://schema.org/Thing",
+                "slug": "le-marche-aux-puces",
+                "name": "Le march\u00e9 aux puces",
+                "isActive": true
+            },
+            "event": null
+        },
+        {
+            "@id": "/api/hotel_typical_day_elements/20",
+            "@type": "http://schema.org/?",
+            "label": "A COUPER LE SOUFFLE!",
+            "value": "Seul au monde",
+            "slug": "seul-au-monde",
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "activities-accueil-hotel-tasgua-yan-01.jpg",
+                "name": "Activities Accueil Hotel Tasgua Yan 01",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-accueil-hotel-tasgua-yan-01.jpg",
+                "mainEntityOfPage": null
+            },
+            "secondaryImage": {
+                "@id": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "activities-accueil-hotel-tasgua-yan-01.jpg",
+                "name": "Activities Accueil Hotel Tasgua Yan 01",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-accueil-hotel-tasgua-yan-01.jpg",
+                "mainEntityOfPage": null
+            },
+            "hours": "14h30",
+            "labelBgTransparent": true,
+            "description": "Seul au monde",
+            "isActive": true,
+            "category": {
+                "@id": "/api/tags/29",
+                "@type": "http://schema.org/Thing",
+                "slug": "les-plages-sauvages",
+                "name": "Les plages sauvages",
+                "isActive": true
+            },
+            "event": null
+        },
+        {
+            "@id": "/api/hotel_typical_day_elements/21",
+            "@type": "http://schema.org/?",
+            "label": "AUTHENTIQUE",
+            "value": "Les ruelles, les artisans, le march\u00e9 aux \u00e9pices\u2026",
+            "slug": "les-ruelles-les-artisans-le-marche-aux-epices",
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "demo-essaouira-1139708-1920.jpg",
+                "name": "Demo Essaouira 1139708 1920",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                "mainEntityOfPage": null
+            },
+            "secondaryImage": {
+                "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "demo-essaouira-1139708-1920.jpg",
+                "name": "Demo Essaouira 1139708 1920",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                "mainEntityOfPage": null
+            },
+            "hours": "17h",
+            "labelBgTransparent": true,
+            "description": "Les ruelles, les artisans, le march\u00e9 aux \u00e9pices\u2026",
+            "isActive": true,
+            "category": {
+                "@id": "/api/tags/30",
+                "@type": "http://schema.org/Thing",
+                "slug": "la-medina",
+                "name": "La m\u00e9dina",
+                "isActive": true
+            },
+            "event": null
+        },
+        {
+            "@id": "/api/hotel_typical_day_elements/22",
+            "@type": "http://schema.org/?",
+            "label": "INCONTOURNABLE",
+            "value": "Quelle d\u00e9tente! j\u2019en veux un tous les jours",
+            "slug": "quelle-detente-jen-veux-un-tous-les-jours",
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "demo-essaouira-1139708-1920.jpg",
+                "name": "Demo Essaouira 1139708 1920",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                "mainEntityOfPage": null
+            },
+            "secondaryImage": {
+                "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "demo-essaouira-1139708-1920.jpg",
+                "name": "Demo Essaouira 1139708 1920",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                "mainEntityOfPage": null
+            },
+            "hours": "19h",
+            "labelBgTransparent": true,
+            "description": "Quelle d\u00e9tente! j\u2019en veux un tous les jours",
+            "isActive": true,
+            "category": {
+                "@id": "/api/tags/31",
+                "@type": "http://schema.org/Thing",
+                "slug": "massage",
+                "name": "Massage",
+                "isActive": true
+            },
+            "event": null
+        },
+        {
+            "@id": "/api/hotel_typical_day_elements/23",
+            "@type": "http://schema.org/?",
+            "label": "ENCORE!",
+            "value": "Avec le sourire d\u2019Hafssa de l\u2019ap\u00e9ritif au dessert",
+            "slug": "avec-le-sourire-dhafssa-de-laperitif-au-dessert",
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "demo-casablanca-4620328-1920.jpg",
+                "name": "Demo Casablanca 4620328 1920",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-casablanca-4620328-1920.jpg",
+                "mainEntityOfPage": null
+            },
+            "secondaryImage": {
+                "@id": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+                "@type": "http://schema.org/MediaObject",
+                "filename": "demo-casablanca-4620328-1920.jpg",
+                "name": "Demo Casablanca 4620328 1920",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-casablanca-4620328-1920.jpg",
+                "mainEntityOfPage": null
+            },
+            "hours": "21h",
+            "labelBgTransparent": true,
+            "description": "Avec le sourire d\u2019Hafssa de l\u2019ap\u00e9ritif au dessert",
+            "isActive": true,
+            "category": {
+                "@id": "/api/tags/21",
+                "@type": "http://schema.org/Thing",
+                "slug": "diner",
+                "name": "diner",
+                "isActive": true
+            },
+            "event": null
+        }
+    ],
+    "category": {
+        "@id": "/api/tags/13",
+        "@type": "http://schema.org/Thing",
+        "slug": "accueil",
+        "name": "accueil",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/13",
+            "@type": "http://schema.org/Thing",
+            "slug": "accueil",
+            "name": "accueil",
+            "isActive": true
+        }
+    ],
+    "slug": "une-journee-visite",
+    "name": "Une journ\u00e9e visite",
+    "description": null,
+    "url": null,
+    "mainEntityOfPage": null
+}

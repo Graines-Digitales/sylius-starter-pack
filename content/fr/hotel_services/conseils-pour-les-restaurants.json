@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/26",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/53",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-vos-bons-plans",
+        "name": "Pour vos bons plans",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/53",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-vos-bons-plans",
+            "name": "Pour vos bons plans",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "en fonction de vos souhaits: type de cuisine, animation/ tranquillit\u00e9/ d\u00e9coration, budget",
+    "slug": "conseils-pour-les-restaurants",
+    "name": "Conseils pour les restaurants"
+}

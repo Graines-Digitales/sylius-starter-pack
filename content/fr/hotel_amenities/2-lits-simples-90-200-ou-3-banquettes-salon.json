@@ -1,0 +1,24 @@
+{
+    "@id": "/api/hotel_amenities/22",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/45",
+        "@type": "http://schema.org/Thing",
+        "slug": "salon-chambre-20m2",
+        "name": "Salon/Chambre 20m2",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/43",
+            "@type": "http://schema.org/Thing",
+            "slug": "suite-moyenne",
+            "name": "Suite Moyenne",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "possibilit\u00e9 d\u2019ajouter un lit suppl\u00e9mentaire (15\u20ac)",
+    "slug": "2-lits-simples-90-200-ou-3-banquettes-salon"
+}

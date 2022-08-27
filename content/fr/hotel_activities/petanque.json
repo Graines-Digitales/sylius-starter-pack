@@ -1,0 +1,37 @@
+{
+    "@id": "/api/hotel_activities/18",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": null,
+    "category": {
+        "@id": "/api/tags/32",
+        "@type": "http://schema.org/Thing",
+        "slug": "sportives",
+        "name": "Sportives",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/32",
+            "@type": "http://schema.org/Thing",
+            "slug": "sportives",
+            "name": "Sportives",
+            "isActive": true
+        }
+    ],
+    "slug": "petanque",
+    "name": "P\u00e9tanque",
+    "description": null,
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": null,
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

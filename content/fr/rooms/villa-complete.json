@@ -1,0 +1,344 @@
+{
+    "@id": "/api/rooms/8",
+    "@type": "http://schema.org/Room",
+    "slug": "villa-complete",
+    "alternateName": null,
+    "primaryImage": {
+        "@id": "/api/media_objects/slug=grande-suite-img-38031-jpg;id=65",
+        "@type": "http://schema.org/MediaObject",
+        "filename": "grande-suite-img-38031.jpg",
+        "name": "Grande Suite Img 38031",
+        "description": null,
+        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/grande-suite-img-38031.jpg",
+        "mainEntityOfPage": null
+    },
+    "secondaryImage": null,
+    "maximumOccupants": 29,
+    "price": null,
+    "labelBgTransparent": true,
+    "numberOfRooms": 1,
+    "amenities": [
+        {
+            "@id": "/api/hotel_amenities/32",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa compl\u00e8te",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "cinq-salons-aux-ambiances-differentes",
+            "name": "Cinq salons aux ambiances diff\u00e9rentes.",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/33",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa compl\u00e8te",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "la-grande-suite-avec-son-salon-et-sa-vue-magnifique-et-un-patio",
+            "name": "La Grande Suite avec son salon et sa vue magnifique et un patio.",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/34",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa compl\u00e8te",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "et un toit plat pour admirer la vue ou contempler le ciel \u00e9toil\u00e9.",
+            "slug": "nombreuses-terrasses",
+            "name": "Nombreuses terrasses",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/35",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa compl\u00e8te",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "pour r\u00e9unir tout le monde et d'autres lieux pour manger de mani\u00e8re plus intime.",
+            "slug": "une-salle-a-manger",
+            "name": "Une salle \u00e0 manger",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/36",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa compl\u00e8te",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "(lave vaisselle, robots, machine \u00e0 laver, s\u00e8che linge \u2026).",
+            "slug": "une-grande-cuisine-entierement-equipee",
+            "name": "Une grande cuisine enti\u00e8rement \u00e9quip\u00e9e",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/37",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa compl\u00e8te",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "une-piscine-15m-5-et-un-couloir-de-nage-22m-3-5",
+            "name": "Une piscine (15m*5) et un couloir de nage (22m*3.5).",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/38",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa compl\u00e8te",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "differents-jardins-et-un-parking-prive",
+            "name": "Diff\u00e9rents jardins et un parking priv\u00e9.",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_amenities/39",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa compl\u00e8te",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "un-hammam-et-deux-salons-de-massage",
+            "name": "Un hammam et deux salons de massage.",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        }
+    ],
+    "gallery": null,
+    "loungeAmenities": [],
+    "offers": [
+        {
+            "@id": "/api/aggregate_offers/15",
+            "@type": "http://schema.org/AggregateOffer",
+            "highPrice": null,
+            "lowPrice": null,
+            "offerCount": null,
+            "addOn": 15,
+            "name": "Basse saison",
+            "price": 1145,
+            "priceCurrency": null,
+            "availabilityEnd": "2021-06-30T00:00:00+02:00",
+            "availabilityStart": "2021-01-01T00:00:00+01:00"
+        },
+        {
+            "@id": "/api/aggregate_offers/16",
+            "@type": "http://schema.org/AggregateOffer",
+            "highPrice": null,
+            "lowPrice": null,
+            "offerCount": null,
+            "addOn": 15,
+            "name": "Haute saison",
+            "price": 1145,
+            "priceCurrency": null,
+            "availabilityEnd": "2021-12-31T00:00:00+01:00",
+            "availabilityStart": "2021-07-01T00:00:00+02:00"
+        }
+    ],
+    "category": {
+        "@id": "/api/tags/60",
+        "@type": "http://schema.org/Thing",
+        "slug": "villa",
+        "name": "villa",
+        "isActive": true
+    },
+    "minimumOccupants": 29,
+    "name": "Villa compl\u00e8te",
+    "description": "Superficie de : 1100 m\u00b2. Rassemblez-vous ou isolez-vous en fonction du moment et de votre humeur dans les nombreux espaces disponibles. Une construction \u00e9cologique (cumulus solaire, fosse septique \u00e9cologique, isolation thermique\u2026).",
+    "url": null,
+    "mainEntityOfPage": null
+}

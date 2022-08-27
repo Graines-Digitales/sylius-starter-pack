@@ -1,0 +1,37 @@
+{
+    "@id": "/api/hotel_activities/29",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": null,
+    "category": {
+        "@id": "/api/tags/34",
+        "@type": "http://schema.org/Thing",
+        "slug": "sport-et-exterieur",
+        "name": "Sport et Ext\u00e9rieur",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/34",
+            "@type": "http://schema.org/Thing",
+            "slug": "sport-et-exterieur",
+            "name": "Sport et Ext\u00e9rieur",
+            "isActive": true
+        }
+    ],
+    "slug": "peche-et-bateau",
+    "name": "P\u00eache et bateau",
+    "description": "Mieux que taquiner le goujon, revenez avec une p\u00eache miraculeuse. Faites vous plaisir en mer ou du bord de la plage et Layla cuisinera vos prises. Tournez autour des \u00eeles de Mogador \u00e0 bord d'un voilier de 12,50 m, observez les faucons El\u00e9onors et les p\u00eacheurs de sardines et regardez la medina avec un autre point de vue.",
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": null,
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

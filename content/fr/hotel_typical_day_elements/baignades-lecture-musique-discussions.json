@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/2",
+    "@type": "http://schema.org/?",
+    "label": "FARNIENTE",
+    "slug": "baignades-lecture-musique-discussions",
+    "value": "Baignades, lecture, musique, discussions \u2026",
+    "hotelTypicalDay": "/api/hotel_typical_days/1",
+    "primaryImage": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+    "secondaryImage": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+    "hours": "11h",
+    "labelBgTransparent": true,
+    "description": "Baignades, lecture, musique, discussions \u2026",
+    "isActive": true,
+    "category": "/api/tags/16",
+    "event": null,
+    "id": 2,
+    "dateCreated": "2021-10-12T22:30:36+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

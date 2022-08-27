@@ -1,0 +1,37 @@
+{
+    "@id": "/api/hotel_activities/17",
+    "@type": "http://schema.org/?",
+    "label": null,
+    "value": null,
+    "primaryImage": null,
+    "category": {
+        "@id": "/api/tags/32",
+        "@type": "http://schema.org/Thing",
+        "slug": "sportives",
+        "name": "Sportives",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/32",
+            "@type": "http://schema.org/Thing",
+            "slug": "sportives",
+            "name": "Sportives",
+            "isActive": true
+        }
+    ],
+    "slug": "velo-mountain-bike",
+    "name": "V\u00e9lo / mountain bike",
+    "description": null,
+    "url": null,
+    "mainEntityOfPage": null,
+    "headline": null,
+    "alternativeHeadline": null,
+    "pushForward": null,
+    "text": null,
+    "textResume": null,
+    "datePublished": null,
+    "expire": null,
+    "metaTitle": null,
+    "metaDescription": null
+}

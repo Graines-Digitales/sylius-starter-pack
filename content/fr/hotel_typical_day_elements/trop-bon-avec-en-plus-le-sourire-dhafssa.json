@@ -1,0 +1,21 @@
+{
+    "@id": "/api/hotel_typical_day_elements/3",
+    "@type": "http://schema.org/?",
+    "label": "VUE SUR LA MER",
+    "slug": "trop-bon-avec-en-plus-le-sourire-dhafssa",
+    "value": "Trop bon avec en plus le sourire d\u2019Hafssa",
+    "hotelTypicalDay": "/api/hotel_typical_days/1",
+    "primaryImage": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+    "secondaryImage": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+    "hours": "14h",
+    "labelBgTransparent": true,
+    "description": "Trop bon avec en plus le sourire d\u2019Hafssa",
+    "isActive": true,
+    "category": "/api/tags/17",
+    "event": null,
+    "id": 3,
+    "dateCreated": "2021-10-12T22:30:37+02:00",
+    "dateModified": "2021-10-16T17:33:39+02:00",
+    "userCreated": null,
+    "userLastModified": null
+}

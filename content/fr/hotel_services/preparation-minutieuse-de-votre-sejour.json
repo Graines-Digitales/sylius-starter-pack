@@ -1,0 +1,25 @@
+{
+    "@id": "/api/hotel_services/11",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/52",
+        "@type": "http://schema.org/Thing",
+        "slug": "pour-votre-sejour-de-reve",
+        "name": "Pour votre s\u00e9jour de r\u00eave",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/52",
+            "@type": "http://schema.org/Thing",
+            "slug": "pour-votre-sejour-de-reve",
+            "name": "Pour votre s\u00e9jour de r\u00eave",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "preparation-minutieuse-de-votre-sejour",
+    "name": "Pr\u00e9paration minutieuse de votre s\u00e9jour"
+}

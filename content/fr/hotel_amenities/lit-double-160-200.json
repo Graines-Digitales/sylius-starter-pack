@@ -1,0 +1,45 @@
+{
+    "@id": "/api/hotel_amenities/1",
+    "@type": "http://schema.org/?",
+    "withPicto": null,
+    "slugPicto": null,
+    "category": {
+        "@id": "/api/tags/13",
+        "@type": "http://schema.org/Thing",
+        "slug": "accueil",
+        "name": "accueil",
+        "isActive": true
+    },
+    "tags": [
+        {
+            "@id": "/api/tags/39",
+            "@type": "http://schema.org/Thing",
+            "slug": "chambre-confort",
+            "name": "Chambre Confort",
+            "isActive": true
+        },
+        {
+            "@id": "/api/tags/40",
+            "@type": "http://schema.org/Thing",
+            "slug": "chambre-superieure",
+            "name": "Chambre Sup\u00e9rieure",
+            "isActive": true
+        },
+        {
+            "@id": "/api/tags/41",
+            "@type": "http://schema.org/Thing",
+            "slug": "chambre-prestige",
+            "name": "Chambre Prestige",
+            "isActive": true
+        },
+        {
+            "@id": "/api/tags/42",
+            "@type": "http://schema.org/Thing",
+            "slug": "petite-suite",
+            "name": "Petite Suite",
+            "isActive": true
+        }
+    ],
+    "moreInfo": "",
+    "slug": "lit-double-160-200"
+}
