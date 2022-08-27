@@ -1,0 +1,57 @@
+{
+    "hydra:member":{
+        "menu":{
+            "links":[
+                {
+                    "name":"à propos", "link":"#about_me"
+                },
+                {
+                    "name":"féline", "link":"#feline"
+                },
+                {
+                    "name":"nitaya", "link":"#nitaya"
+                },
+                {
+                    "name":"témoignages", "link":"#testimonials"
+                },
+                {
+                    "name":"contact", "link":"#contact"
+                }
+        ]},
+        "footer":{
+            "bg_img":"1920x390_bg1",
+            "copyright":"© 2020 Aurora RM, Tous les droits sont réservés",
+            "link":{
+                "text":"Conçu par Johan RM",
+                "mailto":"mailto:johan.remy@graines-digitales.online"
+            }
+        },
+        "testimonials": {
+            "slug": "testimonials-default-component-home",
+            "code": "testimonials_default_component",
+            "bg_img":"images/yoga/slide1.webp",
+            "items": [
+                {
+                    "author": "Kava, Ukraine",
+                    "text": "Aurora is like an angel from paradise. Sincere, positive, she loves sharing.<br>A real sunshine for the people around. Her touch is magic and her smile from her heart. Thank you."
+                },
+                {
+                    "author": "Dominique, France",
+                    "text": "Aurore, tu as un don pour nous entraîner avec tes mots et ta voix chaleureuse.<br>À quand le prochain défi ?"
+                },
+                {
+                    "author": "Aurélie, Israël",
+                    "text": "Aurora names suits her so well ! Her ability to make everyone welcome helps each one to sink into his own personal experience. If you wish to connect not only to your body but to your very soul... Aurora is your guide."
+                },
+                {
+                    "author": "Brittney, US",
+                    "text": "Aurora took her time and energy to create a sacred space of ceremony... one in which I felt safe to drop deep within myself and my vulnerability.<br>The softness of her touch was like that of the Divine Mother telling her child she is loved and that everything is alright.<br>I was able to access my emotions and allow the waters to flow as she held me with compassion."
+                },
+                {
+                    "author": "Nik, US",
+                    "text": "I was so blessed to receive her nourishing massage. It was even more special because I was 15 months pregnant. I felt my entire body activated & sparkling as she caressed me with her feather and awakened my senses with sweet aroma therapy scents.<br>She spoke empowering affirmations with her gentle yet powerful voice.<br>Thank you for this unique and heart blossoming experience !"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,72 @@
+{
+    "hydra:member": {
+        "headline": "Home",
+        "components": [
+            {
+                "slug": "hero-default-component-home",
+                "code": "hero_default_component",
+                "images":[
+                    {"img":"images/flower.png"}
+                ],
+                "text": "<p>Ma beauté extérieure n’a rien à voir avec qui je suis et mes qualités qui me composent.<br>Cependant, ma beauté extérieure n’est pas non plus quelque chose dont je devrais avoir à me cacher.<br><br><b>Je vois mon corps comme l’enveloppe de mon âme.</b><br><br>Si je ne me connaissais pas, je ne pourrais pas autant m’exposer.<br>Cultiver ma relation à moi même est ce qui m’a permise d’être plus libre au fur et à mesure que j’évolue.<br><br>Sensuelle, émotionnelle, divinement humaine, douce et sauvage.<br>Je vois tellement de beauté chez la femme en général.<br><br>Je me suis détachée des connotations sexuelles car elles ne m’appartiennent pas.<br>Ce n’est pas ce que je vois.<br><br></p><p><strong>Je vois du sacré dans chaque centimètre de notre peau et de nos formes.</strong></p><p><strong>Je vois tellement de poésie dans le corps de la femme, au même titre que dans ce qui sommeille en elle.</strong><br><br></p><p>Mon amour pour la danse sensuelle, le yoga, la nature et le développement personnel est là pour servir les femmes qui veulent se reconnecter à leur beauté et vérité intérieure, à leur essence.<br><br>Pour ce faire, nous devons éliminer ces couches d’anciens conditionnements.<br>Il n’y a pas de place pour la honte ou le jugement lorsqu’il s’agit d’être ta propre expression.<br><br></p><div align=\"center\"><b>Sensible, sauvage ou poétique …</b></div><div align=\"center\"><b>La femme peut être tout ce qu’elle désire</b></div><div align=\"center\"><b>Sans jamais, ô grand jamais avoir à se justifier.</b></div>"
+            },
+            {
+                "slug": "masonry-images-component-home",
+                "code": "masonry_images_component",
+                "images":[
+                    {"img":"images/yoga/yoga.webp"},
+                    {"img":"images/yoga/yoga2.webp"},
+                    {"img":"images/home/test_duo_1.webp"},
+                    {"img":"images/home/test_duo_2.webp"}
+                ]
+            },
+            {
+                "slug": "product-card-image-right-component-feline",
+                "code": "product_card_image_right_component",
+                "images":[
+                    {"img":"images/home/feline.webp"}
+                ],
+                "headline": "Féline",
+                "offers": {
+                    "price": 3000
+                },
+                "textResume": "Un espace d'accompagnement dans lequel la femme se connecte à sa sensualité, sa propre danse afin d'atteindre une profonde libération.",
+                "pushForward": "Féline où comment passer de la petite fille sage à la femme libre et sauvage…",
+                "text": "<p>J’ai créé Féline.<br><br>Un espace d'accompagnement dans lequel la femme se connecte à sa sensualité, sa propre danse afin d’atteindre une profonde libération.<br><br>Ici, vous pouvez être tout ce que vous voulez, les jugements ou autres projections ne sont pas autorisés.<br><br>C’est une invitation à explorer vos parts douces, féminines et sauvages qui n’attendent qu’une chose… celle d’être réveillées.<br><br>Un espace pour se mouvoir, ressentir, transcender et dire adieu à ce qui entrave votre liberté.<br><br>Par la combinaison de mes mots &amp; mouvements, je vous guide et vous sublime dans l’exploration de votre PUISSANTE SENSUALITÉ 🔥🌹<br></p><ul> <li>Trois mois de pure engagement à soi-même.</li><li>Une session par semaine.</li><li>Une rencontre en présentiel.</li></ul><br><ul> <li>Explore ta sensualité par ta danse sacrée.</li><li>Pose tes limites et exprime ta puissante vérité.</li><li>Aime ton corps et ton unique beauté.</li></ul><br><p><em>Féline où comment passer de la petite fille sage à la femme libre et sauvage…</em></p>"
+            },
+            {
+                "slug": "product-card-image-left-component-nitaya",
+                "code": "product_card_image_left_component",
+                "headline": "Nitaya",
+                "pushForward": "",
+                "textResume": "Le massage Nitaya est un pure voyage sensoriel ou se mêle un toucher délicat, des caresses douces, du reiki ainsi que des éléments naturels (plumes, fleurs, huiles essentielles...). Faisant ainsi l’éloge de la lenteur, de l’attention à nos présentes sensations.",
+                "text": "<p>Le massage Nitaya est un <strong>pure voyage sensoriel</strong> ou se mêle un toucher délicat, des caresses douces, du reiki ainsi que des éléments naturels (plumes, fleurs, huiles essentielles…). Faisant ainsi <strong>l’éloge de la lenteur</strong>, de <strong>l’attention</strong> à nos présentes sensations.<br><br>Un espace dédié à <strong>l’exploration de votre rapport à vous-même et à l’énergie féminine nourricière</strong>, par ma tendresse déposée sur votre peau mais aussi l’utilisation de mots qui élèvent votre âme.<br><br>Je précise qu’il s’agit là d’un massage lié au sens, sensuel donc mais pas sexuel.<br><br>Ma douceur et ma présence sont là pour vous relier à la vôtre.<br><br><strong>Bienfaits:</strong> Une connexion profonde et plus subtile à vous-même et à votre part féminine. Un équilibre mental, énergétique et émotionnel. Expansion de l’amour de soi.</p>",
+                "offers": {
+                    "price": 100,
+                    "eligibleDuration": "1h 15"
+                },
+                "description": "Dédié aux femmes uniquement.",
+                "bg_image":"images/home/nitaya.webp",
+                "label_button": "Booker mon voyage"
+            },
+            {
+                "slug": "product-card-image-right-component-a-propos",
+                "code": "product_card_image_right_component",
+                "bg_image":"images/home/about-me.webp",
+                "headline": "À propos",
+                "textResume": "Après  10 ans plongée dans l’univers du Yoga et de l’enseignement, je suis naturellement revenue à mon amour de toujours, la danse.",
+                "pushForward": "Se mouvoir de façon libre, sans choré, ni pas à suivre… Je suis dans l’genre intuitive.",
+                "text": "<p>Après 10 ans plongée dans l’univers du Yoga et de l’enseignement, je suis naturellement revenue à mon amour de toujours, la danse.<br>Se mouvoir de façon libre, sans choré, ni pas à suivre… Je suis dans l’genre intuitive.<br><br>Ces dix dernières années, j’ai approfondi ma relation à moi-même, au véritable amour que je me porte, à mon monde émotionnel et énergétique et donc à ce qui m’entoure.<br>Ma vérité me guide vers une vie pleine d’intégrité et de liberté.<br><br>Sensible à la délicatesse, je fais l’éloge de la lenteur quand il s’agit de se connecter à notre corps.<br>Il y a en nous des espaces très subtils qui requièrent une profonde écoute.<br><br>J’ai toujours aimé m’exprimer par différentes formes d’art, cependant, en passant de jeune fille, à adolescente, à femme, je suis passée par divers états d’âme.<br>De la peur de prendre ma place, à l’insécurité d’être en danger, à la confiance en moi et donc l’importance d’honorer mon existence.<br><br><b>Aujourd’hui ma danse empuissance.</b><br><br>Je suis là pour rappeler à la femme combien elle peut être libre, douce et forte.<br>La sensualité a de puissantes vertues, elle hypnotise, calme, active le désir et cet amour propre, inestimable conduisant à notre indépendance et épanouissement sur tous les plans.<br><br><b>A présent, j’accompagne la femme qui souhaite véritablement tomber amoureuse d’elle-même, en la guidant à incarner son essence sensuelle.</b></p>"
+            },
+            {
+                "slug": "video-component-home",
+                "code": "video_component",
+                "bg_image":"images/home/video.webp",
+                "headline": "N'oubliez jamais combien vous êtes divine quand sensuelle.",
+                "textResume": "",
+                "pushForward": "",
+                "text": "<p>Le temps de la honte est révolu. 💋<br><br>Seul l’amour dans mon monde, qu’en est-il du vôtre? 💕</p>"
+            }
+        ]
+    }
+}
