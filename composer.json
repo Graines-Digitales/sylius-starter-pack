@@ -29,6 +29,7 @@
         "portphp/csv": "^2.0",
         "portphp/spreadsheet": "^1.0",
         "sonata-project/twig-extensions": "^1.10",
+        "doctrine/orm": "^2.10",
         "sylius/paypal-plugin": "^1.2.1",
         "sylius/sylius": "^1.10",
         "symfony/dotenv": "^4.4 || ^5.2",
