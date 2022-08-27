@@ -6,6 +6,7 @@ Starter Pack Digital Management System
 - `composer install`
 - `yarn install`
 - `nano .env.local : DATABASE_URL=`
+- `mkdir -p public/media/image`
 - `./bin/console sylius:install`
 - `symfony console doctrine:migrations:migrate`
 - `./bin/console app:project-setup`
