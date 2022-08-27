@@ -8,7 +8,7 @@ Starter Pack Digital Management System
 - `nano .env.local : DATABASE_URL=`
 - `mkdir -p public/media/image`
 - `./bin/console sylius:install`
-- `symfony console doctrine:migrations:migrate`
+- `./bin/console doctrine:migrations:migrate`
 - `./bin/console app:project-setup`
 - `yarn encore production`
 - `symfony serve -d`
