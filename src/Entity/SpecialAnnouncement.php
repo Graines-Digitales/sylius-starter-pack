@@ -101,14 +101,14 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
         return $this->getTranslation()->getName();
     }
 
-    public function getComponent(): ?string
+    public function getComponents(): ?string
     {
-        return $this->getTranslation()->getComponent();
+        return $this->getTranslation()->getComponents();
     }
 
-    public function setComponent(string $component): self
+    public function setComponents(string $components): self
     {
-        $this->getTranslation()->setComponent($component);
+        $this->getTranslation()->setComponents($components);
 
         return $this;
     }

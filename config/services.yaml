@@ -29,7 +29,8 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+        # exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{Migrations,Tests,Kernel.php}'
 
     # Controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -93,13 +94,26 @@ services:
         class: App\Form\Type\WebPageType
         tags:
             - { name: form.type }
-        arguments: ['@service_container', '%app.model.web_page.class%', ['sylius']]
+        arguments: ['@service_container', '@App\WebContent\WebPage', '%app.model.web_page.class%', ['sylius']]
 
     app.web_page_translation.form.type:
         class: App\Form\Type\WebPageTranslationType
         tags:
             - { name: form.type }
         arguments: ['%app.model.web_page_translation.class%', ['sylius']]
+
+    app.landing_page.form.type:
+        class: App\Form\Type\LandingPageType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '@App\WebContent\WebPage', '%app.model.web_page.class%', ['sylius']]
+
+    app.landing_page_translation.form.type:
+        class: App\Form\Type\LandingPageTranslationType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.web_page_translation.class%', ['sylius']]
+
 
     app.special_announcement.form.type:
         class: App\Form\Type\SpecialAnnouncementType
@@ -112,6 +126,18 @@ services:
         tags:
             - { name: form.type }
         arguments: ['%app.model.special_announcement_translation.class%', ['sylius']]
+
+    app.component.form.type:
+        class: App\Form\Type\ComponentType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '%app.model.component.class%', ['sylius']]
+
+    app.component_translation.form.type:
+        class: App\Form\Type\ComponentTranslationType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.component_translation.class%', ['sylius']]
 
     app.cms_component.form.type:
         class: App\Form\Type\CmsComponentType
@@ -208,6 +234,24 @@ services:
         tags:
             - { name: form.type }
         arguments: [ '@service_container', '@App\WebContent\WebPage', '@App\Tools\Media', '%app.model.organization.class%', ['sylius']]
+
+    app.cms_menu.form.type:
+        class: App\Form\Type\CmsMenuType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '%app.model.cms_menu.class%', ['sylius']]
+    
+    app.cms_link.form.type:
+        class: App\Form\Type\CmsLinkType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '@App\WebContent\Component', '%app.model.cms_link.class%', ['sylius']]
+
+    app.cms_link_translation.form.type:
+        class: App\Form\Type\CmsLinkTranslationType
+        tags:
+            - { name: form.type }
+        arguments: ['%app.model.cms_link_translation.class%', ['sylius']]
 
     # app.message.form.type:
     #     class: App\Form\Type\MessageType

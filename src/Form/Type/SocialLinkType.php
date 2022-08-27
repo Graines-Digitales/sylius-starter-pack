@@ -13,12 +13,14 @@ use App\Repository\MediaObjectRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Form\DataTransformer\MediaObjectTransformer;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class SocialLinkType extends AbstractResourceType
 {
@@ -41,27 +43,28 @@ class SocialLinkType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $configurationProject = $this->container->getParameter('configuration_project');
-        $slug = $configurationProject['categories']['social_link']['slug'];
+        $slug = 'reseau-social';
         $category = $this->webPageService->getCategory($slug);
-        $icons = $this->mediaService->getIcons();
+        // $icons = $this->mediaService->getIcons();
 
         $builder
             ->add('isEnabled', CheckboxType::class, [
                 'required' => false,
             ])
-            // ->add('icon', ChoiceType::class, [
-            //     'choices' => $icons,
-            //     'placeholder' => 'app.ui_element.field.select_icon',
-            //     'required' => false,
-            // ])
-            ->add('iconMedia', EntityType::class, [
+            ->add('icon', EntityType::class, [
+                'attr' => ['class' => 'select2-image'],
+                'required' => false,
+                // 'constraints' => [
+                //     new NotBlank(['groups' => ['social_link_validation']])
+                // ],
                 'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_icon',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingSvg($configurationProject);
                 }
             ])
             ->add('primaryImage', EntityType::class, [
+                'attr' => ['class' => 'select2-image'],
                 'class' => MediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
@@ -69,19 +72,36 @@ class SocialLinkType extends AbstractResourceType
                 }
             ])
             ->add('name', TextType::class, [
-                'required' => true
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['social_link_validation']])
+                ]
             ])
             ->add('url', TextType::class, [
-                'required' => true
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['social_link_validation']])
+                ]
+            ])
+            ->add('_category', EntityType::class, [
+                'class' => Category::class,
+                'label' => 'Category',
+                'data' => $category,
+                'query_builder' => function(CategoryRepository $repo) use ($slug){
+                    return $repo->createQueryBuilderBySlug($slug);
+                },
+                'disabled' => true
             ])
             ->add('category', EntityType::class, [
+                'attr' => ['class' => 'hidden'],
                 'class' => Category::class,
+                'label' => '',
                 'data' => $category,
                 'query_builder' => function(CategoryRepository $repo) use ($slug){
                     return $repo->createQueryBuilderBySlug($slug);
                 }
-                // 'disabled' => true
             ])
+           
         ;
     }
 
@@ -89,6 +109,7 @@ class SocialLinkType extends AbstractResourceType
     {
         $resolver->setDefaults([
             'data_class' => Organization::class,
+            'validation_groups' => ['social_link_validation']
         ]);
     }
 

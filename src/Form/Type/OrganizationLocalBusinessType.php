@@ -33,7 +33,7 @@ class OrganizationLocalBusinessType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $configurationProject = $this->container->getParameter('configuration_project');
-        $slug = $configurationProject['categories']['local_business']['slug'];
+        $slug = 'local-business';
         $category = $this->webPageService->getCategory($slug);
         
         $builder

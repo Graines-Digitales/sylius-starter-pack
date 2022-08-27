@@ -305,7 +305,109 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
-                        
+
+        app_admin_landing_page:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\WebPage
+                    repository:
+                        method: createQueryBuilderByTypeLandingPage
+                        arguments:
+                            parameters: '%configuration_project%'
+            fields:
+                is_enabled:
+                    type: twig
+                    label: sylius.ui.is_enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                is_locked:
+                    type: twig
+                    label: app.ui_element.field.is_locked
+                    options:
+                        template: "@App/admin/Grid/Field/locked.html.twig"
+                primaryImage:
+                    type: twig
+                    label: app.ui.primary_image
+                    options:
+                        template: "@App/admin/Grid/Field/thumbnail.html.twig"
+                # category:
+                #     type: twig # Type of filter
+                #     label: app.ui.category
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                translation.slug:
+                    type: string
+                    label: sylius.ui.slug
+                translation.headline:
+                    type: string
+                    label: app.ui.headline
+                    sortable: translation.name
+                # translation.meta_title:
+                #     type: string
+                #     label: app.ui.meta_title
+                #     sortable: translation.meta_title
+                # translation.meta_description:
+                #     type: string
+                #     label: app.ui.meta_description
+                #     sortable: translation.meta_description
+            filters:
+                search:
+                    type: string
+                    label: false
+                    options:
+                        fields: [translations.headline, code]
+                    form_options:
+                        type: contains
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        app_admin_component:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\Component
+            fields:
+                is_enabled:
+                    type: twig
+                    label: sylius.ui.is_enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                is_locked:
+                    type: twig
+                    label: app.ui_element.field.is_locked
+                    options:
+                        template: "@App/admin/Grid/Field/locked.html.twig"
+                name:
+                    type: string
+                    label: sylius.ui.name
+                    sortable: translation.name
+    
+            filters:
+                search:
+                    type: string
+                    label: false
+                    options:
+                        fields: [name]
+                    form_options:
+                        type: contains   
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
         app_admin_cms_component:
             driver:
                 name: doctrine/orm
@@ -348,15 +450,11 @@ sylius_grid:
                     delete:
                         type: delete
 
-        app_admin_cms_component_menu:
+        app_admin_cms_menu:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\CmsComponent
-                    repository:
-                        method: findByType
-                        arguments:
-                            parameters: '%configuration_project%'
+                    class: App\Entity\CmsMenu
             fields:
                 is_enabled:
                     type: twig
@@ -365,27 +463,58 @@ sylius_grid:
                         template: "@SyliusUi/Grid/Field/enabled.html.twig"
                 name:
                     type: string
-                    label: sylius.ui.name
+                    label: app.ui_element.field.name
                     sortable: translation.name
-                templates:
-                    type: twig
-                    label: sylius.ui.templates
-                    options:
-                        template: "@App/admin/Grid/Field/array.html.twig"
-                # description:
-                #     type: string
-                #     label: sylius.ui.description
-                #     sortable: translation.description
-                
             actions:
-                # main:
-                #     create:
-                #         type: create
+                main:
+                    create:
+                        type: create
                 item:
                     update:
                         type: update
                     delete:
                         type: delete
+
+
+
+        # app_admin_cms_component_menu:
+        #     driver:
+        #         name: doctrine/orm
+        #         options:
+        #             class: App\Entity\CmsComponent
+        #             repository:
+        #                 method: findByType
+        #                 arguments:
+        #                     parameters: '%configuration_project%'
+        #     fields:
+        #         is_enabled:
+        #             type: twig
+        #             label: sylius.ui.is_enabled
+        #             options:
+        #                 template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        #         name:
+        #             type: string
+        #             label: sylius.ui.name
+        #             sortable: translation.name
+        #         templates:
+        #             type: twig
+        #             label: sylius.ui.templates
+        #             options:
+        #                 template: "@App/admin/Grid/Field/array.html.twig"
+        #         # description:
+        #         #     type: string
+        #         #     label: sylius.ui.description
+        #         #     sortable: translation.description
+                
+        #     actions:
+        #         # main:
+        #         #     create:
+        #         #         type: create
+        #         item:
+        #             update:
+        #                 type: update
+        #             delete:
+        #                 type: delete
 
         app_admin_article:
             driver:
@@ -1314,7 +1443,7 @@ sylius_grid:
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
 
-                iconMedia:
+                icon:
                     type: twig
                     label: app.ui_element.field.icon_media
                     path: .

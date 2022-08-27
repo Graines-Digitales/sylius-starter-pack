@@ -12,9 +12,11 @@ use Symfony\Component\Form\AbstractType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -37,19 +39,30 @@ class MediaObjectVideoType extends AbstractType
                 'data' => true
             ])
             ->add('name')
-            ->add('url')
-            ->add('encodingFormat', TextType::class,[
-                 'data' => 'video/youtube'
+            ->add('url', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['media_object_video_validation']])
+                ]
+            ])
+            ->add('_encodingFormat', TextType::class,[
+                 'data' => 'video/youtube',
+                 'mapped'        => false,
+                 'disabled' => true,
+                 'label' => 'Encoding format'
                 ]
             )
+            ->add('encodingFormat', HiddenType::class,[
+                'data' => 'video/youtube'
+               ]
+            )
             ->add('category', EntityType::class, [
+                'required' => false,
                 'class' => Category::class,
-                'placeholder' => 'app.ui_element.field.select_category',
-                'query_builder' => function(CategoryRepository $repo) use ($configurationProject) {
-                    return $repo->createQueryBuilderByTypeArticle($configurationProject);
-                }
+                'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('tags', EntityType::class, [
+                'required' => false,
                 'class'         => Category::class,
                 'expanded'      => true,
                 'multiple'      => true,
@@ -63,6 +76,7 @@ class MediaObjectVideoType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => MediaObject::class,
+            'validation_groups' => ['media_object_video_validation'],
         ]);
     }
 
@@ -71,6 +85,6 @@ class MediaObjectVideoType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'app_media_object_icon';
+        return 'app_media_object_video';
     }
 }

@@ -33,7 +33,7 @@ class ManufacturerType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $configurationProject = $this->container->getParameter('configuration_project');
-        $slug = $configurationProject['categories']['manufacturer']['slug'];
+        $slug = 'manufacturer';
         $category = $this->webPageService->getCategory($slug);
         
         $builder

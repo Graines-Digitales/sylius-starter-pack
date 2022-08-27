@@ -59,81 +59,69 @@ class Media
     }
 
     public function defineEntityMediaFromFile($entity)
-    {   $configurationProject = $this->container->getParameter('configuration_project');
-        $mediaEncodingFormats = $configurationProject['media_encoding_formats'];
-
-        if (null !== $entity->getFile()) {
-            $file = $entity->getFile();
-
-            $originalFilename = null;
-            // dump($entity);die;
-            if(empty($entity->getOriginalFilename())) {
-                if (is_callable([$file, 'getClientOriginalName'])) {
-                    $originalFilename = $file->getClientOriginalName();
+    {
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $videoMimeTypes = $configurationProject['media_encoding_formats']['video'];
+        $imageMimeTypes = $configurationProject['media_encoding_formats']['image'];
+        if (in_array($entity->getEncodingFormat(), $videoMimeTypes)) {
+            $filename = pathinfo($entity->getUrl(), PATHINFO_FILENAME);
+            if (empty($entity->getName())) {
+                $entity->setName($filename);
+            }
+            $entity->setFilename($filename);
+        } else {
+            if (null !== $entity->getFile()) {
+                $file = $entity->getFile();
+                $originalFilename = null;
+                if (empty($entity->getOriginalFilename())) {
+                    if (is_callable([$file, 'getClientOriginalName'])) {
+                        $originalFilename = $file->getClientOriginalName();
+                    } else {
+                        $originalFilename = $file->getFilename();
+                    }
                 } else {
-                    $originalFilename = $file->getFilename();
+                    $originalFilename = $entity->getOriginalFilename();
                 }
-            } else {
-                $originalFilename = $entity->getOriginalFilename();
+                $encodingFormat = null;
+                if (!empty($file->getMimeType())) {
+                    $encodingFormat = $file->getMimeType();
+                }
+                $dimensions = [];
+                if (in_array($encodingFormat, $imageMimeTypes)) {
+                    $dimensions = getimagesize($file->getPathname());
+                }
+                $contentSize = 0;
+                if (!empty($file->getSize())) {
+                    $contentSize = $file->getSize();
+                }
+                $format = null;
+                if (!empty($dimensions) && $dimensions[1] > $dimensions[0]) {
+                    $format = '-vertical';
+                }
+                $filename = pathinfo($originalFilename, PATHINFO_FILENAME);
+                if (is_callable([$file, 'getClientOriginalName'])) {
+                    $filename = $file->getClientOriginalName();
+                } else {
+                    $filename = $file->getFilename();
+                }
+                $entity->setFilename($filename);
+                $entity->setDimensions($dimensions);
+                $entity->setOriginalFilename($originalFilename);
+                $entity->setFile($file);
+                $entity->setEncodingFormat($encodingFormat);
+                $entity->setContentSize($contentSize);
             }
-
-            $encodingFormat = null;
-            if(!empty($file->getMimeType())) {
-                $encodingFormat = $file->getMimeType();
-            }
-            $dimensions = [];
-            if (in_array($encodingFormat, $mediaEncodingFormats['image'])) {
-                $dimensions = getimagesize($file->getPathname());
-            }
-            $contentSize = 0;
-            if(!empty($file->getSize())) {
-                $contentSize = $file->getSize();
-            }
-            $format = null;
-            if (!empty($dimensions) && $dimensions[1] > $dimensions[0]) {
-                $format = '-vertical';
-            }
-            $name = null;
-            $filename = pathinfo($originalFilename, PATHINFO_FILENAME);
-            if (is_callable([$file, 'getClientOriginalName'])) {
-                $filename = $file->getClientOriginalName();
-            } else {
-                $filename = $file->getFilename();
-            }
-            // dump($file->getFilename());die;
             $name = null;
             if (empty($entity->getName())) {
-                $name = $this->slugger->slug($filename)->lower()->toString();
+                $name = $this->slugger->slug($entity->getFilename())->lower()->toString();
                 $name = ucwords(str_replace('-', ' ', $name));
+                $entity->setName($name);
             }
-            // $filename = pathinfo($originalFilename, PATHINFO_BASENAME);
             $alt = null;
             if (empty($entity->getAlt())) {
                 $alt = $this->webContentSEOService->defineAltImage($entity);
+                $entity->setAlt($alt);
             }
-
-            $entity->setName($name);
-            $entity->setDimensions($dimensions);
-            $entity->setOriginalFilename($originalFilename);
-            $entity->setFilename($filename);
-            $entity->setFile($file);
-            $entity->setEncodingFormat($encodingFormat);
-            $entity->setContentSize($contentSize);
-            $entity->setAlt($alt);
-
-        } else if(null !== $entity->getUrl()) {
-            $filename = pathinfo($entity->getUrl(), PATHINFO_FILENAME);
-            if(empty($entity->getName())) {
-                $entity->setName($filename);
-            }
-            $entity->setFilename($filename);
-            // $entity->setEncodingFormat($mediaEncodingFormats['video'][0]);
-        } else if(null !== $entity->getIcon()) {
-            $filename = pathinfo($entity->getIcon(), PATHINFO_FILENAME);
-            if(empty($entity->getName())) {
-                $entity->setName($filename);
-            }
-            $entity->setFilename($entity->getIcon());
         }
 
         return $entity;

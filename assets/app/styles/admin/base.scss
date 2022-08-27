@@ -1,15 +1,29 @@
 @import "../imports";
 @import "./components/form.scss";
+@import "./components/semantic-ui-alt";
+
+$sylius-brand-color: #1abb9c !default;
+$segment-spacing: 1.8em !default;
+$segment-title-spacing: 1.2em 1.8em !default;
+$accordion-title-spacing: 1.2em 1.8em !default;
 
 // General
 body.centered {
-	background-color: #fff;
+	background-color: $bo-background-color;
 }
+
 .ui[class*="center aligned"].grid {
 
 	background: $bo-background-color;
 }
 
+.ui.primary.button {
+	background-color: $color-primary;
+}
+
+.ui.primary.button:hover, .ui.primary.button:focus {
+	background-color: $bo-background-color;
+}
 
 // To sort
 .ui.segment  div.preview_icon {
@@ -39,4 +53,24 @@ a {
 }
 .ui.info.message {
 	color: $color-category-actu-darked;
+}
+
+.select2-container .select2-selection--single {
+	height: auto !important;
+}
+
+img.ui.tiny.image {
+	cursor: pointer;
+}
+.ui.basic.table td {
+	text-align: center;
+}
+
+.hidden.transition {
+
+	visibility: visible !important;
+}
+
+.ui.form .hidden {
+	display: none;
 }

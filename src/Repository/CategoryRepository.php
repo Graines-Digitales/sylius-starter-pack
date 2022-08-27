@@ -51,7 +51,7 @@ class CategoryRepository extends EntityRepository
 
     public function createQueryBuilderByType()
     {
-        dump('ici');
+
         return $this->createQueryBuilder('entity')
             ->andWhere('entity.type in (:type)')
             ->setParameter('type', 'organization')
@@ -60,7 +60,7 @@ class CategoryRepository extends EntityRepository
 
     public function createQueryBuilderByTypeLocalBusiness($configurationProject)
     {
-        $type = $configurationProject['categories']['local_business']['slug'];
+        $type = 'local-business';
 
         return $this->createQueryBuilder('entity')
             ->andWhere('entity.type in (:type)')
@@ -70,7 +70,7 @@ class CategoryRepository extends EntityRepository
 
     public function createQueryBuilderByTypeSpecialAnnouncement($configurationProject)
     {
-        $type = $configurationProject['categories']['special_announcement']['slug'];
+        $type = 'special-announcement';
 
         return $this->createQueryBuilder('entity')
             ->andWhere('entity.type in (:type)')
@@ -80,7 +80,7 @@ class CategoryRepository extends EntityRepository
 
     public function createQueryBuilderByTypeArticle($configurationProject)
     {
-        $type = $configurationProject['categories']['article']['slug'];
+        $type = 'blog';
 
         return $this->createQueryBuilder('entity')
             ->andWhere('entity.type in (:type)')
@@ -90,7 +90,7 @@ class CategoryRepository extends EntityRepository
 
     public function createQueryBuilderByTypeWebPage($configurationProject)
     {
-        $type = $configurationProject['categories']['web_page']['slug'];
+        $type = 'web-page';
 
         return $this->createQueryBuilder('entity')
             ->andWhere('entity.type in (:type)')
@@ -100,7 +100,7 @@ class CategoryRepository extends EntityRepository
 
     public function createQueryBuilderByTypeProduct($configurationProject)
     {
-        $type = $configurationProject['categories']['product']['slug'];
+        $type = 'product';
 
         return $this->createQueryBuilder('entity')
             ->andWhere('entity.type in (:type)')

@@ -100,10 +100,10 @@
                 {% endfor %}
             {% endif %}
 
-            <div class="ui styled fluid accordion" data-form-collection="list">
+            <div class="ui styled fluid accordion_alt" data-form-collection="list">
                 {% for child in form %}
                     <div class="title">
-                    {{ dump(child.vars.value) }}
+                    {# {{ dump(child.vars.value) }} #}
                     {% if child.vars.value.designation is defined %}
                         {{ child.vars.value.designation|capitalize }}
                     {% elseif child.vars.value.title is defined %}

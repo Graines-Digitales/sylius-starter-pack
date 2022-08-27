@@ -19,7 +19,7 @@ trait CreativeWorkTrait
      * @ORM\Column(type="string", length=255, nullable=true)
      * @ApiProperty(iri="http://schema.org/headline")
      * @ Assert\NotNull(groups="creative")
-     * @ Assert\NotBlank(message="Select a title")
+     * @ Assert\NotBlank(groups="creative")
      */
     private $headline;
 

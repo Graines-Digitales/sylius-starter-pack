@@ -37,7 +37,7 @@ class WebPageTranslation extends AbstractTranslation implements ResourceInterfac
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $component;
+    private $components;
 
      /**
      * @Gedmo\Slug(fields={"headline"}, updatable=false)
@@ -53,14 +53,14 @@ class WebPageTranslation extends AbstractTranslation implements ResourceInterfac
         return $this->id;
     }
 
-    public function getComponent(): ?string
+    public function getComponents(): ?string
     {
-        return $this->component;
+        return $this->components;
     }
 
-    public function setComponent(?string $component): self
+    public function setComponents(?string $components): self
     {
-        $this->component = $component;
+        $this->components = $components;
 
         return $this;
     }

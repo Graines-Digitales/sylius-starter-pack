@@ -42,9 +42,9 @@ class SearchActionType extends AbstractResourceType
         /** transférer tous les getParameter dans le service dédié */
         $configurationProject = $this->container->getParameter('configuration_project');
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'app.ui_element.field.search_name'
-            ])
+            // ->add('name', TextType::class, [
+            //     'label' => 'app.ui_element.field.search_name'
+            // ])
             ->add('mainEntityOfPage', ChoiceType::class, [
                 'choices' => $this->configurationService->getMainEntityOfPageForChoiceType(),
                 'multiple' => false,
@@ -53,8 +53,9 @@ class SearchActionType extends AbstractResourceType
             ])
             ->add('tags', EntityType::class, [
                 'class'         => Category::class,
-                'expanded'      => false,
+                'expanded'      => true,
                 'multiple'      => true,
+                // 'by_reference' => false,
                 'placeholder' => 'app.ui_element.field.select_option',
             ])
             ->add('orderByDate', ChoiceType::class, [

@@ -94,7 +94,7 @@ security:
                 login_path: sylius_shop_login
                 check_path: sylius_shop_login_check
                 failure_path: sylius_shop_login
-                default_target_path: sylius_shop_landing_page
+                default_target_path: app_admin_landing_page
                 use_forward: false
                 use_referer: true
                 csrf_token_generator: security.csrf.token_manager

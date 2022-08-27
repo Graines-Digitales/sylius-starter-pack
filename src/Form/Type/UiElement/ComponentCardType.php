@@ -25,7 +25,10 @@ use App\Form\Type\UiElement\ComponentLinkType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use App\Form\DataTransformer\MediaObjectTransformer;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -44,6 +47,8 @@ class ComponentCardType extends AbstractType
     
     private $container;
 
+    private $slugger;
+
     public function __construct(
         Component $componentService,
         EntityManagerInterface $manager,
@@ -52,25 +57,37 @@ class ComponentCardType extends AbstractType
         $this->componentService = $componentService;
         $this->manager = $manager;
         $this->container = $container;
+        $this->slugger = new AsciiSlugger();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $code = 'component_card';
-        $templates = $this->componentService->getTemplates($code); // Depends on the code specified on the component creation
-        $styles = $this->componentService->getStyles($code);
+        // $templates = $this->componentService->getTemplates($code); // Depends on the code specified on the component creation
+        // $styles = $this->componentService->getStyles($code);
         $configurationProject = $this->container->getParameter('configuration_project');
 
         $builder
-            ->add('slug', TextType::class, [
+            ->add('_slug', TextType::class, [
                 'disabled' => true,
+                'data' => (isset($options['data']['slug']))? $options['data']['slug']: '',
+                'label' => 'app.ui_element.field.slug',
+                'mapped' => false,
+                'help' => 'This field will be automatically edited',
+                'required' => false,
+            ])
+            ->add('slug', HiddenType::class, [
+                'disabled' => false,
             ])
             ->add('designation', TextType::class, [
                 'required' => false,
                 'label' => 'app.ui_element.field.designation',
             ])
             ->add('title', TextType::class, [
-                'required' => false,
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['component_card_validation']])
+                ],
                 'label' => 'app.ui_element.field.title',
             ])
             ->add('subtitle', TextType::class, [
@@ -125,14 +142,14 @@ class ComponentCardType extends AbstractType
                     return $repo->createQueryBuilderByEncodingSvg($configurationProject);
                 }
             ])
-            ->add('template', ChoiceType::class, [
-                'choices' => $templates,
-                'required' => true,
-            ])
-            ->add('style', ChoiceType::class, [
-                'choices' => $styles,
-                'required' => true,
-            ])
+            // ->add('template', ChoiceType::class, [
+            //     'choices' => $templates,
+            //     'required' => true,
+            // ])
+            // ->add('style', ChoiceType::class, [
+            //     'choices' => $styles,
+            //     'required' => true,
+            // ])
             ->add('links', CollectionType::class, [
                 'entry_type' => ComponentLinkType::class,
                 'button_add_label' => 'app.ui_element.form.add_item',
@@ -165,10 +182,19 @@ class ComponentCardType extends AbstractType
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             $data = $event->getData();
             $form = $event->getForm();
-            $data['slug'] = 'toto';
+            if(empty($data['slug'])) {
+                $string = $form->getConfig()->getName() . ' ' . $data['title'];
+                $data['slug'] = $this->slugger->slug($string)->lower()->toString();
+            }
             $event->setData($data);
-
         });
 
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'validation_groups' => ['component_card_validation'],
+        ]);
     }
 }

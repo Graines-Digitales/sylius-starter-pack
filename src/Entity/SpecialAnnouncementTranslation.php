@@ -41,7 +41,7 @@ class SpecialAnnouncementTranslation extends AbstractTranslation implements Reso
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $component;
+    private $components;
 
      /**
      * @Gedmo\Slug(fields={"headline"}, prefix="")
@@ -56,14 +56,14 @@ class SpecialAnnouncementTranslation extends AbstractTranslation implements Reso
         return $this->id;
     }
 
-    public function getComponent(): ?string
+    public function getComponents(): ?string
     {
-        return $this->component;
+        return $this->components;
     }
 
-    public function setComponent(?string $component): self
+    public function setComponents(?string $components): self
     {
-        $this->component = $component;
+        $this->components = $components;
 
         return $this;
     }

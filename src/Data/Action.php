@@ -17,6 +17,7 @@ use App\Entity\MediaObject;
 use App\Entity\Organization;
 use App\Entity\PropertyValue;
 use App\Entity\SlideMediaObject;
+use App\Entity\ArticleTranslation;
 use App\Entity\WebPageTranslation;
 use App\Entity\CategoryTranslation;
 use Doctrine\ORM\EntityManagerInterface;
@@ -51,15 +52,12 @@ class Action
         return $category;
     }
 
-    public function hydrateCategoryDemand($data, $category, $locale) 
+    public function createAddressDemand($data = [])
     {
-        $category->getTranslation()->setLocale($locale);
-        if(isset($data['name'])) {
-            $category->getTranslation()->setName($data['name']);
-        }
-        $category->getTranslation()->setTranslatable($category);
-      
-        return $category;
+        $address = new Address();
+        $address = $this->hydrateAddressDemand($data, $address);
+
+        return $address;
     }
 
     public function createWebPageDemand($data = [], $locale = 'fr_FR')
@@ -71,6 +69,66 @@ class Action
         $webPage = $this->hydrateWebPageDemand($data, $webPage, $locale);
        
         return $webPage;
+    }
+
+    public function createArticleDemand($data = [], $locale = 'fr_FR')
+    {
+        $article = new Article();
+        $article->setCurrentLocale($locale);
+        $articleTranslation = new ArticleTranslation();
+        $article->addTranslation($articleTranslation); 
+        $article = $this->hydrateArticleDemand($data, $article, $locale);
+       
+        return $article;
+    }
+
+    public function createPersonDemand($data = [])
+    {
+        $person = new Person();
+        $person = $this->hydratePersonDemand($data, $person);
+
+        return $person;
+    }
+    
+    public function createMessageDemand($data = [])
+    {
+        $message = new Message();
+        $message->setSubject($data['subject']);
+        $message->setText($data['text']);
+        $message->setOrigin($data['origin']);
+        $message->setDateSent(new \DateTime('now'));
+
+        return $message;
+    }
+
+    public function createComponentDemand($data = [], $locale)
+    {
+        $component = new Component();
+        $component = $this->hydrateComponentDemand($data, $component, $locale);
+        
+        return $component;
+    }
+
+    public function createOrganizationDemand($data = [])
+    {
+        $organization = new Organization();
+        $organization = $this->hydrateOrganizationDemand($data, [], $organization);
+        
+        return $organization;
+    }
+
+    public function hydrateCategoryDemand($data, $category, $locale) 
+    {
+        $category->getTranslation()->setLocale($locale);
+        if(isset($data['name'])) {
+            $category->getTranslation()->setName($data['name']);
+        }
+        if(isset($data['type']) && true == $data['type']) {
+            $category->setType($data['slug']);
+        }
+        $category->getTranslation()->setTranslatable($category);
+      
+        return $category;
     }
 
     public function hydrateWebPageDemand($data, $webPage, $locale)
@@ -118,20 +176,8 @@ class Action
         if (isset($data['components'])) {
             $components = $data['component'];
         }
-        $webPage->setComponent($components, 'fr_FR');
+        $webPage->setComponents($components, 'fr_FR');
 
-        return $webPage;
-    }
-
-
-    public function createArticleDemand($data = [], $locale = 'fr_FR')
-    {
-        $webPage = new WebPage();
-        $webPage->setCurrentLocale($locale);
-        $webPageTranslation = new WebPageTranslation();
-        $webPage->addTranslation($webPageTranslation); 
-        $webPage = $this->hydrateWebPageDemand($data, $webPage, $locale);
-       
         return $webPage;
     }
 
@@ -141,7 +187,7 @@ class Action
         $article->getTranslation()->setTranslatable($article);
 
         if(isset($data['headline'])){
-            $article->setHeadline($data['headline']);
+            $article->getTranslation()->setHeadline($data['headline']);
         }
 
         if(isset($data['category'])){
@@ -163,19 +209,19 @@ class Action
         }
 
         if(isset($data['alternativeHeadline'])){
-            $article->setAlternativeHeadline($data['alternativeHeadline']);
+            $article->getTranslation()->setAlternativeHeadline($data['alternativeHeadline']);
         }
 
         if(isset($data['articleBody'])){
-            $article->setArticleBody($data['articleBody']);
+            $article->getTranslation()->setArticleBody($data['articleBody']);
         }
 
         if (isset($data['pushForward'])) {
-            $article->setPushForward($data['pushForward']);
+            $article->getTranslation()->setPushForward($data['pushForward']);
         }
 
         if(isset($data['textResume'])){
-            $article->setTextResume($data['textResume']);
+            $article->getTranslation()->setTextResume($data['textResume']);
         }
 
         // if (isset($data['components'])) {
@@ -189,6 +235,160 @@ class Action
 
         return $article;
     }
+
+    public function hydratePersonDemand($data = [], $person)
+    {
+        $person->setLastname($data['lastname']);
+        $person->setFirstname($data['firstname']);
+        if(isset($data['email'])) {
+            $person->setEmail($data['email']);
+        }
+        if(isset($data['phone'])) {
+            $person->setPhone($data['phone']);
+        }
+        if(isset($data['entreprise'])) {
+            $person->setOrganization($data['entreprise']);
+        }
+        if(isset($data['collaborateur'])) {
+            $person->setNumberOfEmployees($data['collaborateur']);
+        }
+        if(isset($data['site_web'])) {
+            $person->setUrl($data['site_web']);
+        }
+        if(isset($data['optin'])) {
+            $person->setOptin($data['optin']);
+        }
+        if(isset($data['gender'])) {
+            $person->setGender($data['gender']);
+        }
+
+        return $person;
+    }
+
+    public function hydrateAddressDemand($data = [], $address)
+    {
+        $address->setAddress($data['streetAddress']);
+        $address->setCity($data['addressLocality']);
+        $address->setPostcode($data['postalCode']);
+
+        if(isset($data['addressCountry'])) {
+            $address->setCountry($data['addressCountry']);
+        }
+
+        if(isset($data['phone'])) {
+            $address->setPhone($data['phone']);
+        }
+
+        return $address;
+    }
+
+    public function hydrateComponentDemand($data = [], $component, $locale)
+    {
+        if(isset($data['name'])) {
+            $component->setName($data['name']);
+            $component->getTranslation($locale)->setHeadline($data['name']);
+        }
+
+        if (isset($data['components'])) {
+            $components = [];
+            
+            foreach($data['components'] as $result) {
+                $array = [];
+                $array['code'] = $result['code'];
+                unset($result['code']);
+                $array['data'] = $result;
+                array_push($components, $array);
+            }
+            
+            $component->getTranslation($locale)->setComponents(
+                json_encode($components)
+            );
+        }
+
+        return $component;
+    }
+
+
+    public function hydrateOrganizationDemand($data = [], $addresses = [], $organization)
+    {
+        if(isset($data['category'])) {
+            $category = $this->manager->getRepository(Category::class)
+                ->findOneBySlug($data['category']);
+            $organization->setCategory($category);
+        }
+        if(isset($data['name'])) {
+            $organization->setName($data['name']);
+        }
+        if(isset($data['legal_name'])) {
+            $organization->setLegalName($data['legal_name']);
+        }
+        if(isset($data['phone'])) {
+            $organization->setPhone($data['phone']);
+        }
+        if(isset($data['mobile_phone'])) {
+            $organization->setMobilePhone($data['mobile_phone']);
+        }
+        if(isset($data['url'])) {
+            $organization->setUrl($data['url']);
+        }
+        if(isset($data['email'])) {
+            $organization->setEmail($data['email']);
+        }
+        if(isset($data['founding_date'])) {
+            $date = new \DateTime($data['founding_date']);
+            $organization->setFoundingDate($data['founding_date']);
+        }
+        if(isset($data['number_of_employees'])) {
+            $organization->setNumberOfEmployees($data['number_of_employees']);
+        }
+        if(isset($data['number_of_projects'])) {
+            $organization->setNumberOfProjects($data['number_of_projects']);
+        }
+
+        foreach ($addresses as $address) {
+            $address = $this->createAddressDemand($address);
+            $organization->addAddress($address);
+        }
+
+        if(isset($data['socials'])) {
+            foreach ($data['socials'] as $key => $result) {
+                $slug = $this->slugger->slug($key)->lower()->toString();
+                $socialLink = $this->manager->getRepository(Organization::class)
+                    ->findOneBy(['slug' => $slug]);
+                if(null !== $socialLink) {
+                    $organization->addSocialLink($socialLink);
+                }
+            }
+        }
+
+        if(isset($data['identifier'])) {
+            foreach ($data['identifier'] as $key => $result) {
+                $identifier = new PropertyValue();
+                $identifier->setName($result['name']);
+                $identifier->setValue($result['value']);
+                $organization->addIdentifier($identifier);
+            }
+        }
+
+        if(isset($data['openingHoursSpecification'])) {
+
+            foreach ($data['openingHoursSpecification'] as $k=>$v) {
+                foreach ($v as $key => $value) {
+                    $property = new PropertyValue();
+                    $property->setName($key);
+                    if(is_array($value)) {
+                        $value = implode(', ', $value);
+                    }
+                    $property->setValue($value);
+                    $property->setValueReference('openingHoursSpecification');
+                    $organization->addOpeningHour($property);
+                }
+            }
+        }
+
+        return $organization;
+    }
+
 
 
     /**
@@ -377,7 +577,7 @@ class Action
         return $entity;
     }
 
-    public function createComponentDemand($value = [], $index = 0)
+    public function _createComponentDemand($value = [], $index = 0)
     {
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
         $entity = $this->manager->getRepository(Component::class)
@@ -522,7 +722,7 @@ class Action
         return $entity;
     }
 
-    public function hydrateComponentDemand($value = [], $index = 0)
+    public function _hydrateComponentDemand($value = [], $index = 0)
     {
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
         $entity = $this->manager->getRepository(Component::class)
@@ -561,137 +761,5 @@ class Action
         return $entity;
     }
 
-    public function createMessageDemand($data = [])
-    {
-        $message = new Message();
-        $message->setSubject($data['subject']);
-        $message->setText($data['text']);
-        $message->setOrigin($data['origin']);
-        $message->setDateSent(new \DateTime('now'));
 
-        return $message;
-    }
-
-    public function createPersonDemand($data = [])
-    {
-        $person = new Person();
-        $person = $this->hydratePersonDemand($data, $person);
-
-        return $person;
-    }
-
-    public function hydratePersonDemand($data = [], $person)
-    {
-        $person->setLastname($data['lastname']);
-        $person->setFirstname($data['firstname']);
-        if(isset($data['email'])) {
-            $person->setEmail($data['email']);
-        }
-        if(isset($data['phone'])) {
-            $person->setPhone($data['phone']);
-        }
-        if(isset($data['entreprise'])) {
-            $person->setOrganization($data['entreprise']);
-        }
-        if(isset($data['collaborateur'])) {
-            $person->setNumberOfEmployees($data['collaborateur']);
-        }
-        if(isset($data['site_web'])) {
-            $person->setUrl($data['site_web']);
-        }
-        if(isset($data['optin'])) {
-            $person->setOptin($data['optin']);
-        }
-        if(isset($data['gender'])) {
-            $person->setGender($data['gender']);
-        }
-
-        return $person;
-    }
-
-    public function createAddressDemand($data = [])
-    {
-        $address = new Address();
-        $address = $this->hydrateAddressDemand($data, $address);
-
-        return $address;
-    }
-
-    public function hydrateAddressDemand($data = [], $address)
-    {
-        // dump($data);die;
-        $address->setAddress($data['streetAddress']);
-        $address->setCity($data['addressLocality']);
-        $address->setPostcode($data['postalCode']);
-
-        if(isset($data['addressCountry'])) {
-            $address->setCountry($data['addressCountry']);
-        }
-
-        if(isset($data['phone'])) {
-            $address->setPhone($data['phone']);
-        }
-
-        return $address;
-    }
-
-    public function createOrganizationDemand($data = [], $addresses = [])
-    {
-        $organization = new Organization();
-        $image1 = $this->manager->getRepository(MediaObject::class)->findOneById(2);
-        $image2 = $this->manager->getRepository(MediaObject::class)->findOneById(3);
-        $organization->setPrimaryImage($image1);
-        $organization->setSecondaryImage($image2);
-        $organization->setName($data['name']);
-        $organization->setLegalName($data['legal_name']);
-        $organization->setPhone($data['phone']);
-        $organization->setMobilePhone($data['mobile_phone']);
-        $organization->setUrl($data['url']);
-        $organization->setEmail($data['email']);
-        $date = new \DateTime($data['founding_date']);
-        $organization->setFoundingDate($date);
-        $organization->setNumberOfEmployees($data['number_of_employees']);
-        $organization->setNumberOfProjects($data['number_of_projects']);
-        foreach ($addresses as $address) {
-            $organization->addAddress($address);
-        }
-
-        if(isset($data['socials'])) {
-            foreach ($data['socials'] as $key => $result) {
-                $slug = $this->slugger->slug($key)->lower()->toString();
-                $socialLink = $this->manager->getRepository(Organization::class)
-                    ->findOneBy(['slug' => $slug]);
-                if(null !== $socialLink) {
-                    $organization->addSocialLink($socialLink);
-                }
-            }
-        }
-
-        if(isset($data['identifier'])) {
-            foreach ($data['identifier'] as $key => $result) {
-                $identifier = new PropertyValue();
-                $identifier->setName($result['name']);
-                $identifier->setValue($result['value']);
-                $organization->addIdentifier($identifier);
-            }
-        }
-
-        if(isset($data['openingHoursSpecification'])) {
-
-            foreach ($data['openingHoursSpecification'] as $k=>$v) {
-                foreach ($v as $key => $value) {
-                    $property = new PropertyValue();
-                    $property->setName($key);
-                    if(is_array($value)) {
-                        $value = implode(', ', $value);
-                    }
-                    $property->setValue($value);
-                    $property->setValueReference('openingHoursSpecification');
-                    $organization->addOpeningHour($property);
-                }
-            }
-        }
-
-        return $organization;
-    }
 }

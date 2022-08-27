@@ -36,8 +36,8 @@ Is indexed: Indexé
 Primary image: Image principale
 March: Mars
 Opening hours: Horaires d'ouvertures
-Icon: Icônes
-Icon media: Icône
+Icon: Icône
+Icons: Icônes
 Search action: Action de la recherche
 Main entity of page: Entité principale
 Order by date: Trier par date
@@ -67,6 +67,7 @@ phone: téléphone
 subject: objet
 origin: provenance
 Recruitment: Recrutement
+Videos: Vidéos
 
 sylius:
     ui:
@@ -93,6 +94,14 @@ app:
         persons: Personnes
         new_web_page: Nouvelle page
         edit_web_page: Édition de la page
+        cms_menus: Menus
+        new_cms_menu: Nouveau menu
+        edit_cms_menu: Édition du menu
+        media_icons: Icônes
+        new_media_icon: Nouvel icon
+        edit_media_icon: Édition de l'icône
+        media_icon: Icône
+        cms_menu: Menu
         form:
             page_general: Général
             page_translation: Contenu traduisible
@@ -103,6 +112,10 @@ app:
         cms_component: Composant CMS
         new_cms_component: Nouveau composant CMS
         edit_cms_component: Edition du composant CMS
+        components: Composants
+        component: Composant
+        new_component: Nouveau composant
+        edit_component: Edition du composant
         user_groups: Groupes d'utilisateurs
         user_group: Groupe d'utilisateurs
         edit_user_group: Edition du groupe d'utilisateurs
@@ -174,6 +187,7 @@ app:
             devkey: Clé développeur
             title: Titre
             name: Nom
+            slug: Slug
             description: Description
             subtitle: Sous-titre
             link: 'Lien'
@@ -181,12 +195,14 @@ app:
             image: Image
             alt: Texte alternatif
             label: Label
+            choose: Choisissez
             select_article: Sélectionner un article
             select_web_page: Sélectionner une page web
             search_name: Nom de la recherche
             select_option: Sélectionner une option
             select_category: Sélectionner une catégorie
             select_primary_image: Sélectionner une image
+            select_secondary_image: Sélectionner une image
             select_parent: Sélectionner un parent
             select_icon: Sélectionner un icône
             select_type: Sélectionner un type
@@ -198,6 +214,7 @@ app:
             designation: Désignation
             enter_url: Saisir une URL
             enter_external_url: Saisir une URL externe
+            external_url: URL externe
             link_to_webpage: Lien vers une page web
             link_to_article: Lien vers un article
             link_to_external_link: Lien vers une page web externe
@@ -213,6 +230,7 @@ app:
                 default: Liens - Boutons
             card_collection:
                 default: Cartes
+            cms_links: Liens - Boutons
         form:
             item_list: Liste des éléments
             add_item: Ajouter un élément
@@ -241,9 +259,6 @@ app:
         component_search_action:
             title: 'Composant Search Action'
             description: 'Composant pour créer une collection sur différent type de données'
-        component_rich_search_action:
-            title: 'Composant Rich Search Action'
-            description: 'Composant pour créer une collection sur différent type de données avec des champs supplémentaires'
         component_slider:
             title: 'Composant Slider'
             short_description: 'Slider avec image et textes'

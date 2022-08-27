@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -21,7 +22,10 @@ class WebPageTranslationType extends AbstractResourceType
     {
         $builder
             ->add('headline', TextType::class, [
-                'required' => true
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['web_page_translation_validation']])
+                ]
             ])
             ->add('alternativeHeadline', TextType::class, [
                 'required' => false
@@ -46,11 +50,20 @@ class WebPageTranslationType extends AbstractResourceType
             ])
         ;
 
-        $builder->remove('component');
-        $builder->add('component', RichEditorType::class, [
+        $builder->remove('components');
+        $builder->add('components', RichEditorType::class, [
                 'required' => false,
         ]);
     }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => WebPageTranslation::class,
+            'validation_groups' => ['web_page_translation_validation'],
+        ]);
+    }
+
 
     /**
      * {@inheritdoc}

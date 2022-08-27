@@ -62,7 +62,7 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $component;
+    private $components;
 
 
     /**
@@ -102,14 +102,14 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
         return $this;
     }
 
-    public function getComponent(): ?string
+    public function getComponents(): ?string
     {
-        return $this->component;
+        return $this->components;
     }
 
-    public function setComponent(?string $component): self
+    public function setComponents(?string $components): self
     {
-        $this->component = $component;
+        $this->components = $components;
 
         return $this;
     }

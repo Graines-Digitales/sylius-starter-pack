@@ -1,7 +1,7 @@
 {% macro translationForm(translations) %}
 	{% import '@SyliusUi/Macro/flags.html.twig' as flags %}
 
-	<div class="ui styled fluid accordion">
+	<div class="ui styled fluid accordion_alt">
 		{% for locale, translationForm in translations %}
 			<div data-locale="{{ locale }}">
 				<div class="title{% if loop.first %} active{% endif %}">
@@ -28,7 +28,7 @@
                         {{ form_row(translationForm.pushForward)}}
                         {{ form_row(translationForm.articleBody)}}
                         {{ form_row(translationForm.articleResume)}}
-                        {{ form_row(translationForm.component)}}
+                        {{ form_row(translationForm.components)}}
 					</div>
 
 					<div class="title">

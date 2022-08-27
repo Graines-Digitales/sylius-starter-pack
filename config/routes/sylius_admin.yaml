@@ -24,6 +24,39 @@ app_admin_web_page:
     type: sylius.resource
     prefix: /admin
 
+app_admin_landing_page:
+    resource: |
+        alias: app.landing_page
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_landing_page
+        vars:
+            all:
+                subheader: app.ui.landing_page
+                templates:
+                       form: "@App/admin/form/LandingPage/views/_form.html.twig"
+            index:
+                icon: 'edit outline'
+    type: sylius.resource
+    prefix: /admin
+
+app_admin_component:
+    resource: |
+        alias: app.component
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_component
+        vars:
+            all:
+                subheader: app.ui.component
+            index:
+                icon: 'microchip'
+    type: sylius.resource
+    prefix: /admin
+
+
 app_admin_cms_component:
     resource: |
         alias: app.cms_component
@@ -41,22 +74,39 @@ app_admin_cms_component:
     type: sylius.resource
     prefix: /admin
 
-app_admin_cms_component_menu:
+app_admin_cms_menu:
     resource: |
-        alias: app.cms_component_menu
+        alias: app.cms_menu
         section: admin
         templates: "@SyliusAdmin\\Crud"
         redirect: update
-        grid: app_admin_cms_component_menu
+        grid: app_admin_cms_menu
         vars:
             all:
-                subheader: app.ui.cms_component_menu
+                subheader: app.ui.cms_menu
                 templates:
-                    form: "@App/admin/form/Component/views/_form.html.twig"
+                       form: "@App/admin/form/CmsMenu/views/_form.html.twig"
             index:
                 icon: 'list'
     type: sylius.resource
     prefix: /admin
+
+# app_admin_cms_component_menu:
+#     resource: |
+#         alias: app.cms_component_menu
+#         section: admin
+#         templates: "@SyliusAdmin\\Crud"
+#         redirect: update
+#         grid: app_admin_cms_component_menu
+#         vars:
+#             all:
+#                 subheader: app.ui.cms_component_menu
+#                 templates:
+#                     form: "@App/admin/form/Component/views/_form.html.twig"
+#             index:
+#                 icon: 'list'
+#     type: sylius.resource
+#     prefix: /admin
 
 app_admin_article:
     resource: |
@@ -193,6 +243,8 @@ app_admin_organizations:
         vars:
             all:
                 subheader: app.ui.organization
+                templates:
+                    form: "@App/admin/form/Organization/views/_form.html.twig"
             index:
                 icon: 'building outline'
     type: sylius.resource
@@ -239,6 +291,8 @@ app_admin_social_links:
         vars:
             all:
                 subheader: app.ui.social_links
+                templates:
+                    form: "@App/admin/form/SocialLinks/views/_form.html.twig"
             index:
                 icon: 'facebook square'
     type: sylius.resource

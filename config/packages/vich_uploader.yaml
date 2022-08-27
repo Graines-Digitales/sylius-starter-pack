@@ -5,4 +5,4 @@ vich_uploader:
         default_media_object:
             uri_prefix:         '%directory_media%'
             upload_destination: '%kernel.project_dir%/public%directory_media%'
-            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+            # namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
