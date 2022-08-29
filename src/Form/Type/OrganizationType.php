@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use App\Entity\Organization;
 use App\Repository\CategoryRepository;
 use Symfony\Component\Form\AbstractType;
@@ -65,14 +65,14 @@ class OrganizationType extends AbstractType
             ])
             ->add('primaryImage', EntityType::class, [
                 'attr' => ['class' => 'select2-image'],
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
                 'query_builder' => function (MediaObjectRepository $repo) use ($configurationProject) {
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
             ->add('icon', EntityType::class, [
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
                 'query_builder' => function (MediaObjectRepository $repo) use ($configurationProject) {
                     return $repo->createQueryBuilderByEncodingSvg($configurationProject);

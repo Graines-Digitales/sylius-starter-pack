@@ -4,7 +4,7 @@ namespace App\Form\Type;
 
 use App\Configuration\Project;
 use App\Entity\Category;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\MediaObjectRepository;
 use App\Form\Type\CategoryTranslationType;
@@ -55,7 +55,7 @@ class CategoryType extends AbstractResourceType
                 'required' => false,
             ])
             // ->add('icon', EntityType::class, [
-            //     'class' => MediaObject::class,
+            //     'class' => ImageMediaObject::class,
             //     'placeholder' => 'app.ui_element.field.select_icon',
             //     'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
             //         return $repo->createQueryBuilderByEncodingSvg($configurationProject);
@@ -64,7 +64,7 @@ class CategoryType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);

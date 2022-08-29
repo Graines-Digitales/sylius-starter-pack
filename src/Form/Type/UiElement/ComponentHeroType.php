@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use App\WebContent\Component;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -82,11 +82,8 @@ class ComponentHeroType extends AbstractType
                 'label' => 'app.ui_element.field.content',
             ])
             ->add('primaryImage', EntityType::class, [
-                'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingImage($configurationProject);
-                }
+                'class' => ImageMediaObject::class,
+                'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('label', TextType::class, [
                 'required' => false,

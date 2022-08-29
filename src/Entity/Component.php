@@ -22,8 +22,8 @@ use ApiPlatform\Core\Annotation\ApiProperty;
 
 
 /**
- * @ORM\Entity(repositoryClass=ComponentRepository::class)
  * @ApiResource()
+ * @ORM\Entity(repositoryClass=ComponentRepository::class)
  * @ORM\Table(name="app_component")
  */
 class Component implements ResourceInterface, TranslatableInterface
@@ -44,31 +44,22 @@ class Component implements ResourceInterface, TranslatableInterface
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="components")
-     */
-    private $category;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="components")
-     * @ORM\JoinTable(
-     *    name="app_components_categories",
-     *    joinColumns={
-     *      @ORM\JoinColumn(name="component_id", referencedColumnName="id")
-     *    },
-     *    inverseJoinColumns={
-     *      @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     *    }
-     * )
-     */
-    private $tags;
-
-    /**
      * @Gedmo\Slug(fields={"name"}, prefix="")
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
      */
     private $slug;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="components")
+     */
+    private $tags;
 
     public function __construct()
     {
@@ -137,4 +128,5 @@ class Component implements ResourceInterface, TranslatableInterface
 
         return $this;
     }
+
 }

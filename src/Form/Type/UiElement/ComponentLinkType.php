@@ -4,31 +4,16 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\Entity\CmsStyle;
-use App\Entity\CmsTemplate;
-use App\Entity\MediaObject;
-use Doctrine\ORM\EntityRepository;
 use App\Form\Type\PropertyValueType;
 use App\WebContent\Component;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
-use App\Repository\MediaObjectRepository;
-use App\Form\Type\PropertyValueArticleType;
 use App\Form\Type\PropertyValueWebPageType;
-use App\Form\DataTransformer\TestTransformer;
-use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Form\DataTransformer\MediaObjectTransformer;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 class ComponentLinkType extends AbstractType
 {

@@ -4,7 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\WebPage;
 use App\Entity\Category;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use App\WebContent\WebPage as WebContentWebPage;
 use App\Repository\CategoryRepository;
 use App\Form\Type\WebPageTranslationType;
@@ -65,7 +65,7 @@ class WebPageType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
@@ -74,7 +74,7 @@ class WebPageType extends AbstractResourceType
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
@@ -82,7 +82,7 @@ class WebPageType extends AbstractResourceType
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingVideo($configurationProject);

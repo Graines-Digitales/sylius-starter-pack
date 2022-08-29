@@ -4,7 +4,7 @@ namespace App\Form\Type;
 
 use App\Tools\Media;
 use App\Entity\Category;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use App\WebContent\WebPage;
 use App\Entity\Organization;
 use App\Repository\CategoryRepository;
@@ -57,7 +57,7 @@ class SocialLinkType extends AbstractResourceType
                 // 'constraints' => [
                 //     new NotBlank(['groups' => ['social_link_validation']])
                 // ],
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingSvg($configurationProject);
@@ -65,7 +65,7 @@ class SocialLinkType extends AbstractResourceType
             ])
             ->add('primaryImage', EntityType::class, [
                 'attr' => ['class' => 'select2-image'],
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);

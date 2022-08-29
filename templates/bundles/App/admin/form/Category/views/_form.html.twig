@@ -35,7 +35,7 @@
 			<div class="column">
 			{% if category.primaryImage is not null and category.primaryImage.filename is not null and category.primaryImage.filename != '' %}
 				<div class="ui centered medium image">
-					<img src="{{ asset('media/image/' ~ category.primaryImage.filename) }}">
+					<img src="{{ asset(directory_image_media_object ~ '/' ~ category.primaryImage.filename) }}">
 				</div>
 			{% endif %}
 			</div>

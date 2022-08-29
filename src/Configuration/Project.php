@@ -2,6 +2,7 @@
 
 namespace App\Configuration;
 
+use App\Entity\Category;
 use App\Entity\Organization;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,10 +28,13 @@ class Project
         $this->configurationProject = $this->container->getParameter('configuration_project');
     }
 
-    public function getOrganization()
+    public function getMainOrganization()
     {
+        $category = $this->manager->getRepository(Category::class)
+            ->findOneBy(['slug' => 'root']);
+
         return $this->manager->getRepository(Organization::class)
-            ->findOneBy(['slug' => $this->configurationProject['slug']]);
+            ->findOneBy(['category' => $category]);
     }
 
     public function getMainEntityOfPageForChoiceType()

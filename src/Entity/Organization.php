@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
@@ -13,6 +13,7 @@ use App\Repository\OrganizationRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -31,32 +32,16 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Organization implements ResourceInterface
 {
+    use IdentifiableTrait;
     use SeoTrait;
     use ThingTrait;
     use TimestampableEntity;
-
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
     
     /**
      * @Gedmo\Slug(fields={"name"}, updatable=false)
      * @ORM\Column(length=128)
      */
     private $slug;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     * 
-     * @Assert\NotBlank()
-     */
-    private $name;
 
     /**
      * @var string
@@ -128,18 +113,18 @@ class Organization implements ResourceInterface
     private $numberOfEmployees;
 
     /**
-     * @var MediaObject|null indicates the main image on the page
+     * @var ImageMediaObject|null indicates the main image on the page
      *
-     * @ORM\ManyToOne(targetEntity=MediaObject::class)
+     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
      * @ApiProperty(iri="http://schema.org/primaryImage")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $primaryImage;  
 
     /**
-     * @var MediaObject|null indicates the main image on the page
+     * @var ImageMediaObject|null indicates the main image on the page
      *
-     * @ORM\ManyToOne(targetEntity=MediaObject::class)
+     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
      * @ApiProperty(iri="http://schema.org/primaryImage")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
@@ -199,15 +184,6 @@ class Organization implements ResourceInterface
      */
     private $parents;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, inversedBy="organizations")
-     */
-    private $icon;
-    
-    /**
-     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="organization")
-     */
-    private $icons;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -224,22 +200,22 @@ class Organization implements ResourceInterface
         return $this->id;
     }
     
-    public function setPrimaryImage(?MediaObject $primaryImage): void
+    public function setPrimaryImage(?ImageMediaObject $primaryImage): void
     {
         $this->primaryImage = $primaryImage;
     }
 
-    public function getPrimaryImage(): ?MediaObject
+    public function getPrimaryImage(): ?ImageMediaObject
     {
         return $this->primaryImage;
     }
 
-    public function setSecondaryImage(?MediaObject $secondaryImage): void
+    public function setSecondaryImage(?ImageMediaObject $secondaryImage): void
     {
         $this->secondaryImage = $secondaryImage;
     }
 
-    public function getSecondaryImage(): ?MediaObject
+    public function getSecondaryImage(): ?ImageMediaObject
     {
         return $this->secondaryImage;
     }
@@ -258,35 +234,7 @@ class Organization implements ResourceInterface
 
     public function __toString()
     {
-        if(null !== $this->getName()) {
-            return $this->getName();
-        }
-
-        return '_empty_organization';
-    }
-
-    /**
-     * Set name.
-     *
-     * @param string $name
-     *
-     * @return Company
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
+        return $this->getName();
     }
 
     /**
@@ -579,27 +527,7 @@ class Organization implements ResourceInterface
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getIcons(): Collection
-    {
-        return $this->icons;
-    }
-
-    public function getIcon(): ?MediaObject
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?MediaObject $icon): self
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
+    
     public function getFax(): ?string
     {
         return $this->fax;

@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use App\WebContent\WebPage;
 use App\Entity\Organization;
 use App\Repository\CategoryRepository;
@@ -41,7 +41,7 @@ class ManufacturerType extends AbstractResourceType
                 'required' => false,
             ])
             ->add('primaryImage', EntityType::class, [
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);

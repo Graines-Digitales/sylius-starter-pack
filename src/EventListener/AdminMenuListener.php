@@ -180,7 +180,7 @@ final class AdminMenuListener
         //     ->setLabel('Organizations')
         //     ->setLabelAttribute('icon', 'building outline');
 
-        $organization = $this->configurationService->getOrganization();
+        $organization = $this->configurationService->getMainOrganization();
         
         $configurationMenu
             ->addChild(
@@ -199,7 +199,6 @@ final class AdminMenuListener
             ->setLabel('Social Links')
             ->setLabelAttribute('icon', 'facebook square')
         ;
-        
 
         $configurationMenu
             ->addChild('app_component', ['route' => 'app_admin_component_index'])

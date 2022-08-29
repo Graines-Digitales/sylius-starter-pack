@@ -17,7 +17,6 @@
         {{ form_row(form.updatedAt) }} #}
       
 
-
 		<div class="ui two column divided grid"> 
 			<div class="row">
 				<div class="column">
@@ -26,7 +25,7 @@
 				<div class="column">
 				{% if article.primaryImage is not null and article.primaryImage.filename is not null and article.primaryImage.filename != '' %}
 					<div class="ui centered medium image">
-						<img src="{{ asset('media/image/' ~ article.primaryImage.filename) }}">
+						<img src="{{ asset(directory_image_media_object ~ '/' ~ article.primaryImage.filename) }}">
 					</div>
 				{% endif %}
 				</div>

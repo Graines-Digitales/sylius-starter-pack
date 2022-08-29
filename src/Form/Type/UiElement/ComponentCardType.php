@@ -5,39 +5,28 @@ declare(strict_types=1);
 namespace App\Form\Type\UiElement;
 
 use App\Entity\Category;
-use App\Entity\CmsStyle;
-use App\Entity\CmsTemplate;
-use App\Entity\MediaObject;
 use App\WebContent\Component;
+use App\Entity\IconMediaObject;
+use App\Entity\ImageMediaObject;
 use Doctrine\ORM\EntityRepository;
-use App\Form\Type\PropertyValueType;
 use Symfony\Component\Form\FormEvent;
-use App\Repository\CategoryRepository;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
-use App\Repository\MediaObjectRepository;
-use App\Form\Type\PropertyValueArticleType;
-use App\Form\Type\PropertyValueWebPageType;
 use App\Form\DataTransformer\TagsTransformer;
-use App\Form\DataTransformer\TestTransformer;
 use App\Form\Type\UiElement\ComponentLinkType;
-use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use App\Form\DataTransformer\MediaObjectTransformer;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
+
 
 class ComponentCardType extends AbstractType
 {
@@ -112,23 +101,17 @@ class ComponentCardType extends AbstractType
             ])
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingImage($configurationProject);
-                },
                 'attr' => ['class' => 'select2-image'],
                 'choice_label' => function ($mediaObject) {
                     return $mediaObject->getFileName();
-                },
+                }
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
-                'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingImage($configurationProject);
-                }
+                'class' => ImageMediaObject::class,
+                'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('content', WysiwygType::class, [
                 'required' => false,
@@ -136,11 +119,8 @@ class ComponentCardType extends AbstractType
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
-                'class' => MediaObject::class,
+                'class' => IconMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingSvg($configurationProject);
-                }
             ])
             // ->add('template', ChoiceType::class, [
             //     'choices' => $templates,

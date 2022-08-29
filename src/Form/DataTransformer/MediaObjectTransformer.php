@@ -3,7 +3,7 @@
 namespace App\Form\DataTransformer;
 
 use App\Entity\Article;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
@@ -24,7 +24,7 @@ class MediaObjectTransformer implements DataTransformerInterface
         }
 
         $media = $this->manager
-            ->getRepository(MediaObject::class)
+            ->getRepository(ImageMediaObject::class)
             ->find($data['id'])
         ;
         
