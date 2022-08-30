@@ -53,7 +53,7 @@ class Import
                     foreach ($finder as $file) {
                         $absoluteFilePath = $file->getRealPath();
                         $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-                        dump($absoluteFilePath);
+                        // dump($absoluteFilePath);
                         if('md' === $extension) {
                             $result = $parser->parse(file_get_contents($absoluteFilePath), false);
                             $data = $result->getYaml();
