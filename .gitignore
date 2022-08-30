@@ -49,12 +49,6 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-.idea/
-
-mysqldump.sql
-mysqldump.zip
-site-sync-preprod.sh
-site-sync-prod.sh
 
 
 ###> squizlabs/php_codesniffer ###
@@ -69,3 +63,16 @@ site-sync-prod.sh
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+
+.idea/
+
+mysqldump.sql
+mysqldump.zip
+site-sync-preprod.sh
+site-sync-prod.sh
+
+assets/images/
+content/
+config/configuration_project.yaml
+assets/app/styles/_variables.scss
+src/EventListener/AdminMenuListener.php

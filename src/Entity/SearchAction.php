@@ -50,7 +50,7 @@ class SearchAction implements ResourceInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="searchActions")
-     * @ORM\JoinTable(name="app_category_searchaction")
+     * @ORM\JoinTable(name="app_searchactions_categories")
      */
     private $tags;
 

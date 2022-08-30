@@ -3,21 +3,17 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use App\Entity\MediaObject;
-use Symfony\Component\Form\FormEvent;
-use App\Repository\CategoryRepository;
-use Symfony\Component\Form\FormEvents;
+use App\Entity\ImageMediaObject;
 use Symfony\Component\Form\AbstractType;
-use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class MediaObjectImageType extends AbstractType
+
+class ImageMediaObjectType extends AbstractType
 {
     private $container;
 
@@ -46,8 +42,8 @@ class MediaObjectImageType extends AbstractType
                 'data' => true
             ])
             ->add('name')
-            ->add('alt', null, [ 
-                    'label' => 'SEO ALT Balise',
+            ->add('caption', null, [ 
+                    'label' => 'Alt balise',
                     'help' => 'If empty, the file name will be generated automatically',
                 ]
             )
@@ -85,7 +81,7 @@ class MediaObjectImageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => MediaObject::class,
+            'data_class' => ImageMediaObject::class,
             'validation_groups' => ['media_object_image_validation']
         ]);
     }

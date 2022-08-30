@@ -5,7 +5,7 @@ namespace App\Form\Type;
 use App\Entity\Article;
 use App\Entity\CmsLink;
 use App\Entity\WebPage;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use App\WebContent\Component;
 use App\Form\Type\CmsLinkTranslationType;
 use App\Repository\MediaObjectRepository;
@@ -52,7 +52,7 @@ class CmsLinkType extends AbstractResourceType
             ->add('icon', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => MediaObject::class,
+                'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingSvg($configurationProject);

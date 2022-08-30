@@ -4,7 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\Component;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use App\Repository\CategoryRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\MediaObjectRepository;
