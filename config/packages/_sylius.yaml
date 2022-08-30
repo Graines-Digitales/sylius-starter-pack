@@ -1453,3 +1453,25 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+
+        app_admin_travel:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\Trip
+
+            fields:
+             
+                arrivalTime:
+                    type: datetime
+                    label: sylius.ui.date
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

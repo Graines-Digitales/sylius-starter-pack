@@ -47,11 +47,6 @@ final class AdminMenuListener
 
         $menu = $event->getMenu();
 
-        $menu->removeChild('sales');
-        $menu->removeChild('marketing');
-        $menu->removeChild('customers');
-        $menu->removeChild('catalog');
-
         $cmsMenu = $menu
             ->addChild('app_cms')
             ->setLabel('Gestion de contenu');
@@ -75,6 +70,11 @@ final class AdminMenuListener
         ;
         
         
+        $cmsMenu
+            ->addChild('app_travels', ['route' => 'app_admin_travel_index'])
+            ->setLabel('Travels')
+            ->setLabelAttribute('icon', 'travel')
+        ;
 
         // $menuMenu = $menu
         //     ->addChild('app_menu')
@@ -154,20 +154,7 @@ final class AdminMenuListener
             ->setLabelAttribute('icon', 'comment alternate outline');
 
         $configurationMenu = $menu->getChild('configuration');
-        $configurationMenu
-            ->removeChild('countries')
-            ->removeChild('zones')
-            ->removeChild('currencies')
-            ->removeChild('exchange_rates')
-            ->removeChild('channels')
-            // ->removeChild('locales')
-            ->removeChild('payment_methods')
-            ->removeChild('shipping_methods')
-            ->removeChild('shipping_categories')
-            ->removeChild('tax_categories')
-            ->removeChild('tax_rates')
-            // ->removeChild('admin_users')
-        ;
+       
 
         $configurationMenu
             ->addChild('app_category', ['route' => 'app_admin_category_index'])
@@ -221,6 +208,28 @@ final class AdminMenuListener
         //     ->addChild('app_person', ['route' => 'app_admin_person_index'])
         //     ->setLabel('Persons')
         //     ->setLabelAttribute('icon', 'address card outline');
+
+
+
+        $menu->removeChild('sales');
+        $menu->removeChild('marketing');
+        $menu->removeChild('customers');
+        $menu->removeChild('catalog');
+
+        $configurationMenu
+            ->removeChild('countries')
+            ->removeChild('zones')
+            ->removeChild('currencies')
+            ->removeChild('exchange_rates')
+            ->removeChild('channels')
+            // ->removeChild('locales')
+            ->removeChild('payment_methods')
+            ->removeChild('shipping_methods')
+            ->removeChild('shipping_categories')
+            ->removeChild('tax_categories')
+            ->removeChild('tax_rates')
+            // ->removeChild('admin_users')
+        ;
     }
 
     public function reorderMenu(MenuBuilderEvent $event): void

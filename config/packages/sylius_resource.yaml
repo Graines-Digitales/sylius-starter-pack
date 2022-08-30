@@ -252,4 +252,10 @@ sylius_resource:
                 model: App\Entity\Address
                 form: App\Form\Type\AddressType
                 repository: App\Repository\AddressRepository 
-            
+        
+        app.travel:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Trip
+                form: App\Form\Type\TripType
+                repository: App\Repository\TripRepository 
