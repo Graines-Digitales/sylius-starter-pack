@@ -31,7 +31,7 @@ class MetaData extends AbstractWebContent
         return [
             'person' => $personEmail,
             'organization_name' => $organizationName,
-            'organization' => $this->configurationService->getOrganization(),
+            'organization' => $this->configurationService->getMainOrganization(),
             //'socials' => $this->manager->getRepository(Organization::class)
             //    ->findBy(['type' => $socialOrganizationType]),
             'page' => [

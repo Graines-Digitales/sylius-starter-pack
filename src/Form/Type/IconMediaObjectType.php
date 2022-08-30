@@ -3,20 +3,18 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use App\Entity\MediaObject;
-use Symfony\Component\Form\FormEvent;
-use App\Repository\CategoryRepository;
-use Symfony\Component\Form\FormEvents;
+use App\Entity\IconMediaObject;
 use Symfony\Component\Form\AbstractType;
-use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class MediaObjectDocumentType extends AbstractType
+
+class IconMediaObjectType extends AbstractType
 {
     private $container;
 
@@ -33,10 +31,10 @@ class MediaObjectDocumentType extends AbstractType
             ->add('file', null, [
                 'constraints' => [
                     new File([
-                        'groups' => ['media_object_document_validation'],
-                        'mimeTypesMessage' => "Formats autorisés : pdf",
+                        'groups' => ['media_object_icon_validation'],
+                        'mimeTypesMessage' => "Formats autorisés : svg",
                         'maxSize' => "5M",
-                        'mimeTypes' => ["application/pdf"]
+                        'mimeTypes' => ["image/svg+xml"]
                     ])
                 ]
             ])
@@ -45,12 +43,10 @@ class MediaObjectDocumentType extends AbstractType
                 'data' => true
             ])
             ->add('name')
-            ->add('encodingFormat',
-                null,
-                [
+            ->add('encodingFormat', TextType::class,[
+                    'data' => 'image/svg+xml',
                     'disabled' => true,
-                    'data' => 'application/pdf',
-                    // 'help' => 'This field will be automatically edited',
+                    'required' => false
                 ]
             )
             ->add('category', EntityType::class, [
@@ -80,8 +76,8 @@ class MediaObjectDocumentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => MediaObject::class,
-            'validation_groups' => ['media_object_document_validation']
+            'data_class' => IconMediaObject::class,
+            'validation_groups' => ['media_object_icon_validation']
         ]);
     }
 
@@ -90,6 +86,6 @@ class MediaObjectDocumentType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'app_media_object_document';
+        return 'app_media_object_svg';
     }
 }

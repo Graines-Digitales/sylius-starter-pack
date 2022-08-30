@@ -4,42 +4,29 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\Entity\Article;
-use App\Entity\Category;
-use App\Entity\SearchAction;
 use App\WebContent\Component;
-use App\Form\Type\ArticleType;
-use App\Form\Type\CategoryType;
 use App\Form\Type\SearchActionType;
-use App\Repository\ArticleRepository;
 use Symfony\Component\Form\FormEvent;
-use App\Repository\CategoryRepository;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
+
 
 class ComponentSearchActionType extends AbstractType
 {
-    private $componentService;
+    // private $componentService;
 
     private $slugger;
 
-    public function __construct(Component $componentService)
-    {
-        $this->componentService = $componentService;
+    public function __construct(
+        // Component $componentService
+    ){
+        // $this->componentService = $componentService;
         $this->slugger = new AsciiSlugger();
     }
     

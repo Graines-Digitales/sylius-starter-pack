@@ -64,7 +64,7 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
     private $datePosted;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $primaryImage;
@@ -123,12 +123,12 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
         return $this->datePosted;
     }
 
-    public function getPrimaryImage(): ?MediaObject
+    public function getPrimaryImage(): ?ImageMediaObject
     {
         return $this->primaryImage;
     }
 
-    public function setPrimaryImage(?MediaObject $primaryImage): self
+    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
     {
         $this->primaryImage = $primaryImage;
 

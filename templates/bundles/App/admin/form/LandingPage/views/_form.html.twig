@@ -27,7 +27,7 @@
 				<div class="column">
 				{% if landing_page.primaryImage is not null and landing_page.primaryImage.filename is not null and landing_page.primaryImage.filename != '' %}
 					<div class="ui centered medium image">
-						<img src="{{ asset('media/image/' ~ landing_page.primaryImage.filename) }}">
+						<img src="{{ asset(directory_image_media_object ~ '/' ~ landing_page.primaryImage.filename) }}">
 					</div>
 				{% endif %}
 				</div>

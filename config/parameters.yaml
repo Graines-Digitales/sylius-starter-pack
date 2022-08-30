@@ -3,10 +3,12 @@
 parameters:
     locale: fr_FR
     sylius_installer_currency: EUR
-    directory_media: /media/image
+    directory_image_media_object: /media/image
+    directory_document_media_object: /media/document
+    directory_icon_media_object: /media/icon
     directory_cache_prefix: media/cache/resolve
     path_directory_media: '%kernel.project_dir%/public/media/image'
-    developers: [ 'developpeurs@delit-dinfluence.fr' ]
+    developers: [ 'johan.remy@graines-digitales.online' ]
     
     # la configuration du projet est 
     # bien entendu différente de la configuration de l'application!

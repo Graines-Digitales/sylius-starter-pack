@@ -35,6 +35,7 @@ class Import
         foreach($locales as $locale) {
             $localeCode = $locale->getCode();
             $locale = current(explode('_', $localeCode));
+            // dump($locale);die;
             if('fr' === $locale) {
                 /**
                  * MEDIA OBJECTS
@@ -52,6 +53,7 @@ class Import
                     foreach ($finder as $file) {
                         $absoluteFilePath = $file->getRealPath();
                         $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
+                        dump($absoluteFilePath);
                         if('md' === $extension) {
                             $result = $parser->parse(file_get_contents($absoluteFilePath), false);
                             $data = $result->getYaml();

@@ -2,18 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\SeoTranslatableTrait;
+use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Traits\ThingTrait;
-use App\Repository\ArticleRepository;
-use App\Entity\Traits\CreativeWorkTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\SeoTrait;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
 
@@ -25,6 +22,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 class Article implements ResourceInterface, TranslatableInterface
 {
     use SeoTrait;
+    use IdentifiableTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -45,13 +43,6 @@ class Article implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-     /**
      * @ORM\Column(type="date", nullable=true)
      */
     private $datePublished;
@@ -62,10 +53,16 @@ class Article implements ResourceInterface, TranslatableInterface
     private $lastReview;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $primaryImage;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $secondaryImage;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
@@ -84,24 +81,14 @@ class Article implements ResourceInterface, TranslatableInterface
     private $propertyValues;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity=VideoMediaObject::class, inversedBy="articles")
      */
     private $video;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, inversedBy="secondaryImageArticles")
-     */
-    private $secondaryImage;
 
 
     public function __toString()
     {
         return $this->getTranslation()->getHeadline();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getHeadline(): ?string
@@ -210,18 +197,30 @@ class Article implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getPrimaryImage(): ?MediaObject
+    public function getPrimaryImage(): ?ImageMediaObject
     {
         return $this->primaryImage;
     }
 
-    public function setPrimaryImage(?MediaObject $primaryImage): self
+    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
     {
         $this->primaryImage = $primaryImage;
 
         return $this;
     }
 
+    public function getSecondaryImage(): ?ImageMediaObject
+    {
+        return $this->secondaryImage;
+    }
+
+    public function setSecondaryImage(?ImageMediaObject $secondaryImage): self
+    {
+        $this->secondaryImage = $secondaryImage;
+
+        return $this;
+    }
+    
     /**
      * @return Collection<int, PropertyValue>
      */
@@ -252,26 +251,14 @@ class Article implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getVideo(): ?MediaObject
+    public function getVideo(): ?VideoMediaObject
     {
         return $this->video;
     }
 
-    public function setVideo(?MediaObject $video): self
+    public function setVideo(?VideoMediaObject $video): self
     {
         $this->video = $video;
-
-        return $this;
-    }
-
-    public function getSecondaryImage(): ?MediaObject
-    {
-        return $this->secondaryImage;
-    }
-
-    public function setSecondaryImage(?MediaObject $secondaryImage): self
-    {
-        $this->secondaryImage = $secondaryImage;
 
         return $this;
     }

@@ -55,6 +55,7 @@ mysqldump.sql
 mysqldump.zip
 site-sync-preprod.sh
 site-sync-prod.sh
+
 assets/images/
 content/
 
@@ -70,3 +71,4 @@ content/
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+

@@ -10,4 +10,5 @@ addresses:
         postalCode: 44 000
         addressLocality: Essaouira
         addressCountry: Maroc
+category: root
 ---

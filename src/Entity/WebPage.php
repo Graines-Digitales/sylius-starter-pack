@@ -56,12 +56,18 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      * 
      * @Assert\NotBlank()
      */
     private $primaryImage;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $secondaryImage;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
@@ -80,19 +86,14 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $propertyValues;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, inversedBy="webPages")
-     */
-    private $secondaryImage;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, inversedBy="videoWebPages")
-     */
-    private $video;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Category::class)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=VideoMediaObject::class, inversedBy="webPages")
+     */
+    private $video;
 
 
     public function __toString()
@@ -160,12 +161,12 @@ class WebPage implements ResourceInterface, TranslatableInterface
 //        return $this->getTranslation()->getSlug();
     }
 
-    public function getPrimaryImage(): ?MediaObject
+    public function getPrimaryImage(): ?ImageMediaObject
     {
         return $this->primaryImage;
     }
 
-    public function setPrimaryImage(?MediaObject $primaryImage): self
+    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
     {
         $this->primaryImage = $primaryImage;
 
@@ -238,26 +239,14 @@ class WebPage implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getSecondaryImage(): ?MediaObject
+    public function getSecondaryImage(): ?ImageMediaObject
     {
         return $this->secondaryImage;
     }
 
-    public function setSecondaryImage(?MediaObject $secondaryImage): self
+    public function setSecondaryImage(?ImageMediaObject $secondaryImage): self
     {
         $this->secondaryImage = $secondaryImage;
-
-        return $this;
-    }
-
-    public function getVideo(): ?MediaObject
-    {
-        return $this->video;
-    }
-
-    public function setVideo(?MediaObject $video): self
-    {
-        $this->video = $video;
 
         return $this;
     }
@@ -270,6 +259,18 @@ class WebPage implements ResourceInterface, TranslatableInterface
     public function setType(?Category $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getVideo(): ?VideoMediaObject
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?VideoMediaObject $video): self
+    {
+        $this->video = $video;
 
         return $this;
     }
