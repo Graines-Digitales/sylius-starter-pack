@@ -21,6 +21,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  * @see http://schema.org/AggregateOffer Documentation on Schema.org
  *
  * @ORM\Entity
+ * @ORM\Table(name="app_aggregate_offer")
  * @ApiResource(iri="http://schema.org/AggregateOffer")
  * @ORM\HasLifecycleCallbacks()
  */

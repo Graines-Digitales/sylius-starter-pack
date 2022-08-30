@@ -51,6 +51,7 @@ class HotelTypicalDay implements ResourceInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="hotelTypicalDays")
+     * @ORM\JoinTable(name="app_hotel_typical_days_categories")
      */
     private $tags;
 

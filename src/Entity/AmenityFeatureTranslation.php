@@ -20,8 +20,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @see http://schema.org/AmenityFeature Documentation on Schema.org
  *
- * @ORM\Entity
  * @ApiResource(iri="http://schema.org/AmenityFeature")
+ * @ORM\Table(name="app_amenity_feature_translation")
  * @ORM\Entity(repositoryClass="App\Repository\AmenityFeatureTranslationRepository")
  * @ORM\HasLifecycleCallbacks()
  */

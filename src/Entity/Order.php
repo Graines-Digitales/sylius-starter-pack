@@ -15,15 +15,12 @@ use Doctrine\ORM\Mapping as ORM;
  * @see http://schema.org/Order Documentation on Schema.org
  *
  * @ORM\Entity
- * @ApiResource(iri="http://schema.org/Order",
- *     collectionOperations={"get"={"method"="GET"}},
- *     itemOperations={"get"={"method"="GET"}}
- *  )
+ * @ORM\table(name="app_order")
+ * @ApiResource(iri="http://schema.org/Order")
  */
 class Order
 {
-    use IdentifiableTrait
-    ;
+    use IdentifiableTrait;
 
     /**
      * @var string|null a number that confirms the given order or payment has been received

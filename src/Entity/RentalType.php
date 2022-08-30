@@ -21,7 +21,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *
  * @ORM\Entity
  * @ApiResource(iri="http://schema.org/?")
- *
+ * @ORM\Table(name="app_rental_type")
  * @ ORM\Entity(repositoryClass="App\Repository\AccommodationNatureRepository")
  * @ORM\HasLifecycleCallbacks()
  */

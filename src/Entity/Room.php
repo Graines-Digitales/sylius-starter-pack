@@ -27,6 +27,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity
  * @ApiResource(iri="http://schema.org/Room")
+ * @ORM\Table(name="app_room")
  * @ORM\HasLifecycleCallbacks()
  */
 class Room implements ResourceInterface
@@ -109,6 +110,7 @@ class Room implements ResourceInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Event::class, inversedBy="rooms")
+     * @ORM\JoinTable(name="app_rooms_events")
      */
     private $events;
 
@@ -119,6 +121,7 @@ class Room implements ResourceInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=AmenityFeature::class, inversedBy="rooms")
+     * @ORM\JoinTable(name="app_rooms_amenity_features")
      */
     private $amenityFeatures;
 

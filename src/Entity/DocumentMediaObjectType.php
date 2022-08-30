@@ -19,6 +19,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @see http://schema.org/? Documentation on Schema.org
  *
  * @ApiResource()
+ * @ORM\Table(name="app_document_media_object_type")
  * @ORM\Entity(repositoryClass="App\Repository\DocumentObjectTypeRepository")
  * @ORM\HasLifecycleCallbacks()
  */

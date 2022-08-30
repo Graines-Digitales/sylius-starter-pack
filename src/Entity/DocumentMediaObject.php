@@ -79,11 +79,13 @@ class DocumentMediaObject implements ResourceInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Person::class, inversedBy="documentMediaObjects")
+     * @ORM\JoinTable(name="app_document_media_objects_persons")
      */
     private $persons;
 
     /**
      * @ORM\ManyToMany(targetEntity=Accommodation::class, inversedBy="documentMediaObjects")
+     * @ORM\JoinTable(name="app_document_media_objects_accommodations")
      */
     private $accommodations;
 

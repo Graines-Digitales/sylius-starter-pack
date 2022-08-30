@@ -58,6 +58,7 @@ class Component implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="components")
+     * @ORM\JoinTable(name="app_components_categories")
      */
     private $tags;
 

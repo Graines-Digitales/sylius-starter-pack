@@ -22,6 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @see http://schema.org/? Documentation on Schema.org
  *
  * @ORM\Entity
+ * @ORM\Table(name="app_rental_price_type")
  * @ApiResource(iri="http://schema.org/?")
  * @ORM\HasLifecycleCallbacks()
  */

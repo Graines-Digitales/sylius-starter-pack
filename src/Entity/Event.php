@@ -172,6 +172,7 @@ class Event implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="events")
+     * @ORM\JoinTable(name="app_events_categories")
      */
     private $tags;
 

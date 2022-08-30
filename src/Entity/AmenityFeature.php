@@ -20,8 +20,8 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  *
  * @see http://schema.org/AmenityFeature Documentation on Schema.org
  *
- * @ORM\Entity
  * @ApiResource(iri="http://schema.org/AmenityFeature")
+ * @ORM\Table(name="app_amenity_feature")
  * @ORM\Entity(repositoryClass="App\Repository\AmenityFeatureRepository")
  * @ORM\HasLifecycleCallbacks()
  */

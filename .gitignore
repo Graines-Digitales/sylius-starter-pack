@@ -55,7 +55,8 @@ mysqldump.sql
 mysqldump.zip
 site-sync-preprod.sh
 site-sync-prod.sh
-
+content/
+assets/images
 
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
@@ -69,3 +70,4 @@ site-sync-prod.sh
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
+

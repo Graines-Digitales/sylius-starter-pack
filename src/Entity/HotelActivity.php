@@ -55,6 +55,7 @@ class HotelActivity implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="hotelActivities")
+     * @ORM\JoinTable(name="app_hotel_activities_categories")
      */
     private $tags;
 
