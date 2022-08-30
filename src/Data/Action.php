@@ -13,7 +13,7 @@ use App\Entity\WebPage;
 use App\Entity\Category;
 use App\Entity\Component;
 use App\Entity\Blockquote;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use App\Entity\Organization;
 use App\Entity\PropertyValue;
 use App\Entity\SlideMediaObject;
@@ -449,7 +449,7 @@ class Action
         foreach ($value['items'] as $item) {
             $slideMediaObject = new SlideMediaObject();
             if(isset($item['image']) && !empty($item['image'])){
-                $image = $this->manager->getRepository(MediaObject::class)
+                $image = $this->manager->getRepository(ImageMediaObject::class)
                     ->findOneBy(['slug' => $item['image']]);
                     $slideMediaObject->setMediaObject($image);
             }
@@ -601,7 +601,7 @@ class Action
                     $category->setAlternativeHeadline($article['category']['alternativeHeadline']);
                 }
                 if(isset($value['category']['primaryImage']) && !empty($value['category']['primaryImage'])){
-                    $primaryImage = $this->manager->getRepository(MediaObject::class)
+                    $primaryImage = $this->manager->getRepository(ImageMediaObject::class)
                         ->findOneBy(['slug' => $value['category']['primaryImage']]);
                     $category->setPrimaryImage($primaryImage);
                 }
@@ -622,7 +622,7 @@ class Action
                     $tag = new Category();
                     $tag->setName($category['name']);
                     if(isset($category['primaryImage']) && !empty($article['category']['primaryImage'])){
-                        $primaryImage = $this->manager->getRepository(MediaObject::class)
+                        $primaryImage = $this->manager->getRepository(ImageMediaObject::class)
                             ->findOneBy(['slug' => $category['primaryImage']]);
                         $tag->setPrimaryImage($primaryImage);
                     }
@@ -712,7 +712,7 @@ class Action
         }
 
         if(isset($value['media'])){
-            $media = $this->manager->getRepository(MediaObject::class)
+            $media = $this->manager->getRepository(ImageMediaObject::class)
                 ->findOneBy(['slug' => $this->slugger->slug($value['media'])->lower()->toString()]);
             $entity->setMedia($media);
         }

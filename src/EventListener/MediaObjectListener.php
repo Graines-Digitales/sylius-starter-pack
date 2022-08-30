@@ -3,7 +3,10 @@
 namespace App\EventListener;
 
 use App\Tools\Media;
-use App\Entity\MediaObject;
+use App\Entity\IconMediaObject;
+use App\Entity\ImageMediaObject;
+use App\Entity\VideoMediaObject;
+use App\Entity\DocumentMediaObject;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -32,18 +35,21 @@ class MediaObjectListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        if (!$entity instanceof MediaObject) {
-            return;
+        if ($entity instanceof ImageMediaObject
+            || $entity instanceof VideoMediaObject
+            || $entity instanceof IconMediaObject
+            || $entity instanceof DocumentMediaObject
+        ) {
+            $this->toolsMediaService->defineEntityMediaFromFile($entity);
         }
-        // $entityManager = $args->getObjectManager();
-        $this->toolsMediaService->defineEntityMediaFromFile($entity);
-        // $entityManager->persist($entity);
+       
+        return;
     }
 
     public function postPersist(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        if (!$entity instanceof MediaObject) {
+        if (!$entity instanceof ImageMediaObject) {
             return;
         }
 
@@ -57,7 +63,7 @@ class MediaObjectListener
     public function postUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        if (!$entity instanceof MediaObject) {
+        if (!$entity instanceof ImageMediaObject) {
             return;
         }
 

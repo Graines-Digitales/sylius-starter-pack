@@ -46,12 +46,12 @@ class CmsLink implements ResourceInterface, TranslatableInterface
     private $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity=WebPage::class, inversedBy="cmsLinks")
+     * @ORM\ManyToOne(targetEntity=WebPage::class)
      */
     private $webPage;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="cmsLinks")
+     * @ORM\ManyToOne(targetEntity=Article::class)
      */
     private $article;
 
@@ -61,12 +61,7 @@ class CmsLink implements ResourceInterface, TranslatableInterface
     private $cmsMenu;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $icon;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Component::class, inversedBy="cmsLinks")
+     * @ORM\ManyToOne(targetEntity=Component::class)
      */
     private $components;
 
@@ -182,18 +177,6 @@ class CmsLink implements ResourceInterface, TranslatableInterface
     {
        $this->getTranslation()->setLabel($label);
         // $this->getTranslation('fr_FR')->setLabel($label);
-
-        return $this;
-    }
-
-    public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?string $icon): self
-    {
-        $this->icon = $icon;
 
         return $this;
     }

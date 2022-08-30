@@ -7,5 +7,5 @@ framework:
                 json_manifest_path: '%kernel.project_dir%/public/build/admin/manifest.json'
             app:
                 json_manifest_path: '%kernel.project_dir%/public/build/app/manifest.json'
-            media:
-                base_path: '%directory_media%'
+            # media:
+            #     base_path: '%directory_media%'

@@ -4,26 +4,28 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\Entity\MediaObject;
 use App\WebContent\Component;
+use App\Entity\ImageMediaObject;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\MediaObjectRepository;
+use App\Form\Type\UiElement\ComponentLinkType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
-use App\Form\DataTransformer\MediaObjectTransformer;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Form\DataTransformer\ImageMediaObjectTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 
 class ComponentHeroType extends AbstractType
@@ -82,22 +84,24 @@ class ComponentHeroType extends AbstractType
                 'label' => 'app.ui_element.field.content',
             ])
             ->add('primaryImage', EntityType::class, [
-                'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingImage($configurationProject);
-                }
+                'class' => ImageMediaObject::class,
+                'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('label', TextType::class, [
                 'required' => false,
                 'label' => 'app.ui_element.field.label',
             ])
-            ->add('link', TextType::class, [
-                'required' => false,
-                'label' => 'app.ui_element.field.link',
-                'constraints' => [
-                    new Assert\Url([]),
+            ->add('links', CollectionType::class, [
+                'entry_type' => ComponentLinkType::class,
+                'button_add_label' => 'app.ui_element.form.add_item',
+                'attr' => [
+                    'data-type' => 'sub_accordion'
                 ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'delete_empty' => true,
+                'label' => 'app.ui_element.field.link_collection.default',
             ])
             // ->add('template', ChoiceType::class, [
             //     'choices' => $templates,
@@ -111,7 +115,7 @@ class ComponentHeroType extends AbstractType
         
         $builder
             ->get('primaryImage')
-            ->addModelTransformer(new MediaObjectTransformer($this->manager))
+            ->addModelTransformer(new ImageMediaObjectTransformer($this->manager))
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {

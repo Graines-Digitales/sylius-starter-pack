@@ -92,7 +92,7 @@ sylius_resource:
             classes:
                 model: App\Entity\Article
                 form: App\Form\Type\ArticleType
-                # repository: App\Repository\ArticleRepository 
+                repository: App\Repository\ArticleRepository 
             translation:
                 classes:
                     model: App\Entity\ArticleTranslation 
@@ -160,30 +160,30 @@ sylius_resource:
         app.media_image:
             driver: doctrine/orm # You can use also different driver here
             classes:
-                model: App\Entity\MediaObject
-                form: App\Form\Type\MediaObjectImageType
-                repository: App\Repository\MediaObjectRepository
+                model: App\Entity\ImageMediaObject
+                form: App\Form\Type\ImageMediaObjectType
+                repository: App\Repository\ImageMediaObjectRepository
 
         app.media_video:
             driver: doctrine/orm # You can use also different driver here
             classes:
-                model: App\Entity\MediaObject
-                form: App\Form\Type\MediaObjectVideoType
-                repository: App\Repository\MediaObjectRepository
+                model: App\Entity\VideoMediaObject
+                form: App\Form\Type\VideoMediaObjectType
+                repository: App\Repository\VideoMediaObjectRepository
 
         app.media_document:
             driver: doctrine/orm # You can use also different driver here
             classes:
-                model: App\Entity\MediaObject
-                form: App\Form\Type\MediaObjectDocumentType
-                repository: App\Repository\MediaObjectRepository
+                model: App\Entity\DocumentMediaObject
+                form: App\Form\Type\DocumentMediaObjectType
+                repository: App\Repository\DocumentMediaObjectRepository
 
         app.media_icon:
             driver: doctrine/orm # You can use also different driver here
             classes:
-                model: App\Entity\MediaObject
-                form: App\Form\Type\MediaObjectSvgType
-                repository: App\Repository\MediaObjectRepository
+                model: App\Entity\IconMediaObject
+                form: App\Form\Type\IconMediaObjectType
+                repository: App\Repository\IconMediaObjectRepository
 
         app.search_action:
             driver: doctrine/orm # You can use also different driver here
@@ -252,4 +252,10 @@ sylius_resource:
                 model: App\Entity\Address
                 form: App\Form\Type\AddressType
                 repository: App\Repository\AddressRepository 
-            
+        
+        app.travel:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Trip
+                form: App\Form\Type\TripType
+                repository: App\Repository\TripRepository 

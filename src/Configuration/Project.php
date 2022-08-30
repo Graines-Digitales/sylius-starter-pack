@@ -2,6 +2,7 @@
 
 namespace App\Configuration;
 
+use App\Entity\Category;
 use App\Entity\Organization;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,10 +28,13 @@ class Project
         $this->configurationProject = $this->container->getParameter('configuration_project');
     }
 
-    public function getOrganization()
+    public function getMainOrganization()
     {
+        $category = $this->manager->getRepository(Category::class)
+            ->findOneBySlug('root');
+
         return $this->manager->getRepository(Organization::class)
-            ->findOneBy(['slug' => $this->configurationProject['slug']]);
+            ->findOneBy(['category' => $category]);
     }
 
     public function getMainEntityOfPageForChoiceType()
@@ -47,13 +51,16 @@ class Project
 
     public function getCategoryTypeSlugs($slug = null)
     {
-        $config = [];
-        foreach ($this->configurationProject['categories'] as $key => $value) {
-            if (isset($value['type']) && true == $value['type']) {
-                $config[$value['slug']] = $value['slug'];
-            }
-        }
-        return $config;
+        // $config = [];
+        // foreach ($this->configurationProject['categories'] as $key => $value) {
+        //     if (isset($value['type']) && true == $value['type']) {
+        //         $config[$value['slug']] = $value['slug'];
+        //     }
+        // }
+        // return $config;
+
+        return $this->manager->getRepository(Category::class)
+            ->findByTypeIsNotNull();
     }
 
     public function getLegalNoticeSlug()
