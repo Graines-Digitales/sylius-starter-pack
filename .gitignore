@@ -55,7 +55,8 @@ mysqldump.sql
 mysqldump.zip
 site-sync-preprod.sh
 site-sync-prod.sh
-
+assets/images/
+content/
 
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
