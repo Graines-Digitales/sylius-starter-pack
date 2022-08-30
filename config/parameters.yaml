@@ -39,7 +39,7 @@ parameters:
                 ASC: asc
                 DESC: desc
 
-        slug: kazen-garden # main-website-organization
+        slug: le-petit-naturier # main-website-organization
 
         # web page not to be deleted
         # product:
