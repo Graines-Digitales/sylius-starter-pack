@@ -1,13 +1,19 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+imports:
+    - { resource: configuration_project.yaml }
+    
 parameters:
     locale: fr_FR
     sylius_installer_currency: EUR
-    directory_media: /media/image
+    directory_image_media_object: /media/image
+    directory_document_media_object: /media/document
+    directory_icon_media_object: /media/icon
     directory_cache_prefix: media/cache/resolve
     path_directory_media: '%kernel.project_dir%/public/media/image'
-    developers: [ 'developpeurs@delit-dinfluence.fr' ]
+    developers: [ 'johan.remy@graines-digitales.online' ]
     
+<<<<<<< HEAD
     # la configuration du projet est 
     # bien entendu différente de la configuration de l'application!
     configuration_project:
@@ -39,7 +45,7 @@ parameters:
                 ASC: asc
                 DESC: desc
 
-        slug: kazen-garden # main-website-organization
+        slug: le-petit-naturier # main-website-organization
 
         # web page not to be deleted
         # product:
@@ -131,6 +137,7 @@ parameters:
         #         locale:
         #             fr: mfr_FR
 
+=======
+>>>>>>> bd19502d896f53e9e8672a93a55dfa11d0ccd24e
 
-            
-            
+       

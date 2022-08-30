@@ -930,11 +930,8 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\MediaObject
-                    repository:
-                        method: createQueryBuilderByEncodingImage
-                        arguments:
-                            parameters: '%configuration_project%'
+                    class: App\Entity\ImageMediaObject
+
             fields:
                 is_enabled:
                     type: twig
@@ -954,10 +951,10 @@ sylius_grid:
                 encodingFormat:
                     type: string
                     label: app.ui_element.field.encoding
-                alt:
+                caption:
                     type: string
                     label: app.ui.alt
-                    sortable: translation.alt
+                    sortable: translation.caption
             filters:
                 search:
                     type: string
@@ -980,11 +977,7 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\MediaObject
-                    repository:
-                        method: createQueryBuilderByEncodingVideo
-                        arguments:
-                            parameters: '%configuration_project%'
+                    class: App\Entity\VideoMediaObject
             fields:
                 is_enabled:
                     type: twig
@@ -1026,11 +1019,7 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\MediaObject
-                    repository:
-                        method: createQueryBuilderByEncodingSvg
-                        arguments:
-                            parameters: '%configuration_project%'
+                    class: App\Entity\IconMediaObject
             fields:
                 is_enabled:
                     type: twig
@@ -1073,11 +1062,7 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\MediaObject
-                    repository:
-                        method: createQueryBuilderByEncodingDocument
-                        arguments:
-                            parameters: '%configuration_project%'
+                    class: App\Entity\DocumentMediaObject
             fields:
                 is_enabled:
                     type: twig
@@ -1089,7 +1074,7 @@ sylius_grid:
                     label: app.ui.preview
                     path: . 
                     options:
-                        template: "@App/admin/Grid/Field/preview_media.html.twig"
+                        template: "@App/admin/Grid/Field/preview_document.html.twig"
                 originalFilename:
                     type: string
                     label: sylius.ui.name
@@ -1459,6 +1444,28 @@ sylius_grid:
                     type: string
                     label: app.ui_element.field.url
                     sortable: translation.name
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        app_admin_travel:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\Trip
+
+            fields:
+             
+                arrivalTime:
+                    type: datetime
+                    label: sylius.ui.date
+
             actions:
                 main:
                     create:

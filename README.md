@@ -1,15 +1,23 @@
 Starter Pack Digital Management System
 ---
-  
+
+**SETUP**
+
+- `nano .env.local : DATABASE_URL=`
 - `composer install`
 - `yarn install`
-- `nano .env.local : DATABASE_URL=`
+- `mkdir -p public/media/image`
 - `./bin/console sylius:install`
-- `symfony console doctrine:migrations:migrate`
+- `./bin/console doctrine:schema:update --force`
 - `./bin/console app:project-setup`
 - `yarn encore production`
 - `symfony serve -d`
     
+**VARIABLES ET LOGOS**
+
+- `assets/app/styles/_variables.scss`
+- `assets/images/admin-logo.png`
+- `assets/images/logo.png`
 
 ---
 

@@ -6,14 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
-use App\Repository\ServiceRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\Traits\SeoTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
-
 
 
 /**
@@ -23,19 +22,13 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  */
 class Service implements ResourceInterface
 {
+    use IdentifiableTrait;
     use SeoTrait;
     use ThingTrait;
     use TimestampableEntity;
 
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @Gedmo\Slug(fields={"name"}, prefix="")
+     * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
@@ -44,14 +37,9 @@ class Service implements ResourceInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=LocalBusiness::class, inversedBy="services")
-     * @ORM\JoinTable(name="app_service_localbusiness")
+     * @ORM\JoinTable(name="app_services_localbusinesses")
      */
     private $localBusinesses;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, inversedBy="services")
-     */
-    private $icon;
 
     public function __construct()
     {
@@ -61,11 +49,6 @@ class Service implements ResourceInterface
     public function __toString()
     {     
         return $this->getName();
-    }
-    
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getSlug()
@@ -96,18 +79,6 @@ class Service implements ResourceInterface
         if ($this->localBusinesses->removeElement($localBusiness)) {
             $localBusiness->removeService($this);
         }
-
-        return $this;
-    }
-
-    public function getIcon(): ?MediaObject
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?MediaObject $icon): self
-    {
-        $this->icon = $icon;
 
         return $this;
     }

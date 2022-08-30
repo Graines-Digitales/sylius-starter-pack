@@ -2,19 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\SeoTranslatableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\Traits\CreativeWorkTrait;
-use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ArticleTranslationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\Traits\IdentifiableTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
-use App\Repository\ComponentTranslationRepository;
 
 
 /**
@@ -24,8 +20,10 @@ use App\Repository\ComponentTranslationRepository;
  */
 class ComponentTranslation extends AbstractTranslation implements ResourceInterface
 {
+    use IdentifiableTrait;
     use CreativeWorkTrait;
     use TimestampableEntity;
+
 
     /**
      * @Gedmo\Slug(fields={"headline"}, prefix="")
@@ -36,17 +34,9 @@ class ComponentTranslation extends AbstractTranslation implements ResourceInterf
     private $slug;
 
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $components;
-
 
     /**
      * Get the value of slug
@@ -54,11 +44,6 @@ class ComponentTranslation extends AbstractTranslation implements ResourceInterf
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getComponents(): ?string

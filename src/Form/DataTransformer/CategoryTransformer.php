@@ -18,14 +18,13 @@ class CategoryTransformer implements DataTransformerInterface
 
     public function transform($data)
     {
-        // dump($data);die;
-        if (!isset($data['slug'])) {
+        if (!$data) {
             return;
         }
 
         $category = $this->manager
             ->getRepository(Category::class)
-            ->find($data['slug'])
+            ->find($data['id'])
         ;
 
         return $category;
@@ -34,10 +33,13 @@ class CategoryTransformer implements DataTransformerInterface
     public function reverseTransform($category)
     {
        
-        if (null === $category) {
+        if (empty($category)) {
             return '';
         }
 
-        return ['slug' => $category];
+        return [
+            'id' => $category->getId(),
+            'slug' => $category->getSlug()
+        ];
     }
 }

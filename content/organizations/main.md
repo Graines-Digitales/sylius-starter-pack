@@ -1,8 +1,8 @@
 ---
-name: Kazen Garden
+name: Le petit naturier
 phone: +212 633 12 96 92
 email: contact@kazengarden.co
-url: www.kazengarden.com
+url: www.le-petit-naturier.fr
 addresses:
     main:
         name: Principale
@@ -10,4 +10,5 @@ addresses:
         postalCode: 44 000
         addressLocality: Essaouira
         addressCountry: Maroc
+category: root
 ---

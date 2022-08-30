@@ -109,7 +109,7 @@ class Message implements ResourceInterface
     private $localBusiness;
 
     /**
-     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="message")
+     * @ORM\OneToMany(targetEntity=ImageMediaObject::class, mappedBy="message")
      * 
      * @Assert\File(
      *     maxSize = "20M",
@@ -124,6 +124,11 @@ class Message implements ResourceInterface
      * )
      */
     private $messageAttachments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Event::class, inversedBy="messages")
+     */
+    private $event;
 
     public function __construct()
     {
@@ -211,14 +216,14 @@ class Message implements ResourceInterface
     }
 
     /**
-     * @return Collection<int, MediaObject>
+     * @return Collection<int, ImageMediaObject>
      */
     public function getMessageAttachments(): Collection
     {
         return $this->messageAttachments;
     }
 
-    public function addMessageAttachment(MediaObject $messageAttachment): self
+    public function addMessageAttachment(ImageMediaObject $messageAttachment): self
     {
         if (!$this->messageAttachments->contains($messageAttachment)) {
             $this->messageAttachments[] = $messageAttachment;
@@ -228,7 +233,7 @@ class Message implements ResourceInterface
         return $this;
     }
 
-    public function removeMessageAttachment(MediaObject $messageAttachment): self
+    public function removeMessageAttachment(ImageMediaObject $messageAttachment): self
     {
         if ($this->messageAttachments->removeElement($messageAttachment)) {
             // set the owning side to null (unless already changed)
@@ -236,6 +241,18 @@ class Message implements ResourceInterface
                 $messageAttachment->setMessage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): self
+    {
+        $this->event = $event;
 
         return $this;
     }

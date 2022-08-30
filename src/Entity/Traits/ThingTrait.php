@@ -21,6 +21,14 @@ trait ThingTrait
     private $name;
 
     /**
+     * @var string|null an alias for the item
+     *
+     * @ORM\Column(type="text", nullable=true)
+     * @ApiProperty(iri="http://schema.org/alternateName")
+     */
+    private $alternateName;
+
+    /**
      * @var string|null a description of the item
      *
      * @ORM\Column(type="text", nullable=true)
@@ -54,6 +62,16 @@ trait ThingTrait
     public function getName(): ?string
     {
         return $this->name;
+    }
+
+    public function setAlternateName(?string $alternateName): void
+    {
+        $this->alternateName = $alternateName;
+    }
+
+    public function getAlternateName(): ?string
+    {
+        return $this->alternateName;
     }
 
     public function setDescription(?string $description): void

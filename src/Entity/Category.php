@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\Traits\LockableTrait;
 use App\Entity\Traits\SeoTrait;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,17 +16,20 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 
 /**
  * @ApiResource()
+ * @ApiResource(iri="http://schema.org/Category")
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @ORM\Table(name="app_category")
  */
 class Category implements ResourceInterface , TranslatableInterface
 {
+    use IdentifiableTrait;
     use SeoTrait;
     use LockableTrait;
+    use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
     }
-    use TimestampableEntity;
+    
     
     public function __construct()
     {
@@ -39,14 +43,12 @@ class Category implements ResourceInterface , TranslatableInterface
         $this->tags = new ArrayCollection();
         $this->mediaObjects = new ArrayCollection();
         $this->components = new ArrayCollection();
+        $this->accommodations = new ArrayCollection();
+        $this->hotelTypicalDays = new ArrayCollection();
+        $this->hotelServices = new ArrayCollection();
+        $this->hotelActivities = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="tags")
@@ -86,26 +88,69 @@ class Category implements ResourceInterface , TranslatableInterface
     private $localBusinesses;
 
     /**
-     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="category")
+     * @ORM\ManyToMany(targetEntity=ImageMediaObject::class, mappedBy="tags")
      */
-    private $tags;
+    private $imageMediaObjects;
 
     /**
-     * @ORM\ManyToMany(targetEntity=MediaObject::class, mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity=VideoMediaObject::class, mappedBy="tags")
      */
-    private $mediaObjects;
-    
-        /**
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist", "remove"})
+    private $videoMediaObjects;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=DocumentMediaObject::class, mappedBy="tags")
+     */
+    private $documentMediaObjects;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=IconMediaObject::class, mappedBy="tags")
+     */
+    private $iconMediaObjects;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $primaryImage;
 
     /**
-     * @ORM\OneToMany(targetEntity=Component::class, mappedBy="category")
+     * @ORM\ManyToMany(targetEntity=Accommodation::class, mappedBy="tags")
+     */
+    private $accommodations;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=HotelTypicalDay::class, mappedBy="tags")
+     */
+    private $hotelTypicalDays;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=HotelService::class, mappedBy="tags")
+     */
+    private $hotelServices;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=HotelActivity::class, mappedBy="tags")
+     */
+    private $hotelActivities;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Event::class, mappedBy="tags")
+     */
+    private $events;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Component::class, mappedBy="tags")
      */
     private $components;
     
+    /**
+     * {@inheritdoc}
+     */
+    protected function createTranslation()
+    {
+        return new CategoryTranslation();
+    }
+
     public function __toString()
     {
         return $this->getName();
@@ -116,41 +161,9 @@ class Category implements ResourceInterface , TranslatableInterface
         return $this->getTranslation()->getSlug();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getName(): ?string
     {
         return $this->getTranslation()->getName();
-    }
-
-    public function setName(string $name): self
-    {
-        $this->getTranslation()->setName($name);
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->getTranslation()->getDescription();
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->getTranslation()->setDescription($description);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function createTranslation()
-    {
-        return new CategoryTranslation();
     }
 
     /**
@@ -243,12 +256,12 @@ class Category implements ResourceInterface , TranslatableInterface
         return $this;
     }
     
-    public function getPrimaryImage(): ?MediaObject
+    public function getPrimaryImage(): ?ImageMediaObject
     {
         return $this->primaryImage;
     }
 
-    public function setPrimaryImage(?MediaObject $primaryImage): self
+    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
     {
         $this->primaryImage = $primaryImage;
 
@@ -319,14 +332,14 @@ class Category implements ResourceInterface , TranslatableInterface
     }
 
     /**
-     * @return Collection<int, MediaObject>
+     * @return Collection<int, ImageMediaObject>
      */
     public function getMediaObjects(): Collection
     {
         return $this->mediaObjects;
     }
 
-    public function addMediaObject(MediaObject $mediaObject): self
+    public function addMediaObject(ImageMediaObject $mediaObject): self
     {
         if (!$this->mediaObjects->contains($mediaObject)) {
             $this->mediaObjects[] = $mediaObject;
@@ -336,10 +349,118 @@ class Category implements ResourceInterface , TranslatableInterface
         return $this;
     }
 
-    public function removeMediaObject(MediaObject $mediaObject): self
+    public function removeMediaObject(ImageMediaObject $mediaObject): self
     {
         if ($this->mediaObjects->removeElement($mediaObject)) {
             $mediaObject->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, HotelTypicalDay>
+     */
+    public function getHotelTypicalDays(): Collection
+    {
+        return $this->hotelTypicalDays;
+    }
+
+    public function addHotelTypicalDay(HotelTypicalDay $hotelTypicalDay): self
+    {
+        if (!$this->hotelTypicalDays->contains($hotelTypicalDay)) {
+            $this->hotelTypicalDays[] = $hotelTypicalDay;
+            $hotelTypicalDay->addTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHotelTypicalDay(HotelTypicalDay $hotelTypicalDay): self
+    {
+        if ($this->hotelTypicalDays->removeElement($hotelTypicalDay)) {
+            $hotelTypicalDay->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, HotelService>
+     */
+    public function getHotelServices(): Collection
+    {
+        return $this->hotelServices;
+    }
+
+    public function addHotelService(HotelService $hotelService): self
+    {
+        if (!$this->hotelServices->contains($hotelService)) {
+            $this->hotelServices[] = $hotelService;
+            $hotelService->addTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHotelService(HotelService $hotelService): self
+    {
+        if ($this->hotelServices->removeElement($hotelService)) {
+            $hotelService->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, HotelActivity>
+     */
+    public function getHotelActivities(): Collection
+    {
+        return $this->hotelActivities;
+    }
+
+    public function addHotelActivity(HotelActivity $hotelActivity): self
+    {
+        if (!$this->hotelActivities->contains($hotelActivity)) {
+            $this->hotelActivities[] = $hotelActivity;
+            $hotelActivity->addTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHotelActivity(HotelActivity $hotelActivity): self
+    {
+        if ($this->hotelActivities->removeElement($hotelActivity)) {
+            $hotelActivity->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->addTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->removeElement($event)) {
+            $event->removeTag($this);
         }
 
         return $this;
@@ -357,7 +478,7 @@ class Category implements ResourceInterface , TranslatableInterface
     {
         if (!$this->components->contains($component)) {
             $this->components[] = $component;
-            $component->setCategory($this);
+            $component->addTag($this);
         }
 
         return $this;
@@ -366,10 +487,7 @@ class Category implements ResourceInterface , TranslatableInterface
     public function removeComponent(Component $component): self
     {
         if ($this->components->removeElement($component)) {
-            // set the owning side to null (unless already changed)
-            if ($component->getCategory() === $this) {
-                $component->setCategory(null);
-            }
+            $component->removeTag($this);
         }
 
         return $this;

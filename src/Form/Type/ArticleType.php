@@ -4,7 +4,8 @@ namespace App\Form\Type;
 
 use App\Entity\Article;
 use App\Entity\Category;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
+use App\Entity\VideoMediaObject;
 use App\Repository\CategoryRepository;
 use App\Form\Type\ArticleTranslationType;
 use App\Repository\MediaObjectRepository;
@@ -53,28 +54,19 @@ class ArticleType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingImage($configurationProject);
-                }
+                'class' => ImageMediaObject::class,
+                'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => MediaObject::class,
-                'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingImage($configurationProject);
-                }
+                'class' => ImageMediaObject::class,
+                'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
-                'class' => MediaObject::class,
+                'class' => VideoMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingVideo($configurationProject);
-                }
             ])
             ->add('category', EntityType::class, [
                 'required' => false,
