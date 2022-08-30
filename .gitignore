@@ -58,6 +58,7 @@ site-sync-prod.sh
 
 assets/images/
 content/
+config/configuration_project.yaml
 
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
