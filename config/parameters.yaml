@@ -1,5 +1,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+imports:
+    - { resource: configuration_project.yaml }
+    
 parameters:
     locale: fr_FR
     sylius_installer_currency: EUR
@@ -10,129 +13,5 @@ parameters:
     path_directory_media: '%kernel.project_dir%/public/media/image'
     developers: [ 'johan.remy@graines-digitales.online' ]
     
-    # la configuration du projet est 
-    # bien entendu différente de la configuration de l'application!
-    configuration_project:
 
-        media_encoding_formats:
-            image: [ 'image/jpg', 'image/jpeg', 'image/png', 'image/webp' ]
-            document: [ 'text/plain', 'application/pdf' ]
-            video: [ 'video/youtube' ]
-            icon: [ 'image/svg+xml' ]
-
-        forms:
-            contact_default:
-                slug: form-contact-default
-            # contact_quote:
-            #     slug: form-contact-quote
-            # contact_appointment:
-            #     slug: form-contact-appointment
-            # contact_special_announcement:
-            #     slug: form-contact-special-anouncement
-            # contact_special_announcement_free:
-            #     slug: form-contact-special-announcement-free
-                
-        search_action:
-            mainEntityOfPage:
-                article:
-                    default:
-                        name: Article
-            order:
-                ASC: asc
-                DESC: desc
-
-        slug: kazen-garden # main-website-organization
-
-        # web page not to be deleted
-        # product:
-        #     exclude_categories: [ 'root', 'point-de-vente' ]
-        #     local_business:
-        #         slug: 'point-de-vente'
-
-                
-        # parametres des categories nécéssaire au fonctionnement 
-        # de ce projet spécifiquement
-        # categories:
-        #     landing_page:
-        #         name: Landing page
-        #         slug: landing-page
-        #         type: true
-        #     organization:
-        #         name: Organization
-        #         slug: organization
-        #         type: true
-        #     article:
-        #         name: Blog
-        #         slug: blog
-        #         type: true
-        #     web_page:
-        #         name: Web Page
-        #         slug: web-page
-        #         type: true
-        #     social_link:
-        #         name: Réseau social
-        #         slug: reseau-social
-        #         type: true
-
-        
-        # sera ramplacé par le menu éditable en backoffice
-        # menu:
-        #     main:
-        #         accueil: 
-        #             route: sylius_shop_homepage
-        #         about: 
-        #             route: app_webpage_about
-        #         articles: 
-        #             route: app_webpage_articles
-        #         contact:
-        #             route: app_webpage_contact
-        #         legal_notice:
-        #             route: app_webpage_show
-        #     footer:
-        #         accueil: 
-        #             route: sylius_shop_homepage
-        #         about: 
-        #             route: app_webpage_about
-        #         articles: 
-        #             route: app_webpage_articles
-        #         contact:
-        #             route: app_webpage_contact
-        #         legal_notice:
-        #             route: app_webpage_show
-
-           ## Value For INIT ##
-        # web_pages:
-        #     accueil:
-        #         slug : accueil
-        #         headline: Accueil
-        #         isLocked: true
-        #     about:
-        #         slug: qui-sommes-nous
-        #         headline: Qui sommes nous ?
-        #         isLocked: true
-
-        #     contact:
-        #         slug: contact
-        #         headline: Contact
-        #         isLocked: true
-
-        #     articles:
-        #         slug: articles
-        #         headline: Articles
-        #         isLocked: true
-  
-        #     legal_notice:
-        #         slug: mentions-legales
-        #         headline: Mentions légales
-        #         isLocked: true
-                    
-        # articles:
-        #     news-1:
-        #         slug: news-1
-        #         headline: News 1
-        #         locale:
-        #             fr: mfr_FR
-
-
-            
-            
+       

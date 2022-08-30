@@ -68,6 +68,8 @@ subject: objet
 origin: provenance
 Recruitment: Recrutement
 Videos: Vidéos
+Travel: Séjour
+Travels: Séjours
 
 sylius:
     ui:
@@ -182,6 +184,10 @@ app:
         edit_social_links: Édition du réseau social
         subject: Objet
         templates: Templates
+        travels: Séjours
+        travel: Séjour
+        new_travel: Nouveau séjour
+        edit_travel: Édition du séjour
     ui_element:
         field:
             devkey: Clé développeur
