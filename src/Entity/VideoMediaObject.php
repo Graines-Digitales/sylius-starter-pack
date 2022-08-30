@@ -54,6 +54,11 @@ class VideoMediaObject implements ResourceInterface
      */
     private $articles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=WebPage::class, mappedBy="video")
+     */
+    private $webPages;
+
      /**
      * Constructor.
      */
@@ -61,6 +66,7 @@ class VideoMediaObject implements ResourceInterface
     {
         $this->tags = new ArrayCollection();
         $this->articles = new ArrayCollection();
+        $this->webPages = new ArrayCollection();
     }
 
     public function __toString()
@@ -146,6 +152,36 @@ class VideoMediaObject implements ResourceInterface
             // set the owning side to null (unless already changed)
             if ($article->getVideo() === $this) {
                 $article->setVideo(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, WebPage>
+     */
+    public function getWebPages(): Collection
+    {
+        return $this->webPages;
+    }
+
+    public function addWebPage(WebPage $webPage): self
+    {
+        if (!$this->webPages->contains($webPage)) {
+            $this->webPages[] = $webPage;
+            $webPage->setVideo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWebPage(WebPage $webPage): self
+    {
+        if ($this->webPages->removeElement($webPage)) {
+            // set the owning side to null (unless already changed)
+            if ($webPage->getVideo() === $this) {
+                $webPage->setVideo(null);
             }
         }
 

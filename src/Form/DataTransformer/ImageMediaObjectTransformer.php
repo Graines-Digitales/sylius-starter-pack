@@ -2,13 +2,12 @@
 
 namespace App\Form\DataTransformer;
 
-use App\Entity\Article;
 use App\Entity\ImageMediaObject;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
 
-class MediaObjectTransformer implements DataTransformerInterface
+class ImageMediaObjectTransformer implements DataTransformerInterface
 {
     private $manager;
 
@@ -40,9 +39,7 @@ class MediaObjectTransformer implements DataTransformerInterface
         return [
             'id' => $media->getId(),
             'filename' => $media->getFilename(),
-            'alt' => $media->getAlt(),
-            'icon' => $media->getIcon()
-
+            'alt' => $media->getCaption()
         ];
     }
 }

@@ -16,12 +16,14 @@ use Symfony\Component\Form\AbstractType;
 use App\Form\DataTransformer\TagsTransformer;
 use App\Form\Type\UiElement\ComponentLinkType;
 use Symfony\Component\Form\FormBuilderInterface;
+use App\Form\DataTransformer\CategoryTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
-use App\Form\DataTransformer\MediaObjectTransformer;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Form\DataTransformer\IconMediaObjectTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Form\DataTransformer\ImageMediaObjectTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -145,18 +147,28 @@ class ComponentCardType extends AbstractType
         ;
        
         $builder
+            ->get('category')
+            ->addModelTransformer(new CategoryTransformer($this->manager))
+        ;
+
+        $builder
             ->get('tags')
             ->addModelTransformer(new TagsTransformer($this->manager))
         ;
 
         $builder
             ->get('primaryImage')
-            ->addModelTransformer(new MediaObjectTransformer($this->manager))
+            ->addModelTransformer(new ImageMediaObjectTransformer($this->manager))
+        ;
+
+        $builder
+            ->get('secondaryImage')
+            ->addModelTransformer(new ImageMediaObjectTransformer($this->manager))
         ;
 
         $builder
             ->get('icon')
-            ->addModelTransformer(new MediaObjectTransformer($this->manager))
+            ->addModelTransformer(new IconMediaObjectTransformer($this->manager))
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {

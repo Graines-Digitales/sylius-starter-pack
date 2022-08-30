@@ -253,6 +253,9 @@ app:
         component_hero:
             title: 'Composant Hero'
             description: 'Une section avec titre, texte, bouton et Call to Action'
+        component_call_to_action:
+            title: 'Composant Call To Action'
+            description: 'Une section avec titre, texte, bouton et Call to Action'
         component_contact:
             title: 'Composant Contact'
             description: 'Carte coordonnées'

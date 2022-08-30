@@ -46,8 +46,7 @@ class ImagesTransformer implements DataTransformerInterface
             $array[] = [
                 'id' => $image->getId(),
                 'filename' => $image->getFilename(),
-                'alt' => $image->getAlt(),
-                'icon' => $image->getIcon()
+                'alt' => $image->getCaption()
             ];
         }
         

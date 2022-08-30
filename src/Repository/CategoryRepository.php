@@ -32,6 +32,17 @@ class CategoryRepository extends EntityRepository
         ;
     }
 
+    public function findByTypeIsNotNull()
+    {
+        return $this->createQueryBuilder('entity')
+            ->innerJoin('entity.translations', 'translation')
+            ->andWhere('entity.type is not null')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    
     public function createQueryBuilderBySlug($slug)
     {
         return $this->createQueryBuilder('entity')

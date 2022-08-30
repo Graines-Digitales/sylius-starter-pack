@@ -2,10 +2,9 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Category;
-use App\Entity\ImageMediaObject;
 use App\Entity\Organization;
-use App\Repository\CategoryRepository;
+use App\Entity\IconMediaObject;
+use App\Entity\ImageMediaObject;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\MediaObjectRepository;
 use App\Repository\OrganizationRepository;
@@ -16,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
+
 
 class OrganizationType extends AbstractType
 {
@@ -66,17 +65,11 @@ class OrganizationType extends AbstractType
             ->add('primaryImage', EntityType::class, [
                 'attr' => ['class' => 'select2-image'],
                 'class' => ImageMediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function (MediaObjectRepository $repo) use ($configurationProject) {
-                    return $repo->createQueryBuilderByEncodingImage($configurationProject);
-                }
+                'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('icon', EntityType::class, [
-                'class' => ImageMediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_icon',
-                'query_builder' => function (MediaObjectRepository $repo) use ($configurationProject) {
-                    return $repo->createQueryBuilderByEncodingSvg($configurationProject);
-                }
+                'attr' => ['class' => 'select2-image'],
+                'class' => IconMediaObject::class
             ])
             // ->add('category', EntityType::class, [
             //     'class' => Category::class,

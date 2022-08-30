@@ -190,6 +190,11 @@ class Organization implements ResourceInterface
      */
     private $fax;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=IconMediaObject::class, inversedBy="organizations")
+     */
+    private $icon;
+
     public function getSlug()
     {
         return $this->slug;
@@ -536,6 +541,18 @@ class Organization implements ResourceInterface
     public function setFax(string $fax): self
     {
         $this->fax = $fax;
+
+        return $this;
+    }
+
+    public function getIcon(): ?IconMediaObject
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?IconMediaObject $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }

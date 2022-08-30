@@ -1,6 +1,3 @@
-parameters:
-    locale: 'fr'
-
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 imports:
@@ -116,7 +113,6 @@ services:
         tags:
             - { name: form.type }
         arguments: ['%app.model.web_page_translation.class%', ['sylius']]
-
 
     app.special_announcement.form.type:
         class: App\Form\Type\SpecialAnnouncementType
@@ -255,13 +251,6 @@ services:
         tags:
             - { name: form.type }
         arguments: ['%app.model.cms_link_translation.class%', ['sylius']]
-
-    # app.message.form.type:
-    #     class: App\Form\Type\MessageType
-    #     tags:
-    #         - { name: form.type }
-    #     arguments: [ '%app.model.message.class%', ['sylius']]
-
 
     # Override LandingPageController
     sylius.controller.shop.homepage:

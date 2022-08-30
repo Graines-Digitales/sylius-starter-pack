@@ -2,12 +2,12 @@
 
 namespace App\Form\DataTransformer;
 
-use App\Entity\Category;
+use App\Entity\IconMediaObject;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
 
-class CategoryTransformer implements DataTransformerInterface
+class IconMediaObjectTransformer implements DataTransformerInterface
 {
     private $manager;
 
@@ -22,24 +22,24 @@ class CategoryTransformer implements DataTransformerInterface
             return;
         }
 
-        $category = $this->manager
-            ->getRepository(Category::class)
+        $media = $this->manager
+            ->getRepository(IconMediaObject::class)
             ->find($data['id'])
         ;
-
-        return $category;
+        
+        return $media;
     }
 
-    public function reverseTransform($category)
+    public function reverseTransform($media)
     {
-       
-        if (empty($category)) {
+        if (null === $media) {
             return '';
         }
 
         return [
-            'id' => $category->getId(),
-            'slug' => $category->getSlug()
+            'id' => $media->getId(),
+            'filename' => $media->getFilename(),
+            'alt' => $media->getCaption()
         ];
     }
 }

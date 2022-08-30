@@ -65,10 +65,7 @@ class CategoryType extends AbstractResourceType
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
                 'class' => ImageMediaObject::class,
-                'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingImage($configurationProject);
-                }
+                'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => CategoryTranslationType::class,

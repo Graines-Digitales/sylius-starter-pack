@@ -62,7 +62,7 @@ class LocalBusiness implements ResourceInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="localBusinesses")
-     * @ORM\JoinTable(name="app_localbusiness_category")
+     * @ORM\JoinTable(name="app_localbusinesses_categories")
      */
     private $categories;
 

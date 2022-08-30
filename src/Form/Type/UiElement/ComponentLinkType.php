@@ -36,10 +36,10 @@ class ComponentLinkType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $code = 'component_link';
-        $templates = $this->componentService->getTemplates($code); // Depends on the code specified on the component creation
-        $styles = $this->componentService->getStyles($code);
-        $icons = $this->componentService->getIcons($code);
-        $configurationProject = $this->container->getParameter('configuration_project');
+        // $templates = $this->componentService->getTemplates($code); // Depends on the code specified on the component creation
+        // $styles = $this->componentService->getStyles($code);
+        // $icons = $this->componentService->getIcons($code);
+        // $configurationProject = $this->container->getParameter('configuration_project');
 
         $builder
             ->add('designation', TextType::class, [
@@ -76,14 +76,14 @@ class ComponentLinkType extends AbstractType
                 //     new Assert\Url([]),
                 // ],
             ])
-            ->add('template', ChoiceType::class, [
-                'choices' => $templates,
-                'required' => true,
-            ])
-            ->add('style', ChoiceType::class, [
-                'choices' => $styles,
-                'required' => true,
-            ])
+            // ->add('template', ChoiceType::class, [
+            //     'choices' => $templates,
+            //     'required' => true,
+            // ])
+            // ->add('style', ChoiceType::class, [
+            //     'choices' => $styles,
+            //     'required' => true,
+            // ])
         ;
 
     }

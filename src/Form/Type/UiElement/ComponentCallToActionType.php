@@ -5,20 +5,22 @@ declare(strict_types=1);
 namespace App\Form\Type\UiElement;
 
 use App\WebContent\Component;
+use App\Entity\IconMediaObject;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Form\DataTransformer\IconMediaObjectTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
-class ComponentCardsType extends AbstractType
+class ComponentCallToActionType extends AbstractType
 {
     private $componentService;
 
@@ -32,7 +34,7 @@ class ComponentCardsType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $code = 'component_cards'; // code du component enregistré en base de données
+        $code = 'component_contact_form';
         // $templates = $this->componentService->getTemplates($code); // Depends on the code specified on the component creation
         // $styles = $this->componentService->getStyles($code);
 
@@ -55,13 +57,22 @@ class ComponentCardsType extends AbstractType
             ->add('title', TextType::class, [
                 'required' => true,
                 'constraints' => [
-                    new NotBlank(['groups' => ['component_cards_validation']])
+                    new NotBlank(['groups' => ['component_contact_form_validation']])
                 ],
                 'label' => 'app.ui_element.field.title',
+            ])
+            ->add('subtitle', TextType::class, [
+                'required' => false,
+                'label' => 'app.ui_element.field.subtitle',
             ])
             ->add('content', WysiwygType::class, [
                 'required' => false,
                 'label' => 'app.ui_element.field.content',
+            ])
+            ->add('icon', EntityType::class, [
+                'required' => false,
+                'class' => IconMediaObject::class,
+                'placeholder' => 'app.ui_element.field.select_icon',
             ])
             // ->add('template', ChoiceType::class, [
             //     'choices' => $templates,
@@ -71,17 +82,13 @@ class ComponentCardsType extends AbstractType
             //     'choices' => $styles,
             //     'required' => true,
             // ])
-            ->add('cards', CollectionType::class, [
-                'entry_type' => ComponentCardType::class,
-                'button_add_label' => 'app.ui_element.form.add_item',
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'delete_empty' => true,
-                'label' => 'app.ui_element.field.card_collection.default',
-            ])
         ;
 
+        $builder
+            ->get('icon')
+            ->addModelTransformer(new IconMediaObjectTransformer($this->manager))
+        ;
+        
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             $data = $event->getData();
             $form = $event->getForm();
@@ -96,7 +103,7 @@ class ComponentCardsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'validation_groups' => ['component_cards_validation'],
+            'validation_groups' => ['component_contact_form_validation'],
         ]);
     }
 }

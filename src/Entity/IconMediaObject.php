@@ -84,11 +84,17 @@ class IconMediaObject implements ResourceInterface
     private $tags;
 
     /**
+     * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="icon")
+     */
+    private $organizations;
+
+    /**
      * Constructor.
      */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->organizations = new ArrayCollection();
     }
 
     public function __toString()
@@ -168,6 +174,36 @@ class IconMediaObject implements ResourceInterface
     public function removeTag(Category $tag): self
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Organization>
+     */
+    public function getOrganizations(): Collection
+    {
+        return $this->organizations;
+    }
+
+    public function addOrganization(Organization $organization): self
+    {
+        if (!$this->organizations->contains($organization)) {
+            $this->organizations[] = $organization;
+            $organization->setIcon($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrganization(Organization $organization): self
+    {
+        if ($this->organizations->removeElement($organization)) {
+            // set the owning side to null (unless already changed)
+            if ($organization->getIcon() === $this) {
+                $organization->setIcon(null);
+            }
+        }
 
         return $this;
     }

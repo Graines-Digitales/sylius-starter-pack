@@ -51,13 +51,16 @@ class Project
 
     public function getCategoryTypeSlugs($slug = null)
     {
-        $config = [];
-        foreach ($this->configurationProject['categories'] as $key => $value) {
-            if (isset($value['type']) && true == $value['type']) {
-                $config[$value['slug']] = $value['slug'];
-            }
-        }
-        return $config;
+        // $config = [];
+        // foreach ($this->configurationProject['categories'] as $key => $value) {
+        //     if (isset($value['type']) && true == $value['type']) {
+        //         $config[$value['slug']] = $value['slug'];
+        //     }
+        // }
+        // return $config;
+
+        return $this->manager->getRepository(Category::class)
+            ->findByTypeIsNotNull();
     }
 
     public function getLegalNoticeSlug()

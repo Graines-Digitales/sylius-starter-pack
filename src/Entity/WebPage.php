@@ -90,6 +90,11 @@ class WebPage implements ResourceInterface, TranslatableInterface
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=VideoMediaObject::class, inversedBy="webPages")
+     */
+    private $video;
+
 
     public function __toString()
     {
@@ -254,6 +259,18 @@ class WebPage implements ResourceInterface, TranslatableInterface
     public function setType(?Category $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getVideo(): ?VideoMediaObject
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?VideoMediaObject $video): self
+    {
+        $this->video = $video;
 
         return $this;
     }
