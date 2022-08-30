@@ -31,7 +31,7 @@ class Project
     public function getMainOrganization()
     {
         $category = $this->manager->getRepository(Category::class)
-            ->findOneBy(['slug' => 'root']);
+            ->findOneBySlug('root');
 
         return $this->manager->getRepository(Organization::class)
             ->findOneBy(['category' => $category]);
