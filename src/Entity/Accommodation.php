@@ -98,6 +98,7 @@ class Accommodation implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Person::class, inversedBy="accommodations")
+     * @ORM\JoinTable(name="app_accommodations_teams")
      */
     private $teams;
 
@@ -118,6 +119,7 @@ class Accommodation implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="accommodations")
+     * @ORM\JoinTable(name="app_accommodations_categories")
      */
     private $tags;
 
