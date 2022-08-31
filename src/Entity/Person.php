@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -122,6 +123,26 @@ class Person implements ResourceInterface
      **/
     private $addresses;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Accommodation::class, mappedBy="teams")
+     */
+    private $accommodations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Accommodation::class, inversedBy="owner")
+     */
+    private $accommodation;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="person")
+     */
+    private $events;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=DocumentMediaObject::class, mappedBy="persons")
+     */
+    private $documentMediaObjects;
+
 
     /**
      * Constructor.
@@ -129,6 +150,9 @@ class Person implements ResourceInterface
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
+        $this->accommodations = new ArrayCollection();
+        $this->events = new ArrayCollection();
+        $this->documentMediaObjects = new ArrayCollection();
     }
 
     public function __toString()
@@ -307,4 +331,101 @@ class Person implements ResourceInterface
     {
         return $this->addresses;
     }
+
+    /**
+     * @return Collection<int, Accommodation>
+     */
+    public function getAccommodations(): Collection
+    {
+        return $this->accommodations;
+    }
+
+    public function addAccommodation(Accommodation $accommodation): self
+    {
+        if (!$this->accommodations->contains($accommodation)) {
+            $this->accommodations[] = $accommodation;
+            $accommodation->addTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccommodation(Accommodation $accommodation): self
+    {
+        if ($this->accommodations->removeElement($accommodation)) {
+            $accommodation->removeTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function getAccommodation(): ?Accommodation
+    {
+        return $this->accommodation;
+    }
+
+    public function setAccommodation(?Accommodation $accommodation): self
+    {
+        $this->accommodation = $accommodation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->setPerson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->removeElement($event)) {
+            // set the owning side to null (unless already changed)
+            if ($event->getPerson() === $this) {
+                $event->setPerson(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DocumentMediaObject>
+     */
+    public function getDocumentMediaObjects(): Collection
+    {
+        return $this->documentMediaObjects;
+    }
+
+    public function addDocumentMediaObject(DocumentMediaObject $documentMediaObject): self
+    {
+        if (!$this->documentMediaObjects->contains($documentMediaObject)) {
+            $this->documentMediaObjects[] = $documentMediaObject;
+            $documentMediaObject->addPerson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocumentMediaObject(DocumentMediaObject $documentMediaObject): self
+    {
+        if ($this->documentMediaObjects->removeElement($documentMediaObject)) {
+            $documentMediaObject->removePerson($this);
+        }
+
+        return $this;
+    }
+
 }

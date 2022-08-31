@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\PlaceTrait;
 use App\Entity\Traits\ThingTrait;
 use ApiPlatform\Core\Annotation\ApiResource;
-
+use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
  * @see http://schema.org/Place Documentation on Schema.org
@@ -17,7 +17,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ApiResource(iri="http://schema.org/Place")
  * @ORM\Table(name="app_place")
  */
-class Place
+class Place implements ResourceInterface
 {
    use ThingTrait;
    use PlaceTrait;
