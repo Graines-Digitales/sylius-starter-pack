@@ -297,4 +297,19 @@ app_admin_social_links:
                 icon: 'facebook square'
     type: sylius.resource
     prefix: /admin/
-    
+
+app_admin_travel:
+    resource: |
+        alias: app.travel
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_travel
+        vars:
+            all:
+                header: app.ui.travels
+                subheader: app.ui.travel
+            index:
+                icon: 'travel'
+    type: sylius.resource
+    prefix: /admin/

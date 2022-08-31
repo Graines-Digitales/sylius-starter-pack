@@ -2,19 +2,18 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\SeoTranslatableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\Traits\CreativeWorkTrait;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Traits\IdentifiableTrait;
+use App\Entity\Traits\SeoTranslatableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ArticleTranslationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
+
 
 /**
  * @ApiResource()
@@ -23,6 +22,7 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
  */
 class ArticleTranslation  extends AbstractTranslation implements ResourceInterface
 {
+    use IdentifiableTrait;
     use SeoTranslatableTrait;
     use ThingTrait;
     use CreativeWorkTrait;
@@ -35,13 +35,6 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
      * @ApiProperty(identifier=true)
      */
     private $slug;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
         /**
      * @var string|null the actual body of the article
@@ -71,11 +64,6 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getArticleBody(): ?string

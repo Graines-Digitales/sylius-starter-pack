@@ -3,7 +3,7 @@
 namespace App\Tools;
 
 use App\WebContent\SEO;
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 // use Liip\ImagineBundle\Service\FilterService;
@@ -66,6 +66,8 @@ class Media
         if (in_array($entity->getEncodingFormat(), $videoMimeTypes)) {
             $filename = pathinfo($entity->getUrl(), PATHINFO_FILENAME);
             if (empty($entity->getName())) {
+                $filename = $this->slugger->slug($filename)->lower()->toString();
+                $filename = ucwords(str_replace('-', ' ', $filename));
                 $entity->setName($filename);
             }
             $entity->setFilename($filename);
@@ -118,9 +120,9 @@ class Media
                 $entity->setName($name);
             }
             $alt = null;
-            if (empty($entity->getAlt())) {
+            if (empty($entity->getCaption())) {
                 $alt = $this->webContentSEOService->defineAltImage($entity);
-                $entity->setAlt($alt);
+                $entity->setCaption($alt);
             }
         }
 
@@ -129,7 +131,7 @@ class Media
 
     public function getMediaArray($manager)
     {
-        $results = $manager->getRepository(MediaObject::class)->findAll();
+        $results = $manager->getRepository(ImageMediaObject::class)->findAll();
         $medias = [];
         foreach ($results as $key => $value) {
             $medias[$value->getFilename()] = $value;
@@ -157,7 +159,7 @@ class Media
             'app.tools.annotation'
         );
         $constraints = $annotationEntityService->getContraintsByField(
-            MediaObject::class, 'file'
+            ImageMediaObject::class, 'file'
         );
 
         $mimeTypes = [];

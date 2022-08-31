@@ -5,6 +5,9 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         configuration_project: '%configuration_project%'
+        directory_image_media_object: '%directory_image_media_object%'
+        directory_document_media_object: '%directory_document_media_object%'
+        directory_icon_media_object: '%directory_icon_media_object%'
         # To define a service as a global Twig variable, prefix the string with @.
         # menu: '@App\WebContent\Menu'
         # media_encoding_formats: '%configuration_project.media_encoding_formats%'

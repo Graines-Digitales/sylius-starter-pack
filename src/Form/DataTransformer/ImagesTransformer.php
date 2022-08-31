@@ -2,7 +2,7 @@
 
 namespace App\Form\DataTransformer;
 
-use App\Entity\MediaObject;
+use App\Entity\ImageMediaObject;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
@@ -25,7 +25,7 @@ class ImagesTransformer implements DataTransformerInterface
         $images = [];
         foreach($data as $value) {
             $image = $this->manager
-                ->getRepository(MediaObject::class)
+                ->getRepository(ImageMediaObject::class)
                 ->find($value['id'])
             ;
             $images[] = $image;
@@ -46,8 +46,7 @@ class ImagesTransformer implements DataTransformerInterface
             $array[] = [
                 'id' => $image->getId(),
                 'filename' => $image->getFilename(),
-                'alt' => $image->getAlt(),
-                'icon' => $image->getIcon()
+                'alt' => $image->getCaption()
             ];
         }
         
