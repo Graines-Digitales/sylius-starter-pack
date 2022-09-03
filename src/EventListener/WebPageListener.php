@@ -37,12 +37,25 @@ class WebPageListener
     public function preUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
+        if ($entity instanceof WebPage) {
+            dump($entity->getTranslation('fr_FR'));
+            foreach($entity->getTranslations()->getIterator() as $value) {
+                dump($value);
+            }
+            die;
+        }
+        if (!$entity instanceof WebPageTranslation) {
+            return;
+        }
         $this->execute($entity);
     }
 
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
+        if (!$entity instanceof WebPageTranslation) {
+            return;
+        }
         $this->execute($entity);
     }
 
