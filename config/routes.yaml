@@ -18,7 +18,14 @@ app_schema_save_form_contact:
     methods: [POST]
     defaults:
         _controller: app.controller.schema::saveFormMessage
+
+app_nuxt_build:
+    path: /nuxt/build
+    methods: [POST]
+    defaults:
+        _controller: app.controller.nuxt::build
         
+
 app_sitemap:
     path: /sitemap
     methods: [GET]
