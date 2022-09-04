@@ -23,7 +23,7 @@ class NuxtController extends AbstractController
         $process = new Process(
             [$command, $kernelProjectDir]
         );
-        // $process->setTimeout(10800); // 3 heures
+        $process->setTimeout(10800); // 3 heures
         try {
             $process->mustRun();
             $response['success'] = $process->getOutput();
