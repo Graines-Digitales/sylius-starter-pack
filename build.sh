@@ -9,3 +9,5 @@ node --experimental-json-modules $directory_prod_api/api_sylius.js
 
 cd $directory_prod_app
 yarn build
+pm2 stop NuxtAppKazenGarden
+pm2 start NuxtAppKazenGarden
