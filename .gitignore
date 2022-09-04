@@ -78,3 +78,4 @@ config/configuration_project.yaml
 assets/app/styles/_variables.scss
 src/EventListener/AdminMenuListener.php
 build.sh
+deploy.sh
