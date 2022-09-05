@@ -43,6 +43,11 @@ services:
         tags:
             - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\AdminUserType }
 
+    app.controller.nuxt:
+        class: App\Controller\Web\NuxtController
+        autowire: true
+        tags: ['controller.service_arguments']
+
     app.controller.schema:
         class: App\Controller\Web\SchemaController
         autowire: true
