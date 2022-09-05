@@ -95,8 +95,8 @@ class Import
                                 file_get_contents($absoluteFilePath)
                                 , true
                             );
-                            // $webPage = $this->dataService->createWebPageDemand($data);
-                            // $this->entityManager->persist($webPage);
+                            $webPage = $this->dataService->createWebPageDemand($data);
+                            $this->entityManager->persist($webPage);
                         } 
                         
                     }
@@ -126,8 +126,8 @@ class Import
                                 file_get_contents($absoluteFilePath)
                                 , true
                             );
-                            // $article = $this->dataService->createArticleDemand($data);
-                            // $this->entityManager->persist($article);
+                            $article = $this->dataService->createArticleDemand($data);
+                            $this->entityManager->persist($article);
                         } 
                         
                     }
@@ -158,8 +158,8 @@ class Import
                                 file_get_contents($absoluteFilePath)
                                 , true
                             );
-                            // $organization = $this->dataService->createOrganizationDemand($data);
-                            // $this->entityManager->persist($organization);
+                            $organization = $this->dataService->createOrganizationDemand($data);
+                            $this->entityManager->persist($organization);
                         }
                     }
                     $this->entityManager->flush();
@@ -189,8 +189,8 @@ class Import
                                 file_get_contents($absoluteFilePath)
                                 , true
                             );
-                            // $component = $this->dataService->createComponentDemand($data, $localeCode);
-                            // $this->entityManager->persist($component);
+                            $component = $this->dataService->createComponentDemand($data, $localeCode);
+                            $this->entityManager->persist($component);
                         }
                         
                     }
