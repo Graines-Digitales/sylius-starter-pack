@@ -736,6 +736,48 @@ sylius_grid:
                     delete:
                         type: delete    
 
+        app_admin_message_product:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\Message
+                    repository:
+                        method: findByTypeProduct
+                        arguments:
+                            parameters: '%configuration_project%'
+            fields:
+                dateSent:
+                    type: datetime
+                    label: sylius.ui.date
+                sender.email:
+                    type: string
+                    label: sylius.ui.sender
+                subject:
+                    type: string
+                    label: sylius.ui.subject
+                
+                text:
+                   type: twig
+                   label: app.ui_element.field.message
+                   options:
+                       template: "@App/admin/Grid/Field/text.html.twig"
+                       
+                # messageAttachment:
+                #     type: twig
+                #     label: app.ui.preview
+                #     path: . 
+                #     options:
+                #         template: "@App/admin/Grid/Field/documents.html.twig"
+            actions:
+                item:
+                    show:
+                        type: show
+                        label: sylius.ui.show
+            #         update:
+            #             type: update
+                    delete:
+                        type: delete  
+
         app_admin_message_quote:
             driver:
                 name: doctrine/orm

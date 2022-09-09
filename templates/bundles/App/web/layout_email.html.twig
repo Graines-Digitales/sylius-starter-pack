@@ -6,25 +6,26 @@
 		<meta name="format-detection" content="telephone=no">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="language" content="fr">
-
 	</head>
 	<body style="margin: 0;">
-		<header style="background-color: #191a1a;;text-align: center;">
+		<header style="background-color: #95a595; color: #fff; text-align: center;">
 			<nav style="padding: 10px 20px; margin: 0 auto;">
-				<div style="max-width: 170px; min-height: inherit; margin: 0 auto;">
-                 <span class="main-logo-wrap">
-                 {% include '@App/web/components/svg/svg_main_logo.html.twig' %}
-                </span>
-            </div>
+				<div style="min-height: inherit; margin: 0 auto; text-transform uppercase;">
+				{% set headline = configuration_project.forms|filter(v => v.slug == data.origin)|first['headline'] %}
+                	{{ headline }}
+            	</div>
 			</nav>
 		</header>
 		{% block body %}{% endblock %}
-		<footer style="background-color: #c9002b; width:100%; text-align: center;">
+		<footer style="background-color: #95a595; width:100%; text-align: center;">
 			<div style="padding: 10px 20px;">
 				<div style="color:#fff;">
-					<p>
-						SITE_NAME @{{ 'now' | date('Y') }} Réalisé par Délit D'influence
-					</p>
+					<span class="main-logo-wrap">
+						<img 
+							src="cid:logo" 
+							class="ui tiny centered image"
+						>
+					</span>
 				</div>
 			</div>
 		</footer>

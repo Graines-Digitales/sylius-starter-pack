@@ -65,17 +65,21 @@ yarn-error.log
 /public/media/cache/
 ###< liip/imagine-bundle ###
 
-.idea/
+
+###> starter_pack ###
 
 mysqldump.sql
 mysqldump.zip
 site-sync-preprod.sh
 site-sync-prod.sh
-
-assets/images/
-content/
-config/configuration_project.yaml
-assets/app/styles/_variables.scss
-src/EventListener/AdminMenuListener.php
 build.sh
 deploy.sh
+
+### folder à insérer dans deploy.sh
+/assets/images/
+/content/
+/config/project.yaml
+/assets/app/styles/_variables.scss
+/src/EventListener/AdminMenuListener.php
+
+###< starter_pack ###

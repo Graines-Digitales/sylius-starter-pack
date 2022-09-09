@@ -1,7 +1,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 imports:
-    - { resource: configuration_project.yaml }
+    - { resource: project.yaml }
     
 parameters:
     locale: fr_FR
@@ -12,6 +12,10 @@ parameters:
     directory_cache_prefix: media/cache/resolve
     path_directory_media: '%kernel.project_dir%/public/media/image'
     developers: [ 'johan.remy@graines-digitales.online' ]
+    sendinblue_api_key: '%env(resolve:SENDINBLUE_API_KEY)%'
+    sendinblue_list_newsletter_id: '%env(resolve:SENDINBLUE_LIST_NEWSLETTER_ID)%'
+
+    
     
 
        
