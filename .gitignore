@@ -22,7 +22,6 @@
 /.env.*.local
 /.env.local
 /.env.local.php
-/.env
 /public/bundles
 /var/
 /vendor/
