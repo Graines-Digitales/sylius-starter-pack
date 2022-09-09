@@ -24,7 +24,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "doctrine/orm": "^2.10",
-        "friendsofsylius/sylius-import-export-plugin": "^0.20.0",
+        "friendsofsylius/sylius-import-export-plugin": "^0.22.0",
         "friendsofsymfony/ckeditor-bundle": "^2.4",
         "google/cloud-translate": "^1.12",
         "mnapoli/front-yaml": "^2.0",
