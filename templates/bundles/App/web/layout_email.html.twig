@@ -10,7 +10,7 @@
 	<body style="margin: 0;">
 		<header style="background-color: #95a595; color: #fff; text-align: center;">
 			<nav style="padding: 10px 20px; margin: 0 auto;">
-				<div style="min-height: inherit; margin: 0 auto; text-transform uppercase;">
+				<div style="min-height: inherit; margin: 0 auto; text-transform: uppercase;">
 				{% set headline = configuration_project.forms|filter(v => v.slug == data.origin)|first['headline'] %}
                 	{{ headline }}
             	</div>
