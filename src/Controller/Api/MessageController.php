@@ -88,7 +88,7 @@ class MessageController extends AbstractController
             ->from($data['email'])
             ->to(...$this->organization->getEmails(true))
             // ->to('johan.remy@graines-digitales.online')
-            ->subject($data['objet'])
+            ->subject($data['headline'])
             ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
             ->html($this->renderView(
                     '@App/web/components/email_default.html.twig',
@@ -157,7 +157,7 @@ class MessageController extends AbstractController
             ->from($data['email'])
             ->to(...$this->organization->getEmails(true))
             // ->to('johan.remy@graines-digitales.online')
-            ->subject($data['objet'])
+            ->subject($data['headline'])
             ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
             ->html($this->renderView(
                     '@App/web/components/email_default.html.twig',
