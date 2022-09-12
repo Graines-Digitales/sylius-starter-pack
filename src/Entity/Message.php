@@ -30,6 +30,11 @@ use App\Controller\Api\MessageController;
  *         "path"= "/api/v2/message/contact/create",
  *         "controller"= MessageController::class     
  *       },
+ *       "message_product_create"={
+ *         "method"= "POST",
+ *         "path"= "/api/v2/message/product/create",
+ *         "controller"= MessageController::class     
+ *       },
  *       "newsletter_create"={
  *         "method"= "POST",
  *         "path"= "/api/v2/newsletter/create",

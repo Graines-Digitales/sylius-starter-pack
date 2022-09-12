@@ -11,7 +11,7 @@ parameters:
     directory_icon_media_object: /media/icon
     directory_cache_prefix: media/cache/resolve
     path_directory_media: '%kernel.project_dir%/public/media/image'
-    developers: [ 'johan.remy@graines-digitales.online' ]
+    developers: [ 'johan.remy@graines-digitales.online', 'mohamed.hanini95@gmail.com' ]
     sendinblue_api_key: '%env(resolve:SENDINBLUE_API_KEY)%'
     sendinblue_list_newsletter_id: '%env(resolve:SENDINBLUE_LIST_NEWSLETTER_ID)%'
 
