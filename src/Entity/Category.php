@@ -41,7 +41,6 @@ class Category implements ResourceInterface , TranslatableInterface
         $this->searchActions = new ArrayCollection();
         $this->localBusinesses = new ArrayCollection();
         $this->tags = new ArrayCollection();
-        $this->mediaObjects = new ArrayCollection();
         $this->components = new ArrayCollection();
         $this->accommodations = new ArrayCollection();
         $this->hotelTypicalDays = new ArrayCollection();
@@ -327,33 +326,6 @@ class Category implements ResourceInterface , TranslatableInterface
     public function removeLocalBusiness(LocalBusiness $localBusiness): self
     {
         $this->localBusinesses->removeElement($localBusiness);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ImageMediaObject>
-     */
-    public function getMediaObjects(): Collection
-    {
-        return $this->mediaObjects;
-    }
-
-    public function addMediaObject(ImageMediaObject $mediaObject): self
-    {
-        if (!$this->mediaObjects->contains($mediaObject)) {
-            $this->mediaObjects[] = $mediaObject;
-            $mediaObject->addTag($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMediaObject(ImageMediaObject $mediaObject): self
-    {
-        if ($this->mediaObjects->removeElement($mediaObject)) {
-            $mediaObject->removeTag($this);
-        }
 
         return $this;
     }

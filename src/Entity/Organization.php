@@ -16,6 +16,11 @@ use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\CodeAwareInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 
 
 /**
@@ -40,6 +45,8 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *       }
  *     }
  * )
+ * @ApiResource()
+ * @ApiFilter(SearchFilter::class, properties={ "category.translations.slug": "exact", "slug": "exact" })
  * @ORM\Entity@ORM\Entity(repositoryClass=OrganizationRepository::class)
  * @ORM\Table(name="app_organization")
  */
@@ -168,6 +175,7 @@ class Organization implements ResourceInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="organizations")
+     * @ApiSubresource
      */
     private $category;
 
@@ -411,17 +419,6 @@ class Organization implements ResourceInterface
         return $this->addresses;
     }
 
-    public function getOrganization(): ?self
-    {
-        return $this->organization;
-    }
-
-    public function setOrganization(?self $organization): self
-    {
-        $this->organization = $organization;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, LocalBusiness>
