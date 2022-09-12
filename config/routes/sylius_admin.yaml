@@ -157,6 +157,20 @@ app_admin_message_contact:
     type: sylius.resource
     prefix: /admin   
 
+app_admin_message_product:
+    resource: |
+        alias: app.message_product
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_message_product
+        vars:
+            all:
+                subheader: app.ui.message_product
+            index:
+                icon: 'comment alternate outline'
+    type: sylius.resource
+    prefix: /admin   
 
 app_admin_person:
     resource: |

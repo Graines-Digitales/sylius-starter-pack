@@ -219,7 +219,8 @@ class WebPageController extends AbstractController
             "email" => "johan.remy@graines-digitales.online",
             "website" => "",
             "phone" => "+212700377087",
-            "message" => "ghfdghdf"
+            "message" => "ghfdghdf",
+            "origin" => 'form-contact'
         ];
 
         return $this->render('@App/web/components/email_default.html.twig', ['data' => $data]);

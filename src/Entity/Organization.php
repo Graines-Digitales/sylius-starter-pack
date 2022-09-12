@@ -9,7 +9,6 @@ use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
-use App\Repository\OrganizationRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -17,8 +16,6 @@ use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\CodeAwareInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -26,7 +23,23 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @see http://schema.org/Organization Documentation on Schema.org
  *
- * @ApiResource()
+ * @ApiResource(
+  *     collectionOperations={
+ *       "get"={
+ *         "method"="GET",  
+ *       },
+ *       "organization_configuration"={
+ *         "method"= "GET",
+ *         "path"= "/api/v2/organization/configuration",
+ *         "controller"= OrganizationController::class     
+ *       },
+ *       "organization_media_encoding_formats"={
+ *         "method"= "GET",
+ *         "path"= "/api/v2/organization/media-encoding-formats",
+ *         "controller"= OrganizationController::class 
+ *       }
+ *     }
+ * )
  * @ORM\Entity@ORM\Entity(repositoryClass=OrganizationRepository::class)
  * @ORM\Table(name="app_organization")
  */

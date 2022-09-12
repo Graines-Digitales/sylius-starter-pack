@@ -2,21 +2,44 @@
 
 namespace App\Controller\Api;
 
+use Exception;
+use GuzzleHttp\Client;
 use App\Entity\Message;
+use App\WebContent\Form;
+use App\WebContent\Organization;
+use Symfony\Component\Mime\Email;
+use SendinBlue\Client\Api\ContactsApi;
+use SendinBlue\Client\Model\CreateContact;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use SendinBlue\Client\Configuration as SendinBlueConfiguration;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 
 class MessageController extends AbstractController
 {
-    // public function __construct(
-    //     // private BookPublishingHandler $bookPublishingHandler
-    // ) {}
+    private $form;
+
+    private $organization;
+
+    private $mailer;
+
+    public function __construct(
+        Form $form,
+        Organization $organization,
+        MailerInterface $mailer
+    ) {
+        $this->form = $form;
+        $this->organization = $organization;
+        $this->mailer = $mailer;
+    }
 
     /**
-     * @Route("/api/v2/messages/save",
-     * name="save_form_contact",
+     * @Route("/api/v2/message/contact/create",
+     * name="message_contact_create",
      * methods = { "POST" },
      *     defaults={
      *          "_api_resource_class"=Message::class,
@@ -24,14 +47,124 @@ class MessageController extends AbstractController
      *     }
      * )
     */
-    public function __invoke(Message $data)//: Message
+    public function contact(Request $request) 
     {
-       
+        /**
+         * Check Data
+         **/
+        // $data = $request->request->all();
+        $data = json_decode($request->getContent(), true);
+        if (!isset($data['email']) || empty($data['email'])) {
+
+            return new JsonResponse(
+                [ 'message' => 'email not found' ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        /**
+         * Save form
+        **/
+        $data = $this->form->saveFormContact($data);
+        $data = $this->form->dataFieldTranslation($data);
+        
+        /**
+         * Send email
+         **/
+        $email = (new Email())
+            ->from($data['email'])
+            // ->to(...$this->organization->getEmails())
+            ->to('johan.remy@graines-digitales.online')
+            ->subject($data['objet'])
+            ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
+            ->html($this->renderView(
+                    '@App/web/components/email_default.html.twig',
+                    ['data' => $data]
+                )
+            )
+        ;
+    
+        try {
+            $this->mailer->send($email);
+        } catch (TransportExceptionInterface $e) {
+            
+            return new JsonResponse(
+                [ 'message' => $e->getMessage() ]
+                , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+        
+    
         return new JsonResponse(
-            $data
+            [ 'message' => 'success' ]
             , JsonResponse::HTTP_OK
         );
-        
-        
+    }
+
+    /**
+     * @Route("/api/v2/newsletter/create",
+     * name="newsletter_create",
+     * methods = { "POST" },
+     *     defaults={
+     *          "_api_resource_class"=Message::class,
+     *     }
+     * )
+    */
+    public function newsletter(Request $request)//: Message
+    {
+        /**
+         * Check Data
+        **/
+        // $data = $request->request->all();
+        $data = json_decode($request->getContent(), true);
+        // dump($data);die;
+        if(!$this->getParameter('sendinblue_api_key')) {
+
+            return new JsonResponse(
+                [ 'message' => 'api sendinblue not configured' ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        $credentials = SendinBlueConfiguration::getDefaultConfiguration()->setApiKey(
+            'api-key',
+            $this->getParameter('sendinblue_api_key')
+        );
+
+        $apiInstance = new ContactsApi(
+            new Client(),
+            $credentials
+        );
+
+        $createContact = new CreateContact([
+            'email' => $data['email'],
+            'updateEnabled' => true,
+            'attributes' => [ 
+                'isVIP'=> 'true' 
+            ],     
+            'listIds' =>[1, (int)$this->getParameter('sendinblue_list_newsletter_id')]
+        ]);
+
+        try {
+            $response = $apiInstance->createContact($createContact);
+            if(null === $response) {
+
+                return new JsonResponse(
+                    [ 'message' => 'email already exist' ]
+                    , JsonResponse::HTTP_BAD_REQUEST
+                );
+            }
+        } catch (Exception $e) {
+            
+            return new JsonResponse(
+                [ 'message' => $e->getMessage() ]
+                , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
+        return new JsonResponse(
+            [ 'message' => 'success' ]
+            , JsonResponse::HTTP_OK
+        );
     }
 }
