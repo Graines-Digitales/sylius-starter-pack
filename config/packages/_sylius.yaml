@@ -714,13 +714,13 @@ sylius_grid:
                     label: sylius.ui.date
                 sender.email:
                     type: string
-                    label: sylius.ui.sender
+                    label: app.ui.sender
                 subject:
                     type: string
                     label: sylius.ui.subject
-                local_business:
-                    type: string
-                    label: sylius.ui.local_business
+                # local_business:
+                #     type: string
+                #     label: app.ui.local_business
                 text:
                    type: twig
                    label: app.ui_element.field.message
@@ -751,7 +751,7 @@ sylius_grid:
                     label: sylius.ui.date
                 sender.email:
                     type: string
-                    label: sylius.ui.sender
+                    label: app.ui.sender
                 subject:
                     type: string
                     label: sylius.ui.subject

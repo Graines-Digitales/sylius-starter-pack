@@ -37,6 +37,83 @@ class MessageController extends AbstractController
         $this->mailer = $mailer;
     }
 
+        /**
+     * @Route("/api/v2/message/product/create",
+     * name="message_product_create",
+     * methods = { "POST" },
+     *     defaults={
+     *          "_api_resource_class"=Message::class,
+     
+     *     }
+     * )
+    */
+    public function product(Request $request) 
+    {
+        /**
+         * Check Data
+         **/
+        // $data = $request->request->all();
+        $data = json_decode($request->getContent(), true);
+        if (!isset($data['email']) || empty($data['email'])) {
+
+            return new JsonResponse(
+                [ 'message' => 'email not found' ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!isset($data['slug-product']) || empty($data['slug-product'])) {
+
+            return new JsonResponse(
+                [ 'message' => 'slug product not found' ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+        
+        /**
+         * Save form
+        **/
+        $data = $this->form->saveFormContact($data);
+        $data = $this->form->dataFieldTranslation($data);
+     
+        $configurationProject = $this->getParameter('configuration_project');
+        $data['headline'] = $configurationProject['forms']['contact_product']['headline'];
+        $data['headline'].= ' - ' . $data['slug-product'];
+
+        // dump($data);die;
+        /**
+         * Send email
+         **/
+        $email = (new Email())
+            ->from($data['email'])
+            ->to(...$this->organization->getEmails(true))
+            // ->to('johan.remy@graines-digitales.online')
+            ->subject($data['objet'])
+            ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
+            ->html($this->renderView(
+                    '@App/web/components/email_default.html.twig',
+                    ['data' => $data]
+                )
+            )
+        ;
+    
+        try {
+            $this->mailer->send($email);
+        } catch (TransportExceptionInterface $e) {
+            
+            return new JsonResponse(
+                [ 'message' => $e->getMessage() ]
+                , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+        
+    
+        return new JsonResponse(
+            [ 'message' => 'success' ]
+            , JsonResponse::HTTP_OK
+        );
+    }
+
     /**
      * @Route("/api/v2/message/contact/create",
      * name="message_contact_create",
@@ -62,19 +139,24 @@ class MessageController extends AbstractController
             );
         }
 
+       
         /**
          * Save form
         **/
         $data = $this->form->saveFormContact($data);
         $data = $this->form->dataFieldTranslation($data);
         
+        $configurationProject = $this->getParameter('configuration_project');
+        $data['headline'] = $configurationProject['forms']['contact_default']['headline'];
+
+
         /**
          * Send email
          **/
         $email = (new Email())
             ->from($data['email'])
-            // ->to(...$this->organization->getEmails())
-            ->to('johan.remy@graines-digitales.online')
+            ->to(...$this->organization->getEmails(true))
+            // ->to('johan.remy@graines-digitales.online')
             ->subject($data['objet'])
             ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
             ->html($this->renderView(

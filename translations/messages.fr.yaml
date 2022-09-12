@@ -188,6 +188,14 @@ app:
         travel: Séjour
         new_travel: Nouveau séjour
         edit_travel: Édition du séjour
+        sender.lastname: Prénom
+        sender.firstname: Nom
+        sender.email: Email
+        sender.phone: Téléphone
+        sender: Personne
+        messageAttachments: Pièces jointes
+        message_products: Demandes de contact depuis un produit
+        message_product: Demande de contact depuis un produit
     ui_element:
         field:
             devkey: Clé développeur
@@ -237,6 +245,7 @@ app:
             card_collection:
                 default: Cartes
             cms_links: Liens - Boutons
+            message: Message
         form:
             item_list: Liste des éléments
             add_item: Ajouter un élément
