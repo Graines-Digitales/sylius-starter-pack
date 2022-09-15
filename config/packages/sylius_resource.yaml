@@ -265,4 +265,8 @@ sylius_resource:
             classes:
                 model: App\Entity\Trip
                 form: App\Form\Type\TripType
-                repository: App\Repository\TripRepository 
+                repository: App\Repository\TripRepository
+            translation:
+                classes:
+                    model: App\Entity\TripTranslation 
+                    form: App\Form\Type\TripTranslationType

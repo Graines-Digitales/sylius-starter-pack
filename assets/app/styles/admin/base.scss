@@ -74,3 +74,11 @@ img.ui.tiny.image {
 .ui.form .hidden {
 	display: none;
 }
+
+.ui.content .button.js-uie-add {
+	display: none;
+}
+
+.ui.role-dev .content .button.js-uie-add {
+	display: block;
+}
