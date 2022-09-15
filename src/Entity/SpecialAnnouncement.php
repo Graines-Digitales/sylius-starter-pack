@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -25,6 +26,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  */
 class SpecialAnnouncement implements ResourceInterface, TranslatableInterface   
 {
+    use IdentifiableTrait;
     use SeoTrait;
     use TimestampableEntity;
     use TranslatableTrait {
@@ -45,12 +47,6 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
         return new WebPageTranslation();
     }
 
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
      /**
      * Publication date of an online listing.
      *
@@ -83,11 +79,6 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
     public function __toString()
     {
         return $this->getTranslation()->getName();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getHeadline(): ?string

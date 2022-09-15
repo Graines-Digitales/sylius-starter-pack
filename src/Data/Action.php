@@ -4,6 +4,7 @@ namespace App\Data;
 
 use App\Entity\Tag;
 use App\Entity\Care;
+use App\Entity\Trip;
 use App\Entity\Slide;
 use App\Entity\Person;
 use App\Entity\Address;
@@ -13,9 +14,10 @@ use App\Entity\WebPage;
 use App\Entity\Category;
 use App\Entity\Component;
 use App\Entity\Blockquote;
-use App\Entity\ImageMediaObject;
 use App\Entity\Organization;
 use App\Entity\PropertyValue;
+use App\Entity\TripTranslation;
+use App\Entity\ImageMediaObject;
 use App\Entity\SlideMediaObject;
 use App\Entity\ArticleTranslation;
 use App\Entity\WebPageTranslation;
@@ -50,6 +52,17 @@ class Action
         $category = $this->hydrateCategoryDemand($data, $category, $locale);
 
         return $category;
+    }
+
+    public function createTripDemand($data = [], $locale = 'fr_FR')
+    {
+        $trip = new Trip();
+        $trip->setCurrentLocale($locale);
+        $tripTranslation = new TripTranslation();
+        $trip->addTranslation($tripTranslation); 
+        $trip = $this->hydrateTripDemand($data, $trip, $locale);
+
+        return $trip;
     }
 
     public function createAddressDemand($data = [])
@@ -101,7 +114,7 @@ class Action
         return $message;
     }
 
-    public function createComponentDemand($data = [], $locale)
+    public function createComponentDemand($data = [], $locale = 'fr_FR')
     {
         $component = new Component();
         $component = $this->hydrateComponentDemand($data, $component, $locale);
@@ -115,6 +128,97 @@ class Action
         $organization = $this->hydrateOrganizationDemand($data, [], $organization);
         
         return $organization;
+    }
+
+    public function hydrateTripDemand($data, $trip, $locale) 
+    {   
+        $trip->getTranslation()->setLocale($locale);
+        $trip->getTranslation()->setTranslatable($trip);
+
+        if (isset($data['isLocked'])) {
+            $trip->setIsLocked($data['isLocked']);
+        }
+
+        if (isset($data['metaTitle'])) {
+            $trip->getTranslation()->setMetaTitle($data['metaTitle']);
+        }
+
+        if (isset($data['metaDescription'])) {
+            $trip->getTranslation()->setMetaDescription($data['metaDescription']);
+        }
+
+        if (isset($data['headline'])) {
+            $trip->getTranslation()->setHeadline($data['headline']);
+        }
+
+        if(isset($data['primaryImage']) && !empty($data['primaryImage'])){
+            $trip->setPrimaryImage($data['primaryImage']);
+        }
+
+        if(isset($data['alternativeHeadline'])){
+            $trip->getTranslation()->setAlternativeHeadline($data['alternativeHeadline']);
+        }
+
+        if(isset($data['text'])){
+            $trip->getTranslation()->setText($data['text']);
+        }
+
+        if (isset($data['pushForward'])) {
+            $trip->getTranslation()->setPushForward($data['pushForward']);
+        }
+
+        if(isset($data['textResume'])){
+            $trip->getTranslation()->setTextResume($data['textResume']);
+        }
+        
+        if(isset($data['departure_date'])) {
+            $date = new \DateTime($data['departure_date']);
+            // dump($date);die;
+            $trip->setDepartureTime($date);
+        }
+
+        if(isset($data['arrival_date'])) {
+            $date = new \DateTime($data['arrival_date']);
+            $trip->setArrivalTime($date);
+        }
+
+        if (isset($data['offers'])) {
+            foreach ($data['offers'] as $key => $offer) {
+
+                $aggregateOffer = new \App\Entity\AggregateOffer();
+                if(isset($offer['name'])) {
+                    $aggregateOffer->setName($offer['name']);
+                }
+                
+                if(isset($offer['price'])) {
+                    $aggregateOffer->setPrice($offer['price']);
+                }
+
+                if(isset($offer['addOn'])) {
+                    $aggregateOffer->setAddOn($offer['addOn']);
+                }
+
+                if(isset($offer['start'])) {
+                    $start = new \DateTime($offer['start']);
+                    $aggregateOffer->setAvailabilityStart($start);
+                }
+
+                if(isset($offer['end'])) {
+                    $end = new \DateTime($offer['end']);
+                    $aggregateOffer->setAvailabilityEnd($end);
+                }
+              
+                $trip->addOffer($aggregateOffer);
+            }
+        }
+
+        $components = '{}';
+        if (isset($data['components'])) {
+            $components = $data['component'];
+        }
+        $trip->setComponents($components, 'fr_FR');
+
+        return $trip;
     }
 
     public function hydrateCategoryDemand($data, $category, $locale) 

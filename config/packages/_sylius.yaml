@@ -1503,7 +1503,23 @@ sylius_grid:
                     class: App\Entity\Trip
 
             fields:
-             
+                is_enabled:
+                    type: twig
+                    label: sylius.ui.is_enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                # is_locked:
+                #     type: twig
+                #     label: app.ui_element.field.is_locked
+                #     options:
+                #         template: "@App/admin/Grid/Field/locked.html.twig"
+                translation.headline:
+                    type: string
+                    label: app.ui.headline
+                    sortable: translation.name
+                departureTime:
+                    type: datetime
+                    label: sylius.ui.date
                 arrivalTime:
                     type: datetime
                     label: sylius.ui.date

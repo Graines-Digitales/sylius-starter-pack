@@ -323,7 +323,11 @@ app_admin_travel:
             all:
                 header: app.ui.travels
                 subheader: app.ui.travel
+                templates:
+                    form: "@App/admin/form/Trip/views/_form.html.twig"
             index:
                 icon: 'travel'
     type: sylius.resource
     prefix: /admin/
+
+    

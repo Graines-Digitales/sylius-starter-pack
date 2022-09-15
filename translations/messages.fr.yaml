@@ -70,6 +70,11 @@ Recruitment: Recrutement
 Videos: Vidéos
 Travel: Séjour
 Travels: Séjours
+Arrival time: Heure d'arrivée
+Departure time: Heure de départ
+Offers: Les offres
+Offer count: Nombre d'offres
+Price: Prix
 
 sylius:
     ui:
@@ -246,6 +251,8 @@ app:
                 default: Cartes
             cms_links: Liens - Boutons
             message: Message
+            departure_date: Date de départ
+            arrival_date: Date d'arrivée
         form:
             item_list: Liste des éléments
             add_item: Ajouter un élément
