@@ -14,6 +14,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
+
 /**
  * @ApiResource()
  * @ApiResource(iri="http://schema.org/Category")
@@ -41,13 +42,13 @@ class Category implements ResourceInterface , TranslatableInterface
         $this->searchActions = new ArrayCollection();
         $this->localBusinesses = new ArrayCollection();
         $this->tags = new ArrayCollection();
-        $this->mediaObjects = new ArrayCollection();
         $this->components = new ArrayCollection();
         $this->accommodations = new ArrayCollection();
         $this->hotelTypicalDays = new ArrayCollection();
         $this->hotelServices = new ArrayCollection();
         $this->hotelActivities = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->trips = new ArrayCollection();
     }
 
     /**
@@ -142,6 +143,11 @@ class Category implements ResourceInterface , TranslatableInterface
      * @ORM\ManyToMany(targetEntity=Component::class, mappedBy="tags")
      */
     private $components;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Trip::class, mappedBy="tags")
+     */
+    private $trips;
     
     /**
      * {@inheritdoc}
@@ -332,33 +338,6 @@ class Category implements ResourceInterface , TranslatableInterface
     }
 
     /**
-     * @return Collection<int, ImageMediaObject>
-     */
-    public function getMediaObjects(): Collection
-    {
-        return $this->mediaObjects;
-    }
-
-    public function addMediaObject(ImageMediaObject $mediaObject): self
-    {
-        if (!$this->mediaObjects->contains($mediaObject)) {
-            $this->mediaObjects[] = $mediaObject;
-            $mediaObject->addTag($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMediaObject(ImageMediaObject $mediaObject): self
-    {
-        if ($this->mediaObjects->removeElement($mediaObject)) {
-            $mediaObject->removeTag($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, HotelTypicalDay>
      */
     public function getHotelTypicalDays(): Collection
@@ -488,6 +467,36 @@ class Category implements ResourceInterface , TranslatableInterface
     {
         if ($this->components->removeElement($component)) {
             $component->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getTrips(): Collection
+    {
+        return $this->trips;
+    }
+
+    public function addTrip(Trip $trip): self
+    {
+        if (!$this->trips->contains($trip)) {
+            $this->trips[] = $trip;
+            $trip->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrip(Trip $trip): self
+    {
+        if ($this->trips->removeElement($trip)) {
+            // set the owning side to null (unless already changed)
+            if ($trip->getCategory() === $this) {
+                $trip->setCategory(null);
+            }
         }
 
         return $this;

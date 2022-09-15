@@ -9,7 +9,6 @@ use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
-use App\Repository\OrganizationRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -19,6 +18,9 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 
 
 /**
@@ -26,7 +28,25 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @see http://schema.org/Organization Documentation on Schema.org
  *
+ * @ApiResource(
+  *     collectionOperations={
+ *       "get"={
+ *         "method"="GET",  
+ *       },
+ *       "organization_configuration"={
+ *         "method"= "GET",
+ *         "path"= "/api/v2/organization/configuration",
+ *         "controller"= OrganizationController::class     
+ *       },
+ *       "organization_media_encoding_formats"={
+ *         "method"= "GET",
+ *         "path"= "/api/v2/organization/media-encoding-formats",
+ *         "controller"= OrganizationController::class 
+ *       }
+ *     }
+ * )
  * @ApiResource()
+ * @ApiFilter(SearchFilter::class, properties={ "category.translations.slug": "exact", "slug": "exact" })
  * @ORM\Entity@ORM\Entity(repositoryClass=OrganizationRepository::class)
  * @ORM\Table(name="app_organization")
  */
@@ -155,6 +175,7 @@ class Organization implements ResourceInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="organizations")
+     * @ApiSubresource
      */
     private $category;
 
@@ -398,17 +419,6 @@ class Organization implements ResourceInterface
         return $this->addresses;
     }
 
-    public function getOrganization(): ?self
-    {
-        return $this->organization;
-    }
-
-    public function setOrganization(?self $organization): self
-    {
-        $this->organization = $organization;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, LocalBusiness>

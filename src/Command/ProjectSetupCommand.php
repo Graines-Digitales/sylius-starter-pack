@@ -48,6 +48,10 @@ class ProjectSetupCommand extends Command
         $helper = $this->getHelper('question');
         $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
         $contentPath = $kernelProjectDir . '/content';
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $folders = $configurationProject['folders'];
+
+        
 
         $finder = new Finder();
         
@@ -58,7 +62,7 @@ class ProjectSetupCommand extends Command
                 true
             );
             if ($helper->ask($input, $output, $question)) {
-                $this->importService->run($contentPath);
+                $this->importService->run($contentPath, $folders);
 
                 $io->success('Les données du dossier content/ ont bien été enregistrées.');
             }
