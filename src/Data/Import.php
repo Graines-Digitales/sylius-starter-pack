@@ -81,12 +81,14 @@ class Import
     public function extractData($absoluteFilePath, $extension)
     {
         $data = [];
+        
         switch ($extension) {
             case 'md':
                 $parser = new Parser();
                 $result = $parser->parse(file_get_contents($absoluteFilePath), false);
                 $data = $result->getYaml();
                 $data['content'] = $result->getContent();
+                
                 break;
             case 'json':
                 $data = json_decode(
