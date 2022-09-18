@@ -26,6 +26,12 @@ class TripTranslationType extends AbstractType
                     new NotBlank(['groups' => ['trip_translation_validation']])
                 ]
             ])
+            ->add('alternativeHeadline', TextType::class, [
+                'required' => false
+            ])
+            ->add('pushForward', TextType::class, [
+                'required' => false
+            ])
             ->add('text', CKEditorType::class, [
                 'required' => false
             ])

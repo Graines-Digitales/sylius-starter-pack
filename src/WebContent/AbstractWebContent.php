@@ -80,4 +80,17 @@ class AbstractWebContent
         $this->configurationService = $configurationService;
         $this->finder = new Finder();
     }
+
+    protected function moreData($entity)
+    {
+        if (empty($entity->getAlternativeHeadline())) {
+            $entity->setAlternativeHeadline($entity->getHeadline());
+        }
+        if (empty($entity->getTextResume())) {
+            $resume = strip_tags($entity->getText());
+            $resume = substr($resume, 0, 350);
+            $resume = html_entity_decode($resume, ENT_QUOTES);
+            $entity->setTextResume(trim($resume));
+        }
+    }
 }

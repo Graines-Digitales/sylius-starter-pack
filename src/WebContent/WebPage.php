@@ -11,11 +11,11 @@ use App\Entity\Product\Product;
 class WebPage extends AbstractWebContent
 {
 
-    public function getData($slug)
-    {
-        return $this->manager->getRepository(\App\Entity\WebPage::class)
-            ->findOneBySlug($slug);
-    }
+    // public function getData($slug)
+    // {
+    //     return $this->manager->getRepository(\App\Entity\WebPage::class)
+    //         ->findOneBySlug($slug);
+    // }
 
 //     public function getDataFromCategory($slug)
 //     {
@@ -43,56 +43,46 @@ class WebPage extends AbstractWebContent
 //         return $this->dataAction->createWebPageFromProductDemand($result);
 //     }
 
-    public function getDataByCode($code)
-    {
-        return $this->manager->getRepository(\App\Entity\WebPage::class)
-            ->findOneByCode($code);
-    }
+    // public function getDataByCode($code)
+    // {
+    //     return $this->manager->getRepository(\App\Entity\WebPage::class)
+    //         ->findOneByCode($code);
+    // }
 
-    public function getArticles()
-    {
-        return $this->manager->getRepository(Article::class)
-            ->findAll();
-    }
+    // public function getArticles()
+    // {
+    //     return $this->manager->getRepository(Article::class)
+    //         ->findAll();
+    // }
 
-    public function getArticle($slug)
-    {
-        return $this->manager->getRepository(Article::class)
-            ->findOneBySlug($slug);
-    }
+    // public function getArticle($slug)
+    // {
+    //     return $this->manager->getRepository(Article::class)
+    //         ->findOneBySlug($slug);
+    // }
 
-    public function getProduct($slug)
-    {
-        // $channel = $this->container->get('sylius.context.channel')->getChannel();
-        $channel = $this->manager->getRepository(Channel::class)->findOneByCode('default');
-        $locale = $this->container->getParameter('locale');
+    // public function getProduct($slug)
+    // {
+    //     // $channel = $this->container->get('sylius.context.channel')->getChannel();
+    //     $channel = $this->manager->getRepository(Channel::class)->findOneByCode('default');
+    //     $locale = $this->container->getParameter('locale');
      
-        return $this->manager->getRepository(Product::class)
-            ->findOneByChannelAndSlug($channel, $locale, $slug);
-    }
+    //     return $this->manager->getRepository(Product::class)
+    //         ->findOneByChannelAndSlug($channel, $locale, $slug);
+    // }
 
-    public function getCategory($slug)
-    {
-        return $this->manager->getRepository(Category::class)
-            ->findOneBySlug($slug);
-    }
+    // public function getCategory($slug)
+    // {
+    //     return $this->manager->getRepository(Category::class)
+    //         ->findOneBySlug($slug);
+    // }
 
-    public function getPageSlug($key)
-    {
-        $configurationProject = $this->container->getParameter('configuration_project'); 
+    // public function getPageSlug($key)
+    // {
+    //     $configurationProject = $this->container->getParameter('configuration_project'); 
         
-        return $configurationProject['web_pages'][$key]['slug'];
-    }
-
-    public function moreData($entity)
-    {
-        if (empty($entity->getTextResume())) {
-            $resume = strip_tags($entity->getText());
-            $resume = substr($resume, 0, 350);
-            $resume = html_entity_decode($resume, ENT_QUOTES);
-            $entity->setTextResume(trim($resume));
-        }
-    }
+    //     return $configurationProject['web_pages'][$key]['slug'];
+    // }
 
     public function updateSlug($entity)
     {
@@ -104,23 +94,23 @@ class WebPage extends AbstractWebContent
         return $entity;
     }
 
-    public function getAllPages()
-    {
-        $webPages = $this->manager->getRepository(\App\Entity\WebPage::class)
-        ->findBy(['isIndexed' => true]);
+    // public function getAllPages()
+    // {
+    //     $webPages = $this->manager->getRepository(\App\Entity\WebPage::class)
+    //     ->findBy(['isIndexed' => true]);
 
 
-        return $webPages;
-    }
+    //     return $webPages;
+    // }
 
-    public function getAllCategoryPages()
-    {
-        $webPages = $this->manager->getRepository(\App\Entity\Category::class)
-        ->findBy(['isIndexed' => true]);
+    // public function getAllCategoryPages()
+    // {
+    //     $webPages = $this->manager->getRepository(\App\Entity\Category::class)
+    //     ->findBy(['isIndexed' => true]);
 
 
-        return $webPages;
-    }
+    //     return $webPages;
+    // }
     
     // public function getCares()
     // {

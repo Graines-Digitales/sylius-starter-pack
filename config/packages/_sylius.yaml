@@ -527,6 +527,11 @@ sylius_grid:
                     label: app.ui_element.field.enabled
                     options:
                         template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                is_locked:
+                    type: twig
+                    label: app.ui_element.field.is_locked
+                    options:
+                        template: "@App/admin/Grid/Field/locked.html.twig"
                 primaryImage:
                     type: twig
                     label: app.ui.primary_image
@@ -1508,11 +1513,11 @@ sylius_grid:
                     label: sylius.ui.is_enabled
                     options:
                         template: "@SyliusUi/Grid/Field/enabled.html.twig"
-                # is_locked:
-                #     type: twig
-                #     label: app.ui_element.field.is_locked
-                #     options:
-                #         template: "@App/admin/Grid/Field/locked.html.twig"
+                is_locked:
+                    type: twig
+                    label: app.ui_element.field.is_locked
+                    options:
+                        template: "@App/admin/Grid/Field/locked.html.twig"
                 translation.headline:
                     type: string
                     label: app.ui.headline
