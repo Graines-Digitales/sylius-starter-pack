@@ -537,11 +537,11 @@ sylius_grid:
                     label: app.ui.primary_image
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
-                category:
-                    type: twig # Type of filter
-                    label: app.ui.category
-                    options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                # category:
+                #     type: twig # Type of filter
+                #     label: app.ui.category
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
                 translation.slug:
                     type: string
                     label: sylius.ui.slug
