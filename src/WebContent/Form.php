@@ -12,25 +12,25 @@ class Form extends AbstractWebContent
     {
         if(isset($data['email'])) {
 
-            $message = $this->dataAction->createMessageDemand($data);
+            $message = $this->messageAction->create($data);
             
             $person = $this->manager->getRepository(Person::class)
                 ->findOneBy(['email' => $data['email']])
             ;
             if(null === $person) {
                 if (isset($data['streetAddress'])){
-                    $address = $this->dataAction->createAddressDemand($data);
-                    $person = $this->dataAction->createPersonDemand($data);
+                    $address = $this->addressAction->create($data);
+                    $person = $this->personAction->create($data);
                     $person->addAddress($address);
                     $this->manager->persist($address);
                 }else{
-                    $person = $this->dataAction->createPersonDemand($data);
+                    $person = $this->personAction->create($data);
                 }
                 $this->manager->persist($person);
                 $this->manager->flush();
 
             } else {
-                $person = $this->dataAction->hydratePersonDemand($data, $person);
+                $person = $this->personAction->hydrate($data, $person);
             }
             $message->setSender($person);
 

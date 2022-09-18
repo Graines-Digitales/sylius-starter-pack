@@ -527,16 +527,21 @@ sylius_grid:
                     label: app.ui_element.field.enabled
                     options:
                         template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                # is_locked:
+                #     type: twig
+                #     label: app.ui_element.field.is_locked
+                #     options:
+                #         template: "@App/admin/Grid/Field/locked.html.twig"
                 primaryImage:
                     type: twig
                     label: app.ui.primary_image
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
-                category:
-                    type: twig # Type of filter
-                    label: app.ui.category
-                    options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                # category:
+                #     type: twig # Type of filter
+                #     label: app.ui.category
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
                 translation.slug:
                     type: string
                     label: sylius.ui.slug
@@ -1517,6 +1522,9 @@ sylius_grid:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
+                translation.slug:
+                    type: string
+                    label: sylius.ui.slug
                 departureTime:
                     type: datetime
                     label: sylius.ui.date

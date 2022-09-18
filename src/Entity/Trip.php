@@ -8,6 +8,7 @@ use App\Entity\AggregateOffer;
 use App\Entity\Traits\SeoTrait;
 use App\Entity\TripTranslation;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\LockableTrait;
 use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
@@ -34,6 +35,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 class Trip  implements ResourceInterface, TranslatableInterface   
 {
     use SeoTrait;
+    use LockableTrait;
     use IdentifiableTrait;
     use TimestampableEntity;
     use TranslatableTrait {
@@ -123,9 +125,21 @@ class Trip  implements ResourceInterface, TranslatableInterface
         return $this->getTranslation()->getMetaDescription();
     }
 
+    public function setHeadline(string $headline): self
+    {
+        $this->getTranslation()->setHeadline($headline);
+
+        return $this;
+    }
+
+    public function getAlternativeHeadline(): ?string
+    {
+        return $this->getTranslation()->getAlternativeHeadline();
+    }
+    
     public function setComponents(string $components): self
     {
-        $this->getTranslation('fr_FR')->setComponents($components);
+        $this->getTranslation()->setComponents($components);
 
         return $this;
     }

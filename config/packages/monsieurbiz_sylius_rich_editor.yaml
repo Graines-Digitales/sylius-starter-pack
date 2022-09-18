@@ -1,126 +1,126 @@
-# monsieurbiz_sylius_richeditor:
-#     upload_directory: '/media/image'
-#     image_upload_directory: '/media/image'
+monsieurbiz_sylius_richeditor:
+    upload_directory: '/media/image'
+    image_upload_directory: '/media/image'
     
-#     ui_elements:
-#         #Element monsieurbiz désactivés
-#         monsieurbiz.youtube:
-#             enabled: false
-#         monsieurbiz.html:
-#             enabled: false
-#         monsieurbiz.text:
-#             enabled: false   
-#         monsieurbiz.title:
-#             enabled: false  
-#         monsieurbiz.h1:
-#             enabled: false
-#         monsieurbiz.h2:
-#             enabled: false
-#         monsieurbiz.h3:
-#             enabled: false   
-#         monsieurbiz.image:
-#             enabled: false  
-#         monsieurbiz.quote:
-#             enabled: false
-#         monsieurbiz.video:
-#             enabled: false
-#         monsieurbiz.separator:
-#             enabled: false   
-#         monsieurbiz.button:
-#             enabled: false  
-#         monsieurbiz.image_collection:
-#             enabled: false
+    ui_elements:
+        #Element monsieurbiz désactivés
+        monsieurbiz.youtube:
+            enabled: false
+        monsieurbiz.html:
+            enabled: false
+        monsieurbiz.text:
+            enabled: false   
+        monsieurbiz.title:
+            enabled: false  
+        monsieurbiz.h1:
+            enabled: false
+        monsieurbiz.h2:
+            enabled: false
+        monsieurbiz.h3:
+            enabled: false   
+        monsieurbiz.image:
+            enabled: false  
+        monsieurbiz.quote:
+            enabled: false
+        monsieurbiz.video:
+            enabled: false
+        monsieurbiz.separator:
+            enabled: false   
+        monsieurbiz.button:
+            enabled: false  
+        monsieurbiz.image_collection:
+            enabled: false
 
-#         #Element custom
+        #Element custom
 
-#         app.component_cards:
-#             title: 'app.ui_element.component_cards.title'
-#             description: 'app.ui_element.component_cards.description'
-#             icon: list alternate outline
-#             classes:
-#                 form: App\Form\Type\UiElement\ComponentCardsType
-#                 #ui_element: App\UiElement\MyUiElement
-#             templates:
-#                 admin_render: '@App/admin/UiElement/component_cards.html.twig'
-#                 front_render: '/shop/UiElement/component_cards.html.twig'
-#             tags: []  
-#         app.component_card:
-#             alias: app.ui_element.component_card.alias
-#             # section: 'app.ui_element.component_card.section'
-#             title: 'app.ui_element.component_card.title'
-#             description: 'app.ui_element.component_card.description'
-#             icon: clone outline
-#             classes:
-#                 form: App\Form\Type\UiElement\ComponentCardType
-#                 # ui_element: App\UiElement\TestUiElement
-#             templates:
-#                 admin_render: '@App/admin/UiElement/component_card.html.twig'
-#                 front_render: '/shop/UiElement/component_card.html.twig'
-#             tags: []
-#         app.component_hero:
-#             title: 'app.ui_element.component_hero.title'
-#             description: 'app.ui_element.component_hero.description'
-#             icon: address card outline
-#             classes:
-#                 form: App\Form\Type\UiElement\ComponentHeroType
-#                 #ui_element: App\UiElement\MyUiElement
-#             templates:
-#                 admin_render: '@App/admin/UiElement/component_hero.html.twig'
-#                 front_render: '/shop/UiElement/component_hero.html.twig'
-#             tags: []
-#         app.component_call_to_action:
-#             title: 'app.ui_element.component_call_to_action.title'
-#             description: 'app.ui_element.component_call_to_action.description'
-#             icon: address card outline
-#             classes:
-#                 form: App\Form\Type\UiElement\ComponentCallToActionType
-#                 #ui_element: App\UiElement\MyUiElement
-#             templates:
-#                 admin_render: '@App/admin/UiElement/component_call_to_action.html.twig'
-#                 front_render: '/shop/UiElement/component_call_to_action.html.twig'
-#             tags: []
-#         app.component_search_action:
-#             enabled: true
-#             title: 'app.ui_element.component_search_action.title'
-#             description: 'app.ui_element.component_search_action.description'
-#             icon: address card outline
-#             classes:
-#                 form: App\Form\Type\UiElement\ComponentSearchActionType
-#                 #ui_element: App\UiElement\MyUiElement
-#             templates:
-#                 admin_render: '@App/admin/UiElement/component_search_action.html.twig'
-#                 front_render: '/shop/UiElement/component_search_action.html.twig'
-#             tags: []                 
-#         app.component_slider:
-#             title: 'app.ui_element.component_slider.title'
-#             description: 'app.ui_element.component_slider.description'
-#             icon: address card outline
-#             classes:
-#                 form: App\Form\Type\UiElement\ComponentSliderType
-#                 #ui_element: App\UiElement\MyUiElement
-#             templates:
-#                 admin_render: '@App/admin/UiElement/component_slider.html.twig'
-#                 front_render: '/shop/UiElement/component_slider.html.twig'
-#             tags: []
-#         app.component_contact_form:
-#             title: 'app.ui_element.component_contact_form.title'
-#             description: 'app.ui_element.component_contact_form.description'
-#             icon: address card outline
-#             classes:
-#                 form: App\Form\Type\UiElement\ComponentContactFormType
-#                 #ui_element: App\UiElement\MyUiElement
-#             templates:
-#                 admin_render: '@App/admin/UiElement/component_contact_form.html.twig'
-#                 front_render: '/shop/UiElement/component_contact_form.html.twig'
-#             tags: []
-#         app.component_iframe:
-#             title: 'app.ui_element.component_iframe.title'
-#             description: 'app.ui_element.component_iframe.description'
-#             icon: code
-#             classes:
-#                 form: App\Form\Type\UiElement\ComponentIframeType
-#                 #ui_element: App\UiElement\MyUiElement
-#             templates:
-#                 admin_render: '@App/admin/UiElement/component_iframe.html.twig'
-#                 front_render: '/app/UiElement/component_iframe.html.twig'
-#             tags: []
+        app.component_cards:
+            title: 'app.ui_element.component_cards.title'
+            description: 'app.ui_element.component_cards.description'
+            icon: list alternate outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentCardsType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_cards.html.twig'
+                front_render: '/shop/UiElement/component_cards.html.twig'
+            tags: []  
+        app.component_card:
+            alias: app.ui_element.component_card.alias
+            # section: 'app.ui_element.component_card.section'
+            title: 'app.ui_element.component_card.title'
+            description: 'app.ui_element.component_card.description'
+            icon: clone outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentCardType
+                # ui_element: App\UiElement\TestUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_card.html.twig'
+                front_render: '/shop/UiElement/component_card.html.twig'
+            tags: []
+        app.component_hero:
+            title: 'app.ui_element.component_hero.title'
+            description: 'app.ui_element.component_hero.description'
+            icon: address card outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentHeroType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_hero.html.twig'
+                front_render: '/shop/UiElement/component_hero.html.twig'
+            tags: []
+        app.component_call_to_action:
+            title: 'app.ui_element.component_call_to_action.title'
+            description: 'app.ui_element.component_call_to_action.description'
+            icon: address card outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentCallToActionType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_call_to_action.html.twig'
+                front_render: '/shop/UiElement/component_call_to_action.html.twig'
+            tags: []
+        app.component_search_action:
+            enabled: true
+            title: 'app.ui_element.component_search_action.title'
+            description: 'app.ui_element.component_search_action.description'
+            icon: address card outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentSearchActionType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_search_action.html.twig'
+                front_render: '/shop/UiElement/component_search_action.html.twig'
+            tags: []                 
+        app.component_slider:
+            title: 'app.ui_element.component_slider.title'
+            description: 'app.ui_element.component_slider.description'
+            icon: address card outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentSliderType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_slider.html.twig'
+                front_render: '/shop/UiElement/component_slider.html.twig'
+            tags: []
+        app.component_contact_form:
+            title: 'app.ui_element.component_contact_form.title'
+            description: 'app.ui_element.component_contact_form.description'
+            icon: address card outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentContactFormType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_contact_form.html.twig'
+                front_render: '/shop/UiElement/component_contact_form.html.twig'
+            tags: []
+        app.component_iframe:
+            title: 'app.ui_element.component_iframe.title'
+            description: 'app.ui_element.component_iframe.description'
+            icon: code
+            classes:
+                form: App\Form\Type\UiElement\ComponentIframeType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_iframe.html.twig'
+                front_render: '/app/UiElement/component_iframe.html.twig'
+            tags: []

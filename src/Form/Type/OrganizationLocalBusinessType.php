@@ -4,13 +4,13 @@ namespace App\Form\Type;
 
 
 use App\Entity\Category;
-use App\Entity\ImageMediaObject;
-use App\WebContent\WebPage;
 use App\Entity\Organization;
+use App\Entity\ImageMediaObject;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
-use App\Repository\MediaObjectRepository;
 use App\Repository\OrganizationRepository;
+use App\Repository\ImageMediaObjectRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,45 +18,38 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
+
 class OrganizationLocalBusinessType extends AbstractType
 {
     private $container;
+    
+    private $entityManager;
 
-    private $webPageService;
-
-    public function __construct(ContainerInterface $container, WebPage $webPageService)
-    {
+    public function __construct(
+        ContainerInterface $container,
+        EntityManagerInterface $entityManager
+    ){
         $this->container = $container;
-        $this->webPageService = $webPageService;
+        $this->entityManager = $entityManager;
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $configurationProject = $this->container->getParameter('configuration_project');
         $slug = 'local-business';
-        $category = $this->webPageService->getCategory($slug);
+        $category = $this->entityManager->getRepository(Category::class)
+            ->findOneBySlug($slug);
         
         $builder
-            // ->add('isEnabled')
-            // ->add('slug')
             ->add('name', TextType::class, [
                 'required' => false
             ])
             ->add('legalName')
             ->add('phone')
             ->add('email')
-            // ->add('foundingDate')
-            // ->add('numberOfEmployees')
-            // ->add('numberOfProjects')
             ->add('mobilePhone')
             ->add('fax')
-            // ->add('isIndexed')
-            // ->add('description')
             ->add('url')
-            // ->add('mainEntityOfPage')
-            // ->add('createdAt')
-            // ->add('updatedAt')
-            
             ->add('addresses', CollectionType::class, [
                 'entry_type' => AddressType::class,
                 'allow_add' => true,
@@ -67,18 +60,17 @@ class OrganizationLocalBusinessType extends AbstractType
             ->add('primaryImage', EntityType::class, [
                 'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
             ->add('secondaryImage', EntityType::class, [
                 'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_secondary_image',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
-            // ->add('localBusiness')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'data' => $category,
@@ -87,7 +79,6 @@ class OrganizationLocalBusinessType extends AbstractType
                 }
                 // 'disabled' => true
             ])
-            // ->add('organization')
             ->add('parent', EntityType::class, [
                 'class' => Organization::class,
                 'placeholder' => 'app.ui_element.field.select_parent',
@@ -95,14 +86,6 @@ class OrganizationLocalBusinessType extends AbstractType
                     return $repo->createQueryBuilderByCategoryBrand($configurationProject);
                 }
             ])
-            // ->add('socialLinks', EntityType::class, [
-            //     'class' => Organization::class,
-            //     'placeholder' => 'app.ui_element.field.select_primary_image',
-            //     'query_builder' => function(OrganizationRepository $repo) use ($configurationProject){
-            //         return $repo->createQueryBuilderByCategorySocialLink($configurationProject);
-            //     },
-            //     'multiple' => true
-            // ])
         ;
     }
 
@@ -118,6 +101,6 @@ class OrganizationLocalBusinessType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'app_organization';
+        return 'app_organization_local_business';
     }
 }

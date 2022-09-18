@@ -29,7 +29,7 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     use TimestampableEntity;
 
     /**
-     * @Gedmo\Slug(fields={"headline"}, prefix="")
+     * @Gedmo\Slug(fields={"headline"}, updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
