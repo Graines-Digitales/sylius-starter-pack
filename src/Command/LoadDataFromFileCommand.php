@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Data\Import;
+use App\Data\Action as DataAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -24,16 +24,16 @@ class LoadDataFromFileCommand extends Command
 
     private $entityManager;
 
-    private $importService;
+    private $dataAction;
 
     public function __construct(
         ContainerInterface $container
         , EntityManagerInterface $entityManager
-        , Import $importService
+        , DataAction $dataAction
     ){
         $this->container = $container;
         $this->entityManager = $entityManager;
-        $this->importService = $importService;
+        $this->dataAction = $dataAction;
 
         parent::__construct();
     }
@@ -66,8 +66,8 @@ class LoadDataFromFileCommand extends Command
                 return Command::FAILURE;
             }
             
-            $data = $this->importService->extractData($absoluteFilePath, $extension);
-            $entity = $this->importService->dataServicesDispatch($data, $folder);
+            $data = $this->dataAction->extractData($absoluteFilePath, $extension);
+            $entity = $this->dataAction->dataServicesDispatch($data, $folder);
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
         }

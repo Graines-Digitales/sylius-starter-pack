@@ -4,37 +4,39 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\ImageMediaObject;
-use App\WebContent\WebPage;
 use App\Entity\Organization;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\MediaObjectRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Form\DataTransformer\ImageMediaObjectTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 
+
 class ManufacturerType extends AbstractResourceType
 {
     private $container;
+    
+    private $entityManager;
 
-    private $webPageService;
-
-    public function __construct(ContainerInterface $container, WebPage $webPageService)
-    {
+    public function __construct(
+        ContainerInterface $container,
+        EntityManagerInterface $entityManager
+    ){
         $this->container = $container;
-        $this->webPageService = $webPageService;
+        $this->entityManager = $entityManager;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $configurationProject = $this->container->getParameter('configuration_project');
         $slug = 'manufacturer';
-        $category = $this->webPageService->getCategory($slug);
+        $category = $this->entityManager->getRepository(Category::class)
+            ->findOneBySlug($slug);
         
         $builder
             ->add('isEnabled', CheckboxType::class, [

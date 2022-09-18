@@ -4,8 +4,10 @@ namespace App\WebContent;
 
 use App\Data\Action;
 use App\Tools\Content;
+use App\Data\PersonAction;
+use App\Data\MessageAction;
 use App\Configuration\Project;
-use App\WebContent\StructuredData;
+use App\Data\AddressAction;
 use Symfony\Component\Finder\Finder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
@@ -14,6 +16,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Sylius\Bundle\ThemeBundle\Filesystem\FilesystemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 class AbstractWebContent
 {
@@ -36,8 +39,6 @@ class AbstractWebContent
 
     protected $slugger;
 
-    protected $action;
-
     protected $filesystem;
     
     protected $serializer;
@@ -46,27 +47,33 @@ class AbstractWebContent
     
     protected $configurationService;
 
+    protected $messageAction;
+    
+    protected $personAction;
+
     public function __construct(
           ContainerInterface $container
         , Security $security
         , EntityManagerInterface $manager
         , SluggerInterface $slugger
-        , Action $dataAction
         , Content $contentTools
         , FilesystemInterface $filesystem
         , SerializerInterface $serializer
         , Project $configurationService
         , TranslatorInterface $translator
-
-    )
-    {
+        , MessageAction $messageAction
+        , PersonAction $personAction
+        , AddressAction $addressAction
+    ){
         $this->container = $container;
         $this->manager = $manager;
         $this->user = $security->getUser();
         // $this->contentTools = $this->container->get('app.tools.content');
         $this->contentTools = $contentTools;
         $this->slugger = $slugger;
-        $this->dataAction = $dataAction;
+        $this->messageAction = $messageAction;
+        $this->personAction = $personAction;
+        $this->addressAction = $addressAction;
         $this->filesystem = $filesystem;
         $this->serializer = $serializer;
         $this->translator = $translator;

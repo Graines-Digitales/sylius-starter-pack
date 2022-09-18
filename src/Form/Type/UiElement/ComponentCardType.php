@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Form\Type\UiElement;
 
 use App\Entity\Category;
-use App\WebContent\Component;
 use App\Entity\IconMediaObject;
 use App\Entity\ImageMediaObject;
 use Doctrine\ORM\EntityRepository;
@@ -32,8 +31,6 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ComponentCardType extends AbstractType
 {
-    private $componentService;
-
     private $manager;
     
     private $container;
@@ -41,11 +38,9 @@ class ComponentCardType extends AbstractType
     private $slugger;
 
     public function __construct(
-        Component $componentService,
         EntityManagerInterface $manager,
         ContainerInterface $container
     ){
-        $this->componentService = $componentService;
         $this->manager = $manager;
         $this->container = $container;
         $this->slugger = new AsciiSlugger();
@@ -53,11 +48,6 @@ class ComponentCardType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $code = 'component_card';
-        // $templates = $this->componentService->getTemplates($code); // Depends on the code specified on the component creation
-        // $styles = $this->componentService->getStyles($code);
-        $configurationProject = $this->container->getParameter('configuration_project');
-
         $builder
             ->add('_slug', TextType::class, [
                 'disabled' => true,
@@ -124,14 +114,6 @@ class ComponentCardType extends AbstractType
                 'class' => IconMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
             ])
-            // ->add('template', ChoiceType::class, [
-            //     'choices' => $templates,
-            //     'required' => true,
-            // ])
-            // ->add('style', ChoiceType::class, [
-            //     'choices' => $styles,
-            //     'required' => true,
-            // ])
             ->add('links', CollectionType::class, [
                 'entry_type' => ComponentLinkType::class,
                 'button_add_label' => 'app.ui_element.form.add_item',

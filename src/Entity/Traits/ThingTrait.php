@@ -57,6 +57,14 @@ trait ThingTrait
     public function setName(?string $name): void
     {
         $this->name = $name;
+
+        /**
+         * @HACK: permet de forcer le update à chaque fois
+         * ?à voir si cela ne pose pas de probleme de performance
+         */
+        if($name) {
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
     public function getName(): ?string

@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\TripTranslation;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,8 +26,17 @@ class TripTranslationType extends AbstractType
                     new NotBlank(['groups' => ['trip_translation_validation']])
                 ]
             ])
+            ->add('text', CKEditorType::class, [
+                'required' => false
+            ])
+            ->add('textResume', TextAreaType::class, [
+                'required' => false
+            ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('metaTitle', TextType::class, [
                 'required' => false

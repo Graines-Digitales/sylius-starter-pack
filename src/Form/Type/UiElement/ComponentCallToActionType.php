@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\WebContent\Component;
 use App\Entity\IconMediaObject;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -22,22 +21,15 @@ use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 
 class ComponentCallToActionType extends AbstractType
 {
-    private $componentService;
-
     private $slugger;
 
-    public function __construct(Component $componentService)
+    public function __construct()
     {
-        $this->componentService = $componentService;
         $this->slugger = new AsciiSlugger();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $code = 'component_contact_form';
-        // $templates = $this->componentService->getTemplates($code); // Depends on the code specified on the component creation
-        // $styles = $this->componentService->getStyles($code);
-
         $builder
             ->add('_slug', TextType::class, [
                 'disabled' => true,
@@ -74,14 +66,6 @@ class ComponentCallToActionType extends AbstractType
                 'class' => IconMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
             ])
-            // ->add('template', ChoiceType::class, [
-            //     'choices' => $templates,
-            //     'required' => true,
-            // ])
-            // ->add('style', ChoiceType::class, [
-            //     'choices' => $styles,
-            //     'required' => true,
-            // ])
         ;
 
         $builder

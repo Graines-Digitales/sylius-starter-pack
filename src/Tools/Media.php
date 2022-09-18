@@ -6,13 +6,12 @@ use App\WebContent\SEO;
 use App\Entity\ImageMediaObject;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
-// use Liip\ImagineBundle\Service\FilterService;
 use Symfony\Component\Filesystem\Filesystem;
-// use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Liip\ImagineBundle\Service\FilterService;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
 
 class Media
 {

@@ -2,12 +2,11 @@
 
 namespace App\WebContent;
 
-use App\Entity\Tag;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Channel\Channel;
-use App\Entity\Component;
 use App\Entity\Product\Product;
+
 
 class WebPage extends AbstractWebContent
 {
@@ -18,31 +17,31 @@ class WebPage extends AbstractWebContent
             ->findOneBySlug($slug);
     }
 
-    public function getDataFromCategory($slug)
-    {
-        $result = $this->manager->getRepository(Category::class)
-            ->findOneBySlug($slug);
+//     public function getDataFromCategory($slug)
+//     {
+//         $result = $this->manager->getRepository(Category::class)
+//             ->findOneBySlug($slug);
 
-        $result = json_decode($this->serializer->serialize($result,'json'), true);
+//         $result = json_decode($this->serializer->serialize($result,'json'), true);
 
-        return $this->dataAction->createWebPageFromCategoryDemand($result);
-    }
+//         return $this->dataAction->createWebPageFromCategoryDemand($result);
+//     }
 
-    public function getDataFromArticle($article)
-    {
-        // $result = $this->manager->getRepository(Article::class)
-        //     ->findOneBySlug($slug);
-        $result = json_decode($this->serializer->serialize($article,'json'), true);
-// dump($article);die;
-        return $this->dataAction->createWebPageFromArticleDemand($result);
-    }
+//     public function getDataFromArticle($article)
+//     {
+//         // $result = $this->manager->getRepository(Article::class)
+//         //     ->findOneBySlug($slug);
+//         $result = json_decode($this->serializer->serialize($article,'json'), true);
+// // dump($article);die;
+//         return $this->dataAction->createWebPageFromArticleDemand($result);
+//     }
 
-    public function getDataFromProduct($product)
-    {
-        $result = json_decode($this->serializer->serialize($product,'json'), true);
-// dump($result);die;
-        return $this->dataAction->createWebPageFromProductDemand($result);
-    }
+//     public function getDataFromProduct($product)
+//     {
+//         $result = json_decode($this->serializer->serialize($product,'json'), true);
+// // dump($result);die;
+//         return $this->dataAction->createWebPageFromProductDemand($result);
+//     }
 
     public function getDataByCode($code)
     {

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\WebContent\Component;
 use App\Entity\ImageMediaObject;
 use App\Entity\VideoMediaObject;
 use Symfony\Component\Form\FormEvent;
@@ -26,27 +25,18 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ComponentCardsType extends AbstractType
 {
-    private $componentService;
-
     private $slugger;
 
     private $entityManager;
 
-    public function __construct(
-        Component $componentService,
-        EntityManagerInterface $entityManager
-    ){
-        $this->componentService = $componentService;
+    public function __construct(EntityManagerInterface $entityManager)
+    {
         $this->slugger = new AsciiSlugger();
         $this->entityManager = $entityManager;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $code = 'component_cards'; // code du component enregistré en base de données
-        // $templates = $this->componentService->getTemplates($code); // Depends on the code specified on the component creation
-        // $styles = $this->componentService->getStyles($code);
-
         $builder
             ->add('_slug', TextType::class, [
                 'disabled' => true,
