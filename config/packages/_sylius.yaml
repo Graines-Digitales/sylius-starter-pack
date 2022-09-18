@@ -1522,6 +1522,9 @@ sylius_grid:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
+                translation.slug:
+                    type: string
+                    label: sylius.ui.slug
                 departureTime:
                     type: datetime
                     label: sylius.ui.date
