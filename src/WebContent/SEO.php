@@ -90,9 +90,11 @@ class SEO
         return $media->getName();
     }
 
-    public function getStructuredData($metaData, $entities)
-    {
-        return $this->webContentStructuredDataService->generate($metaData, $entities);
     
+    public function defineStructuredData($metaData, $type, $entity)
+    {
+        $entities = [$type => $entity];
+        $structuredData = $this->webContentStructuredDataService->generate($metaData, $entities);
+        $entity->setStructuredData($structuredData);
     }
 }

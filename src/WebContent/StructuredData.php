@@ -25,9 +25,10 @@ class StructuredData extends AbstractWebContent
         $newArrayPath = explode("/", substr($request->getpathInfo(), 1));
 
         $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
-        $path = $kernelProjectDir . '/data/json_ld_schema/';
+        $path = $kernelProjectDir . '/config/json_ld_schema/';
         $structuredData = [];
         $i = 0;
+        // dump($path);die;
         $filesystem = new Filesystem();
         if($filesystem->exists($path)) {
             $finder = new Finder();
@@ -47,11 +48,13 @@ class StructuredData extends AbstractWebContent
                     $schemaType = (isset($schema['@type']))? $schema['@type']: null;
                     switch ($schemaType) {
                         case 'WebPage' :
+                            // dump($page);die;
                             if (!empty($page)) {
                                 $structuredData[$i] = $this->generatePageSchema(
                                     $page
                                     , $schema
                                 );
+                                $i++;
                             }
                         break;
                         case 'BreadcrumbList':
@@ -60,6 +63,7 @@ class StructuredData extends AbstractWebContent
                                 , $this->host
                                 , $schema
                             );
+                            $i++;
                         break;
                         case 'Organization':
                             if (!empty($metaData['organization'])) {
@@ -67,7 +71,9 @@ class StructuredData extends AbstractWebContent
                                     $metaData['organization']
                                     , $schema
                                 );
+                                $i++;
                             }
+                            
                         break;
                         case 'Article':
                             if(!empty($article)){
@@ -78,18 +84,21 @@ class StructuredData extends AbstractWebContent
                                     , $this->host
                                     ,$schema
                                 );
+                                $i++;
                             }
+                            
                         break;
                     }
-                    $i++;
+                    
                 }
             }
         }
 
-        return json_encode(
-            $structuredData
-            , JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-        );
+        return $structuredData;
+        // return json_encode(
+        //     $structuredData
+        //     , JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+        // );
     }
 
     private function generateArticleSchema($article,$metaData,$newArrayPath,$host,$schema){
@@ -173,19 +182,23 @@ class StructuredData extends AbstractWebContent
             }
             if ('address' == $key) {
                 $j = 0;
-                foreach ($item as $k => $itemList) {
-                    if (0 == $j) {
-                        $addresses = [
+                // dump($metaData->getAddresses()[0]);die;
+                if (null !== $metaData->getAddresses()[0]) {
+                    foreach ($item as $k => $itemList) {
+                        if (0 == $j) {
+                            $addresses = [
                             "@type"=> "PostalAddress",
                             "addressLocality" => $metaData->getAddresses()[0]->getCity().', '.$metaData->getAddresses()[0]->getCountry(),
                             "postalCode"=> $metaData->getAddresses()[0]->getPostcode(),
                             "streetAddress"=> $metaData->getAddresses()[0]->getAddress()
                         ];
+                        }
+                        $j++;
                     }
-                $j++;
                 }
                 $upToDateSchema[$key] = $addresses;                                      
             }
+            // dump($metaData);die;
             if ('openingHoursSpecification' == $key) {
                 // $upToDateSchema[$key] = $metaData->getOpeningHours();
             }
