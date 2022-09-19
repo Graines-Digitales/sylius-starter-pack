@@ -293,13 +293,13 @@ class StructuredData extends AbstractWebContent
                 
                 $itemListElement = [];
                 $url = $this->url;
-                foreach($itemList as $key=>$item) {     
+                foreach($itemList as $i=>$item) {     
                     $url.= ($item == 'home')? '/' . '': '/' . $item;
                     array_push(
                         $itemListElement,
                         [
                             "@type" => "ListItem",
-                            "position" => $key,
+                            "position" => $i,
                             "item" => [
                                 '@id' => $url,
                                 'name' => $item
