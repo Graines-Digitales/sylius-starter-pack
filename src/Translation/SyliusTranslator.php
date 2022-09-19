@@ -26,7 +26,7 @@ class SyliusTranslator
              */
             $isTranslatable = $this->checkIfFieldIsTranslatable($field, $form);
             if(false === $isTranslatable
-                || in_array($field, array_keys($form->all()))
+                || !in_array($field, array_keys($form->all()))
             ) {
                 continue;
             }
