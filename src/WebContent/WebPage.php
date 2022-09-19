@@ -11,6 +11,10 @@ use App\Entity\Product\Product;
 class WebPage extends AbstractWebContent
 {
 
+    public function moreData($entity)
+    {
+        parent::moreData($entity);
+    }
     // public function getData($slug)
     // {
     //     return $this->manager->getRepository(\App\Entity\WebPage::class)

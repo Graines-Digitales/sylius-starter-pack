@@ -8,6 +8,7 @@ use App\Entity\WebPageTranslation;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\WebPageTranslationType;
 use App\Translation\SyliusTranslator;
+use App\WebContent\MetaData;
 use App\WebContent\WebPage as WebContentWebPage;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,6 +28,8 @@ class WebPageListener
 
     private $syliusTranslator;
 
+    private $metaDataService;
+
     public function __construct(
         ContainerInterface $container
         , SEO $webContentSEOService
@@ -34,6 +37,7 @@ class WebPageListener
         , EntityManagerInterface $entityManager
         , WebPageDataAction $webPageDataAction
         , SyliusTranslator $syliusTranslator
+        , MetaData $metaDataService
     ){
         $this->container = $container;
         $this->webContentSEOService = $webContentSEOService;
@@ -41,6 +45,7 @@ class WebPageListener
         $this->entityManager = $entityManager;
         $this->webPageDataAction = $webPageDataAction;
         $this->syliusTranslator = $syliusTranslator;
+        $this->metaDataService = $metaDataService;
     }
 
     public function preUpdate(LifecycleEventArgs $args)
@@ -49,6 +54,8 @@ class WebPageListener
         if (!$entity instanceof WebPageTranslation) {
             return;
         }
+
+        
 
         if($entity->getLocale() == 'en_GB') {
             $serializer = $this->container->get('serializer');
@@ -63,9 +70,11 @@ class WebPageListener
             $this->webPageDataAction->hydrate($currentData, $entity->getTranslatable(), 'en_GB');
         }
 
+        // dump($this->webContentWebPageService);die;
         $this->webContentWebPageService->moreData($entity);
         $this->webContentSEOService->defineMetaData($entity);
-
+        $metaData = $this->metaDataService->getData($entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
     }
 
     public function prePersist(LifecycleEventArgs $args)

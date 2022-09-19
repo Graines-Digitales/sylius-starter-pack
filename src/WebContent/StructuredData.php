@@ -2,277 +2,317 @@
 
 namespace App\WebContent;
 
+use App\Entity\ArticleTranslation;
+use App\Entity\TripTranslation;
+use App\Entity\WebPageTranslation;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\Request;
 
 
 class StructuredData extends AbstractWebContent
 {
-    private $host;
+    private $url;
 
-    public function generate($metaData, $entities)
+    private $cdn;
+
+    public function generate($metaData, $entity)
     {
-        $page = (isset($entities['WebPage']))?$entities['WebPage']:null;
-        $article = (isset($entities['Article']))?$entities['Article']:null;
-        $product = (isset($entities['Product']))?$entities['Product']:null;
-        $category = (isset($entities['Tag']))?$entities['Tag']:null;
-
-
-        /** A revoir... */
-        $this->host = $this->container->get('router')->getContext()->getScheme() . '://' . $this->container->get('router')->getContext()->getHost();
-        $request = Request::createFromGlobals();
-        $newArrayPath = explode("/", substr($request->getpathInfo(), 1));
-
         $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
-        $path = $kernelProjectDir . '/data/json_ld_schema/';
+
+        $this->url = $metaData['organization']->getUrl();
+        if(null === $this->url) {
+            throw new \Exception('Please define the URL of your organization');
+        }
+
+        $this->cdn = $this->container->getParameter('cdn_media');
+        if(null === $this->cdn) {
+            throw new \Exception('Please define the CDN of your organization');
+        }
+
+        $path = $kernelProjectDir . '/config/json_ld_schema/organization.json';
+        $organizationSchema = json_decode(file_get_contents($path), true);
+        $path = $kernelProjectDir . '/config/json_ld_schema/breadcrumb_list.json';
+        $breadcrumbListSchema = json_decode(file_get_contents($path), true);
+
         $structuredData = [];
-        $i = 0;
-        $filesystem = new Filesystem();
-        if($filesystem->exists($path)) {
-            $finder = new Finder();
-            $finder->depth('== 0');
-            $finder->files()->in($path);
-            if ($finder->hasResults()) {
-                foreach ($finder as $file) {
-                    $absoluteFilePath = $file->getRealPath();
-                    $filePath = $file->getPath();
-                    $fileNameWithExtension = $file->getRelativePathname();
-                    $ext = pathinfo($fileNameWithExtension, PATHINFO_EXTENSION);
-                    $file = basename($fileNameWithExtension);
-                    $filename = basename($fileNameWithExtension, ".".$ext);
-                    if('json' === $ext) {
-                        $schema = json_decode(file_get_contents($absoluteFilePath), true);
-                    }
-                    $schemaType = (isset($schema['@type']))? $schema['@type']: null;
-                    switch ($schemaType) {
-                        case 'WebPage' :
-                            if (!empty($page)) {
-                                $structuredData[$i] = $this->generatePageSchema(
-                                    $page
-                                    , $schema
-                                );
-                            }
-                        break;
-                        case 'BreadcrumbList':
-                            $structuredData[$i] = $this->generateBreadcrumbSchema(
-                                $newArrayPath
-                                , $this->host
-                                , $schema
-                            );
-                        break;
-                        case 'Organization':
-                            if (!empty($metaData['organization'])) {
-                                $structuredData[$i] = $this->generateOrganizationSchema(
-                                    $metaData['organization']
-                                    , $schema
-                                );
-                            }
-                        break;
-                        case 'Article':
-                            if(!empty($article)){
-                                $structuredData[$i] = $this->generateArticleSchema(
-                                    $article
-                                    , $metaData['organization']
-                                    ,$newArrayPath
-                                    , $this->host
-                                    ,$schema
-                                );
-                            }
-                        break;
-                    }
-                    $i++;
-                }
+
+        if ($entity instanceof WebPageTranslation) {
+            $path = $kernelProjectDir . '/config/json_ld_schema/web_page.json';
+            $filesystem = new Filesystem();
+            if ($filesystem->exists($path)) {
+                $itemList = [
+                    'home',
+                    $entity->getSlug()
+                ];
+                array_push(
+                    $structuredData,
+                    $this->generateBreadcrumbSchema($itemList, $breadcrumbListSchema)
+                );
+                
+                array_push(
+                    $structuredData,
+                    $this->generateOrganizationSchema(
+                        $metaData['organization'],
+                        $organizationSchema
+                    )
+                );
+                $schema = json_decode(file_get_contents($path), true);
+                array_push(
+                    $structuredData,
+                    $this->generatePageSchema($entity, $schema)
+                );
             }
         }
 
-        return json_encode(
-            $structuredData
-            , JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
-        );
+        if($entity instanceOf ArticleTranslation) {
+            $path = $kernelProjectDir . '/config/json_ld_schema/article.json';
+            $filesystem = new Filesystem();
+            if ($filesystem->exists($path)) {
+                $itemList = [
+                    'home',
+                    'blog',
+                    $entity->getSlug()
+                ];
+                array_push(
+                    $structuredData,
+                    $this->generateBreadcrumbSchema($itemList, $breadcrumbListSchema)
+                );
+
+                array_push(
+                    $structuredData,
+                    $this->generateOrganizationSchema(
+                        $metaData['organization'],
+                        $organizationSchema
+                    )
+                );
+                $schema = json_decode(file_get_contents($path), true);
+                array_push(
+                    $structuredData,
+                    $this->generateArticleSchema(
+                        $entity,
+                        $metaData['organization'],
+                        $schema
+                    )
+                );
+            }
+        }
+
+
+        if($entity instanceOf TripTranslation) {
+            $path = $kernelProjectDir . '/config/json_ld_schema/trip.json';
+            $filesystem = new Filesystem();
+            if ($filesystem->exists($path)) {
+                $itemList = [
+                    'home',
+                    'séjour',
+                    $entity->getSlug()
+                ];
+                array_push(
+                    $structuredData,
+                    $this->generateBreadcrumbSchema($itemList, $breadcrumbListSchema)
+                );
+                array_push(
+                    $structuredData,
+                    $this->generateOrganizationSchema(
+                        $metaData['organization'],
+                        $organizationSchema
+                    )
+                );
+                $schema = json_decode(file_get_contents($path), true);
+                array_push(
+                    $structuredData,
+                    $this->generateTripSchema($entity, $schema)
+                );
+            }
+        }
+
+        return $structuredData;
     }
 
-    private function generateArticleSchema($article,$metaData,$newArrayPath,$host,$schema){
+    private function generateArticleSchema($article, $organization, $referenceSchema)
+    {
         $author = [];
-        $upToDateSchema = [];
-        foreach ($schema as $key => $item) {
+        $schema = [];
+        foreach ($referenceSchema as $key => $item) {
             if ('@context' == $key) {
-                $upToDateSchema[$key] = $item;
+                $schema[$key] = $item;
             }
             if ('@type' == $key) {
-                $upToDateSchema[$key] = $item;
+                $schema[$key] = $item;
             }
             if ('headline' == $key) {
-                $upToDateSchema[$key] = $article->getHeadline();
+                $schema[$key] = $article->getHeadline();
             }
             if ('alternativeHeadline' == $key) {
-                $upToDateSchema[$key] = $article->getAlternativeHeadline();
+                $schema[$key] = $article->getAlternativeHeadline();
             }
             if ('url' == $key) {
-                $upToDateSchema[$key] = $host.'/'.$newArrayPath[0].'/'.$newArrayPath[1];
+                $schema[$key] = $this->url . '/blog/' .$article->getSlug();
             }
             if ('datePublished' == $key) {
-                $upToDateSchema[$key] = $article->getDatePublished()->format('Y-m-d H:i:s');
+                $schema[$key] = $article->getDatePublished()->format('Y-m-d H:i:s');
             }
             if ('dateCreated' == $key) {
-                $upToDateSchema[$key] = $article->getDateCreated()->format('Y-m-d H:i:s');
+                $schema[$key] = $article->getCreatedAt()->format('Y-m-d H:i:s');
             }
             if ('dateModified' == $key) {
-                $upToDateSchema[$key] = $article->getDateModified()->format('Y-m-d H:i:s');
+                $schema[$key] = $article->getUpdatedAt()->format('Y-m-d H:i:s');
             }
             if ('description' == $key) {
-                $upToDateSchema[$key] = $article->getArticleResume();
+                $schema[$key] = $article->getArticleResume();
             }
             if ('author' == $key) {
-                $j = 0;
-                foreach ($item as $k => $itemList) {
-                    if (0 == $j) {
-                        $author = [
-                            "@type" => "Person",
-                            "name" => $metaData->getName(),
-                            "url"=>$metaData->getUrl()
-        
-                        ];
-                    }
-                $j++;
-                }
-                $upToDateSchema[$key] = $author;                                      
+                array_push(
+                    $author,
+                    [
+                        "@type" => "Person",
+                        "name" => $organization->getName(),
+                        "url"=> $organization->getUrl()
+                    ]
+                );
+                $schema[$key] = $author;                                      
             }
-            if ('image' == $key) {
-                $upToDateSchema[$key] = $article->getPrimaryImage()->getUrl();
+            if ('image' == $key && null !== $article->getTranslatable()->getPrimaryImage()) {
+                $schema[$key] = $this->cdn . '/' . $article->getTranslatable()->getPrimaryImage()->getFilename();
             }
         }
-        return $upToDateSchema;  
+
+        return $schema;  
     }
     
-    private function generateOrganizationSchema($metaData, $schema)
+    private function generateOrganizationSchema($metaData, $referenceSchema)
     {
         $addresses = [];
-        $upToDateSchema = [];
-        foreach ($schema as $key => $item) {
+        $schema = [];
+        foreach ($referenceSchema as $key => $item) {
             if ('@context' == $key) {
-                $upToDateSchema[$key] = $item;
+                $schema[$key] = $item;
             }
             if ('@type' == $key) {
-                $upToDateSchema[$key] = $item;
+                $schema[$key] = $item;
             }
             if ('name' == $key) {
-                $upToDateSchema[$key] = $metaData->getName();
+                $schema[$key] = $metaData->getName();
             }
             if ('email' == $key) {
-                $upToDateSchema[$key] = $metaData->getEmail();
+                $schema[$key] = $metaData->getEmail();
             }
             if ('faxNumber' == $key) {
-                $upToDateSchema[$key] = $metaData->getPhone();
+                $schema[$key] = $metaData->getPhone();
             }
             if ('telephone' == $key) {
-                $upToDateSchema[$key] = $metaData->getPhone();
+                $schema[$key] = $metaData->getPhone();
             }
-            if ('image' == $key) {
-                $upToDateSchema[$key] = $metaData->getPrimaryImage();
+            if ('url' == $key) {
+                $schema[$key] = $metaData->getUrl();
+            }
+            if ('image' == $key && null !== $metaData->getPrimaryImage()) {
+                $schema[$key] = $this->cdn . '/' . $metaData->getPrimaryImage()->getFilename();
             }
             if ('address' == $key) {
                 $j = 0;
-                foreach ($item as $k => $itemList) {
-                    if (0 == $j) {
-                        $addresses = [
+                // dump($metaData->getAddresses()[0]);die;
+                if (null !== $metaData->getAddresses()[0]) {
+                    foreach ($item as $k => $itemList) {
+                        if (0 == $j) {
+                            $addresses = [
                             "@type"=> "PostalAddress",
                             "addressLocality" => $metaData->getAddresses()[0]->getCity().', '.$metaData->getAddresses()[0]->getCountry(),
                             "postalCode"=> $metaData->getAddresses()[0]->getPostcode(),
                             "streetAddress"=> $metaData->getAddresses()[0]->getAddress()
                         ];
+                        }
+                        $j++;
                     }
-                $j++;
                 }
-                $upToDateSchema[$key] = $addresses;                                      
+                $schema[$key] = $addresses;                                      
             }
+            // dump($metaData);die;
             if ('openingHoursSpecification' == $key) {
                 // $upToDateSchema[$key] = $metaData->getOpeningHours();
             }
         }
-        return $upToDateSchema;
+        return $schema;
     }
 
-    private function generatePageSchema($page, $schema)
+    private function generateTripSchema($entity, $referenceSchema)
     {
-        $upToDateSchema = [];
+        $schema = [];
 
-        foreach ($schema as $key => $item) {
+        foreach ($referenceSchema as $key => $item) {
             if ('@context' == $key) {
-                $upToDateSchema[$key] = $item;
+                $schema[$key] = $item;
             }
             if ('@type' == $key) {
-                $upToDateSchema[$key] = $item;
+                $schema[$key] = $item;
             }
             if ('name' == $key) {
-                $upToDateSchema[$key] = $page->getMetaTitle();
+                $schema[$key] = $entity->getMetaTitle();
             }
             if ('description' == $key) {
-                $upToDateSchema[$key] = $page->getMetaDescription();
+                $schema[$key] = $entity->getMetaDescription();
             }
         }
 
-        return $upToDateSchema;
+        return $schema;
     }
-    
-    private function generateBreadcrumbSchema($newArrayPath,$host, $schema)
+
+    private function generatePageSchema($page, $referenceSchema)
     {
-        $upToDateSchema = [];
-        $itemListElement = [];
-        foreach ($schema as $key => $item) {
+        $schema = [];
+
+        foreach ($referenceSchema as $key => $item) {
             if ('@context' == $key) {
-                $upToDateSchema[$key] = $item;
+                $schema[$key] = $item;
             }
             if ('@type' == $key) {
-                $upToDateSchema[$key] = $item;
+                $schema[$key] = $item;
             }
-            if ('itemListElement' == $key) {
-                $j = 0;
-                foreach ($item as $k => $itemList) {
-                    if (0 == $j) {
-                        $itemListElement[$k] = [
-                                "@type" => "ListItem",
-                                "position" => 0,
-                                "item"=>
-                                    [
-                                        '@id' => $host,
-                                        'name' => 'accueil'
-                                    ]
-                                
-                        ];
-                    } 
-                    if (1 == $j && !empty($newArrayPath[0])) {
-                            $itemListElement[$k] = [
-                                "@type" => "ListItem",
-                                    "position" => 1,
-                                    "item"=>
-                                        [
-                                            '@id' => $host.'/'.$newArrayPath[0],
-                                            'name' => $newArrayPath[0]
-                                        ]
-                                    
-                            ];
-                        }
-                        if (2 == $j && isset($newArrayPath[1])) {
-                            $itemListElement[$k] = [
-                                "@type" => "ListItem",
-                                    "position" => 2,
-                                    "item"=>
-                                        [
-                                            '@id' => $host.'/'.$newArrayPath[0].'/'.$newArrayPath[1],
-                                            'name' => $newArrayPath[1]
-                                        ]
-                                    
-                            ];
-                        }
-                    $j++;
-                } // fin de foreach item
-                $upToDateSchema[$key] = $itemListElement;
+            if ('name' == $key) {
+                $schema[$key] = $page->getMetaTitle();
+            }
+            if ('description' == $key) {
+                $schema[$key] = $page->getMetaDescription();
             }
         }
 
-        // dd($upToDateSchema);
-        return $upToDateSchema;
+        return $schema;
+    }
+    
+    private function generateBreadcrumbSchema($itemList, $referenceSchema, $root = null)
+    {
+        $schema = [];
+        foreach ($referenceSchema as $key => $item) {
+            if ('@context' == $key) {
+                $schema[$key] = $item;
+            }
+            if ('@type' == $key) {
+                $schema[$key] = $item;
+            }
+            if ('itemListElement' == $key) {
+                
+                $itemListElement = [];
+                $url = $this->url;
+                foreach($itemList as $key=>$item) {     
+                    $url.= ($item == 'home')? '/' . '': '/' . $item;
+                    array_push(
+                        $itemListElement,
+                        [
+                            "@type" => "ListItem",
+                            "position" => $key,
+                            "item" => [
+                                '@id' => $url,
+                                'name' => $item
+                            ]    
+                        ]
+                    );
+                }
+                
+                $schema[$key] = $itemListElement;
+            }
+        }
+
+        return $schema;
     }
 
 }

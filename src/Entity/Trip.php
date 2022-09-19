@@ -235,4 +235,5 @@ class Trip  implements ResourceInterface, TranslatableInterface
 
         return $this;
     }
+    
 }

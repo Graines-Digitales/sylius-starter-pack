@@ -6,6 +6,7 @@ use App\Data\TripAction as TripDataAction;
 use App\Entity\TripTranslation;
 use App\Form\Type\TripTranslationType;
 use App\Translation\SyliusTranslator;
+use App\WebContent\MetaData;
 use App\WebContent\SEO;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -21,18 +22,21 @@ class TripListener
 
     protected $tripDataAction;
 
-    
+    protected $metaDataService;
+
     public function __construct(
         ContainerInterface $container
         , SEO $webContentSEOService
         , SyliusTranslator $syliusTranslator
         , TripDataAction $tripDataAction
+        , MetaData $metaDataService
     )
     {
         $this->container = $container;
         $this->webContentSEOService = $webContentSEOService;
         $this->syliusTranslator = $syliusTranslator;
         $this->tripDataAction = $tripDataAction;
+        $this->metaDataService = $metaDataService;
 
     }
 
@@ -58,7 +62,8 @@ class TripListener
         }
 
         $this->webContentSEOService->defineMetaData($entity);
-        
+        $metaData = $this->metaDataService->getData($entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
     }
 
     public function prePersist(LifecycleEventArgs $args)

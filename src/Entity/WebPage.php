@@ -96,6 +96,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $video;
 
 
+
     public function __toString()
     {
         if(null !== $this->getTranslation()->getHeadline()) {
@@ -274,5 +275,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
 
         return $this;
     }
+
+
 
 }
