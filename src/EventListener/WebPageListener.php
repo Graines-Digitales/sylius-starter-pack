@@ -74,7 +74,7 @@ class WebPageListener
         $this->webContentWebPageService->moreData($entity);
         $this->webContentSEOService->defineMetaData($entity);
         $metaData = $this->metaDataService->getData($entity);
-        $this->webContentSEOService->defineStructuredData($metaData, 'WebPage', $entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
     }
 
     public function prePersist(LifecycleEventArgs $args)

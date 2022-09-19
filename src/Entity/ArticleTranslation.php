@@ -59,6 +59,11 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
 
 
     /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $structuredData = [];
+
+    /**
      * Get the value of slug
      */
     public function getSlug()
@@ -98,6 +103,18 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     public function setComponents(?string $components): self
     {
         $this->components = $components;
+
+        return $this;
+    }
+
+    public function getStructuredData(): ?array
+    {
+        return $this->structuredData;
+    }
+
+    public function setStructuredData(?array $structuredData): self
+    {
+        $this->structuredData = $structuredData;
 
         return $this;
     }

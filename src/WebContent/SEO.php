@@ -91,10 +91,9 @@ class SEO
     }
 
     
-    public function defineStructuredData($metaData, $type, $entity)
+    public function defineStructuredData($metaData, $entity)
     {
-        $entities = [$type => $entity];
-        $structuredData = $this->webContentStructuredDataService->generate($metaData, $entities);
+        $structuredData = $this->webContentStructuredDataService->generate($metaData, $entity);
         $entity->setStructuredData($structuredData);
     }
 }

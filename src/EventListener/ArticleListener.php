@@ -8,6 +8,7 @@ use App\Form\Type\ArticleTranslationType;
 use App\Translation\SyliusTranslator;
 use App\WebContent\SEO;
 use App\WebContent\Article as WebContentArticle;
+use App\WebContent\MetaData;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -23,6 +24,8 @@ class ArticleListener
     protected $syliusTranslator;
 
     protected $articleDataAction;
+
+    protected $metaDataService;
     
     public function __construct(
         ContainerInterface $container
@@ -30,6 +33,7 @@ class ArticleListener
         , WebContentArticle $webContentArticleService
         , SyliusTranslator $syliusTranslator
         , ArticleDataAction $articleDataAction
+        , MetaData $metaDataService
     )
     {
         $this->container = $container;
@@ -37,6 +41,7 @@ class ArticleListener
         $this->webContentArticleService = $webContentArticleService;
         $this->syliusTranslator = $syliusTranslator;
         $this->articleDataAction = $articleDataAction;
+        $this->metaDataService = $metaDataService;
     }
 
     public function preUpdate(LifecycleEventArgs $args)
@@ -65,6 +70,8 @@ class ArticleListener
 
         $this->webContentArticleService->moreData($entity);
         $this->webContentSEOService->defineMetaData($entity);
+        $metaData = $this->metaDataService->getData($entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
     }
 
     public function prePersist(LifecycleEventArgs $args)

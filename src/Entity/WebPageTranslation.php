@@ -47,7 +47,6 @@ class WebPageTranslation extends AbstractTranslation implements ResourceInterfac
      */
     private $slug;
 
-
     /**
      * @ORM\Column(type="json", nullable=true)
      */
