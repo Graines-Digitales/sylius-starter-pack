@@ -25,10 +25,12 @@ class SyliusTranslator
              * SQUIZZ NON TRANSLATABLE FIELD
              */
             $isTranslatable = $this->checkIfFieldIsTranslatable($field, $form);
-            if(false === $isTranslatable) {
+            if(false === $isTranslatable
+                || !in_array($field, array_keys($form->all()))
+            ) {
                 continue;
             }
-
+            
             $currentData[$field] = trim($currentData[$field]);
             $referenceData[$field] = trim($referenceData[$field]);
             if(empty($currentData[$field])
