@@ -96,6 +96,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $video;
 
 
+
     public function __toString()
     {
         if(null !== $this->getTranslation()->getHeadline()) {
@@ -141,13 +142,13 @@ class WebPage implements ResourceInterface, TranslatableInterface
     public function getComponents(): ?string
     {
 //        return $this->getTranslation()->getComponent();
-        return $this->getTranslation('fr_FR')->getComponents();
+        return $this->getTranslation()->getComponents();
     }
 
     public function setComponents(string $components): self
     {
 //        $this->getTranslation()->setComponent($component);
-        $this->getTranslation('fr_FR')->setComponents($components);
+        $this->getTranslation()->setComponents($components);
 
         return $this;
     }
@@ -157,7 +158,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
      */
     public function getSlug()
     {
-        return $this->getTranslation('fr_FR')->getSlug();
+        return $this->getTranslation()->getSlug();
 //        return $this->getTranslation()->getSlug();
     }
 
@@ -274,5 +275,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
 
         return $this;
     }
+
+
 
 }

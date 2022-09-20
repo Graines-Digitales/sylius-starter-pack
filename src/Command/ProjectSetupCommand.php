@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Data\Import;
+use App\Data\Action as DataAction;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Command\Command;
@@ -18,7 +18,7 @@ class ProjectSetupCommand extends Command
 {
     private $container;
 
-    private $importService;
+    private $dataAction;
 
     protected static $defaultName = 'app:project-setup';
 
@@ -26,10 +26,10 @@ class ProjectSetupCommand extends Command
 
     public function __construct(
         ContainerInterface $container
-        , Import $importService
+        , DataAction $dataAction
     ){
         $this->container = $container;
-        $this->importService = $importService;
+        $this->dataAction = $dataAction;
 
         parent::__construct();
     }
@@ -62,14 +62,14 @@ class ProjectSetupCommand extends Command
                 true
             );
             if ($helper->ask($input, $output, $question)) {
-                $this->importService->run($contentPath, $folders);
+                $this->dataAction->run($contentPath, $folders);
 
                 $io->success('Les données du dossier content/ ont bien été enregistrées.');
             }
         }
         
 
-        if($result = $this->importService->getMainOrganization($contentPath)) {
+        if($result = $this->dataAction->getMainOrganization($contentPath)) {
             
             $question = new ConfirmationQuestion(
                 'Les données de votre organisation sont elles correctes ? (Y|n)',

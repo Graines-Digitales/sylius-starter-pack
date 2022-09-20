@@ -2,48 +2,35 @@
 
 namespace App\Form\Type;
 
-use App\Tools\Media;
 use App\Entity\Category;
-use App\WebContent\WebPage;
 use App\Entity\Organization;
 use App\Entity\IconMediaObject;
 use App\Entity\ImageMediaObject;
 use App\Repository\CategoryRepository;
-use App\Repository\MediaObjectRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 
 
 class SocialLinkType extends AbstractResourceType
 {
-    private $container;
+    private $entityManager;
 
-    private $webPageService;
-
-    // private $mediaService;
-
-    public function __construct(
-        ContainerInterface $container,
-        WebPage $webPageService
-        // Media $mediaService
-    ){
-        $this->container = $container;
-        $this->webPageService = $webPageService;
-        // $this->mediaService = $mediaService;
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $configurationProject = $this->container->getParameter('configuration_project');
         $slug = 'reseau-social';
-        $category = $this->webPageService->getCategory($slug);
-        // $icons = $this->mediaService->getIcons();
+        $category = $this->entityManager->getRepository(Category::class)
+            ->findOneBySlug($slug);
 
         $builder
             ->add('isEnabled', CheckboxType::class, [
@@ -52,22 +39,13 @@ class SocialLinkType extends AbstractResourceType
             ->add('icon', EntityType::class, [
                 'attr' => ['class' => 'select2-image'],
                 'required' => false,
-                // 'constraints' => [
-                //     new NotBlank(['groups' => ['social_link_validation']])
-                // ],
                 'class' => IconMediaObject::class,
-                'placeholder' => 'app.ui_element.field.choose',
-                // 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                //     return $repo->createQueryBuilderByEncodingSvg($configurationProject);
-                // }
+                'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('primaryImage', EntityType::class, [
                 'attr' => ['class' => 'select2-image'],
                 'class' => ImageMediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
-                // 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-                //     return $repo->createQueryBuilderByEncodingImage($configurationProject);
-                // }
+                'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('name', TextType::class, [
                 'required' => true,
@@ -116,6 +94,6 @@ class SocialLinkType extends AbstractResourceType
      */
     public function getBlockPrefix()
     {
-        return 'app_manufacturer';
+        return 'app_social_link';
     }
 }

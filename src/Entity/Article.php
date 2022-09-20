@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\LockableTrait;
 use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -22,6 +23,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 class Article implements ResourceInterface, TranslatableInterface
 {
     use SeoTrait;
+    use LockableTrait;
     use IdentifiableTrait;
     use TimestampableEntity;
     use TranslatableTrait {

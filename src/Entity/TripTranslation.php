@@ -42,12 +42,17 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
     private $components;
 
      /**
-     * @Gedmo\Slug(fields={"headline"}, prefix="")
+     * @Gedmo\Slug(fields={"headline"}, updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
      */
     private $slug;
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $structuredData = [];
 
     public function getComponents(): ?string
     {
@@ -67,5 +72,17 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    public function getStructuredData(): ?array
+    {
+        return $this->structuredData;
+    }
+
+    public function setStructuredData(?array $structuredData): self
+    {
+        $this->structuredData = $structuredData;
+
+        return $this;
     }
 }

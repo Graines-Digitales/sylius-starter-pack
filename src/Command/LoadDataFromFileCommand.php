@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Data\Import;
+use App\Data\Action as DataAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -13,7 +13,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadDataFromFileCommand extends Command
-{
+{   
+    /**
+     * Exemple : ./bin/console app:load-data-from-file newsletter.md components
+     */
     protected static $defaultName = 'app:load-data-from-file';
     protected static $defaultDescription = 'Add a short description for your command';
 
@@ -21,16 +24,16 @@ class LoadDataFromFileCommand extends Command
 
     private $entityManager;
 
-    private $importService;
+    private $dataAction;
 
     public function __construct(
         ContainerInterface $container
         , EntityManagerInterface $entityManager
-        , Import $importService
+        , DataAction $dataAction
     ){
         $this->container = $container;
         $this->entityManager = $entityManager;
-        $this->importService = $importService;
+        $this->dataAction = $dataAction;
 
         parent::__construct();
     }
@@ -56,8 +59,15 @@ class LoadDataFromFileCommand extends Command
             $absoluteFilePath = $kernelProjectDir . DIRECTORY_SEPARATOR;
             $absoluteFilePath.= 'content/fr' .DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $filename;
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
-            $data = $this->importService->extractData($absoluteFilePath, $extension);
-            $entity = $this->importService->dataServicesDispatch($data, $folder);
+            
+            if(empty($extension)) {
+                $io->error('Extension de fichier manquante');
+
+                return Command::FAILURE;
+            }
+            
+            $data = $this->dataAction->extractData($absoluteFilePath, $extension);
+            $entity = $this->dataAction->dataServicesDispatch($data, $folder);
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
         }

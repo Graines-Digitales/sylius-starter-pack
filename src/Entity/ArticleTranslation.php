@@ -29,7 +29,7 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     use TimestampableEntity;
 
     /**
-     * @Gedmo\Slug(fields={"headline"}, prefix="")
+     * @Gedmo\Slug(fields={"headline"}, updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
@@ -57,6 +57,11 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
      */
     private $components;
 
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $structuredData = [];
 
     /**
      * Get the value of slug
@@ -98,6 +103,18 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     public function setComponents(?string $components): self
     {
         $this->components = $components;
+
+        return $this;
+    }
+
+    public function getStructuredData(): ?array
+    {
+        return $this->structuredData;
+    }
+
+    public function setStructuredData(?array $structuredData): self
+    {
+        $this->structuredData = $structuredData;
 
         return $this;
     }

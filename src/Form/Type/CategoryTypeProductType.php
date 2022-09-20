@@ -3,19 +3,13 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use App\Entity\ImageMediaObject;
-use App\WebContent\WebPage;
 use App\Entity\LocalBusiness;
-use App\Configuration\Project;
-use App\Repository\CategoryRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\MediaObjectRepository;
+use App\Entity\ImageMediaObject;
 use App\Form\Type\CategoryTranslationType;
+use App\Repository\ImageMediaObjectRepository;
 use Symfony\Component\Form\FormBuilderInterface;
-use App\Form\DataTransformer\CategoryTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
@@ -26,63 +20,22 @@ class CategoryTypeProductType extends AbstractResourceType
 {
     private $container;
 
-    private $manager;
-
-    private $configurationService;
-    
-    private $webPageService;
-
-    public function __construct(
-        ContainerInterface $container,
-        EntityManagerInterface $manager,
-        Project $configurationService,
-        WebPage $webPageService
-    ){
+    public function __construct(ContainerInterface $container)
+    {
         $this->container = $container;
-        $this->manager = $manager;
-        $this->configurationService = $configurationService;
-        $this->webPageService = $webPageService;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $configurationProject = $this->container->getParameter('configuration_project');
-        $categoryTypeSlugs =  $this->configurationService->getCategoryTypeSlugs('product');
-
-        // $slug = 'product';
-        $category = 'product';// $this->webPageService->getCategory($slug);
         $builder
-            // ->add('isLocked', CheckboxType::class, [
-            //     'required' => false,
-            // ])
             ->add('isEnabled', CheckboxType::class, [
                 'required' => false,
             ])
-            // ->add('type', ChoiceType::class, [
-            //     'choices' => $categoryTypeSlugs,
-            //     'placeholder' => 'app.ui_element.field.select_type',
-            //     'required' => false,
-            //     'data' => $category,
-            // ])
-            // ->add('type', EntityType::class, [
-            //     'class' => Category::class,
-            //     'data' => $category,
-            //     'query_builder' => function(CategoryRepository $repo) use ($configurationProject) {
-            //         return $repo->createQueryBuilderByTypeProduct($configurationProject);
-            //     }
-            //     // 'disabled' => true
-            // ])
-            // ->add('icon', EntityType::class, [
-            //     'class' => ImageMediaObject::class,
-            //     'placeholder' => 'app.ui_element.field.select_icon',
-            //     'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
-            //         return $repo->createQueryBuilderByEncodingSvg($configurationProject);
-            //     }
-            // ])
             ->add('primaryImage', EntityType::class, [
                 'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
@@ -96,11 +49,6 @@ class CategoryTypeProductType extends AbstractResourceType
                 'entry_type' => CategoryTranslationType::class,
             ])
         ;
-
-         
-        // $builder
-        //     ->get('type')
-        //     ->addModelTransformer(new CategoryTransformer($this->manager));
     }
 
     public function configureOptions(OptionsResolver $resolver): void
