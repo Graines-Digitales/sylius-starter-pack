@@ -3,6 +3,8 @@
 namespace App\Data;
 
 use App\Entity\Category;
+use App\Entity\IconMediaObject;
+use App\Entity\ImageMediaObject;
 use Mni\FrontYAML\Parser;
 use Symfony\Component\Finder\Finder;
 use Doctrine\ORM\EntityManagerInterface;
@@ -61,6 +63,7 @@ class Action
         $imagesPath = $kernelProjectDir . '/content/images';
         $svgsPath = $kernelProjectDir . '/content/svgs';
 
+        $filesystem = new Filesystem();
         $finder = new Finder();
         $finder->files()->in($imagesPath);
         if ($finder->hasResults()) {
@@ -69,51 +72,51 @@ class Action
                 $dirname = pathinfo(pathinfo($file->getRealPath(), PATHINFO_DIRNAME), PATHINFO_BASENAME);
                 $filename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
                 $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-
-
-               
-                
-                // return $this->categoryAction->create($data);
                 $category = null;
                 if('images' !== $dirname) {
                     $data['name'] = $dirname;
                     $category = $this->entityManager->getRepository(Category::class)
                         ->findOneBySlug($data['name']);
-      
                     if(null === $category) {
                         
                         $category = $this->categoryAction->create($data);
                     }
                 }
-              
                 $file = new File($absoluteFilePath);
-                $filesystem = new Filesystem();
                 if (in_array($file->getMimeType(), $imageMimeTypes)) {
                     $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/image/' . $filename);
-
-                    $entity = $this->mediaService->defineEntityMediaFromFile2($file, $category);
+                    $entity = $this->entityManager->getRepository(ImageMediaObject::class)
+                    ->findOneBy([ 'filename' => $filename ]);
+                    if(null === $entity) {
+                        
+                        $entity = $this->mediaService->defineEntityMediaFromFile2($file, $category);
+                    }
                     $this->entityManager->persist($entity);
                 }
-               
             }
             $this->entityManager->flush();
             
         }
 
+        $filesystem = new Filesystem();
         $finder = new Finder();
         $finder->files()->in($svgsPath);
         if ($finder->hasResults()) {
             foreach ($finder as $file) {
                 $absoluteFilePath = $file->getRealPath();
                 $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-
+                $filename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
                 $file = new File($absoluteFilePath);
                 $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/icon/' . $filename);
-                $entity = $this->mediaService->defineIconMediaFromFile($file);
+                $entity = $this->entityManager->getRepository(IconMediaObject::class)
+                ->findOneBy([ 'filename' => $filename ]);
+                if(null === $entity) {
+                    
+                    $entity = $this->mediaService->defineIconMediaFromFile($file);
+                }
                 $this->entityManager->persist($entity);
             }
             $this->entityManager->flush();
-            
         }
     }
 

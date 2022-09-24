@@ -1,16 +1,16 @@
 {% if data.encodingFormat is defined 
     and data.encodingFormat in configuration_project.media_encoding_formats.image 
 %}
-    {# <img 
+    <img 
         class="ui tiny bordered image" 
         data-slug="{{ data.slug }}"
-        src="{{ data.filename|imagine_filter('mini_webp') }}"
-    /> #}
-     <img 
+        src="{{ data.filename|imagine_filter('thumbnail_webp') }}"
+    />
+     {# <img 
         class="ui tiny bordered image" 
         data-slug="{{ data.slug }}"
         src="{{ asset('media/image/' ~ data.filename) }}"
-    />
+    /> #}
     <div class="ui modal image_modal" data-slug="{{ data.slug }}">
         <i class="close icon"></i>
         <div class="image content">

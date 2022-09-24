@@ -63,7 +63,7 @@ const formatState = (opt) => {
   // console.log(opt)
   let optImage = $(
     '<span style="display:flex; align-items: center; padding: 5px 0;">' +
-    '<img src="/media/cache/resolve/mini_webp/' + opt.text + '" style="width:60px; max-height: 50px; margin-right: 20px;">' + opt.text +
+    '<img src="/media/cache/resolve/thumbnail_webp/' + opt.text + '" style="width:60px; max-height: 50px; margin-right: 20px;">' + opt.text +
     '</span>'
   )
   return optImage;
