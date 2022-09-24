@@ -4,23 +4,24 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\ImageMediaObject;
+use App\Entity\Address;
 use App\Entity\Traits\SeoTrait;
+use App\Entity\ImageMediaObject;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
+use App\Entity\Traits\IdentifiableTrait;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\IdentifiableTrait;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use ApiPlatform\Core\Annotation\ApiFilter;
+use Sylius\Component\Resource\Model\CodeAwareInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 
 
 /**
@@ -430,7 +431,7 @@ class Organization implements ResourceInterface
     /**
      * Add address.
      *
-     * @param \App\Entity\Address $address
+     * @param Address $address
      *
      * @return Person
      */
@@ -446,7 +447,7 @@ class Organization implements ResourceInterface
     /**
      * Remove address.
      *
-     * @param \App\Entity\Address $address
+     * @param Address $address
      */
     public function removeAddress($address)
     {
