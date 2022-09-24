@@ -19,6 +19,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 use Sylius\Component\Resource\Model\TranslatableInterface;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 
 
 
@@ -77,6 +78,8 @@ class Trip  implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, inversedBy="trips")
+     * 
+     * @ApiSubresource(maxDepth=1)
      */
     private $primaryImage;
 

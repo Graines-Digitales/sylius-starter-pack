@@ -18,6 +18,7 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 
 
 /**
@@ -60,6 +61,8 @@ class WebPage implements ResourceInterface, TranslatableInterface
      * @ORM\JoinColumn(onDelete="SET NULL")
      * 
      * @Assert\NotBlank()
+     * 
+     * @ApiSubresource(maxDepth=1)
      */
     private $primaryImage;
 
