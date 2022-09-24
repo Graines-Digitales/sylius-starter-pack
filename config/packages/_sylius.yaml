@@ -985,6 +985,11 @@ sylius_grid:
                     label: app.ui_element.field.enabled
                     options:
                         template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
                 filename:
                     type: twig
                     label: app.ui.preview
@@ -1007,7 +1012,7 @@ sylius_grid:
                     type: string
                     label: false
                     options:
-                        fields: [filename, slug, name]
+                        fields: [filename, slug, name, category.translations.name]
                     form_options:
                         type: contains
             actions:
@@ -1518,13 +1523,18 @@ sylius_grid:
                 #     label: app.ui_element.field.is_locked
                 #     options:
                 #         template: "@App/admin/Grid/Field/locked.html.twig"
+                primaryImage:
+                    type: twig
+                    label: app.ui.primary_image
+                    options:
+                        template: "@App/admin/Grid/Field/thumbnail.html.twig"
                 translation.headline:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
-                translation.slug:
-                    type: string
-                    label: sylius.ui.slug
+                # translation.slug:
+                #     type: string
+                #     label: sylius.ui.slug
                 departureTime:
                     type: datetime
                     label: sylius.ui.date

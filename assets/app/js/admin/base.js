@@ -75,7 +75,7 @@ const formatState = (opt) => {
   let elem = $(this);
   let slug = elem.data( "slug" );
   $(document).find(".ui.image_modal[data-slug='" + slug + "']")
-    .modal('setting', 'transition', 'vertical flip')  
+    .modal('setting', 'transition', 'fly left')  
     .modal('show')
   ;
 });

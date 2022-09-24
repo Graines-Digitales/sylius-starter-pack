@@ -4,6 +4,8 @@ namespace App\Data;
 
 use App\Entity\Article;
 use App\Entity\ArticleTranslation;
+use App\Entity\ImageMediaObject;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 
@@ -11,9 +13,14 @@ class ArticleAction
 {
     private $slugger;
 
-    public function __construct(SluggerInterface $slugger)
-    {
+    private $entityManager;
+
+    public function __construct(
+        SluggerInterface $slugger
+        , EntityManagerInterface $entityManager
+    ){
         $this->slugger = $slugger;
+        $this->entityManager = $entityManager;
     }
 
     public function create($data = [], $locale = 'fr_FR')
@@ -47,7 +54,15 @@ class ArticleAction
         }
 
         if(isset($data['primaryImage']) && !empty($data['primaryImage'])){
-            $article->setPrimaryImage($data['primaryImage']);
+            if(!$data['primaryImage'] instanceof ImageMediaObject) {
+                $primaryImage = $this->entityManager->getRepository(ImageMediaObject::class)
+                ->findOneBy(['filename' => $data['primaryImage'] ]);
+                if(null !== $primaryImage) {
+                    $article->setPrimaryImage($primaryImage);
+                }
+            } else {
+                $article->setPrimaryImage($data['primaryImage']);
+            }
         }
 
         if(isset($data['secondaryImage'])){

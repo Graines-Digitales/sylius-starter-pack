@@ -2,11 +2,14 @@
 
 namespace App\Data;
 
+use App\Entity\Category;
 use Mni\FrontYAML\Parser;
 use Symfony\Component\Finder\Finder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+use App\Tools\Media;
 
 
 class Action
@@ -25,6 +28,8 @@ class Action
 
     private $organizationAction;
 
+    private $mediaService;
+
     public function __construct(
         ContainerInterface $container
         , EntityManagerInterface $entityManager
@@ -34,6 +39,7 @@ class Action
         , ComponentAction $componentAction
         , TripAction $tripAction
         , OrganizationAction $organizationAction
+        , Media $mediaService
     ){
         $this->container = $container;
         $this->entityManager = $entityManager;
@@ -43,6 +49,72 @@ class Action
         $this->componentAction = $componentAction;
         $this->tripAction = $tripAction;
         $this->organizationAction = $organizationAction;
+        $this->mediaService = $mediaService;
+    }
+
+    public function importImages()
+    {
+        $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $imageMimeTypes = $configurationProject['media_encoding_formats']['image'];
+
+        $imagesPath = $kernelProjectDir . '/content/images';
+        $svgsPath = $kernelProjectDir . '/content/svgs';
+
+        $finder = new Finder();
+        $finder->files()->in($imagesPath);
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $absoluteFilePath = $file->getRealPath();
+                $dirname = pathinfo(pathinfo($file->getRealPath(), PATHINFO_DIRNAME), PATHINFO_BASENAME);
+                $filename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
+                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
+
+
+               
+                
+                // return $this->categoryAction->create($data);
+                $category = null;
+                if('images' !== $dirname) {
+                    $data['name'] = $dirname;
+                    $category = $this->entityManager->getRepository(Category::class)
+                        ->findOneBySlug($data['name']);
+      
+                    if(null === $category) {
+                        
+                        $category = $this->categoryAction->create($data);
+                    }
+                }
+              
+                $file = new File($absoluteFilePath);
+                $filesystem = new Filesystem();
+                if (in_array($file->getMimeType(), $imageMimeTypes)) {
+                    $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/image/' . $filename);
+
+                    $entity = $this->mediaService->defineEntityMediaFromFile2($file, $category);
+                    $this->entityManager->persist($entity);
+                }
+               
+            }
+            $this->entityManager->flush();
+            
+        }
+
+        $finder = new Finder();
+        $finder->files()->in($svgsPath);
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $absoluteFilePath = $file->getRealPath();
+                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
+
+                $file = new File($absoluteFilePath);
+                $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/icon/' . $filename);
+                $entity = $this->mediaService->defineIconMediaFromFile($file);
+                $this->entityManager->persist($entity);
+            }
+            $this->entityManager->flush();
+            
+        }
     }
 
     public function run($contentPath, $folders)
@@ -63,8 +135,8 @@ class Action
                             $absoluteFilePath = $file->getRealPath();
                             $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
                             $data = $this->extractData($absoluteFilePath, $extension);
-                            $category = $this->dataServicesDispatch($data, $folder);
-                            $this->entityManager->persist($category);
+                            $entity = $this->dataServicesDispatch($data, $folder);
+                            $this->entityManager->persist($entity);
                         }
                         $this->entityManager->flush();
                     }
@@ -124,6 +196,12 @@ class Action
                 if(isset($data['content'])) {
                     $data['description'] = $data['content'];
                     unset($data['content']);
+                }
+               
+                $category = $this->entityManager->getRepository(Category::class)->findOneBySlug($data['slug']);
+                if(null !== $category) {
+                    
+                    return $category;
                 }
 
                 return $this->categoryAction->create($data);

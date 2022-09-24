@@ -2,6 +2,7 @@
 
 namespace App\Data;
 
+use App\Entity\Category;
 use App\Entity\Organization;
 use App\Entity\PropertyValue;
 use Doctrine\ORM\EntityManagerInterface;

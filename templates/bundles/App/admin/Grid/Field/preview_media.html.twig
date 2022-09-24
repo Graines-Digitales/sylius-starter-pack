@@ -21,7 +21,7 @@
     data.encodingFormat is defined 
     and data.encodingFormat in configuration_project.media_encoding_formats.document 
 %}
-    <a target="_BLANK" href="{{ asset(data.filename, 'media') }}">Voir le document</a>
+    <a target="_BLANK" href="{{ asset(data.filename) }}">Voir le document</a>
 {% elseif 
     data.encodingFormat is defined 
     and data.encodingFormat in configuration_project.media_encoding_formats.video

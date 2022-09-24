@@ -48,10 +48,25 @@ class ProjectSetupCommand extends Command
         $helper = $this->getHelper('question');
         $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
         $contentPath = $kernelProjectDir . '/content';
+        $imagesPath = $kernelProjectDir . '/content/images';
+
         $configurationProject = $this->container->getParameter('configuration_project');
         $folders = $configurationProject['folders'];
 
+        $finder = new Finder();
         
+        $finder->files()->in($imagesPath);
+        if ($finder->hasResults()) {
+            $question = new ConfirmationQuestion(
+                'Voulez-vous créer les images trouvées dans le dossier content/ ? (Y|n)',
+                true
+            );
+            if ($helper->ask($input, $output, $question)) {
+                $this->dataAction->importImages();
+
+                $io->success('Les données du dossier content/ ont bien été enregistrées.');
+            }
+        }
 
         $finder = new Finder();
         
@@ -85,7 +100,7 @@ class ProjectSetupCommand extends Command
             ;
             $table->render();
             if ($helper->ask($input, $output, $question)) {
-                $this->importService->createMainOrganization($data);
+                $this->dataAction->createMainOrganization($data);
                 $io->success('Les données de votre organisation ont bien été enregistrées.');
 
                 return Command::SUCCESS;

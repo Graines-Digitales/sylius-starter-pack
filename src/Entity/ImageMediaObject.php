@@ -82,7 +82,7 @@ class ImageMediaObject implements ResourceInterface
     private $message;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      */
     private $category;
 
