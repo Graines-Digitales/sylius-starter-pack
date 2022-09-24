@@ -65,10 +65,8 @@ class WebPage implements ResourceInterface, TranslatableInterface
      * @Assert\NotBlank()
      * 
      * @ApiSubresource(maxDepth=1)
-     * 
      *  @ApiProperty(
-     *    readableLink=true,
-     *    writableLink=true
+     *    readableLink=true
      * )
      */
     private $primaryImage;
@@ -76,32 +74,62 @@ class WebPage implements ResourceInterface, TranslatableInterface
     /**
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $secondaryImage;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="webPages")
      * @ORM\JoinTable(name="app_web_page_category")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $tags;
 
     /**
      * @ORM\OneToMany(targetEntity=PropertyValue::class, mappedBy="webPage")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $propertyValues;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity=VideoMediaObject::class, inversedBy="webPages")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $video;
 

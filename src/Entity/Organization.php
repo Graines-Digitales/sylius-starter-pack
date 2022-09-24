@@ -121,6 +121,11 @@ class Organization implements ResourceInterface
      *  }
      *
      * )
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      **/
     private $addresses;
 
@@ -136,8 +141,13 @@ class Organization implements ResourceInterface
      * @var ImageMediaObject|null indicates the main image on the page
      *
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
-     * @ApiProperty(iri="http://schema.org/primaryImage")
+     
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $primaryImage;  
 
@@ -145,8 +155,12 @@ class Organization implements ResourceInterface
      * @var ImageMediaObject|null indicates the main image on the page
      *
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
-     * @ApiProperty(iri="http://schema.org/primaryImage")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $secondaryImage;
 
@@ -175,33 +189,62 @@ class Organization implements ResourceInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="organizations")
-     * @ApiSubresource
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
     /**
      * @ORM\OneToMany(targetEntity=LocalBusiness::class, mappedBy="organization")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $localBusinesses;
 
     /**
      * @ORM\ManyToMany(targetEntity=Organization::class, inversedBy="organizations")
      * @ORM\JoinTable(name="app_social_link_organization")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $socialLinks;
 
     /**
      * @ORM\ManyToMany(targetEntity=Organization::class, mappedBy="socialLinks")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $organizations;
 
     /**
      * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="parents")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="parent")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $parents;
 

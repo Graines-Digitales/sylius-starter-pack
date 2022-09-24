@@ -80,22 +80,30 @@ class Trip  implements ResourceInterface, TranslatableInterface
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, inversedBy="trips")
      * 
      * @ApiSubresource(maxDepth=1)
-     * 
      *  @ApiProperty(
-     *    readableLink=true,
-     *    writableLink=true
+     *    readableLink=true
      * )
      */
     private $primaryImage;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="trips")
      * @ORM\JoinTable(name="app_amenity_trips_categories")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $tags;
 
@@ -108,6 +116,11 @@ class Trip  implements ResourceInterface, TranslatableInterface
      *      max = 5,
      *      minMessage = "You must specify at least one offer",
      *      maxMessage = "You cannot specify more than {{ limit }} offers"
+     * )
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
      * )
      */
     private $offers;
