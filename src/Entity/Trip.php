@@ -80,6 +80,11 @@ class Trip  implements ResourceInterface, TranslatableInterface
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, inversedBy="trips")
      * 
      * @ApiSubresource(maxDepth=1)
+     * 
+     *  @ApiProperty(
+     *    readableLink=true,
+     *    writableLink=true
+     * )
      */
     private $primaryImage;
 

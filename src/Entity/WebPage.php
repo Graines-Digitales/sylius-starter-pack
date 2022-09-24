@@ -19,6 +19,8 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Annotation\ApiProperty;
+
 
 
 /**
@@ -63,6 +65,11 @@ class WebPage implements ResourceInterface, TranslatableInterface
      * @Assert\NotBlank()
      * 
      * @ApiSubresource(maxDepth=1)
+     * 
+     *  @ApiProperty(
+     *    readableLink=true,
+     *    writableLink=true
+     * )
      */
     private $primaryImage;
 
