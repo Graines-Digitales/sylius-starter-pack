@@ -56,7 +56,7 @@ class MediaObjectListener
         $configurationProject = $this->container->getParameter('configuration_project');
         $mimeTypes = $configurationProject['media_encoding_formats']['image'];
         if (in_array($entity->getEncodingFormat(), $mimeTypes)) {
-            $this->toolsMediaService->generateFiltersForMediaObject($entity);
+            // $this->toolsMediaService->generateFiltersForMediaObject($entity);
         }
     }
 
@@ -74,7 +74,7 @@ class MediaObjectListener
         $this->entityManager->persist($entity);
         $this->entityManager->flush();
         if (in_array($entity->getEncodingFormat(), $mimeTypes)) {
-            $this->toolsMediaService->generateFiltersForMediaObject($entity);
+            // $this->toolsMediaService->generateFiltersForMediaObject($entity);
         }
     }
 }

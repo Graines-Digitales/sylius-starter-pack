@@ -4,6 +4,8 @@ namespace App\Data;
 
 use App\Entity\Trip;
 use App\Entity\TripTranslation;
+use App\Entity\ImageMediaObject;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 
@@ -11,9 +13,14 @@ class TripAction
 {
     private $slugger;
 
-    public function __construct(SluggerInterface $slugger)
-    {
+    private $entityManager;
+
+    public function __construct(
+        SluggerInterface $slugger
+        , EntityManagerInterface $entityManager
+    ){
         $this->slugger = $slugger;
+        $this->entityManager = $entityManager;
     }
 
     public function create($data = [], $locale = 'fr_FR')
@@ -49,7 +56,15 @@ class TripAction
         }
 
         if(isset($data['primaryImage']) && !empty($data['primaryImage'])){
-            $trip->setPrimaryImage($data['primaryImage']);
+            if(!$data['primaryImage'] instanceof ImageMediaObject) {
+                $primaryImage = $this->entityManager->getRepository(ImageMediaObject::class)
+                ->findOneBy(['filename' => $data['primaryImage'] ]);
+                if(null !== $primaryImage) {
+                    $trip->setPrimaryImage($primaryImage);
+                }
+            } else {
+                $trip->setPrimaryImage($data['primaryImage']);
+            }
         }
 
         if(isset($data['alternativeHeadline'])){

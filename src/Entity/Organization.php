@@ -216,6 +216,11 @@ class Organization implements ResourceInterface
      */
     private $icon;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $additionalPhone;
+
     public function getSlug()
     {
         return $this->slug;
@@ -563,6 +568,18 @@ class Organization implements ResourceInterface
     public function setIcon(?IconMediaObject $icon): self
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getAdditionalPhone(): ?string
+    {
+        return $this->additionalPhone;
+    }
+
+    public function setAdditionalPhone(?string $additionalPhone): self
+    {
+        $this->additionalPhone = $additionalPhone;
 
         return $this;
     }

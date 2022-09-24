@@ -2,6 +2,8 @@
 
 namespace App\Tools;
 
+use App\Entity\Category;
+use App\Entity\IconMediaObject;
 use App\WebContent\SEO;
 use App\Entity\ImageMediaObject;
 use Symfony\Component\Finder\Finder;
@@ -55,6 +57,130 @@ class Media
         $this->webContentSEOService = $webContentSEOService;
         $this->slugger = $slugger;
         $this->imagine = $imagine;
+    }
+
+
+      /**
+     * @TODO: BIEN SUR A CORRIGER ET REFACTO
+     *
+     * @param [type] $file
+     * @return void
+     */
+    public function defineIconMediaFromFile($file)
+    {
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $imageMimeTypes = $configurationProject['media_encoding_formats']['image'];
+
+        $entity = new IconMediaObject();
+        $originalFilename = null;
+        if (empty($entity->getOriginalFilename())) {
+            if (is_callable([$file, 'getClientOriginalName'])) {
+                $originalFilename = $file->getClientOriginalName();
+            } else {
+                $originalFilename = $file->getFilename();
+            }
+        } else {
+            $originalFilename = $entity->getOriginalFilename();
+        }
+    
+            $encodingFormat = 'image/svg+xml';
+        
+ 
+
+        $filename = pathinfo($originalFilename, PATHINFO_FILENAME);
+        if (is_callable([$file, 'getClientOriginalName'])) {
+            $filename = $file->getClientOriginalName();
+        } else {
+            $filename = $file->getFilename();
+        }
+
+        $entity->setFilename($filename);
+        $entity->setOriginalFilename($originalFilename);
+        $entity->setFile($file);
+
+        $name = null;
+        if (empty($entity->getName())) {
+            $name = $this->slugger->slug($entity->getFilename())->lower()->toString();
+            $name = ucwords(str_replace('-', ' ', $name));
+            $entity->setName($name);
+        }
+        $alt = null;
+        if (empty($entity->getCaption())) {
+            $alt = $this->webContentSEOService->defineAltImage($entity);
+            $entity->setCaption($alt);
+        }
+        
+        return $entity;
+    }
+
+    /**
+     * @TODO: BIEN SUR A CORRIGER ET REFACTO
+     *
+     * @param [type] $file
+     * @return void
+     */
+    public function defineEntityMediaFromFile2($file, $category = null)
+    {
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $imageMimeTypes = $configurationProject['media_encoding_formats']['image'];
+
+        $entity = new ImageMediaObject();
+        $originalFilename = null;
+        if (empty($entity->getOriginalFilename())) {
+            if (is_callable([$file, 'getClientOriginalName'])) {
+                $originalFilename = $file->getClientOriginalName();
+            } else {
+                $originalFilename = $file->getFilename();
+            }
+        } else {
+            $originalFilename = $entity->getOriginalFilename();
+        }
+        $encodingFormat = null;
+        if (!empty($file->getMimeType())) {
+            $encodingFormat = $file->getMimeType();
+        }
+        $dimensions = [];
+        if (in_array($encodingFormat, $imageMimeTypes)) {
+            $dimensions = getimagesize($file->getPathname());
+        }
+        $contentSize = 0;
+        if (!empty($file->getSize())) {
+            $contentSize = $file->getSize();
+        }
+        $format = null;
+        if (!empty($dimensions) && $dimensions[1] > $dimensions[0]) {
+            $format = '-vertical';
+        }
+        $filename = pathinfo($originalFilename, PATHINFO_FILENAME);
+        if (is_callable([$file, 'getClientOriginalName'])) {
+            $filename = $file->getClientOriginalName();
+        } else {
+            $filename = $file->getFilename();
+        }
+        $entity->setFilename($filename);
+        $entity->setDimensions($dimensions);
+        $entity->setOriginalFilename($originalFilename);
+        $entity->setFile($file);
+        $entity->setEncodingFormat($encodingFormat);
+        $entity->setContentSize($contentSize);
+            
+        $name = null;
+        if (empty($entity->getName())) {
+            $name = $this->slugger->slug($entity->getFilename())->lower()->toString();
+            $name = ucwords(str_replace('-', ' ', $name));
+            $entity->setName($name);
+        }
+        $alt = null;
+        if (empty($entity->getCaption())) {
+            $alt = $this->webContentSEOService->defineAltImage($entity);
+            $entity->setCaption($alt);
+        }
+
+        if($category instanceof Category) {
+            $entity->setCategory($category);
+        }
+        
+        return $entity;
     }
 
     public function defineEntityMediaFromFile($entity)
