@@ -430,7 +430,7 @@ class Organization implements ResourceInterface
     /**
      * Add address.
      *
-     * @param \App\Entity\Address $address
+     * @param App\Entity\Address $address
      *
      * @return Person
      */
@@ -446,7 +446,7 @@ class Organization implements ResourceInterface
     /**
      * Remove address.
      *
-     * @param \App\Entity\Address $address
+     * @param App\Entity\Address $address
      */
     public function removeAddress($address)
     {
