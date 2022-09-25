@@ -981,29 +981,33 @@ sylius_grid:
             sorting:
                 createdAt: asc
             fields:
-                is_enabled:
-                    type: twig
-                    label: app.ui_element.field.enabled
-                    options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
-                category:
-                    type: twig # Type of filter
-                    label: app.ui.category
-                    options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                # is_enabled:
+                #     type: twig
+                #     label: app.ui_element.field.enabled
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                
                 filename:
                     type: twig
                     label: app.ui.preview
                     path: . 
                     options:
                         template: "@App/admin/Grid/Field/preview_media.html.twig"
-                createdAt:
-                    type: datetime
-                    label: sylius.ui.date
+            
                 originalFilename:
                     type: string
                     label: sylius.ui.name
                     sortable: translation.name
+                   
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+
+                createdAt:
+                    type: datetime
+                    label: sylius.ui.date
                 # encodingFormat:
                 #     type: string
                 #     label: app.ui_element.field.encoding
