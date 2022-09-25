@@ -978,8 +978,11 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\ImageMediaObject
-            sorting:
-                createdAt: asc
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
+                   
             fields:
                 # is_enabled:
                 #     type: twig
@@ -1017,13 +1020,23 @@ sylius_grid:
                 #     sortable: translation.caption
                 
             filters:
-                search:
+                originalFilename:
                     type: string
                     label: false
-                    options:
-                        fields: [originalFilename, category.translations.name]
+                    # options:
+                    #     fields: [originalFilename]
                     form_options:
                         type: contains
+                category:
+                    type: entity
+                    label: false
+                    options:
+                        fields: [category.translations.name]
+                    form_options:
+                        class: "%app.model.category.class%"
+
+
+
             actions:
                 main:
                     create:
