@@ -98,8 +98,8 @@ class IconMediaObject implements ResourceInterface
     }
 
     public function __toString()
-    {
-        return $this->getName();
+    {   
+        return $this->getFilename();
     }
    
     public function setFile(?File $file = null): void

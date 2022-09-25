@@ -43,7 +43,7 @@ class CmsLinkType extends AbstractResourceType
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
-                'attr' => ['class' => 'select2-image'],
+                'attr' => ['class' => 'select2-icon'],
                 'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){

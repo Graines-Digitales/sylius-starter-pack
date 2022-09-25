@@ -64,7 +64,7 @@ class ComponentCallToActionType extends AbstractType
             ->add('icon', EntityType::class, [
                 'required' => false,
                 'class' => IconMediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_icon',
+                'placeholder' => 'app.ui_element.field.choose',
             ])
         ;
 

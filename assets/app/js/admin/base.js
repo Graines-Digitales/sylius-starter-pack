@@ -22,6 +22,10 @@ const initSelect2 = () => {
       templateResult: formatState,
       templateSelection: formatState
     });
+    $('.select2-icon').select2({
+      templateResult: formatState2,
+      templateSelection: formatState2
+    });
   });
 
   $(() => {
@@ -55,6 +59,14 @@ $(document).ready(function () {
   
 });
 
+$(document).ready(function () {
+  $('.select2-icon').select2({
+    templateResult: formatState2,
+    templateSelection: formatState2
+
+  });
+  
+});
 
 const formatState = (opt) => {
   if (!opt.id) {
@@ -68,6 +80,20 @@ const formatState = (opt) => {
   )
   return optImage;
 }
+
+const formatState2 = (opt) => {
+  if (!opt.id) {
+    return opt.text;
+  }
+  // console.log(opt)
+  let optImage = $(
+    '<span style="display:flex; align-items: center; padding: 5px 0;">' +
+    '<img src="/media/icon/' + opt.text + '" style="width:60px; max-height: 50px; margin-right: 20px;">' + opt.text +
+    '</span>'
+  )
+  return optImage;
+}
+
 /**
  * END Région Select2
  */
