@@ -79,6 +79,11 @@ class Address implements ResourceInterface
     private $phone;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $additionalStreetAddress;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -302,6 +307,18 @@ class Address implements ResourceInterface
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getAdditionalStreetAddress(): ?string
+    {
+        return $this->additionalStreetAddress;
+    }
+
+    public function setAdditionalStreetAddress(?string $additionalStreetAddress): self
+    {
+        $this->additionalStreetAddress = $additionalStreetAddress;
 
         return $this;
     }
