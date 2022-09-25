@@ -979,7 +979,7 @@ sylius_grid:
                 options:
                     class: App\Entity\ImageMediaObject
             sorting:
-                createdAt: desc
+                createdAt: asc
             fields:
                 is_enabled:
                     type: twig
