@@ -82,6 +82,7 @@ Country: Pays
 City: Ville
 Address: Adresse
 Postcode: Code postal
+Additional street address: Adresse suite
 
 sylius:
     ui:
