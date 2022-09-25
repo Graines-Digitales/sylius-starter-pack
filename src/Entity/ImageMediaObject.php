@@ -83,6 +83,7 @@ class ImageMediaObject implements ResourceInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $category;
 
