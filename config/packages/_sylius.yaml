@@ -978,7 +978,8 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\ImageMediaObject
-
+            sorting:
+                createdAt: desc
             fields:
                 is_enabled:
                     type: twig
@@ -996,17 +997,21 @@ sylius_grid:
                     path: . 
                     options:
                         template: "@App/admin/Grid/Field/preview_media.html.twig"
-                originalFilename:
-                    type: string
-                    label: sylius.ui.name
-                    sortable: translation.name
+                createdAt:
+                    type: datetime
+                    label: sylius.ui.date
+                # originalFilename:
+                #     type: string
+                #     label: sylius.ui.name
+                #     sortable: translation.name
                 encodingFormat:
                     type: string
                     label: app.ui_element.field.encoding
-                caption:
-                    type: string
-                    label: app.ui.alt
-                    sortable: translation.caption
+                # caption:
+                #     type: string
+                #     label: app.ui.alt
+                #     sortable: translation.caption
+                
             filters:
                 search:
                     type: string
