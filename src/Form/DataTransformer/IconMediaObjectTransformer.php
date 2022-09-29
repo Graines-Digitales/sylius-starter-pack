@@ -39,7 +39,8 @@ class IconMediaObjectTransformer implements DataTransformerInterface
         return [
             'id' => $media->getId(),
             'filename' => $media->getFilename(),
-            'alt' => $media->getCaption()
+            'alt' => $media->getCaption(),
+            'html' => $media->getHtml()
         ];
     }
 }
