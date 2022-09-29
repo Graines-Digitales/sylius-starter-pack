@@ -188,6 +188,13 @@ class Media
         $configurationProject = $this->container->getParameter('configuration_project');
         $videoMimeTypes = $configurationProject['media_encoding_formats']['video'];
         $imageMimeTypes = $configurationProject['media_encoding_formats']['image'];
+        $iconMimeTypes = $configurationProject['media_encoding_formats']['icon'];
+
+        if (in_array($entity->getEncodingFormat(), $iconMimeTypes)) {
+            $entity->setHtml(file_get_contents($entity->getFile()));
+             
+        }
+       
         if (in_array($entity->getEncodingFormat(), $videoMimeTypes)) {
             $filename = pathinfo($entity->getUrl(), PATHINFO_FILENAME);
             if (empty($entity->getName())) {
