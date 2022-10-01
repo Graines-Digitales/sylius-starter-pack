@@ -115,6 +115,7 @@ class Media
             }
             $name = null;
             if (empty($entity->getName())) {
+                dump($entity);
                 $name = $this->slugger->slug($entity->getFilename())->lower()->toString();
                 $name = ucwords(str_replace('-', ' ', $name));
                 $entity->setName($name);

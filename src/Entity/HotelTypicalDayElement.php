@@ -10,12 +10,14 @@ use App\Entity\Traits\TimestampableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
+use App\Entity\Traits\SeoTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 use Sylius\Component\Resource\Model\TranslatableInterface;
+
 
 /**
  * @TODO : à revoir selon le standard schema.org
@@ -28,6 +30,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
 {
     use IdentifiableTrait;
+    use SeoTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -64,11 +67,6 @@ class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
      * @ORM\Column(type="string", length=255)
      */
     private $hours;
-
-    /**
-     * @ORM\Column(type="boolean", options={"default": true})
-     */
-    private $isActive = true;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
@@ -174,18 +172,6 @@ class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
     public function setHours(string $hours): self
     {
         $this->hours = $hours;
-
-        return $this;
-    }
-
-    public function getIsActive(): ?bool
-    {
-        return $this->isActive;
-    }
-
-    public function setIsActive(bool $isActive): self
-    {
-        $this->isActive = $isActive;
 
         return $this;
     }

@@ -7,6 +7,9 @@ use App\Entity\Care;
 use App\Entity\Slide;
 use App\Entity\Person;
 use App\Entity\Address;
+use App\Entity\AggregateOffer;
+use App\Entity\AmenityFeature;
+use App\Entity\AmenityFeatureTranslation;
 use App\Entity\Article;
 use App\Entity\Message;
 use App\Entity\WebPage;
@@ -20,6 +23,7 @@ use App\Entity\SlideMediaObject;
 use App\Entity\ArticleTranslation;
 use App\Entity\WebPageTranslation;
 use App\Entity\CategoryTranslation;
+use App\Entity\HotelTypicalDayElement;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -28,17 +32,45 @@ use Symfony\Component\String\Slugger\SluggerInterface;
  */
 class Action
 {
-    protected $manager;
+    protected $entityManager;
 
     protected $slugger;
 
     public function __construct(
-          EntityManagerInterface $manager
+          EntityManagerInterface $entityManager
         , SluggerInterface $slugger
     )
     {
         $this->slugger = $slugger;
-        $this->manager = $manager;
+        $this->entityManager = $entityManager;
+    }
+
+    public function createImageMediaObjectDemand($data = [], $locale = 'fr_FR')
+    {
+        $repository = $this->entityManager->getRepository(ImageMediaObject::class);
+
+        return $repository->create($data, $locale);
+    }
+
+    public function createHotelTypicalDayElementDemand($data = [], $locale = 'fr_FR')
+    {
+        $repository = $this->entityManager->getRepository(HotelTypicalDayElement::class);
+
+        return $repository->create($data, $locale);
+    }
+    
+    public function createAggregateOfferDemand($data = [], $locale = 'fr_FR')
+    {
+        $repository = $this->entityManager->getRepository(AggregateOffer::class);
+
+        return $repository->create($data, $locale);
+    }
+
+    public function createAmenityFeatureDemand($data = [], $locale = 'fr_FR')
+    {
+        $repository = $this->entityManager->getRepository(AmenityFeature::class);
+
+        return $repository->create($data, $locale);
     }
 
     public function createCategoryDemand($data = [], $locale = 'fr_FR')
@@ -227,8 +259,8 @@ class Action
         // if (isset($data['components'])) {
         //     foreach ($data['components'] as $value) {
         //         $component = $this->createComponentDemand($value);
-        //         $this->manager->persist($component);
-        //         $this->manager->flush();
+        //         $this->entityManager->persist($component);
+        //         $this->entityManager->flush();
         //         $article->addComponent($component);
         //     }
         // }
@@ -312,7 +344,7 @@ class Action
     public function hydrateOrganizationDemand($data = [], $addresses = [], $organization)
     {
         if(isset($data['category'])) {
-            $category = $this->manager->getRepository(Category::class)
+            $category = $this->entityManager->getRepository(Category::class)
                 ->findOneBySlug($data['category']);
             $organization->setCategory($category);
         }
@@ -353,7 +385,7 @@ class Action
         if(isset($data['socials'])) {
             foreach ($data['socials'] as $key => $result) {
                 $slug = $this->slugger->slug($key)->lower()->toString();
-                $socialLink = $this->manager->getRepository(Organization::class)
+                $socialLink = $this->entityManager->getRepository(Organization::class)
                     ->findOneBy(['slug' => $slug]);
                 if(null !== $socialLink) {
                     $organization->addSocialLink($socialLink);
@@ -440,7 +472,7 @@ class Action
     public function createSlideDemand($value)
     {
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
-        $entity = $this->manager->getRepository(Slide::class)
+        $entity = $this->entityManager->getRepository(Slide::class)
             ->findOneBy(['slug' => $slug]);
         if (null == $entity) {
             $entity = new Slide();
@@ -449,7 +481,7 @@ class Action
         foreach ($value['items'] as $item) {
             $slideMediaObject = new SlideMediaObject();
             if(isset($item['image']) && !empty($item['image'])){
-                $image = $this->manager->getRepository(ImageMediaObject::class)
+                $image = $this->entityManager->getRepository(ImageMediaObject::class)
                     ->findOneBy(['slug' => $item['image']]);
                     $slideMediaObject->setMediaObject($image);
             }
@@ -476,7 +508,7 @@ class Action
 
             if (isset($item['internalLink'])) {
                 if (isset($item['internalLink']['webPage'])) {
-                    $linkedWebPage = $this->manager->getRepository(WebPage::class)
+                    $linkedWebPage = $this->entityManager->getRepository(WebPage::class)
                         ->findOneBy(['slug' => $item['internalLink']['webPage']['slug']]);
                     if($linkedWebPage) {
                         $slideMediaObject->setInternalLinkWebPage($linkedWebPage);
@@ -488,7 +520,7 @@ class Action
                 }
 
                 if (isset($item['internalLink']['article'])) {
-                    $linkedArticle = $this->manager->getRepository(Article::class)
+                    $linkedArticle = $this->entityManager->getRepository(Article::class)
                             ->findOneBy(['slug' => $item['internalLink']['article']['slug']]);
                     if($linkedArticle) {
                         $slideMediaObject->setInternalLinkArticle($linkedArticle);
@@ -516,7 +548,7 @@ class Action
     public function hydrateSlideDemand($value)
     {
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
-        $entity = $this->manager->getRepository(Slide::class)
+        $entity = $this->entityManager->getRepository(Slide::class)
             ->findOneBy(['slug' => $slug]);
 
         if (null == $entity) {
@@ -545,7 +577,7 @@ class Action
         foreach ($entity->getSlideMediaObjects() as $slideMediaObject) {
             $slug = $this->slugger->slug($slideMediaObject->getName())->lower()->toString();
             if (isset($webPages[$slug])) {
-                $linkedWebPage = $this->manager->getRepository(WebPage::class)
+                $linkedWebPage = $this->entityManager->getRepository(WebPage::class)
                     ->findOneBy(['slug' => $slug]);
                 if($linkedWebPage) {
                     $slideMediaObject->setInternalLinkWebPage($linkedWebPage);
@@ -556,7 +588,7 @@ class Action
                 }
             }
             if (isset($articles[$slug])) {
-                $linkedArticle = $this->manager->getRepository(Article::class)
+                $linkedArticle = $this->entityManager->getRepository(Article::class)
                     ->findOneBy(['slug' => $slug]);
 
                 if($linkedArticle) {
@@ -568,7 +600,7 @@ class Action
                 }
             }
             if (isset($products[$slug])) {
-                $product = $this->manager->getRepository(Care::class)
+                $product = $this->entityManager->getRepository(Care::class)
                     ->findOneBy(['slug' => $slug]);
                 $slideMediaObject->setCare($product);
             }
@@ -580,7 +612,7 @@ class Action
     public function _createComponentDemand($value = [], $index = 0)
     {
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
-        $entity = $this->manager->getRepository(Component::class)
+        $entity = $this->entityManager->getRepository(Component::class)
             ->findOneBy(['slug' => $slug]);
         if (null == $entity) {
             $entity = new Component();
@@ -589,7 +621,7 @@ class Action
         $entity->setName($value['name']);
         if(isset($value['category'])){
             $slug = $this->slugger->slug($value['category']['name'])->lower()->toString();
-            $category = $this->manager->getRepository(Tag::class)
+            $category = $this->entityManager->getRepository(Tag::class)
                 ->findOneBy(['slug' => $slug]);
             if(null == $category) {
                 $category = new Category();
@@ -601,28 +633,28 @@ class Action
                     $category->setAlternativeHeadline($article['category']['alternativeHeadline']);
                 }
                 if(isset($value['category']['primaryImage']) && !empty($value['category']['primaryImage'])){
-                    $primaryImage = $this->manager->getRepository(ImageMediaObject::class)
+                    $primaryImage = $this->entityManager->getRepository(ImageMediaObject::class)
                         ->findOneBy(['slug' => $value['category']['primaryImage']]);
                     $category->setPrimaryImage($primaryImage);
                 }
                 if(isset($value['category']['description'])){
                     $category->setDescription($value['category']['description']);
                 }
-                $this->manager->persist($category);
-                $this->manager->flush();
+                $this->entityManager->persist($category);
+                $this->entityManager->flush();
             }
             $entity->setCategory($category);
         }
         if(isset($value['tags'])){
             foreach ($value['tags'] as $key => $category) {
                 $slug = $this->slugger->slug($category['name'])->lower()->toString();
-                $tag = $this->manager->getRepository(Tag::class)
+                $tag = $this->entityManager->getRepository(Tag::class)
                     ->findOneBy(['slug' => $slug]);
                 if(null == $tag) {
                     $tag = new Category();
                     $tag->setName($category['name']);
                     if(isset($category['primaryImage']) && !empty($article['category']['primaryImage'])){
-                        $primaryImage = $this->manager->getRepository(ImageMediaObject::class)
+                        $primaryImage = $this->entityManager->getRepository(ImageMediaObject::class)
                             ->findOneBy(['slug' => $category['primaryImage']]);
                         $tag->setPrimaryImage($primaryImage);
                     }
@@ -635,8 +667,8 @@ class Action
                     if(isset($category['alternativeHeadline'])){
                         $tag->setAlternativeHeadline($category['alternativeHeadline']);
                     }
-                    $this->manager->persist($category);
-                    $this->manager->flush();
+                    $this->entityManager->persist($category);
+                    $this->entityManager->flush();
                 }
             }
             $entity->addTag($tag);
@@ -663,7 +695,7 @@ class Action
             $entity->setIcon($value['icon']);
         }
         if (isset($value['slide'])) {
-            $slide = $this->manager->getRepository(Slide::class)
+            $slide = $this->entityManager->getRepository(Slide::class)
                 ->findOneBy(['slug' => $value['slide']]);
             $entity->setSlide($slide);
         }
@@ -686,7 +718,7 @@ class Action
         if (isset($value['internalLink'])) {
             if (isset($value['internalLink']['webPage'])) {
                 $slug = $this->slugger->slug($value['internalLink']['webPage']['slug'])->lower()->toString();
-                $linkedWebPage = $this->manager->getRepository(WebPage::class)
+                $linkedWebPage = $this->entityManager->getRepository(WebPage::class)
                     ->findOneBy(['slug' => $slug]);
 
                 if($linkedWebPage) {
@@ -699,7 +731,7 @@ class Action
                 }
             }
             if (isset($value['internalLink']['article'])) {
-                $linkedArticle = $this->manager->getRepository(Article::class)
+                $linkedArticle = $this->entityManager->getRepository(Article::class)
                         ->findOneBy(['slug' => $this->slugger->slug($value['internalLink']['article']['slug'])->lower()->toString()]);
                 if($linkedArticle) {
                     $entity->setInternalLinkArticle($linkedArticle);
@@ -712,7 +744,7 @@ class Action
         }
 
         if(isset($value['media'])){
-            $media = $this->manager->getRepository(ImageMediaObject::class)
+            $media = $this->entityManager->getRepository(ImageMediaObject::class)
                 ->findOneBy(['slug' => $this->slugger->slug($value['media'])->lower()->toString()]);
             $entity->setMedia($media);
         }
@@ -725,7 +757,7 @@ class Action
     public function _hydrateComponentDemand($value = [], $index = 0)
     {
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
-        $entity = $this->manager->getRepository(Component::class)
+        $entity = $this->entityManager->getRepository(Component::class)
             ->findOneBy(['slug' => $slug]);
         if (null == $entity) {
             $entity = new Component();
@@ -734,7 +766,7 @@ class Action
         if (isset($value['internalLink'])) {
             if (isset($value['internalLink']['webPage'])) {
                 $slug = $this->slugger->slug($value['internalLink']['webPage']['slug'])->lower()->toString();
-                $linkedWebPage = $this->manager->getRepository(WebPage::class)
+                $linkedWebPage = $this->entityManager->getRepository(WebPage::class)
                     ->findOneBy(['slug' => $slug]);
                 if($linkedWebPage) {
 
@@ -746,7 +778,7 @@ class Action
                 }
             }
             if (isset($value['internalLink']['article'])) {
-                $linkedArticle = $this->manager->getRepository(Article::class)
+                $linkedArticle = $this->entityManager->getRepository(Article::class)
                         ->findOneBy(['slug' => $this->slugger->slug($value['internalLink']['article']['slug'])->lower()->toString()]);
                 if($linkedArticle) {
                     $entity->setInternalLinkArticle($linkedArticle);

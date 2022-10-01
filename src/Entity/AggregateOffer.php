@@ -23,6 +23,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  * @ORM\Entity
  * @ORM\Table(name="app_aggregate_offer")
  * @ApiResource(iri="http://schema.org/AggregateOffer")
+ * @ORM\Entity(repositoryClass="App\Repository\AggregateOfferRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class AggregateOffer implements ResourceInterface

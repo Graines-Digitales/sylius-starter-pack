@@ -48,6 +48,7 @@ class Category implements ResourceInterface , TranslatableInterface
         $this->hotelServices = new ArrayCollection();
         $this->hotelActivities = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->amenityFeatures = new ArrayCollection();
     }
 
     /**
@@ -142,6 +143,11 @@ class Category implements ResourceInterface , TranslatableInterface
      * @ORM\ManyToMany(targetEntity=Component::class, mappedBy="tags")
      */
     private $components;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=AmenityFeature::class, mappedBy="tags")
+     */
+    private $amenityFeatures;
     
     /**
      * {@inheritdoc}
@@ -488,6 +494,33 @@ class Category implements ResourceInterface , TranslatableInterface
     {
         if ($this->components->removeElement($component)) {
             $component->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AmenityFeature>
+     */
+    public function getAmenityFeatures(): Collection
+    {
+        return $this->amenityFeatures;
+    }
+
+    public function addAmenityFeature(AmenityFeature $amenityFeature): self
+    {
+        if (!$this->amenityFeatures->contains($amenityFeature)) {
+            $this->amenityFeatures[] = $amenityFeature;
+            $amenityFeature->addTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAmenityFeature(AmenityFeature $amenityFeature): self
+    {
+        if ($this->amenityFeatures->removeElement($amenityFeature)) {
+            $amenityFeature->removeTag($this);
         }
 
         return $this;
