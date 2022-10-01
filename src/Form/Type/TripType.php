@@ -33,6 +33,7 @@ class TripType extends AbstractType
             ->add('arrivalTime', DateTimeType::class, [
                 // 'disabled' => true,
                 'widget' => 'single_text',
+                'with_minutes' => true,
                 'required' => false,
                 'label' => 'app.ui_element.field.arrival_date',
                 'required' => false,
