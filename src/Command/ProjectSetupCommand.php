@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Data\Import;
+use App\Data\Action as DataAction;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Command\Command;
@@ -18,7 +18,7 @@ class ProjectSetupCommand extends Command
 {
     private $container;
 
-    private $importService;
+    private $dataAction;
 
     protected static $defaultName = 'app:project-setup';
 
@@ -26,10 +26,10 @@ class ProjectSetupCommand extends Command
 
     public function __construct(
         ContainerInterface $container
-        , Import $importService
+        , DataAction $dataAction
     ){
         $this->container = $container;
-        $this->importService = $importService;
+        $this->dataAction = $dataAction;
 
         parent::__construct();
     }
@@ -48,6 +48,25 @@ class ProjectSetupCommand extends Command
         $helper = $this->getHelper('question');
         $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
         $contentPath = $kernelProjectDir . '/content';
+        $imagesPath = $kernelProjectDir . '/content/images';
+
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $folders = $configurationProject['folders'];
+
+        $finder = new Finder();
+        
+        $finder->files()->in($imagesPath);
+        if ($finder->hasResults()) {
+            $question = new ConfirmationQuestion(
+                'Voulez-vous créer les images trouvées dans le dossier content/ ? (Y|n)',
+                true
+            );
+            if ($helper->ask($input, $output, $question)) {
+                $this->dataAction->importImages();
+
+                $io->success('Les données du dossier content/ ont bien été enregistrées.');
+            }
+        }
 
         $finder = new Finder();
         
@@ -58,14 +77,14 @@ class ProjectSetupCommand extends Command
                 true
             );
             if ($helper->ask($input, $output, $question)) {
-                $this->importService->run($contentPath);
+                $this->dataAction->run($contentPath, $folders);
 
                 $io->success('Les données du dossier content/ ont bien été enregistrées.');
             }
         }
         
 
-        if($result = $this->importService->getMainOrganization($contentPath)) {
+        if($result = $this->dataAction->getMainOrganization($contentPath)) {
             
             $question = new ConfirmationQuestion(
                 'Les données de votre organisation sont elles correctes ? (Y|n)',
@@ -81,7 +100,7 @@ class ProjectSetupCommand extends Command
             ;
             $table->render();
             if ($helper->ask($input, $output, $question)) {
-                $this->importService->createMainOrganization($data);
+                $this->dataAction->createMainOrganization($data);
                 $io->success('Les données de votre organisation ont bien été enregistrées.');
 
                 return Command::SUCCESS;

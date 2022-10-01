@@ -69,9 +69,15 @@ class AggregateOffer implements ResourceInterface
      */
     private $addOn;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Trip::class, mappedBy="offers")
+     */
+    private $trips;
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
+        $this->trips = new ArrayCollection();
     }
 
     public function __toString()
@@ -182,5 +188,32 @@ class AggregateOffer implements ResourceInterface
     public function getAddOn()
     {
         return $this->addOn;
+    }
+
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getTrips(): Collection
+    {
+        return $this->trips;
+    }
+
+    public function addTrip(Trip $trip): self
+    {
+        if (!$this->trips->contains($trip)) {
+            $this->trips[] = $trip;
+            $trip->addOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrip(Trip $trip): self
+    {
+        if ($this->trips->removeElement($trip)) {
+            $trip->removeOffer($this);
+        }
+
+        return $this;
     }
 }

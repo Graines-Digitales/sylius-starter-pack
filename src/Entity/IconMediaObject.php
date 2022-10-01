@@ -89,6 +89,11 @@ class IconMediaObject implements ResourceInterface
     private $organizations;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $html;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -98,8 +103,8 @@ class IconMediaObject implements ResourceInterface
     }
 
     public function __toString()
-    {
-        return $this->getName();
+    {   
+        return $this->getFilename();
     }
    
     public function setFile(?File $file = null): void
@@ -204,6 +209,18 @@ class IconMediaObject implements ResourceInterface
                 $organization->setIcon(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getHtml(): ?string
+    {
+        return $this->html;
+    }
+
+    public function setHtml(?string $html): self
+    {
+        $this->html = $html;
 
         return $this;
     }

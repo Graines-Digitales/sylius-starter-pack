@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\WebContent\Component;
 use App\Entity\ImageMediaObject;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -30,8 +29,6 @@ use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 
 class ComponentHeroType extends AbstractType
 {
-    private $componentService;
-
     private $manager;
     
     private $container;
@@ -39,11 +36,9 @@ class ComponentHeroType extends AbstractType
     private $slugger;
 
     public function __construct(
-        Component $componentService,
         EntityManagerInterface $manager,
         ContainerInterface $container
     ){
-        $this->componentService = $componentService;
         $this->manager = $manager;
         $this->container = $container;
         $this->slugger = new AsciiSlugger();
@@ -51,11 +46,6 @@ class ComponentHeroType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $code = 'component_hero'; // Use the code defined on the component creation in admin pannel
-        // $templates = $this->componentService->getTemplates($code);
-        // $styles = $this->componentService->getStyles($code);
-        $configurationProject = $this->container->getParameter('configuration_project');
-
         $builder
             ->add('_slug', TextType::class, [
                 'disabled' => true,

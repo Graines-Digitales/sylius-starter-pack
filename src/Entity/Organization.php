@@ -4,21 +4,24 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\ImageMediaObject;
+use App\Entity\Address;
 use App\Entity\Traits\SeoTrait;
+use App\Entity\ImageMediaObject;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
-use App\Repository\OrganizationRepository;
+use App\Entity\Traits\IdentifiableTrait;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\IdentifiableTrait;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Sylius\Component\Resource\Model\CodeAwareInterface;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 
 /**
@@ -26,7 +29,25 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @see http://schema.org/Organization Documentation on Schema.org
  *
+ * @ApiResource(
+  *     collectionOperations={
+ *       "get"={
+ *         "method"="GET",  
+ *       },
+ *       "organization_configuration"={
+ *         "method"= "GET",
+ *         "path"= "/api/v2/organization/configuration",
+ *         "controller"= OrganizationController::class     
+ *       },
+ *       "organization_media_encoding_formats"={
+ *         "method"= "GET",
+ *         "path"= "/api/v2/organization/media-encoding-formats",
+ *         "controller"= OrganizationController::class 
+ *       }
+ *     }
+ * )
  * @ApiResource()
+ * @ApiFilter(SearchFilter::class, properties={ "category.translations.slug": "exact", "slug": "exact" })
  * @ORM\Entity@ORM\Entity(repositoryClass=OrganizationRepository::class)
  * @ORM\Table(name="app_organization")
  */
@@ -101,6 +122,11 @@ class Organization implements ResourceInterface
      *  }
      *
      * )
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      **/
     private $addresses;
 
@@ -116,8 +142,13 @@ class Organization implements ResourceInterface
      * @var ImageMediaObject|null indicates the main image on the page
      *
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
-     * @ApiProperty(iri="http://schema.org/primaryImage")
+     
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $primaryImage;  
 
@@ -125,8 +156,12 @@ class Organization implements ResourceInterface
      * @var ImageMediaObject|null indicates the main image on the page
      *
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
-     * @ApiProperty(iri="http://schema.org/primaryImage")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $secondaryImage;
 
@@ -155,32 +190,62 @@ class Organization implements ResourceInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="organizations")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
     /**
      * @ORM\OneToMany(targetEntity=LocalBusiness::class, mappedBy="organization")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $localBusinesses;
 
     /**
      * @ORM\ManyToMany(targetEntity=Organization::class, inversedBy="organizations")
      * @ORM\JoinTable(name="app_social_link_organization")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $socialLinks;
 
     /**
      * @ORM\ManyToMany(targetEntity=Organization::class, mappedBy="socialLinks")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $organizations;
 
     /**
      * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="parents")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="parent")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $parents;
 
@@ -194,6 +259,11 @@ class Organization implements ResourceInterface
      * @ORM\ManyToOne(targetEntity=IconMediaObject::class, inversedBy="organizations")
      */
     private $icon;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $additionalPhone;
 
     public function getSlug()
     {
@@ -361,7 +431,7 @@ class Organization implements ResourceInterface
     /**
      * Add address.
      *
-     * @param \App\Entity\Address $address
+     * @param Address $address
      *
      * @return Person
      */
@@ -377,7 +447,7 @@ class Organization implements ResourceInterface
     /**
      * Remove address.
      *
-     * @param \App\Entity\Address $address
+     * @param Address $address
      */
     public function removeAddress($address)
     {
@@ -398,17 +468,6 @@ class Organization implements ResourceInterface
         return $this->addresses;
     }
 
-    public function getOrganization(): ?self
-    {
-        return $this->organization;
-    }
-
-    public function setOrganization(?self $organization): self
-    {
-        $this->organization = $organization;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, LocalBusiness>
@@ -553,6 +612,18 @@ class Organization implements ResourceInterface
     public function setIcon(?IconMediaObject $icon): self
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getAdditionalPhone(): ?string
+    {
+        return $this->additionalPhone;
+    }
+
+    public function setAdditionalPhone(?string $additionalPhone): self
+    {
+        $this->additionalPhone = $additionalPhone;
 
         return $this;
     }

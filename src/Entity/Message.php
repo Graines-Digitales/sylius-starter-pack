@@ -21,18 +21,26 @@ use App\Controller\Api\MessageController;
  * @see http://schema.org/Message Documentation on Schema.org
  *
  * @ApiResource(
-  *  collectionOperations={
- *      "get"={
- *          "method"="GET",  
+ *     collectionOperations={
+ *       "get"={
+ *         "method"="GET",  
  *       },
- *   "save_form_contact"={
- *              "method"="POST",
- *              "path"="/api/v2/messages/save",
- *              "controller"=MessageController::class,
- *              
- *              
- *          }
- *   }
+ *       "message_contact_create"={
+ *         "method"= "POST",
+ *         "path"= "/api/v2/message/contact/create",
+ *         "controller"= MessageController::class     
+ *       },
+ *       "message_product_create"={
+ *         "method"= "POST",
+ *         "path"= "/api/v2/message/product/create",
+ *         "controller"= MessageController::class     
+ *       },
+ *       "newsletter_create"={
+ *         "method"= "POST",
+ *         "path"= "/api/v2/newsletter/create",
+ *         "controller"= MessageController::class 
+ *       }
+ *     }
  * )
  * @ORM\Entity
  * @ORM\Table(name="app_message")

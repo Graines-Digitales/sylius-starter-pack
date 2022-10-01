@@ -1,9 +1,7 @@
-imports:
-    - { resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/config.yaml" }
-
 monsieurbiz_sylius_richeditor:
     upload_directory: '/media/image'
     image_upload_directory: '/media/image'
+    
     ui_elements:
         #Element monsieurbiz désactivés
         monsieurbiz.youtube:

@@ -40,7 +40,7 @@ class Component extends AbstractWebContent
     public function getComponents($webpage)
     {
        
-        $components = json_decode($webpage->getComponent('fr_FR'), true);
+        $components = json_decode($webpage->getComponents('fr_FR'), true);
         $componentSorted = [];
 
         if ($components) {

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\LockableTrait;
 use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -12,16 +13,22 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslatableInterface;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 
 /**
- * @ApiResource()
+ * @ApiResource(
+
+ * )
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  * @ORM\Table(name="app_article")
  */
 class Article implements ResourceInterface, TranslatableInterface
 {
     use SeoTrait;
+    use LockableTrait;
     use IdentifiableTrait;
     use TimestampableEntity;
     use TranslatableTrait {
@@ -55,33 +62,63 @@ class Article implements ResourceInterface, TranslatableInterface
     /**
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $primaryImage;
 
     /**
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $secondaryImage;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
      * @ORM\JoinTable(name="app_article_category")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $tags;
 
     /**
      * @ORM\OneToMany(targetEntity=PropertyValue::class, mappedBy="article")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $propertyValues;
 
     /**
      * @ORM\ManyToOne(targetEntity=VideoMediaObject::class, inversedBy="articles")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $video;
 

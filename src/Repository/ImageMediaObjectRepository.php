@@ -14,6 +14,7 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class ImageMediaObjectRepository extends EntityRepository
 {
+<<<<<<< HEAD
     public function create($data = [], $locale = 'fr_FR')
     {
         $entity = new ImageMediaObject();
@@ -41,5 +42,15 @@ class ImageMediaObjectRepository extends EntityRepository
         }
 
         return $entity;
+=======
+    public function findSortByDate($configurationProject)
+    {
+        // $slug = $configurationProject['forms']['contact_default']['slug'];
+
+        return $this->createQueryBuilder('entity')
+            
+            ->orderBy('entity.createdAt', 'DESC')
+        ;
+>>>>>>> starter-pack
     }
 }

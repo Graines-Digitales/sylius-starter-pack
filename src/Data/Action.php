@@ -2,6 +2,7 @@
 
 namespace App\Data;
 
+<<<<<<< HEAD
 use App\Entity\Tag;
 use App\Entity\Care;
 use App\Entity\Slide;
@@ -13,10 +14,12 @@ use App\Entity\AmenityFeatureTranslation;
 use App\Entity\Article;
 use App\Entity\Message;
 use App\Entity\WebPage;
+=======
+>>>>>>> starter-pack
 use App\Entity\Category;
-use App\Entity\Component;
-use App\Entity\Blockquote;
+use App\Entity\IconMediaObject;
 use App\Entity\ImageMediaObject;
+<<<<<<< HEAD
 use App\Entity\Organization;
 use App\Entity\PropertyValue;
 use App\Entity\SlideMediaObject;
@@ -24,14 +27,20 @@ use App\Entity\ArticleTranslation;
 use App\Entity\WebPageTranslation;
 use App\Entity\CategoryTranslation;
 use App\Entity\HotelTypicalDayElement;
+=======
+use Mni\FrontYAML\Parser;
+use Symfony\Component\Finder\Finder;
+>>>>>>> starter-pack
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
+use App\Tools\Media;
 
-/**
- * Service à supprimer quand sera acquis la notion d'architecture hexagonale
- */
+
 class Action
 {
+<<<<<<< HEAD
     protected $entityManager;
 
     protected $slugger;
@@ -80,75 +89,25 @@ class Action
         $categoryTranslation = new CategoryTranslation();
         $category->addTranslation($categoryTranslation); 
         $category = $this->hydrateCategoryDemand($data, $category, $locale);
+=======
+    private $container;
+>>>>>>> starter-pack
 
-        return $category;
-    }
+    private $entityManager;
 
-    public function createAddressDemand($data = [])
-    {
-        $address = new Address();
-        $address = $this->hydrateAddressDemand($data, $address);
+    private $webPageAction;
 
-        return $address;
-    }
+    private $articleAction;
 
-    public function createWebPageDemand($data = [], $locale = 'fr_FR')
-    {
-        $webPage = new WebPage();
-        $webPage->setCurrentLocale($locale);
-        $webPageTranslation = new WebPageTranslation();
-        $webPage->addTranslation($webPageTranslation); 
-        $webPage = $this->hydrateWebPageDemand($data, $webPage, $locale);
-       
-        return $webPage;
-    }
+    private $componentAction;
 
-    public function createArticleDemand($data = [], $locale = 'fr_FR')
-    {
-        $article = new Article();
-        $article->setCurrentLocale($locale);
-        $articleTranslation = new ArticleTranslation();
-        $article->addTranslation($articleTranslation); 
-        $article = $this->hydrateArticleDemand($data, $article, $locale);
-       
-        return $article;
-    }
+    private $tripAction;
 
-    public function createPersonDemand($data = [])
-    {
-        $person = new Person();
-        $person = $this->hydratePersonDemand($data, $person);
+    private $organizationAction;
 
-        return $person;
-    }
-    
-    public function createMessageDemand($data = [])
-    {
-        $message = new Message();
-        $message->setSubject($data['subject']);
-        $message->setText($data['text']);
-        $message->setOrigin($data['origin']);
-        $message->setDateSent(new \DateTime('now'));
+    private $mediaService;
 
-        return $message;
-    }
-
-    public function createComponentDemand($data = [], $locale)
-    {
-        $component = new Component();
-        $component = $this->hydrateComponentDemand($data, $component, $locale);
-        
-        return $component;
-    }
-
-    public function createOrganizationDemand($data = [])
-    {
-        $organization = new Organization();
-        $organization = $this->hydrateOrganizationDemand($data, [], $organization);
-        
-        return $organization;
-    }
-
+<<<<<<< HEAD
     public function hydrateCategoryDemand($data, $category, $locale) 
     {
         $category->getTranslation()->setLocale($locale);
@@ -312,26 +271,73 @@ class Action
         }
 
         return $address;
+=======
+    public function __construct(
+        ContainerInterface $container
+        , EntityManagerInterface $entityManager
+        , WebPageAction $webPageAction
+        , ArticleAction $articleAction
+        , CategoryAction $categoryAction
+        , ComponentAction $componentAction
+        , TripAction $tripAction
+        , OrganizationAction $organizationAction
+        , Media $mediaService
+    ){
+        $this->container = $container;
+        $this->entityManager = $entityManager;
+        $this->webPageAction = $webPageAction;
+        $this->articleAction = $articleAction;
+        $this->categoryAction = $categoryAction;
+        $this->componentAction = $componentAction;
+        $this->tripAction = $tripAction;
+        $this->organizationAction = $organizationAction;
+        $this->mediaService = $mediaService;
+>>>>>>> starter-pack
     }
 
-    public function hydrateComponentDemand($data = [], $component, $locale)
+    public function importImages()
     {
-        if(isset($data['name'])) {
-            $component->setName($data['name']);
-            $component->getTranslation($locale)->setHeadline($data['name']);
-        }
+        $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $imageMimeTypes = $configurationProject['media_encoding_formats']['image'];
 
-        if (isset($data['components'])) {
-            $components = [];
-            
-            foreach($data['components'] as $result) {
-                $array = [];
-                $array['code'] = $result['code'];
-                unset($result['code']);
-                $array['data'] = $result;
-                array_push($components, $array);
+        $imagesPath = $kernelProjectDir . '/content/images';
+        $svgsPath = $kernelProjectDir . '/content/svgs';
+
+        $filesystem = new Filesystem();
+        $finder = new Finder();
+        $finder->files()->in($imagesPath);
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $absoluteFilePath = $file->getRealPath();
+                $dirname = pathinfo(pathinfo($file->getRealPath(), PATHINFO_DIRNAME), PATHINFO_BASENAME);
+                $filename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
+                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
+                $category = null;
+                if('images' !== $dirname) {
+                    $data['name'] = $dirname;
+                    $category = $this->entityManager->getRepository(Category::class)
+                        ->findOneBySlug($data['name']);
+                    if(null === $category) {
+                        
+                        $category = $this->categoryAction->create($data);
+                    }
+                }
+                $file = new File($absoluteFilePath);
+                if (in_array($file->getMimeType(), $imageMimeTypes)) {
+                    $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/image/' . $filename);
+                    $entity = $this->entityManager->getRepository(ImageMediaObject::class)
+                    ->findOneBy([ 'filename' => $filename ]);
+                    if(null === $entity) {
+                        
+                        $entity = $this->mediaService->defineEntityMediaFromFile2($file, $category);
+                    }
+                    $this->entityManager->persist($entity);
+                }
             }
+            $this->entityManager->flush();
             
+<<<<<<< HEAD
             $component->getTranslation($locale)->setComponents(
                 json_encode($components)
             );
@@ -389,88 +395,86 @@ class Action
                     ->findOneBy(['slug' => $slug]);
                 if(null !== $socialLink) {
                     $organization->addSocialLink($socialLink);
+=======
+        }
+
+        $filesystem = new Filesystem();
+        $finder = new Finder();
+        $finder->files()->in($svgsPath);
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $absoluteFilePath = $file->getRealPath();
+                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
+                $filename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
+                $file = new File($absoluteFilePath);
+                $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/icon/' . $filename);
+                $entity = $this->entityManager->getRepository(IconMediaObject::class)
+                ->findOneBy([ 'filename' => $filename ]);
+                if(null === $entity) {
+                    
+                    $entity = $this->mediaService->defineIconMediaFromFile($file);
+>>>>>>> starter-pack
                 }
+                $this->entityManager->persist($entity);
             }
+            $this->entityManager->flush();
         }
+    }
 
-        if(isset($data['identifier'])) {
-            foreach ($data['identifier'] as $key => $result) {
-                $identifier = new PropertyValue();
-                $identifier->setName($result['name']);
-                $identifier->setValue($result['value']);
-                $organization->addIdentifier($identifier);
-            }
-        }
-
-        if(isset($data['openingHoursSpecification'])) {
-
-            foreach ($data['openingHoursSpecification'] as $k=>$v) {
-                foreach ($v as $key => $value) {
-                    $property = new PropertyValue();
-                    $property->setName($key);
-                    if(is_array($value)) {
-                        $value = implode(', ', $value);
+    public function run($contentPath, $folders)
+    {
+        
+        $locales = $this->container->get('sylius.repository.locale')->findAll();
+     
+        foreach($locales as $locale) {
+            $localeCode = $locale->getCode();
+            $locale = current(explode('_', $localeCode));
+            if('fr' === $locale) {
+                
+                foreach($folders as $folder) {
+                    $finder = new Finder();
+                    $path = $contentPath . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $folder;
+                    $finder->depth('== 0');
+                    $finder->files()->in($path);
+                    if ($finder->hasResults()) {
+                        foreach ($finder as $file) {
+                            $absoluteFilePath = $file->getRealPath();
+                            $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
+                            $data = $this->extractData($absoluteFilePath, $extension);
+                            $entity = $this->dataServicesDispatch($data, $folder);
+                            $this->entityManager->persist($entity);
+                        }
+                        $this->entityManager->flush();
                     }
-                    $property->setValue($value);
-                    $property->setValueReference('openingHoursSpecification');
-                    $organization->addOpeningHour($property);
                 }
             }
         }
-
-        return $organization;
     }
 
-
-
-    /**
-     * En dessous à revoir en fonction des besoins
-     */
-
-
-
-
-    public function createWebPageFromProductDemand($product)
+    public function getMainOrganization($contentPath)
     {
-        $product['headline'] = $product['name'];
-        $product['alternativeHeadline'] = $product['name'];
-        $product['text'] = $product['description'];
+        $parser = new Parser();
+        $filesystem = new Filesystem();
+        $filepath = $contentPath . DIRECTORY_SEPARATOR . 'main_organization.md';
+        if($filesystem->exists($filepath)) {
+            $result = $parser->parse(file_get_contents($filepath), false);
 
-        return $this->createWebPageDemand($product);
+            return $result->getYaml();
+        }
+
+        return false;
     }
 
-    public function createWebPageFromCategoryDemand($category)
+    public function createMainOrganization($data) 
     {
-        if(empty($category['translation']['headline'])) {
-            $category['translation']['headline'] = $category['translation']['name'];
-        }
-        if(empty($category['translation']['alternativeHeadline'])) {
-            $category['translation']['alternativeHeadline'] = $category['name'];
-        }
-        if(empty($category['translation']['text'])) {
-            $category['translation']['text'] = $category['translation']['description'];
-        }
-
-        return $this->createWebPageDemand($category);
+        $organization = $this->organizationAction->create($data);
+        $this->entityManager->persist($organization);
+        $this->entityManager->flush();
     }
 
-    public function createWebPageFromArticleDemand($article)
+    public function extractData($absoluteFilePath, $extension)
     {
-       
-        if(empty($article['translation']['text'])) {
-            $article['translation']['text'] = $article['translation']['articleBody'];
-        }
-
-        if(empty($article['translation']['textResume'])) {
-            $article['translation']['text'] = $article['translation']['articleResume'];
-        }
-
-        return $this->createWebPageDemand($article);
-    }
-
-    
-    public function createSlideDemand($value)
-    {
+<<<<<<< HEAD
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
         $entity = $this->entityManager->getRepository(Slide::class)
             ->findOneBy(['slug' => $slug]);
@@ -537,16 +541,32 @@ class Action
         }
 
         return $entity;
+=======
+        $data = [];
+        
+        switch ($extension) {
+            case 'md':
+                $parser = new Parser();
+                $result = $parser->parse(file_get_contents($absoluteFilePath), false);
+                $data = $result->getYaml();
+                $data['content'] = $result->getContent();
+                
+                break;
+            case 'json':
+                $data = json_decode(
+                    file_get_contents($absoluteFilePath)
+                    , true
+                );
+                break;
+        }
+
+        return $data;
+>>>>>>> starter-pack
     }
 
-    /**
-     * @TODO : fonction à revoir, n'est pas un vrai modele d'hydratation
-     *
-     * @param [type] $value
-     * @return void
-     */
-    public function hydrateSlideDemand($value)
+    public function dataServicesDispatch($data, $folder)
     {
+<<<<<<< HEAD
         $slug = $this->slugger->slug($value['name'])->lower()->toString();
         $entity = $this->entityManager->getRepository(Slide::class)
             ->findOneBy(['slug' => $slug]);
@@ -720,15 +740,53 @@ class Action
                 $slug = $this->slugger->slug($value['internalLink']['webPage']['slug'])->lower()->toString();
                 $linkedWebPage = $this->entityManager->getRepository(WebPage::class)
                     ->findOneBy(['slug' => $slug]);
-
-                if($linkedWebPage) {
-
-                    $entity->setInternalLinkWebPage($linkedWebPage);
-                    if(isset($value['internalLink']['webPage']['label'])) {
-                        $label = $value['internalLink']['webPage']['label'];
-                        $entity->setInternalLinkWebPageLabel($label);
-                    }
+=======
+        switch ($folder) {
+            case 'categories':
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
                 }
+               
+                $category = $this->entityManager->getRepository(Category::class)->findOneBySlug($data['slug']);
+                if(null !== $category) {
+                    
+                    return $category;
+                }
+
+                return $this->categoryAction->create($data);
+              
+                break;
+            case 'web_pages':
+                if(isset($data['content'])) {
+                    $data['text'] = $data['content'];
+                    unset($data['content']);
+                }
+                
+                return $this->webPageAction->create($data);
+                
+                break;
+            case 'articles':
+                if(isset($data['content'])) {
+                    $data['articleBody'] = $data['content'];
+                    unset($data['content']);
+                }
+>>>>>>> starter-pack
+
+                return $this->articleAction->create($data);
+                
+                break;
+            case 'components':
+              
+                return $this->componentAction->create($data);
+                
+                break;
+            case 'social_links':
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+                }
+<<<<<<< HEAD
             }
             if (isset($value['internalLink']['article'])) {
                 $linkedArticle = $this->entityManager->getRepository(Article::class)
@@ -786,12 +844,24 @@ class Action
                         $label = $value['internalLink']['article']['label'];
                         $entity->setInternalLinkArticleLabel($label);
                     }
+=======
+
+                return $this->organizationAction->create($data);
+                
+                break;
+            case 'travels':
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+>>>>>>> starter-pack
                 }
-            }
+
+                return $this->tripAction->create($data);
+                
+                break;
+            default:
+                # code...
+                break;
         }
-
-        return $entity;
     }
-
-
 }

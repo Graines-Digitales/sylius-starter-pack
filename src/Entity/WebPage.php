@@ -18,6 +18,9 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Annotation\ApiProperty;
+
 
 
 /**
@@ -60,40 +63,76 @@ class WebPage implements ResourceInterface, TranslatableInterface
      * @ORM\JoinColumn(onDelete="SET NULL")
      * 
      * @Assert\NotBlank()
+     * 
+     * @ApiSubresource(maxDepth=1)
+     *  @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $primaryImage;
 
     /**
      * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $secondaryImage;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="webPages")
      * @ORM\JoinTable(name="app_web_page_category")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $tags;
 
     /**
      * @ORM\OneToMany(targetEntity=PropertyValue::class, mappedBy="webPage")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $propertyValues;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity=VideoMediaObject::class, inversedBy="webPages")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $video;
+
 
 
     public function __toString()
@@ -141,13 +180,13 @@ class WebPage implements ResourceInterface, TranslatableInterface
     public function getComponents(): ?string
     {
 //        return $this->getTranslation()->getComponent();
-        return $this->getTranslation('fr_FR')->getComponents();
+        return $this->getTranslation()->getComponents();
     }
 
     public function setComponents(string $components): self
     {
 //        $this->getTranslation()->setComponent($component);
-        $this->getTranslation('fr_FR')->setComponents($components);
+        $this->getTranslation()->setComponents($components);
 
         return $this;
     }
@@ -157,7 +196,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
      */
     public function getSlug()
     {
-        return $this->getTranslation('fr_FR')->getSlug();
+        return $this->getTranslation()->getSlug();
 //        return $this->getTranslation()->getSlug();
     }
 
@@ -274,5 +313,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
 
         return $this;
     }
+
+
 
 }

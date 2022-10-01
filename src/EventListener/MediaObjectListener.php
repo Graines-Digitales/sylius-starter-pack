@@ -40,6 +40,7 @@ class MediaObjectListener
             || $entity instanceof IconMediaObject
             || $entity instanceof DocumentMediaObject
         ) {
+            
             $this->toolsMediaService->defineEntityMediaFromFile($entity);
         }
        

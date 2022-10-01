@@ -22,6 +22,10 @@ const initSelect2 = () => {
       templateResult: formatState,
       templateSelection: formatState
     });
+    $('.select2-icon').select2({
+      templateResult: formatState2,
+      templateSelection: formatState2
+    });
   });
 
   $(() => {
@@ -55,6 +59,14 @@ $(document).ready(function () {
   
 });
 
+$(document).ready(function () {
+  $('.select2-icon').select2({
+    templateResult: formatState2,
+    templateSelection: formatState2
+
+  });
+  
+});
 
 const formatState = (opt) => {
   if (!opt.id) {
@@ -63,11 +75,25 @@ const formatState = (opt) => {
   // console.log(opt)
   let optImage = $(
     '<span style="display:flex; align-items: center; padding: 5px 0;">' +
-    '<img src="/media/cache/resolve/mini_webp/' + opt.text + '" style="width:60px; max-height: 50px; margin-right: 20px;">' + opt.text +
+    '<img src="/media/cache/resolve/thumbnail_webp/' + opt.text + '" style="width:60px; max-height: 50px; margin-right: 20px;">' + opt.text +
     '</span>'
   )
   return optImage;
 }
+
+const formatState2 = (opt) => {
+  if (!opt.id) {
+    return opt.text;
+  }
+  // console.log(opt)
+  let optImage = $(
+    '<span style="display:flex; align-items: center; padding: 5px 0;">' +
+    '<img src="/media/icon/' + opt.text + '" style="width:60px; max-height: 50px; margin-right: 20px;">' + opt.text +
+    '</span>'
+  )
+  return optImage;
+}
+
 /**
  * END Région Select2
  */
@@ -75,7 +101,7 @@ const formatState = (opt) => {
   let elem = $(this);
   let slug = elem.data( "slug" );
   $(document).find(".ui.image_modal[data-slug='" + slug + "']")
-    .modal('setting', 'transition', 'vertical flip')  
+    .modal('setting', 'transition', 'fly left')  
     .modal('show')
   ;
 });

@@ -43,11 +43,13 @@ class OrganizationType extends AbstractType
             ])
             ->add('legalName')
             ->add('phone')
+            ->add('mobilePhone')
+            ->add('additionalPhone')
             ->add('email')
             // ->add('foundingDate')
             // ->add('numberOfEmployees')
             // ->add('numberOfProjects')
-            ->add('mobilePhone')
+            
             // ->add('isIndexed')
             ->add('description')
             ->add('url')
@@ -65,11 +67,12 @@ class OrganizationType extends AbstractType
             ->add('primaryImage', EntityType::class, [
                 'attr' => ['class' => 'select2-image'],
                 'class' => ImageMediaObject::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image'
+                'placeholder' => 'app.ui_element.field.choose',
             ])
             ->add('icon', EntityType::class, [
-                'attr' => ['class' => 'select2-image'],
-                'class' => IconMediaObject::class
+                'attr' => ['class' => 'select2-icon'],
+                'class' => IconMediaObject::class,
+                'placeholder' => 'app.ui_element.field.choose',
             ])
             // ->add('category', EntityType::class, [
             //     'class' => Category::class,

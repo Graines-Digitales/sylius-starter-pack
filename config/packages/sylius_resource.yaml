@@ -129,6 +129,13 @@ sylius_resource:
                 form: App\Form\Type\MessageType
                 repository: App\Repository\MessageRepository
 
+        app.message_product:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Message
+                form: App\Form\Type\MessageType
+                repository: App\Repository\MessageRepository
+
         app.message_quote:
             driver: doctrine/orm # You can use also different driver here
             classes:
@@ -258,4 +265,8 @@ sylius_resource:
             classes:
                 model: App\Entity\Trip
                 form: App\Form\Type\TripType
-                repository: App\Repository\TripRepository 
+                repository: App\Repository\TripRepository
+            translation:
+                classes:
+                    model: App\Entity\TripTranslation 
+                    form: App\Form\Type\TripTranslationType

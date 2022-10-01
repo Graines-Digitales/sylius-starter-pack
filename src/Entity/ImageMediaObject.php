@@ -82,7 +82,8 @@ class ImageMediaObject implements ResourceInterface
     private $message;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $category;
 
@@ -93,11 +94,17 @@ class ImageMediaObject implements ResourceInterface
     private $tags;
 
     /**
+     * @ORM\OneToMany(targetEntity=Trip::class, mappedBy="primaryImage")
+     */
+    private $trips;
+
+    /**
      * Constructor.
      */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->trips = new ArrayCollection();
     }
 
     public function __toString()
@@ -189,6 +196,36 @@ class ImageMediaObject implements ResourceInterface
     public function removeTag(Category $tag): self
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getTrips(): Collection
+    {
+        return $this->trips;
+    }
+
+    public function addTrip(Trip $trip): self
+    {
+        if (!$this->trips->contains($trip)) {
+            $this->trips[] = $trip;
+            $trip->setPrimaryImage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrip(Trip $trip): self
+    {
+        if ($this->trips->removeElement($trip)) {
+            // set the owning side to null (unless already changed)
+            if ($trip->getPrimaryImage() === $this) {
+                $trip->setPrimaryImage(null);
+            }
+        }
 
         return $this;
     }
