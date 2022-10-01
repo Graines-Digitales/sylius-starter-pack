@@ -37,7 +37,7 @@ class SocialLinkType extends AbstractResourceType
                 'required' => false,
             ])
             ->add('icon', EntityType::class, [
-                'attr' => ['class' => 'select2-image'],
+                'attr' => ['class' => 'select2-icon'],
                 'required' => false,
                 'class' => IconMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose'

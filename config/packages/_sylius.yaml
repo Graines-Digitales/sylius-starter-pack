@@ -978,43 +978,65 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\ImageMediaObject
-
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
+                   
             fields:
-                is_enabled:
-                    type: twig
-                    label: app.ui_element.field.enabled
-                    options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
-                category:
-                    type: twig # Type of filter
-                    label: app.ui.category
-                    options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                # is_enabled:
+                #     type: twig
+                #     label: app.ui_element.field.enabled
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                
                 filename:
                     type: twig
                     label: app.ui.preview
                     path: . 
                     options:
                         template: "@App/admin/Grid/Field/preview_media.html.twig"
+            
                 originalFilename:
                     type: string
                     label: sylius.ui.name
                     sortable: translation.name
-                encodingFormat:
-                    type: string
-                    label: app.ui_element.field.encoding
-                caption:
-                    type: string
-                    label: app.ui.alt
-                    sortable: translation.caption
+                   
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+
+                createdAt:
+                    type: datetime
+                    label: sylius.ui.date
+                # encodingFormat:
+                #     type: string
+                #     label: app.ui_element.field.encoding
+                # caption:
+                #     type: string
+                #     label: app.ui.alt
+                #     sortable: translation.caption
+                
             filters:
-                search:
+                originalFilename:
                     type: string
                     label: false
-                    options:
-                        fields: [filename, slug, name, category.translations.name]
+                    # options:
+                    #     fields: [originalFilename]
                     form_options:
                         type: contains
+                category:
+                    type: entity
+                    label: false
+                    options:
+                        fields: [category.translations.name]
+                    form_options:
+                        class: "%app.model.category.class%"
+
+
+
             actions:
                 main:
                     create:

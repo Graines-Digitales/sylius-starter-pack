@@ -11,31 +11,33 @@ user=root
 #################################
 # database connection variables #
 #################################
-db_prod_host=51.38.237.233
-db_prod_name=villa_gonatouki
+db_prod_host=51.38.237.233      
+db_prod_name=kazen_garden_dms
 db_prod_user=johanrm    
 db_prod_pass=fxf2Lk8H44JU
 
-db_dev_name=villa_gonatouki 
+db_dev_name=dms_kazengarden 
 db_dev_user=johanrm
 db_dev_pass=mypass
 
 ##########################
 # project path variables #
 ##########################
-directory_prod_app=/mnt/disk/www/villa-gonatouki/symfony-headless-dms
-directory_prod_assets=/var/www/resources/villa-gonatouki
+directory_prod_app=/var/www/kazen-garden/production/digital-management-system
+directory_prod_backend_public=$directory_prod_app/public
 
-directory_dev_app=/home/www/graines-digitales/villa-gonatouki/digital-managment-system
-directory_dev_assets=/home/www/resources/villa-gonatouki
+directory_dev_app=/home/www/graines-digitales/kazen-garden/digital-management-system
+directory_dev_backend_public=$directory_dev_app/public
 
 #####################################################
 # synchronize local resources from remote resources #
 #####################################################
 
-if [ -d "$directory_dev_assets" ]; 
+if [ -d "$directory_dev_backend_public" ]; 
 then
-        rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $user@$host:$directory_prod_assets/uploads/ $directory_dev_assets/uploads/ && \
+        rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $user@$host:$directory_prod_backend_public/media/image/ $directory_dev_backend_public/media/image/ && \
+        rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $user@$host:$directory_prod_backend_public/media/icon/ $directory_dev_backend_public/media/icon/ && \
+        rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $user@$host:$directory_prod_backend_public/media/cache/ $directory_dev_backend_public/media/cache/ && \
         tput setaf 2 && echo "rsync process is complete" && tput sgr0
 else
         read -p "No folder resources found, Do you want continue? (Y/n)" yn

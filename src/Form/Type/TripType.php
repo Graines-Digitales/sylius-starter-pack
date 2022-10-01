@@ -33,22 +33,23 @@ class TripType extends AbstractType
             ->add('arrivalTime', DateTimeType::class, [
                 // 'disabled' => true,
                 'widget' => 'single_text',
+                'with_minutes' => true,
                 'required' => false,
                 'label' => 'app.ui_element.field.arrival_date',
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(['groups' => ['trip_validation']])
-                ]
+                'required' => false,
+                // 'constraints' => [
+                //     new NotBlank(['groups' => ['trip_validation']])
+                // ]
             ])
             ->add('departureTime', DateTimeType::class, [
                 // 'disabled' => true,
                 'widget' => 'single_text',
                 'required' => false,
                 'label' => 'app.ui_element.field.departure_date',
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(['groups' => ['trip_validation']])
-                ]
+                'required' => false,
+                // 'constraints' => [
+                //     new NotBlank(['groups' => ['trip_validation']])
+                // ]
             ])
             ->add('offers', CollectionType::class, [
                 'entry_type' => AggregateOfferType::class,

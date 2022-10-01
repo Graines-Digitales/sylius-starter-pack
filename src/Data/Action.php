@@ -124,10 +124,12 @@ class Action
     {
         
         $locales = $this->container->get('sylius.repository.locale')->findAll();
+     
         foreach($locales as $locale) {
             $localeCode = $locale->getCode();
             $locale = current(explode('_', $localeCode));
             if('fr' === $locale) {
+                
                 foreach($folders as $folder) {
                     $finder = new Finder();
                     $path = $contentPath . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $folder;
