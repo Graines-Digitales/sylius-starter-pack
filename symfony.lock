@@ -83,7 +83,7 @@
         ]
     },
     "friendsofsymfony/rest-bundle": {
-        "version": "3.3",
+        "version": "3.4",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
