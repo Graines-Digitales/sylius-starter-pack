@@ -61,14 +61,15 @@ class ComponentCardType extends AbstractType
                 'disabled' => false,
             ])
             ->add('designation', TextType::class, [
-                'required' => false,
-                'label' => 'app.ui_element.field.designation',
-            ])
-            ->add('title', TextType::class, [
                 'required' => true,
                 'constraints' => [
                     new NotBlank(['groups' => ['component_card_validation']])
                 ],
+                'label' => 'app.ui_element.field.designation',
+            ])
+            ->add('title', TextType::class, [
+                'required' => false,
+               
                 'label' => 'app.ui_element.field.title',
             ])
             ->add('subtitle', TextType::class, [
