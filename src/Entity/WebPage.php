@@ -133,6 +133,11 @@ class WebPage implements ResourceInterface, TranslatableInterface
      */
     private $video;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=IconMediaObject::class)
+     */
+    private $icon;
+
 
 
     public function __toString()
@@ -310,6 +315,18 @@ class WebPage implements ResourceInterface, TranslatableInterface
     public function setVideo(?VideoMediaObject $video): self
     {
         $this->video = $video;
+
+        return $this;
+    }
+
+    public function getIcon(): ?IconMediaObject
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?IconMediaObject $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }
