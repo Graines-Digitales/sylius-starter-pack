@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\WebPage;
 use App\Entity\Category;
+use App\Entity\IconMediaObject;
 use App\Entity\ImageMediaObject;
 use App\Entity\VideoMediaObject;
 use App\Repository\CategoryRepository;
@@ -58,6 +59,11 @@ class WebPageType extends AbstractResourceType
                 'attr' => ['class' => 'select2-image'],
                 'class' => ImageMediaObject::class,
                 'placeholder' => 'app.ui_element.field.choose'
+            ])
+            ->add('icon', EntityType::class, [
+                'required' => false,
+                'class' => IconMediaObject::class,
+                'placeholder' => 'app.ui_element.field.select_icon',
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
