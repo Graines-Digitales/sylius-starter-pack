@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdentifiableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,13 +18,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * 
  * @ApiResource(iri="https://schema.org/OnlineBusiness")
  * @ORM\Table(name="app_online_business")
- * @ORM\Entity(repositoryClass="App\Repository\OnlineBusinessRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=OnlineBusinessRepository::class)
  */
 class OnlineBusisness
 {
     use IdentifiableTrait;
-
+    use TimestampableEntity;
+    
     /**
      * The identifier property represents any kind of identifier for any kind of \[\[Thing\]\], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See \[background notes\](/docs/datamodel.html#identifierBg) for more details.
      *

@@ -244,6 +244,7 @@ sylius_theme:
 sylius_api:
     enabled: true
     
+
 #APP
 sylius_grid:
     grids:        
@@ -252,50 +253,74 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\WebPage
+
             fields:
                 is_enabled:
                     type: twig
                     label: sylius.ui.is_enabled
                     options:
                         template: "@SyliusUi/Grid/Field/enabled.html.twig"
-                is_locked:
-                    type: twig
-                    label: app.ui_element.field.is_locked
-                    options:
-                        template: "@App/admin/Grid/Field/locked.html.twig"
+
                 primaryImage:
                     type: twig
                     label: app.ui.primary_image
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
-                # category:
-                #     type: twig # Type of filter
-                #     label: app.ui.category
-                #     options:
-                #         template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
-                translation.slug:
-                    type: string
-                    label: sylius.ui.slug
+
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
                 translation.headline:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
-                # translation.meta_title:
-                #     type: string
-                #     label: app.ui.meta_title
-                #     sortable: translation.meta_title
-                # translation.meta_description:
-                #     type: string
-                #     label: app.ui.meta_description
-                #     sortable: translation.meta_description
+
+                updatedAt:
+                    type: datetime
+                    label: app.ui.updatedAt
+
             filters:
                 search:
                     type: string
                     label: false
                     options:
-                        fields: [translations.headline, code]
+                        fields: [ translations.headline ]
                     form_options:
                         type: contains
+     
+                category:
+                    type: entity
+                    label: false
+                    options:
+                        fields: [ category.translations.name ]
+                    form_options:
+                        class: "%app.model.category.class%"  
+
+                isEnabled:
+                    type: boolean # Type of filter
+                    label: app.ui_element.field.status
+                    enabled: true
+                    # template: ~
+                    position: 100
+                    options:
+                        field: isEnabled
+                    form_options: { }
+                    default_value: ~
+
+                updatedAt:
+                    type: date # Type of filter
+                    label: app.ui_element.field.updatedAt
+                    enabled: true
+                    # template: ~
+                    position: 100
+                    options:
+                        field: updatedAt
+                    form_options: { }
+                    default_value: ~
+
             actions:
                 main:
                     create:
@@ -321,53 +346,27 @@ sylius_grid:
                     label: sylius.ui.is_enabled
                     options:
                         template: "@SyliusUi/Grid/Field/enabled.html.twig"
-                is_locked:
-                    type: twig
-                    label: app.ui_element.field.is_locked
-                    options:
-                        template: "@App/admin/Grid/Field/locked.html.twig"
+
                 primaryImage:
                     type: twig
                     label: app.ui.primary_image
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
-                # category:
-                #     type: twig # Type of filter
-                #     label: app.ui.category
-                #     options:
-                #         template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
-                translation.slug:
-                    type: string
-                    label: sylius.ui.slug
+
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
                 translation.headline:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
-                # translation.meta_title:
-                #     type: string
-                #     label: app.ui.meta_title
-                #     sortable: translation.meta_title
-                # translation.meta_description:
-                #     type: string
-                #     label: app.ui.meta_description
-                #     sortable: translation.meta_description
-            filters:
-                search:
-                    type: string
-                    label: false
-                    options:
-                        fields: [translations.headline, code]
-                    form_options:
-                        type: contains
-            actions:
-                main:
-                    create:
-                        type: create
-                item:
-                    update:
-                        type: update
-                    delete:
-                        type: delete
+
+                updatedAt:
+                    type: datetime
+                    label: app.ui.updatedAt
 
         app_admin_component:
             driver:
@@ -521,50 +520,74 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\Article
+
             fields:
                 is_enabled:
                     type: twig
-                    label: app.ui_element.field.enabled
+                    label: sylius.ui.is_enabled
                     options:
                         template: "@SyliusUi/Grid/Field/enabled.html.twig"
-                # is_locked:
-                #     type: twig
-                #     label: app.ui_element.field.is_locked
-                #     options:
-                #         template: "@App/admin/Grid/Field/locked.html.twig"
+
                 primaryImage:
                     type: twig
                     label: app.ui.primary_image
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
-                # category:
-                #     type: twig # Type of filter
-                #     label: app.ui.category
-                #     options:
-                #         template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
-                translation.slug:
-                    type: string
-                    label: sylius.ui.slug
+
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
                 translation.headline:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
-                # translation.meta_title:
-                #     type: string
-                #     label: app.ui.meta_title
-                #     sortable: translation.meta_title
-                # translation.meta_description:
-                #     type: string
-                #     label: app.ui.meta_description
-                #     sortable: translation.meta_description
+
+                updatedAt:
+                    type: datetime
+                    label: app.ui.updatedAt
+                    
             filters:
                 search:
                     type: string
                     label: false
                     options:
-                        fields: [translations.headline, translations.slug]
+                        fields: [ translations.headline ]
                     form_options:
                         type: contains
+     
+                category:
+                    type: entity
+                    label: false
+                    options:
+                        fields: [ category.translations.name ]
+                    form_options:
+                        class: "%app.model.category.class%"  
+
+                isEnabled:
+                    type: boolean # Type of filter
+                    label: app.ui_element.field.status
+                    enabled: true
+                    # template: ~
+                    position: 100
+                    options:
+                        field: isEnabled
+                    form_options: { }
+                    default_value: ~
+
+                updatedAt:
+                    type: date # Type of filter
+                    label: app.ui_element.field.updatedAt
+                    enabled: true
+                    # template: ~
+                    position: 100
+                    options:
+                        field: updatedAt
+                    form_options: { }
+                    default_value: ~
+
             actions:
                 main:
                     create:
@@ -573,56 +596,56 @@ sylius_grid:
                     update:
                         type: update
                     delete:
-                        type: delete  
+                        type: delete    
 
         app_admin_category:
             driver:
                 name: doctrine/orm
                 options:
                     class: App\Entity\Category
+
             fields:
-                is_enabled:
-                    type: twig
-                    label: app.ui_element.field.enabled
-                    options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+
                 is_locked:
                     type: twig
                     label: app.ui_element.field.is_locked
                     options:
                         template: "@App/admin/Grid/Field/locked.html.twig"
-                type:
+
+                parent:
                     type: twig # Type of filter
-                    label: app.ui_element.field.category_type
-                    # path: .
+                    label: app.ui.parent
                     options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"           
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
                 primaryImage:
                     type: twig
                     label: app.ui.primary_image
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
-                slug:
-                    type: string
-                    label: sylius.ui.slug
+
                 translation.name:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
-                
-                # translation.meta_title:
-                #     type: string
-                #     label: app.ui.meta_title
-                #     sortable: translation.meta_title
-                # name:
-                #     type: string
-                #     label: sylius.ui.name
-                #     sortable: translation.name
-                # description:
-                #     type: string
-                #     label: sylius.ui.description
-                #     sortable: translation.description
-                
+            
+            filters:
+                search:
+                    type: string
+                    label: false
+                    options:
+                        fields: [ translations.headline ]
+                    form_options:
+                        type: contains
+     
+                category:
+                    type: entity
+                    label: false
+                    options:
+                        fields: [ category.translations.name ]
+                    form_options:
+                        class: "%app.model.category.class%"  
+
             actions:
                 main:
                     create:
@@ -977,19 +1000,14 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\ImageMediaObject
+                    class: App\Entity\MediaObjectImage
                     repository:
                         method: findSortByDate
                         arguments:
                             parameters: '%configuration_project%'
                    
             fields:
-                # is_enabled:
-                #     type: twig
-                #     label: app.ui_element.field.enabled
-                #     options:
-                #         template: "@SyliusUi/Grid/Field/enabled.html.twig"
-                
+
                 filename:
                     type: twig
                     label: app.ui.preview
@@ -1000,24 +1018,22 @@ sylius_grid:
                 originalFilename:
                     type: string
                     label: sylius.ui.name
-                    sortable: translation.name
+                    sortable: translation.originalFilename
                    
                 category:
                     type: twig # Type of filter
                     label: app.ui.category
                     options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
 
                 createdAt:
                     type: datetime
-                    label: sylius.ui.date
-                # encodingFormat:
-                #     type: string
-                #     label: app.ui_element.field.encoding
-                # caption:
-                #     type: string
-                #     label: app.ui.alt
-                #     sortable: translation.caption
+                    label: app.ui.createdAt
+
+                caption:
+                    type: string
+                    label: app.ui.alt
+                    sortable: translation.caption
                 
             filters:
                 originalFilename:
@@ -1027,6 +1043,7 @@ sylius_grid:
                     #     fields: [originalFilename]
                     form_options:
                         type: contains
+
                 category:
                     type: entity
                     label: false
@@ -1035,7 +1052,16 @@ sylius_grid:
                     form_options:
                         class: "%app.model.category.class%"
 
-
+                createdAt:
+                    type: date # Type of filter
+                    label: app.ui_element.field.createdAt
+                    enabled: true
+                    # template: ~
+                    position: 100
+                    options:
+                        field: createdAt
+                    form_options: { }
+                    default_value: ~
 
             actions:
                 main:
@@ -1051,26 +1077,23 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\VideoMediaObject
+                    class: App\Entity\MediaObjectVideo
             fields:
-                is_enabled:
-                    type: twig
-                    label: app.ui_element.field.enabled
-                    options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+
                 url:
                     type: string
                     label: app.ui_element.field.url
-                    # sortable: translation.name
-                filename:
-                    type: twig
-                    label: app.ui.preview
-                    path: . 
+
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
                     options:
-                        template: "@App/admin/Grid/Field/preview_media.html.twig"
-                encodingFormat:
-                    type: string
-                    label: app.ui_element.field.encoding
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
+                createdAt:
+                    type: datetime
+                    label: app.ui.createdAt
+
             filters:
                 search:
                     type: string
@@ -1078,7 +1101,27 @@ sylius_grid:
                     options:
                         fields: [filename, slug, name]
                     form_options:
-                        type: contains     
+                        type: contains
+                        
+                category:
+                    type: entity
+                    label: false
+                    options:
+                        fields: [category.translations.name]
+                    form_options:
+                        class: "%app.model.category.class%"
+
+                createdAt:
+                    type: date # Type of filter
+                    label: app.ui_element.field.createdAt
+                    enabled: true
+                    # template: ~
+                    position: 100
+                    options:
+                        field: createdAt
+                    form_options: { }
+                    default_value: ~
+
             actions:
                 main:
                     create:
@@ -1093,13 +1136,9 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\IconMediaObject
+                    class: App\Entity\MediaObjectIcon
             fields:
-                is_enabled:
-                    type: twig
-                    label: app.ui_element.field.enabled
-                    options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+
                 filename:
                     type: twig
                     label: app.ui.preview
@@ -1111,9 +1150,16 @@ sylius_grid:
                     label: sylius.ui.name
                     sortable: translation.name
 
-                encodingFormat:
-                    type: string
-                    label: app.ui_element.field.encoding
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
+                createdAt:
+                    type: datetime
+                    label: app.ui.createdAt
+
             filters:
                 search:
                     type: string
@@ -1121,7 +1167,27 @@ sylius_grid:
                     options:
                         fields: [filename, slug, name]
                     form_options:
-                        type: contains    
+                        type: contains 
+
+                category:
+                    type: entity
+                    label: false
+                    options:
+                        fields: [category.translations.name]
+                    form_options:
+                        class: "%app.model.category.class%"
+
+                createdAt:
+                    type: date # Type of filter
+                    label: app.ui_element.field.createdAt
+                    enabled: true
+                    # template: ~
+                    position: 100
+                    options:
+                        field: createdAt
+                    form_options: { }
+                    default_value: ~
+
             actions:
                 main:
                     create:
@@ -1136,26 +1202,32 @@ sylius_grid:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\DocumentMediaObject
+                    class: App\Entity\MediaObjectDocument
+
             fields:
-                is_enabled:
-                    type: twig
-                    label: app.ui_element.field.enabled
-                    options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+ 
                 filename:
                     type: twig
                     label: app.ui.preview
                     path: . 
                     options:
                         template: "@App/admin/Grid/Field/preview_document.html.twig"
+
                 originalFilename:
                     type: string
                     label: sylius.ui.name
                     sortable: translation.name
-                encodingFormat:
-                    type: string
-                    label: app.ui_element.field.encoding
+
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
+                createdAt:
+                    type: datetime
+                    label: app.ui.createdAt
+
             filters:
                 search:
                     type: string
@@ -1164,6 +1236,26 @@ sylius_grid:
                         fields: [filename, slug, name]
                     form_options:
                         type: contains    
+                
+                category:
+                    type: entity
+                    label: false
+                    options:
+                        fields: [category.translations.name]
+                    form_options:
+                        class: "%app.model.category.class%"
+
+                createdAt:
+                    type: date # Type of filter
+                    label: app.ui_element.field.createdAt
+                    enabled: true
+                    # template: ~
+                    position: 100
+                    options:
+                        field: createdAt
+                    form_options: { }
+                    default_value: ~
+
             actions:
                 main:
                     create:
@@ -1224,7 +1316,8 @@ sylius_grid:
                     type: twig # Type of filter
                     label: app.ui.category
                     options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
                 primaryImage:
                     type: twig
                     label: app.ui.primary_image
@@ -1270,7 +1363,7 @@ sylius_grid:
                     type: twig # Type of filter
                     label: app.ui.category
                     options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
                 # filename:
                 #     type: twig    
                 #     label: app.ui.preview
@@ -1321,7 +1414,7 @@ sylius_grid:
                     type: twig # Type of filter
                     label: app.ui.category
                     options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
                 # filename:
                 #     type: twig    
                 #     label: app.ui.preview
@@ -1440,7 +1533,7 @@ sylius_grid:
                     type: twig # Type of filter
                     label: app.ui.category
                     options:
-                        template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
                 organization.parent:
                     type: twig # Type of filter
                     label: app.ui.parent
@@ -1471,7 +1564,7 @@ sylius_grid:
                     delete:
                         type: delete
 
-        app_admin_social_links:
+        app_admin_social_link:
             driver:
                 name: doctrine/orm
                 options:
@@ -1550,19 +1643,272 @@ sylius_grid:
                     label: app.ui.primary_image
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
+
                 translation.headline:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
+
                 # translation.slug:
                 #     type: string
                 #     label: sylius.ui.slug
+
                 departureTime:
                     type: datetime
-                    label: sylius.ui.date
+                    label: app.ui.departureTime
+
                 arrivalTime:
                     type: datetime
-                    label: sylius.ui.date
+                    label: app.ui.arrivalTime
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        app_admin_hotel_room:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\HotelRoom
+
+            fields:
+               
+                primaryImage:
+                    type: twig
+                    label: app.ui.primary_image
+                    options:
+                        template: "@App/admin/Grid/Field/thumbnail.html.twig"
+
+                translation.name:
+                    type: string
+                    label: app.ui_element.field.name
+                    sortable: translation.name
+                
+                maximumOccupants:
+                    type: string
+                    label: app.ui_element.field.maximumOccupants
+
+                # amenityFeatures:
+                #     type: twig
+                #     label: app.ui_element.field.amenityFeatures
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+
+                # translation.description:
+                #     type: string
+                #     label: app.ui_element.field.description
+                    
+
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        app_admin_offer:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\AggregateOffer
+
+            fields:
+               
+                name:
+                    type: string
+                    label: app.ui.name
+                    sortable: name
+
+                price:
+                    type: string
+                    label: app.ui.price
+
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        app_admin_event:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\Event
+
+            fields:
+               
+                translation.name:
+                    type: string
+                    label: app.ui.name
+                    sortable: translation.name
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        app_admin_booking:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\Event
+
+            fields:
+               
+                translation.name:
+                    type: string
+                    label: app.ui.name
+                    sortable: translation.name
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        app_admin_amenity_feature:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\AmenityFeature
+
+            fields:
+               
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
+                translation.name:
+                    type: string
+                    label: app.ui.name
+                    sortable: translation.name
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        app_admin_hotel_service:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\HotelService
+
+            fields:
+
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
+                translation.name:
+                    type: string
+                    label: app.ui.name
+                    sortable: translation.name
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+            
+        app_admin_hotel_activity:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\HotelActivity
+
+            fields:
+               
+                primaryImage:
+                    type: twig
+                    label: app.ui.primary_image
+                    options:
+                        template: "@App/admin/Grid/Field/thumbnail.html.twig"
+
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
+                translation.name:
+                    type: string
+                    label: app.ui.name
+                    sortable: translation.name
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+            
+        app_admin_hotel_typical_day:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\HotelTypicalDay
+
+            fields:
+               
+                is_enabled:
+                    type: twig
+                    label: sylius.ui.is_enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+
+                category:
+                    type: twig # Type of filter
+                    label: app.ui.category
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+
+                translation.name:
+                    type: string
+                    label: app.ui.name
+                    sortable: translation.name
+                
+               
 
             actions:
                 main:

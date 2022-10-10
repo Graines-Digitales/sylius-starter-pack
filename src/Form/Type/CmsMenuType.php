@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\CmsMenu;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use App\Form\Type\CmsLinkType;
 use App\Repository\MediaObjectRepository;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,7 +53,7 @@ class CmsMenuType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);

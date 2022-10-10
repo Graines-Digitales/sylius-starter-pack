@@ -17,7 +17,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ApiResource()
  * @ORM\Table(name="app_payment_method")
  * @ORM\Entity(repositoryClass="App\Repository\PaymentMethodRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class PaymentMethod
 {

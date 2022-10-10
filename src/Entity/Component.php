@@ -9,16 +9,17 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
 use App\Entity\ComponentTranslation;
 use App\Entity\Traits\LockableTrait;
+use Gedmo\Mapping\Annotation as Gedmo;
 use App\Repository\ComponentRepository;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslatableInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
-use ApiPlatform\Core\Annotation\ApiProperty;
 
 
 /**
@@ -28,20 +29,14 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  */
 class Component implements ResourceInterface, TranslatableInterface
 {
+    use IdentifiableTrait;
+    use LockableTrait;
     use SeoTrait;
     use ThingTrait;
-    use LockableTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
     }
-    
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @Gedmo\Slug(fields={"name"}, prefix="")
@@ -79,11 +74,6 @@ class Component implements ResourceInterface, TranslatableInterface
     public function __toString()
     {
         return $this->getName();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
      /**

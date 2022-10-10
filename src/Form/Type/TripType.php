@@ -4,7 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\Trip;
 use App\Entity\Category;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use App\Form\Type\AggregateOfferType;
 use App\Form\Type\TripTranslationType;
 use Symfony\Component\Form\AbstractType;
@@ -69,20 +69,22 @@ class TripType extends AbstractType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('category', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class' => Category::class,
                 'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('tags', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class'         => Category::class,
-                'expanded'      => true,
+                'expanded'      => false,
                 'multiple'      => true,
-                'by_reference' => false,
+                'by_reference' => true,
                 'placeholder' => 'app.ui_element.field.select_option',
             ])
             ->add('translations', ResourceTranslationsType::class, [

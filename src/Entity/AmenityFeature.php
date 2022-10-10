@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\HotelRoom;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ThingTrait;
 use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\AmenityFeatureTranslation;
+use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\AmenityFeatureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
@@ -22,12 +25,12 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  *
  * @ApiResource(iri="http://schema.org/AmenityFeature")
  * @ORM\Table(name="app_amenity_feature")
- * @ORM\Entity(repositoryClass="App\Repository\AmenityFeatureRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=AmenityFeatureRepository::class)
  */
 class AmenityFeature implements ResourceInterface, TranslatableInterface
 {
     use IdentifiableTrait;
+    use ThingTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -40,9 +43,30 @@ class AmenityFeature implements ResourceInterface, TranslatableInterface
     private $accommodations;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Room::class, mappedBy="amenityFeatures")
+     * @ORM\ManyToMany(targetEntity=HotelRoom::class, mappedBy="amenityFeatures")
      */
     private $rooms;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade= {"persist", "remove"})
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="amenityFeatures", cascade= {"persist", "remove"})
+     * @ORM\JoinTable(name="app_amenity_features_tags")
+     */
+    private $tags;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $withPicto;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slugPicto;
 
     /**
      * Constructor.
@@ -52,6 +76,7 @@ class AmenityFeature implements ResourceInterface, TranslatableInterface
         $this->initializeTranslationsCollection();
         $this->accommodations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->rooms = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -113,14 +138,14 @@ class AmenityFeature implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @return Collection<int, Room>
+     * @return Collection<int, HotelRoom>
      */
     public function getRooms(): Collection
     {
         return $this->rooms;
     }
 
-    public function addRoom(Room $room): self
+    public function addRoom(HotelRoom $room): self
     {
         if (!$this->rooms->contains($room)) {
             $this->rooms[] = $room;
@@ -130,7 +155,7 @@ class AmenityFeature implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function removeRoom(Room $room): self
+    public function removeRoom(HotelRoom $room): self
     {
         if ($this->rooms->removeElement($room)) {
             $room->removeAmenityFeature($this);
@@ -138,6 +163,68 @@ class AmenityFeature implements ResourceInterface, TranslatableInterface
 
         return $this;
     }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Category $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Category $tag): self
+    {
+        $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    public function getWithPicto(): ?bool
+    {
+        return $this->withPicto;
+    }
+
+    public function setWithPicto(?bool $withPicto): self
+    {
+        $this->withPicto = $withPicto;
+
+        return $this;
+    }
+
+    public function getSlugPicto(): ?string
+    {
+        return $this->slugPicto;
+    }
+
+    public function setSlugPicto(?string $slugPicto): self
+    {
+        $this->slugPicto = $slugPicto;
+
+        return $this;
+    }
+
+
 
     
 }

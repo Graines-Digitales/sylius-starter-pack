@@ -3,11 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\WebPage;
-use Doctrine\ORM\Query;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+
 
 /**
  * @method WebPage|null find($id, $lockMode = null, $lockVersion = null)

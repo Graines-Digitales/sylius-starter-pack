@@ -1,0 +1,1266 @@
+{
+    "@context": "/api/contexts/HotelAmenity",
+    "@id": "/api/hotel_amenities",
+    "@type": "hydra:Collection",
+    "hydra:member": [
+        {
+            "@id": "/api/hotel_amenities/1",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/39",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-confort",
+                    "name": "Chambre Confort",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/40",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-superieure",
+                    "name": "Chambre Supérieure",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/41",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-prestige",
+                    "name": "Chambre Prestige",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/42",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "petite-suite",
+                    "name": "Petite Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "lit-double-160-200"
+        },
+        {
+            "@id": "/api/hotel_amenities/2",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/39",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-confort",
+                    "name": "Chambre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "salle-de-bains-douche-ou-baignoire-douche"
+        },
+        {
+            "@id": "/api/hotel_amenities/3",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/39",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-confort",
+                    "name": "Chambre Confort",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/42",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "petite-suite",
+                    "name": "Petite Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "commune aux 4 chambres face au jardin",
+            "slug": "terrasse-sur-jardin-orientee-ouest"
+        },
+        {
+            "@id": "/api/hotel_amenities/4",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/39",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-confort",
+                    "name": "Chambre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "toilettes"
+        },
+        {
+            "@id": "/api/hotel_amenities/5",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/40",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-superieure",
+                    "name": "Chambre Supérieure",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "salle-de-bains-2-vasques-baignoire-douche-ou-douche"
+        },
+        {
+            "@id": "/api/hotel_amenities/6",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/40",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-superieure",
+                    "name": "Chambre Supérieure",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/41",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-prestige",
+                    "name": "Chambre Prestige",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "cheminee"
+        },
+        {
+            "@id": "/api/hotel_amenities/7",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/40",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-superieure",
+                    "name": "Chambre Supérieure",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "terrasse-orientee-sud"
+        },
+        {
+            "@id": "/api/hotel_amenities/8",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/40",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-superieure",
+                    "name": "Chambre Supérieure",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/41",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-prestige",
+                    "name": "Chambre Prestige",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "toilettes-separees"
+        },
+        {
+            "@id": "/api/hotel_amenities/9",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/40",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-superieure",
+                    "name": "Chambre Supérieure",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/41",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-prestige",
+                    "name": "Chambre Prestige",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "15€/jour petit déjeuner compris",
+            "slug": "lit-supplementaire-a-la-demande"
+        },
+        {
+            "@id": "/api/hotel_amenities/10",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/41",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-prestige",
+                    "name": "Chambre Prestige",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "vue-sur-mer"
+        },
+        {
+            "@id": "/api/hotel_amenities/11",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/41",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-prestige",
+                    "name": "Chambre Prestige",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "toilettes séparées",
+            "slug": "salle-de-bains-2-vasques-douche"
+        },
+        {
+            "@id": "/api/hotel_amenities/12",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/41",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-prestige",
+                    "name": "Chambre Prestige",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "de 100m2 avec vue sur l’océan",
+            "slug": "grande-terrasse-privative"
+        },
+        {
+            "@id": "/api/hotel_amenities/13",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/41",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "chambre-prestige",
+                    "name": "Chambre Prestige",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "grande-terrasse-privative-100m2"
+        },
+        {
+            "@id": "/api/hotel_amenities/14",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/42",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "petite-suite",
+                    "name": "Petite Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "salle-de-bains-douche-toilettes"
+        },
+        {
+            "@id": "/api/hotel_amenities/15",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/42",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "petite-suite",
+                    "name": "Petite Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "canapés pouvant être transformés en 2 lits simples supplémentaires pour les enfants (supplément pour occupation)",
+            "slug": "salon"
+        },
+        {
+            "@id": "/api/hotel_amenities/16",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "lit-double-160-200-1"
+        },
+        {
+            "@id": "/api/hotel_amenities/17",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "salle-de-bains-2-vasques-douche-1"
+        },
+        {
+            "@id": "/api/hotel_amenities/18",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "toilettes-separees-1"
+        },
+        {
+            "@id": "/api/hotel_amenities/19",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "cheminee-1"
+        },
+        {
+            "@id": "/api/hotel_amenities/20",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "de 100 m2 orientée nord avec vue sur l’océan",
+            "slug": "grande-terrasse-privative-1"
+        },
+        {
+            "@id": "/api/hotel_amenities/21",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/45",
+                "@type": "http://schema.org/Thing",
+                "slug": "salon-chambre-20m2",
+                "name": "Salon/Chambre 20m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "ou par la porte communicante avec la chambre",
+            "slug": "entree-independante"
+        },
+        {
+            "@id": "/api/hotel_amenities/22",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/45",
+                "@type": "http://schema.org/Thing",
+                "slug": "salon-chambre-20m2",
+                "name": "Salon/Chambre 20m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/43",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "suite-moyenne",
+                    "name": "Suite Moyenne",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "possibilité d’ajouter un lit supplémentaire (15€)",
+            "slug": "2-lits-simples-90-200-ou-3-banquettes-salon"
+        },
+        {
+            "@id": "/api/hotel_amenities/23",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "vue-sur-mer-1"
+        },
+        {
+            "@id": "/api/hotel_amenities/24",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "salle-de-bains-2-vasques"
+        },
+        {
+            "@id": "/api/hotel_amenities/25",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "baignoire-et-douche-separees"
+        },
+        {
+            "@id": "/api/hotel_amenities/26",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "2-terrasses-nord-et-sud"
+        },
+        {
+            "@id": "/api/hotel_amenities/27",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/44",
+                "@type": "http://schema.org/Thing",
+                "slug": "chambre-30m2",
+                "name": "Chambre 30m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "dressing-10m2"
+        },
+        {
+            "@id": "/api/hotel_amenities/28",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/47",
+                "@type": "http://schema.org/Thing",
+                "slug": "salon-chambre-45m2",
+                "name": "Salon/Chambre 45m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "vue-sur-mer-2"
+        },
+        {
+            "@id": "/api/hotel_amenities/29",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/47",
+                "@type": "http://schema.org/Thing",
+                "slug": "salon-chambre-45m2",
+                "name": "Salon/Chambre 45m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "canape-convertible"
+        },
+        {
+            "@id": "/api/hotel_amenities/30",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/47",
+                "@type": "http://schema.org/Thing",
+                "slug": "salon-chambre-45m2",
+                "name": "Salon/Chambre 45m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "cheminee-2"
+        },
+        {
+            "@id": "/api/hotel_amenities/31",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/47",
+                "@type": "http://schema.org/Thing",
+                "slug": "salon-chambre-45m2",
+                "name": "Salon/Chambre 45m2",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/46",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "grande-suite",
+                    "name": "Grande Suite",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "double-terrasse"
+        },
+        {
+            "@id": "/api/hotel_amenities/32",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa complète",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "cinq-salons-aux-ambiances-differentes"
+        },
+        {
+            "@id": "/api/hotel_amenities/33",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa complète",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "la-grande-suite-avec-son-salon-et-sa-vue-magnifique-et-un-patio"
+        },
+        {
+            "@id": "/api/hotel_amenities/34",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa complète",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "et un toit plat pour admirer la vue ou contempler le ciel étoilé.",
+            "slug": "nombreuses-terrasses"
+        },
+        {
+            "@id": "/api/hotel_amenities/35",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa complète",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "pour réunir tout le monde et d'autres lieux pour manger de manière plus intime.",
+            "slug": "une-salle-a-manger"
+        },
+        {
+            "@id": "/api/hotel_amenities/36",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa complète",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "(lave vaisselle, robots, machine à laver, sèche linge …).",
+            "slug": "une-grande-cuisine-entierement-equipee"
+        },
+        {
+            "@id": "/api/hotel_amenities/37",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa complète",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "une-piscine-15m-5-et-un-couloir-de-nage-22m-3-5"
+        },
+        {
+            "@id": "/api/hotel_amenities/38",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa complète",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "differents-jardins-et-un-parking-prive"
+        },
+        {
+            "@id": "/api/hotel_amenities/39",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/48",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-hors-grande-suite",
+                    "name": "Villa hors grande Suite",
+                    "isActive": true
+                },
+                {
+                    "@id": "/api/tags/49",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "villa-complete",
+                    "name": "Villa complète",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "un-hammam-et-deux-salons-de-massage"
+        },
+        {
+            "@id": "/api/hotel_amenities/40",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "nombreux-salons"
+        },
+        {
+            "@id": "/api/hotel_amenities/41",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "piscine-de-15m"
+        },
+        {
+            "@id": "/api/hotel_amenities/42",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "pataugeoire-pour-les-enfants"
+        },
+        {
+            "@id": "/api/hotel_amenities/43",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "couloir-de-nage-de-22m"
+        },
+        {
+            "@id": "/api/hotel_amenities/44",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "solarium"
+        },
+        {
+            "@id": "/api/hotel_amenities/45",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "jardin"
+        },
+        {
+            "@id": "/api/hotel_amenities/46",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "terrasses"
+        },
+        {
+            "@id": "/api/hotel_amenities/47",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "patio"
+        },
+        {
+            "@id": "/api/hotel_amenities/48",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "wifi-disponible-sur-toute-la-propriete"
+        },
+        {
+            "@id": "/api/hotel_amenities/49",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "seche-cheveux-dans-chaque-chambre"
+        },
+        {
+            "@id": "/api/hotel_amenities/50",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "television-salon-tv-et-certaines-chambres"
+        },
+        {
+            "@id": "/api/hotel_amenities/51",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [],
+            "moreInfo": null,
+            "slug": "2-chaines-hifi"
+        }
+    ],
+    "hydra:totalItems": 51,
+    "hydra:view": {
+        "@id": "/api/hotel_amenities?isActive=1&pagination=0&order%5Bid%5D=DESC",
+        "@type": "hydra:PartialCollectionView"
+    }
+}

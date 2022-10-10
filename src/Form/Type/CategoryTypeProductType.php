@@ -4,9 +4,9 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\LocalBusiness;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use App\Form\Type\CategoryTranslationType;
-use App\Repository\ImageMediaObjectRepository;
+use App\Repository\MediaObjectImageRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -33,9 +33,9 @@ class CategoryTypeProductType extends AbstractResourceType
                 'required' => false,
             ])
             ->add('primaryImage', EntityType::class, [
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
@@ -63,6 +63,6 @@ class CategoryTypeProductType extends AbstractResourceType
      */
     public function getBlockPrefix()
     {
-        return 'app_category';
+        return 'app_category_type_product';
     }
 }

@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Repository;
+
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+
+
+/**
+ * @method MediaObjectDocument|null find($id, $lockMode = null, $lockVersion = null)
+ * @method MediaObjectDocument|null findOneBy(array $criteria, array $orderBy = null)
+ * @method MediaObjectDocument[]    findAll()
+ * @method MediaObjectDocument[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class MediaObjectDocumentRepository extends EntityRepository
+{
+
+}

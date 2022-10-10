@@ -5,12 +5,12 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\Organization;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\OrganizationRepository;
-use App\Repository\ImageMediaObjectRepository;
+use App\Repository\MediaObjectImageRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -58,16 +58,16 @@ class OrganizationLocalBusinessType extends AbstractType
                 'delete_empty' => true,
             ])
             ->add('primaryImage', EntityType::class, [
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
             ->add('secondaryImage', EntityType::class, [
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_secondary_image',
-                'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\IdentifiableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\IdentifiableTrait;
-use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * A tourist trip. A created itinerary of visits to one or more places of interest (\[\[TouristAttraction\]\]/\[\[TouristDestination\]\]) often linked by a similar theme, geographic area, or interest to a particular \[\[touristType\]\]. The \[UNWTO\](http://www2.unwto.org/) defines tourism trip as the Trip taken by visitors. (See examples below).
@@ -16,13 +17,13 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @ApiResource(iri="https://schema.org/TouristTrip")
  * @ORM\Table(name="app_tourist_trip")
- * @ORM\Entity(repositoryClass="App\Repository\TouristTripRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=TouristTripRepository::class)
  */
 class TouristTrip
 {
     use IdentifiableTrait;
-
+    use TimestampableEntity;
+    
     /**
      * @var string[]|null Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc.
      *

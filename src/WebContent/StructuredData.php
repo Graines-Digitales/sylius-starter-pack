@@ -17,6 +17,13 @@ class StructuredData extends AbstractWebContent
 
     public function generate($metaData, $entity)
     {
+        $structuredData = [];
+
+        if(null === $metaData['organization']) {
+
+            return $structuredData;
+        }
+
         $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
 
         $this->url = $metaData['organization']->getUrl();
@@ -34,7 +41,7 @@ class StructuredData extends AbstractWebContent
         $path = $kernelProjectDir . '/config/json_ld_schema/breadcrumb_list.json';
         $breadcrumbListSchema = json_decode(file_get_contents($path), true);
 
-        $structuredData = [];
+        
 
         if ($entity instanceof WebPageTranslation) {
             $path = $kernelProjectDir . '/config/json_ld_schema/web_page.json';
