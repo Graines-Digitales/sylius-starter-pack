@@ -41,7 +41,7 @@ class WebPageType extends AbstractResourceType
                 'required' => false,
             ])
             ->add('isLocked', CheckboxType::class, [
-                'disabled' => true,
+                'disabled' => false,
                 'required' => false,
             ])
             ->add('type', EntityType::class, [

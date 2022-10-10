@@ -51,21 +51,13 @@ class ArticleListener
             return;
         }
 
-      
-        
-        if($entity->getLocale() == 'en_GB') {
-            $serializer = $this->container->get('serializer');
-            $form = $this->container->get('form.factory')->create(ArticleTranslationType::class);
-            $currentData = $serializer->normalize($entity, null);
-            $referenceData = $serializer->normalize(
-                $entity->getTranslatable()->getTranslation('fr_FR'), 
-                null
+        $translatedData = $this->translate($entity);
+        if(!empty($translatedData)) {
+            $this->webPageDataAction->hydrate(
+                $translatedData,
+                $entity->getTranslatable(),
+                $entity->getLocale()
             );
-
-            $currentData = $this->syliusTranslator->translateEntity($currentData, $referenceData, $form);
-            $this->articleDataAction->hydrate($currentData, $entity->getTranslatable(), 'en_GB');
-            // dump($currentData);
-            // die;
         }
 
         $this->webContentArticleService->moreData($entity);
@@ -83,6 +75,19 @@ class ArticleListener
 
         $this->webContentArticleService->moreData($entity);
         $this->webContentSEOService->defineMetaData($entity);
+    }
+
+    public function translate($entity)
+    {
+        $serializer = $this->container->get('serializer');
+        $form = $this->container->get('form.factory')->create(ArticleTranslationType::class);
+        $currentData = $serializer->normalize($entity, null);
+        $referenceData = $serializer->normalize(
+            $entity->getTranslatable()->getTranslation($this->container->getParameter('locale')), 
+            null
+        );
+
+        return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }
    
 }

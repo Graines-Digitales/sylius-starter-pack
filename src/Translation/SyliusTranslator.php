@@ -18,8 +18,9 @@ class SyliusTranslator
         $this->translator = $translator;
     }
 
-    public function translateEntity($currentData, $referenceData, $form)
+    public function translateEntity($currentData, $referenceData, $form, $locale)
     {
+        $translatedData = [];
         foreach($referenceData as $field=>$value) {
             /**
              * SQUIZZ NON TRANSLATABLE FIELD
@@ -36,11 +37,11 @@ class SyliusTranslator
             if(empty($currentData[$field])
                 && !empty($referenceData[$field])
             ) {
-                $currentData[$field] = $this->translator->translate($referenceData[$field]);
+                $translatedData[$field] = $this->translator->translate($referenceData[$field]);
             }
         }
 
-        return $currentData;
+        return $translatedData;
     }
 
     private function checkIfFieldIsTranslatable($field, $form)

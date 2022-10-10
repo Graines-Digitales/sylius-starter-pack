@@ -55,19 +55,13 @@ class WebPageListener
             return;
         }
 
-        
-
-        if($entity->getLocale() == 'en_GB') {
-            $serializer = $this->container->get('serializer');
-            $form = $this->container->get('form.factory')->create(WebPageTranslationType::class);
-            $currentData = $serializer->normalize($entity, null);
-            $referenceData = $serializer->normalize(
-                $entity->getTranslatable()->getTranslation('fr_FR'), 
-                null
+        $translatedData = $this->translate($entity);
+        if(!empty($translatedData)) {
+            $this->webPageDataAction->hydrate(
+                $translatedData,
+                $entity->getTranslatable(),
+                $entity->getLocale()
             );
-
-            $currentData = $this->syliusTranslator->translateEntity($currentData, $referenceData, $form);
-            $this->webPageDataAction->hydrate($currentData, $entity->getTranslatable(), 'en_GB');
         }
 
         // dump($this->webContentWebPageService);die;
@@ -99,6 +93,19 @@ class WebPageListener
         //     $entity = $this->webContentWebPageService->updateSlug($entity);
         //     $this->entityManager->flush($entity);
         // }
+    }
+
+    public function translate($entity)
+    {
+        $serializer = $this->container->get('serializer');
+        $form = $this->container->get('form.factory')->create(WebPageTranslationType::class);
+        $currentData = $serializer->normalize($entity, null);
+        $referenceData = $serializer->normalize(
+            $entity->getTranslatable()->getTranslation($this->container->getParameter('locale')), 
+            null
+        );
+
+        return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }
 
 }

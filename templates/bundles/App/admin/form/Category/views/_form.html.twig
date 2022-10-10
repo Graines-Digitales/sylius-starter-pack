@@ -13,7 +13,8 @@
 	{# Issue with Symfony 5, Sylius 1.9 : https://github.com/Sylius/Sylius/pull/12439 #}
 	{# So we render the fields #}
 	{{ form_row(form.isEnabled) }}
-	<div class="ui two column divided grid"> 
+	{{ form_row(form.isLocked) }}
+	{# <div class="ui two column divided grid"> 
 		<div class="row">
 			<div class="column">
 				{{ form_row(form.type) }}
@@ -22,10 +23,7 @@
 				
 			</div>
 		</div>
-	</div>
-
-	
-	
+	</div> #}
 
 	<div class="ui two column divided grid"> 
 		<div class="row">

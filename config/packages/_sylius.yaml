@@ -255,6 +255,12 @@ sylius_grid:
                     class: App\Entity\WebPage
 
             fields:
+                is_locked:
+                    type: twig
+                    label: app.ui_element.field.is_locked
+                    options:
+                        template: "@App/admin/Grid/Field/locked.html.twig"
+                        
                 is_enabled:
                     type: twig
                     label: sylius.ui.is_enabled

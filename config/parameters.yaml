@@ -4,7 +4,7 @@ imports:
     - { resource: project.yaml }
     
 parameters:
-    locale: fr_FR
+    locale: fr
     sylius_installer_currency: EUR
     developers: [ 'johan.remy@graines-digitales.online' ]
     directory_image_media_object: /media/image

@@ -83,11 +83,12 @@ class ProjectSetupCommand extends Command
             true
         );
         $data = $result;
+       
         unset($result['addresses']);
         unset($result['primaryImage']);
         unset($result['secondaryImage']);
         unset($result['category']);
-
+        // dump($result);die;
         $table = new Table($output);
         $table
             ->setHeaders(array_keys($result))

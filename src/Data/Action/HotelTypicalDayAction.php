@@ -40,7 +40,7 @@ class HotelTypicalDayAction
             ;
         }
 
-        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug($data['name'])->lower()->toString();
+        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug(str_replace("'", "", $data['name']))->lower()->toString();
         $entity = $this->entityManager
             ->getRepository(HotelTypicalDay::class)
             ->findOneBySlug($slug)

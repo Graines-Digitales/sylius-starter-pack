@@ -130,7 +130,7 @@ class Import
         return $data;
     }
 
-    public function dataServicesDispatch($data, $folder)
+    public function dataServicesDispatch($data, $folder, $localeCode)
     {
         switch ($folder) {
             case 'categories':
@@ -140,10 +140,10 @@ class Import
                     unset($data['content']);
                 }
                
-                return $this->categoryAction->create($data);
+                return $this->categoryAction->create($data, $localeCode);
               
                 break;
-            case 'web_pages':
+            case 'web-pages':
                
                 /** hack markdown file */
                 if(isset($data['content'])) {
@@ -151,7 +151,7 @@ class Import
                     unset($data['content']);
                 }
 
-                return $this->webPageAction->create($data);
+                return $this->webPageAction->create($data, $localeCode);
                 
                 break;
             case 'articles':
@@ -162,12 +162,12 @@ class Import
                     unset($data['content']);
                 }
 
-                return $this->articleAction->create($data);
+                return $this->articleAction->create($data, $localeCode);
                 
                 break;
             case 'components':
                
-                return $this->componentAction->create($data);
+                return $this->componentAction->create($data, $localeCode);
                 
                 break;
             case 'social_links':
@@ -178,7 +178,7 @@ class Import
                     unset($data['content']);
                 }
 
-                return $this->organizationAction->create($data);
+                return $this->organizationAction->create($data, $localeCode);
                 
                 break;
             case 'travels':
@@ -188,7 +188,7 @@ class Import
                     unset($data['content']);
                 }
 
-                return $this->tripAction->create($data);
+                return $this->tripAction->create($data, $localeCode);
                 
                 break;
             case 'hotel_activities':
@@ -198,7 +198,7 @@ class Import
                     unset($data['content']);
                 }
 
-                return $this->hotelActivityAction->create($data);
+                return $this->hotelActivityAction->create($data, $localeCode);
                 
                 break;
             case 'hotel_services':
@@ -208,7 +208,7 @@ class Import
                     unset($data['content']);
                 }
 
-                return $this->hotelServiceAction->create($data);
+                return $this->hotelServiceAction->create($data, $localeCode);
                 
                 break;
             case 'hotel_amenities':
@@ -218,7 +218,7 @@ class Import
                     unset($data['content']);
                 }
 
-                return $this->amenityFeatureAction->create($data);
+                return $this->amenityFeatureAction->create($data, $localeCode);
                 
                 break;
             case 'hotel_typical_days':
@@ -228,7 +228,7 @@ class Import
                     unset($data['content']);
                 }
 
-                return $this->hotelTypicalDayAction->create($data);
+                return $this->hotelTypicalDayAction->create($data, $localeCode);
                 
                 break;
             case 'hotel_typical_day_elements':
@@ -238,7 +238,7 @@ class Import
                     unset($data['content']);
                 }
 
-                return $this->hotelTypicalDayElementAction->create($data);
+                return $this->hotelTypicalDayElementAction->create($data, $localeCode);
                 
                 break;
             case 'rooms':
@@ -249,7 +249,7 @@ class Import
                 }
 
 
-                return $this->roomAction->create($data);
+                return $this->roomAction->create($data, $localeCode);
                 
                 break;
                 
