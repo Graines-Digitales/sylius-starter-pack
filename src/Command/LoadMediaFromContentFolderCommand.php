@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Data\Action as DataAction;
+use App\Data\Import;
 use Symfony\Component\Finder\Finder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -25,16 +25,16 @@ class LoadMediaFromContentFolderCommand extends Command
 
     private $entityManager;
 
-    private $dataAction;
+    private $importAction;
 
     public function __construct(
         ContainerInterface $container
         , EntityManagerInterface $entityManager
-        , DataAction $dataAction
+        , Import $importAction
     ){
         $this->container = $container;
         $this->entityManager = $entityManager;
-        $this->dataAction = $dataAction;
+        $this->importAction = $importAction;
 
         parent::__construct();
     }
@@ -50,7 +50,7 @@ class LoadMediaFromContentFolderCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $this->dataAction->importImages();
+        $this->importAction->fromImagesFolder();
         $io->success('Les données du dossier content/ ont bien été enregistrées.');
    
         return Command::SUCCESS;

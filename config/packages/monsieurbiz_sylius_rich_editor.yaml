@@ -57,17 +57,6 @@ monsieurbiz_sylius_richeditor:
                 admin_render: '@App/admin/UiElement/component_card.html.twig'
                 front_render: '/shop/UiElement/component_card.html.twig'
             tags: []
-        app.component_hero:
-            title: 'app.ui_element.component_hero.title'
-            description: 'app.ui_element.component_hero.description'
-            icon: address card outline
-            classes:
-                form: App\Form\Type\UiElement\ComponentHeroType
-                #ui_element: App\UiElement\MyUiElement
-            templates:
-                admin_render: '@App/admin/UiElement/component_hero.html.twig'
-                front_render: '/shop/UiElement/component_hero.html.twig'
-            tags: []
         app.component_call_to_action:
             title: 'app.ui_element.component_call_to_action.title'
             description: 'app.ui_element.component_call_to_action.description'

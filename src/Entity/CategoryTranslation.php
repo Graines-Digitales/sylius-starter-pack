@@ -16,7 +16,6 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 
 /**
- * @ApiResource()
  * @ApiResource(iri="http://schema.org/Category")
  * @ORM\Entity(repositoryClass=CategoryTranslationRepository::class)
  * @ORM\Table(name="app_category_translation")
@@ -39,5 +38,10 @@ class CategoryTranslation extends AbstractTranslation implements ResourceInterfa
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }

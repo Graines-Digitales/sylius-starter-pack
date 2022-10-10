@@ -4,7 +4,7 @@ namespace App\Form\Type;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use App\Form\DataTransformer\ImageMediaObjectTransformer;
+use App\Form\DataTransformer\MediaObjectImageTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;

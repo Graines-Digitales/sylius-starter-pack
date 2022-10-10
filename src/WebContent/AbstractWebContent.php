@@ -2,12 +2,12 @@
 
 namespace App\WebContent;
 
-use App\Data\Action;
+
 use App\Tools\Content;
-use App\Data\PersonAction;
-use App\Data\MessageAction;
+use App\Data\Action\PersonAction;
+use App\Data\Action\MessageAction;
 use App\Configuration\Project;
-use App\Data\AddressAction;
+use App\Data\Action\AddressAction;
 use Symfony\Component\Finder\Finder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;

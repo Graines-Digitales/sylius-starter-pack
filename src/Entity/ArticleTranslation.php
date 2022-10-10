@@ -10,14 +10,15 @@ use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\Traits\SeoTranslatableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\ArticleTranslationRepository;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 
 
 /**
- * @ApiResource()
- * @ORM\Entity()
+ * @ApiResource(iri="https://schema.org/Article")
+ * @ORM\Entity(repositoryClass=ArticleTranslationRepository::class)
  * @ORM\Table(name="app_article_translation")
  */
 class ArticleTranslation  extends AbstractTranslation implements ResourceInterface
@@ -27,6 +28,15 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     use ThingTrait;
     use CreativeWorkTrait;
     use TimestampableEntity;
+
+    /** 
+     * @var TranslatableInterface|null 
+     * 
+     * @ApiProperty(
+     *    readableLink=true
+     * )
+    */
+    protected $translatable;
 
     /**
      * @Gedmo\Slug(fields={"headline"}, updatable=false)

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CmsLinkRepository;
+use App\Entity\Traits\IdentifiableTrait;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslatableInterface;
@@ -14,16 +15,10 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  */
 class CmsLink implements ResourceInterface, TranslatableInterface
 {
+    use IdentifiableTrait;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
     }
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -76,11 +71,6 @@ class CmsLink implements ResourceInterface, TranslatableInterface
     protected function createTranslation()
     {
         return new CmsLinkTranslation();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getName(): ?string

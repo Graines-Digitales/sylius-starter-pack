@@ -1,0 +1,1637 @@
+{
+    "@context": "/api/contexts/HotelService",
+    "@id": "/api/hotel_services",
+    "@type": "hydra:Collection",
+    "hydra:member": [
+        {
+            "@id": "/api/hotel_services/1",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/50",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-securite",
+                "name": "Pour votre sécurité",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/50",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-securite",
+                    "name": "Pour votre sécurité",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "hygiene-proprete-en-conformite-avec-les-normes-du-covid-19",
+            "name": "Hygiène / propreté en conformité avec les normes du Covid-19"
+        },
+        {
+            "@id": "/api/hotel_services/2",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/50",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-securite",
+                "name": "Pour votre sécurité",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/50",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-securite",
+                    "name": "Pour votre sécurité",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "desinfection-des-chambres-a-chaque-changement-dhotes",
+            "name": "Désinfection des chambres à chaque changement d’hôtes"
+        },
+        {
+            "@id": "/api/hotel_services/3",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/50",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-securite",
+                "name": "Pour votre sécurité",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/50",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-securite",
+                    "name": "Pour votre sécurité",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "isolation-des-tables-pour-les-repas",
+            "name": "Isolation des tables pour les repas"
+        },
+        {
+            "@id": "/api/hotel_services/4",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/50",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-securite",
+                "name": "Pour votre sécurité",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/50",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-securite",
+                    "name": "Pour votre sécurité",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "eau-filtree-potable-et-gratuite",
+            "name": "Eau filtrée potable et gratuite"
+        },
+        {
+            "@id": "/api/hotel_services/5",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/50",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-securite",
+                "name": "Pour votre sécurité",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/50",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-securite",
+                    "name": "Pour votre sécurité",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "contact-medecin",
+            "name": "Contact médecin"
+        },
+        {
+            "@id": "/api/hotel_services/6",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/50",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-securite",
+                "name": "Pour votre sécurité",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/50",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-securite",
+                    "name": "Pour votre sécurité",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "gardien-de-nuit",
+            "name": "Gardien de nuit"
+        },
+        {
+            "@id": "/api/hotel_services/7",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/50",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-securite",
+                "name": "Pour votre sécurité",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/50",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-securite",
+                    "name": "Pour votre sécurité",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "parking-interieur",
+            "name": "Parking Intérieur"
+        },
+        {
+            "@id": "/api/hotel_services/8",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/51",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-deplacements",
+                "name": "Pour vos déplacements",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/51",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-deplacements",
+                    "name": "Pour vos déplacements",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "service-taxi-alentours-et-toute-destination-au-maroc",
+            "name": "Service taxi, alentours et toute destination au Maroc"
+        },
+        {
+            "@id": "/api/hotel_services/9",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/51",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-deplacements",
+                "name": "Pour vos déplacements",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/51",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-deplacements",
+                    "name": "Pour vos déplacements",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "navette-aeroport-payant",
+            "name": "Navette aéroport (payant)"
+        },
+        {
+            "@id": "/api/hotel_services/10",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/51",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-deplacements",
+                "name": "Pour vos déplacements",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/51",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-deplacements",
+                    "name": "Pour vos déplacements",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "location-de-voiture-avec-ou-sans-chauffeur",
+            "name": "Location de voiture avec ou sans chauffeur"
+        },
+        {
+            "@id": "/api/hotel_services/11",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "preparation-minutieuse-de-votre-sejour",
+            "name": "Préparation minutieuse de votre séjour"
+        },
+        {
+            "@id": "/api/hotel_services/12",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "check-in-et-check-out-24-24",
+            "name": "Check in et check out 24/24"
+        },
+        {
+            "@id": "/api/hotel_services/13",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "nos records: dernier petit déjeuner servi à 15h30, dernier déjeuner à 18h et dernier dîner à 3h15",
+            "slug": "pas-dhoraires-pour-les-repas",
+            "name": "Pas d’horaires pour les repas"
+        },
+        {
+            "@id": "/api/hotel_services/14",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "repas-vegetariens-ou-menus-specifiques-a-la-demande",
+            "name": "Repas végétariens ou menus spécifiques à la demande"
+        },
+        {
+            "@id": "/api/hotel_services/15",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "reservations-de-toutes-les-activites-a-la-demande",
+            "name": "Réservations de toutes les activités à la demande"
+        },
+        {
+            "@id": "/api/hotel_services/16",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "paiement-par-carte-bancaire-virement-especes",
+            "name": "Paiement par carte bancaire / virement / espèces"
+        },
+        {
+            "@id": "/api/hotel_services/17",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "puce-telephonique-marocaine-a-la-demande",
+            "name": "Puce téléphonique marocaine à la demande"
+        },
+        {
+            "@id": "/api/hotel_services/18",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "wifi-fibre-optique-dans-toute-la-villa-les-jardins-et-les-piscines",
+            "name": "Wifi, fibre optique dans toute la villa les jardins et les piscines"
+        },
+        {
+            "@id": "/api/hotel_services/19",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "4-savons-maison-totalement-naturels-fournis-dans-les-chambres",
+            "name": "4 savons maison totalement naturels fournis dans les chambres"
+        },
+        {
+            "@id": "/api/hotel_services/20",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "seche-cheveux-dans-chaque-chambre",
+            "name": "Sèche-cheveux dans chaque chambre"
+        },
+        {
+            "@id": "/api/hotel_services/21",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "fer-a-repasser-a-la-demande",
+            "name": "Fer à repasser à la demande"
+        },
+        {
+            "@id": "/api/hotel_services/22",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "service-pressing",
+            "name": "Service pressing"
+        },
+        {
+            "@id": "/api/hotel_services/23",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "impression-des-billets-davion",
+            "name": "Impression des billets d’avion"
+        },
+        {
+            "@id": "/api/hotel_services/24",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/52",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-sejour-de-reve",
+                "name": "Pour votre séjour de rêve",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/52",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-sejour-de-reve",
+                    "name": "Pour votre séjour de rêve",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "quelques-mots-en-arabe-a-connaitre",
+            "name": "Quelques mots en arabe à connaître"
+        },
+        {
+            "@id": "/api/hotel_services/25",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/53",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-bons-plans",
+                "name": "Pour vos bons plans",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/53",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-bons-plans",
+                    "name": "Pour vos bons plans",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "selection-des-meilleurs-prestataires-pour-les-activites",
+            "name": "Sélection des meilleurs prestataires pour les activités"
+        },
+        {
+            "@id": "/api/hotel_services/26",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/53",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-bons-plans",
+                "name": "Pour vos bons plans",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/53",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-bons-plans",
+                    "name": "Pour vos bons plans",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "en fonction de vos souhaits: type de cuisine, animation/ tranquillité/ décoration, budget",
+            "slug": "conseils-pour-les-restaurants",
+            "name": "Conseils pour les restaurants"
+        },
+        {
+            "@id": "/api/hotel_services/27",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/53",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-bons-plans",
+                "name": "Pour vos bons plans",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/53",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-bons-plans",
+                    "name": "Pour vos bons plans",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "selection-des-meilleurs-prestataires",
+            "name": "Sélection des meilleurs prestataires"
+        },
+        {
+            "@id": "/api/hotel_services/28",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/53",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-bons-plans",
+                "name": "Pour vos bons plans",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/53",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-bons-plans",
+                    "name": "Pour vos bons plans",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "conseils-pour-les-restaurants-en-fonction-de-vos-souhaits",
+            "name": "Conseils pour les restaurants en fonction de vos souhaits"
+        },
+        {
+            "@id": "/api/hotel_services/29",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/53",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-bons-plans",
+                "name": "Pour vos bons plans",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/53",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-bons-plans",
+                    "name": "Pour vos bons plans",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "partage-de-la-culture-locale",
+            "name": "Partage de la culture locale"
+        },
+        {
+            "@id": "/api/hotel_services/30",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/53",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-bons-plans",
+                "name": "Pour vos bons plans",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/53",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-bons-plans",
+                    "name": "Pour vos bons plans",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "conseils-sur-les-visites-les-activites-les-marches-les-produits-locaux",
+            "name": "Conseils sur les visites, les activités, les marchés, les produits locaux…"
+        },
+        {
+            "@id": "/api/hotel_services/31",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/53",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-bons-plans",
+                "name": "Pour vos bons plans",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/53",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-bons-plans",
+                    "name": "Pour vos bons plans",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "accueil-en-cuisine-pour-apprendre-a-volonte",
+            "name": "Accueil en cuisine pour apprendre à volonté"
+        },
+        {
+            "@id": "/api/hotel_services/32",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/53",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-bons-plans",
+                "name": "Pour vos bons plans",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/53",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-bons-plans",
+                    "name": "Pour vos bons plans",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "un-the-chez-lhabitant",
+            "name": "Un thé chez l’habitant"
+        },
+        {
+            "@id": "/api/hotel_services/33",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/53",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-bons-plans",
+                "name": "Pour vos bons plans",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/53",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-bons-plans",
+                    "name": "Pour vos bons plans",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "huile-dargan-pure-a-prix-defiant-toute-concurrence",
+            "name": "Huile d’Argan pure à prix défiant toute concurrence"
+        },
+        {
+            "@id": "/api/hotel_services/34",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "nombreux-espaces-pour-sisoler-au-calme",
+            "name": "Nombreux espaces pour s’isoler au calme"
+        },
+        {
+            "@id": "/api/hotel_services/35",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "linge-de-maison-change-a-la-demande",
+            "name": "Linge de maison changé à la demande"
+        },
+        {
+            "@id": "/api/hotel_services/36",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "serviettes-piscine",
+            "name": "Serviettes piscine"
+        },
+        {
+            "@id": "/api/hotel_services/37",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "piscines-chauffees-a-29deg-toute-lannee",
+            "name": "Piscines chauffées à 29° toute l’année"
+        },
+        {
+            "@id": "/api/hotel_services/38",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "couloir-de-nage",
+            "name": "Couloir de nage"
+        },
+        {
+            "@id": "/api/hotel_services/39",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "solarium",
+            "name": "Solarium"
+        },
+        {
+            "@id": "/api/hotel_services/40",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "television",
+            "name": "Télévision"
+        },
+        {
+            "@id": "/api/hotel_services/41",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "netflix",
+            "name": "Netflix"
+        },
+        {
+            "@id": "/api/hotel_services/42",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "hi-fi-bluetooth",
+            "name": "Hi-fi/bluetooth"
+        },
+        {
+            "@id": "/api/hotel_services/43",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "fourniture-denceintes-en-chambre",
+            "name": "Fourniture d’enceintes en chambre"
+        },
+        {
+            "@id": "/api/hotel_services/44",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "hammam-dans-notre-spa",
+            "name": "Hammam dans notre spa"
+        },
+        {
+            "@id": "/api/hotel_services/45",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "soins-du-corps-dans-notre-spa",
+            "name": "Soins du corps dans notre spa"
+        },
+        {
+            "@id": "/api/hotel_services/46",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "massage-dans-notre-spa",
+            "name": "Massage dans notre spa"
+        },
+        {
+            "@id": "/api/hotel_services/47",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "feu-prepare-chaque-jour-dans-les-cheminees-des-chambres-et-des-salons",
+            "name": "Feu préparé chaque jour dans les cheminées des chambres et des salons"
+        },
+        {
+            "@id": "/api/hotel_services/48",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/54",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-votre-confort",
+                "name": "Pour votre Confort",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/54",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-votre-confort",
+                    "name": "Pour votre Confort",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "hamacs",
+            "name": "Hamacs"
+        },
+        {
+            "@id": "/api/hotel_services/49",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/55",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-encore-plus-de-plaisir",
+                "name": "Pour encore plus de plaisir",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/55",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-encore-plus-de-plaisir",
+                    "name": "Pour encore plus de plaisir",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "mise-a-disposition-de-jumelles",
+            "name": "Mise à disposition de jumelles"
+        },
+        {
+            "@id": "/api/hotel_services/50",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/55",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-encore-plus-de-plaisir",
+                "name": "Pour encore plus de plaisir",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/55",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-encore-plus-de-plaisir",
+                    "name": "Pour encore plus de plaisir",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "bibliotheque",
+            "name": "Bibliothèque"
+        },
+        {
+            "@id": "/api/hotel_services/51",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/55",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-encore-plus-de-plaisir",
+                "name": "Pour encore plus de plaisir",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/55",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-encore-plus-de-plaisir",
+                    "name": "Pour encore plus de plaisir",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "jeux-de-societe-a-disposition",
+            "name": "Jeux de société à disposition"
+        },
+        {
+            "@id": "/api/hotel_services/52",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/55",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-encore-plus-de-plaisir",
+                "name": "Pour encore plus de plaisir",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/55",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-encore-plus-de-plaisir",
+                    "name": "Pour encore plus de plaisir",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "organisation-devenements",
+            "name": "Organisation d’évènements"
+        },
+        {
+            "@id": "/api/hotel_services/53",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/55",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-encore-plus-de-plaisir",
+                "name": "Pour encore plus de plaisir",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/55",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-encore-plus-de-plaisir",
+                    "name": "Pour encore plus de plaisir",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "1-cadeau-surprise",
+            "name": "+ 1 cadeau surprise"
+        },
+        {
+            "@id": "/api/hotel_services/54",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/56",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-enfants",
+                "name": "Pour vos Enfants",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/56",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-enfants",
+                    "name": "Pour vos Enfants",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "baby-sitter-a-la-demande",
+            "name": "Baby-Sitter à la demande"
+        },
+        {
+            "@id": "/api/hotel_services/55",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/56",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-enfants",
+                "name": "Pour vos Enfants",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/56",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-enfants",
+                    "name": "Pour vos Enfants",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "lit-bebe",
+            "name": "Lit bébé"
+        },
+        {
+            "@id": "/api/hotel_services/56",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/56",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-enfants",
+                "name": "Pour vos Enfants",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/56",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-enfants",
+                    "name": "Pour vos Enfants",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "chauffe-biberon",
+            "name": "Chauffe biberon"
+        },
+        {
+            "@id": "/api/hotel_services/57",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/56",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-enfants",
+                "name": "Pour vos Enfants",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/56",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-enfants",
+                    "name": "Pour vos Enfants",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "chaises-enfants",
+            "name": "Chaises enfants"
+        },
+        {
+            "@id": "/api/hotel_services/58",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/56",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-enfants",
+                "name": "Pour vos Enfants",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/56",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-enfants",
+                    "name": "Pour vos Enfants",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "baignoire-bebe",
+            "name": "Baignoire bébé"
+        },
+        {
+            "@id": "/api/hotel_services/59",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/56",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-enfants",
+                "name": "Pour vos Enfants",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/56",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-enfants",
+                    "name": "Pour vos Enfants",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "poussette",
+            "name": "Poussette"
+        },
+        {
+            "@id": "/api/hotel_services/60",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/56",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-enfants",
+                "name": "Pour vos Enfants",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/56",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-enfants",
+                    "name": "Pour vos Enfants",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "bassin-pour-enfants",
+            "name": "Bassin pour enfants"
+        },
+        {
+            "@id": "/api/hotel_services/61",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/56",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-enfants",
+                "name": "Pour vos Enfants",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/56",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-enfants",
+                    "name": "Pour vos Enfants",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "livres-pour-enfants",
+            "name": "Livres pour enfants"
+        },
+        {
+            "@id": "/api/hotel_services/62",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/56",
+                "@type": "http://schema.org/Thing",
+                "slug": "pour-vos-enfants",
+                "name": "Pour vos Enfants",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/56",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "pour-vos-enfants",
+                    "name": "Pour vos Enfants",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "jeux-pour-enfants",
+            "name": "Jeux pour enfants"
+        },
+        {
+            "@id": "/api/hotel_services/63",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/57",
+                "@type": "http://schema.org/Thing",
+                "slug": "une-equipe-a-votre-service-pour-rendre-tout-cela-possible",
+                "name": "Une équipe à votre service pour rendre tout cela possible",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/57",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "une-equipe-a-votre-service-pour-rendre-tout-cela-possible",
+                    "name": "Une équipe à votre service pour rendre tout cela possible",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "sa-gentillesse-a-letat-pur-et-son-envie-de-vous-faire-plaisir",
+            "name": "Sa gentillesse à l’état pur et son envie de vous faire plaisir"
+        },
+        {
+            "@id": "/api/hotel_services/64",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/57",
+                "@type": "http://schema.org/Thing",
+                "slug": "une-equipe-a-votre-service-pour-rendre-tout-cela-possible",
+                "name": "Une équipe à votre service pour rendre tout cela possible",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/57",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "une-equipe-a-votre-service-pour-rendre-tout-cela-possible",
+                    "name": "Une équipe à votre service pour rendre tout cela possible",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "sa-disponibilite-permanente",
+            "name": "Sa disponibilité permanente"
+        },
+        {
+            "@id": "/api/hotel_services/65",
+            "@type": "http://schema.org/?",
+            "withPicto": null,
+            "slugPicto": null,
+            "category": {
+                "@id": "/api/tags/57",
+                "@type": "http://schema.org/Thing",
+                "slug": "une-equipe-a-votre-service-pour-rendre-tout-cela-possible",
+                "name": "Une équipe à votre service pour rendre tout cela possible",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/57",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "une-equipe-a-votre-service-pour-rendre-tout-cela-possible",
+                    "name": "Une équipe à votre service pour rendre tout cela possible",
+                    "isActive": true
+                }
+            ],
+            "moreInfo": "",
+            "slug": "tour-daccueil",
+            "name": "Tour d’accueil"
+        }
+    ],
+    "hydra:totalItems": 65,
+    "hydra:view": {
+        "@id": "/api/hotel_services?isActive=1&pagination=0&order%5Bid%5D=DESC",
+        "@type": "hydra:PartialCollectionView"
+    }
+}

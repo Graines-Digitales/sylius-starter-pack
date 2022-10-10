@@ -203,7 +203,7 @@
         ]
     },
     "sonata-project/block-bundle": {
-        "version": "4.17",
+        "version": "4.18",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",

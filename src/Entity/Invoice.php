@@ -23,8 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiResource(iri="http://schema.org/Invoice")
  * @ORM\Table(name="app_invoice")
- * @ORM\Entity(repositoryClass="App\Repository\InvoiceRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=InvoiceRepository::class)
  */
 class Invoice implements ResourceInterface
 {

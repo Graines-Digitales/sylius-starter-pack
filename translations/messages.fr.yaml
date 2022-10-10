@@ -72,7 +72,7 @@ Travel: Séjour
 Travels: Séjours
 Arrival time: Heure d'arrivée
 Departure time: Heure de départ
-Offers: Les offres
+Offers: Tarifs
 Offer count: Nombre d'offres
 Price: Prix
 Phone: Téléphone fixe
@@ -83,6 +83,15 @@ City: Ville
 Address: Adresse
 Postcode: Code postal
 Additional street address: Adresse suite
+Typical days: Journées type
+Bookings: Réservations
+Events: Évenements
+Hotel Rooms: Chambres
+Locales: Langues
+Persons: Personnes
+AmenityFeatures: Commodités
+Hotel Activities: Hotel activités
+Hotel Services: Hotel services
 
 sylius:
     ui:
@@ -90,6 +99,8 @@ sylius:
 
 app:
     ui:
+        updatedAt: Mis à jour à
+        createdAt: Crée à
         landing_page: Landing Page
         landing_pages: Landing Pages
         new_landing_page: Nouvelle landing page
@@ -209,6 +220,9 @@ app:
         messageAttachments: Pièces jointes
         message_products: Demandes de contact depuis un produit
         message_product: Demande de contact depuis un produit
+        departureTime: Date de départ
+        arrivalTime: Date d'arrivée
+        
     ui_element:
         field:
             devkey: Clé développeur
@@ -247,6 +261,9 @@ app:
             link_to_external_link: Lien vers une page web externe
             is_locked: Vérrouillé
             enabled: Activé
+            updatedAt: Mis à jour
+            createdAt: Crée
+            status: Statut
             product_type: Type de produit
             icon: Icône
             encoding: Format d'encodage
@@ -280,9 +297,6 @@ app:
         component_documents:
             title: 'Composant Documents'
             description: 'Une section pour télécharger des documents'
-        component_hero:
-            title: 'Composant Hero'
-            description: 'Une section avec titre, texte, bouton et Call to Action'
         component_call_to_action:
             title: 'Composant Call To Action'
             description: 'Une section avec titre, texte, bouton et Call to Action'

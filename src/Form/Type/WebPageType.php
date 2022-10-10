@@ -4,9 +4,9 @@ namespace App\Form\Type;
 
 use App\Entity\WebPage;
 use App\Entity\Category;
-use App\Entity\IconMediaObject;
-use App\Entity\ImageMediaObject;
-use App\Entity\VideoMediaObject;
+use App\Entity\MediaObjectIcon;
+use App\Entity\MediaObjectImage;
+use App\Entity\MediaObjectVideo;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\WebPageTranslationType;
@@ -40,6 +40,10 @@ class WebPageType extends AbstractResourceType
             ->add('isIndexed', CheckboxType::class, [
                 'required' => false,
             ])
+            ->add('isLocked', CheckboxType::class, [
+                'disabled' => false,
+                'required' => false,
+            ])
             ->add('type', EntityType::class, [
                 'class' => Category::class,
                 'data' => $category,
@@ -51,27 +55,30 @@ class WebPageType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
-                'class' => IconMediaObject::class,
+                'attr' => ['class' => 'select2-icon'],
+                'class' => MediaObjectIcon::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
-                'class' => VideoMediaObject::class,
+                'attr' => ['class' => 'select2-standard'],
+                'class' => MediaObjectVideo::class,
                 'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('category', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class' => Category::class,
                 'placeholder' => 'app.ui_element.field.choose',
             ])

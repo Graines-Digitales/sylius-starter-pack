@@ -32,9 +32,10 @@ class CategoryListener
             return;
         }
 
-        if(false === $entity->getTranslatable()->getIsLocked()) {
-            $entity = $this->webContentCategoryService->updateSlug($entity);
-            $this->entityManager->flush($entity);
-        }
+        // if(false === $entity->getTranslatable()->getIsLocked()) {
+        //     $entity = $this->webContentCategoryService->updateSlug($entity);
+        //     $this->entityManager->flush($entity);
+            
+        // }
     }
 }

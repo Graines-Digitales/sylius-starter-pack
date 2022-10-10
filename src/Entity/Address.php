@@ -4,29 +4,25 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 
 /**
- * Address.
+ * The mailing address.
  *
+ * @see https://schema.org/PostalAddress
+ * 
  * @ORM\Table(name="app_address")
- * @ORM\Entity
+ * @ORM\Entity()
  * @ORM\Entity(repositoryClass=AddressRepository::class)
-
  */
 class Address implements ResourceInterface
 {
+    use IdentifiableTrait;
     use TimestampableEntity;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @var string
@@ -100,11 +96,6 @@ class Address implements ResourceInterface
     public function getFullAddress()
     {
         return trim($this->getAddress().' '.$this->getPostcode().' '.$this->getCity().' '.$this->getCountry());
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     /**

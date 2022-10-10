@@ -36,7 +36,7 @@ class CategoryRepository extends EntityRepository
     {
         return $this->createQueryBuilder('entity')
             ->innerJoin('entity.translations', 'translation')
-            ->andWhere('entity.type is not null')
+            ->andWhere('entity.parent is not null')
             ->getQuery()
             ->getResult()
         ;
@@ -55,8 +55,8 @@ class CategoryRepository extends EntityRepository
     public function createQueryBuilderByTypeOrganization()
     {
         return $this->createQueryBuilder('entity')
-            ->andWhere('entity.type in (:type)')
-            ->setParameter('type', 'organization')
+            ->andWhere('entity.parent in (:parent)')
+            ->setParameter('parent', 'organization')
         ;
     }
 
@@ -64,8 +64,8 @@ class CategoryRepository extends EntityRepository
     {
 
         return $this->createQueryBuilder('entity')
-            ->andWhere('entity.type in (:type)')
-            ->setParameter('type', 'organization')
+            ->andWhere('entity.parent in (:parent)')
+            ->setParameter('parent', 'root')
         ;
     }
 
@@ -74,8 +74,8 @@ class CategoryRepository extends EntityRepository
         $type = 'local-business';
 
         return $this->createQueryBuilder('entity')
-            ->andWhere('entity.type in (:type)')
-            ->setParameter('type', $type)
+            ->andWhere('entity.parent in (:parent)')
+            ->setParameter('parent', $type)
         ;
     }
 
@@ -84,8 +84,8 @@ class CategoryRepository extends EntityRepository
         $type = 'special-announcement';
 
         return $this->createQueryBuilder('entity')
-            ->andWhere('entity.type in (:type)')
-            ->setParameter('type', $type)
+            ->andWhere('entity.parent in (:parent)')
+            ->setParameter('parent', $type)
         ;
     }
 
@@ -94,8 +94,8 @@ class CategoryRepository extends EntityRepository
         $type = 'blog';
 
         return $this->createQueryBuilder('entity')
-            ->andWhere('entity.type in (:type)')
-            ->setParameter('type', $type)
+            ->andWhere('entity.parent in (:parent)')
+            ->setParameter('parent', $type)
         ;
     }
 
@@ -104,8 +104,8 @@ class CategoryRepository extends EntityRepository
         $type = 'web-page';
 
         return $this->createQueryBuilder('entity')
-            ->andWhere('entity.type in (:type)')
-            ->setParameter('type', $type)
+            ->andWhere('entity.parent in (:parent)')
+            ->setParameter('parent', $type)
         ;
     }
 
@@ -114,8 +114,8 @@ class CategoryRepository extends EntityRepository
         $type = 'product';
 
         return $this->createQueryBuilder('entity')
-            ->andWhere('entity.type in (:type)')
-            ->setParameter('type', $type)
+            ->andWhere('entity.parent in (:parent)')
+            ->setParameter('parent', $type)
         ;
     }
 }

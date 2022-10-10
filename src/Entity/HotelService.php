@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\Traits\AdministrableTrait;
 use App\Entity\Traits\SluggableNameTrait;
 use App\Entity\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -24,12 +27,12 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  * 
  * @ApiResource()
  * @ORM\Table(name="app_hotel_service")
- * @ORM\Entity(repositoryClass="App\Repository\HotelServiceRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=HotelServiceRepository::class)
  */
 class HotelService implements ResourceInterface, TranslatableInterface
 {
     use IdentifiableTrait;
+    use SeoTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -50,14 +53,14 @@ class HotelService implements ResourceInterface, TranslatableInterface
     private $slugPicto;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category")
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
-
-    /**
-     * @ORM\Column(type="boolean", options={"default": true})
-     */
-    private $isActive = true;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -65,7 +68,7 @@ class HotelService implements ResourceInterface, TranslatableInterface
     private $moreInfo;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="hotelServices")
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="hotelServices", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="app_hotel_services_categories")
      */
     private $tags;
@@ -153,18 +156,6 @@ class HotelService implements ResourceInterface, TranslatableInterface
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    public function getIsActive(): ?bool
-    {
-        return $this->isActive;
-    }
-
-    public function setIsActive(bool $isActive): self
-    {
-        $this->isActive = $isActive;
 
         return $this;
     }
