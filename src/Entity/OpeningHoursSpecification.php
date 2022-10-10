@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use App\Repository\OpeningHoursSpecificationRepository;
 
@@ -14,15 +15,10 @@ use App\Repository\OpeningHoursSpecificationRepository;
  */
 class OpeningHoursSpecification
 {
+    use IdentifiableTrait;
     use ThingTrait;
     use TimestampableEntity;
-    
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -50,14 +46,9 @@ class OpeningHoursSpecification
     private $validTrough;
 
     /**
-     * @ORM\ManyToOne(targetEntity=LocalBusiness::class, inversedBy="openingHours", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=LocalBusiness::class, inversedBy="openingHours", cascade={"persist", "remove"})
      */
     private $localBusiness;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getCloses(): ?string
     {

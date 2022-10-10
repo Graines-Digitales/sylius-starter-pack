@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\HotelRoom;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ThingTrait;
 use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\AmenityFeatureTranslation;
+use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\ThingTrait;
+use App\Repository\AmenityFeatureRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
@@ -23,8 +25,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  *
  * @ApiResource(iri="http://schema.org/AmenityFeature")
  * @ORM\Table(name="app_amenity_feature")
- * @ORM\Entity(repositoryClass="App\Repository\AmenityFeatureRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=AmenityFeatureRepository::class)
  */
 class AmenityFeature implements ResourceInterface, TranslatableInterface
 {
@@ -42,20 +43,30 @@ class AmenityFeature implements ResourceInterface, TranslatableInterface
     private $accommodations;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Room::class, mappedBy="amenityFeatures")
+     * @ORM\ManyToMany(targetEntity=HotelRoom::class, mappedBy="amenityFeatures")
      */
     private $rooms;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade= {"persist", "remove"})
      */
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="amenityFeatures")
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="amenityFeatures", cascade= {"persist", "remove"})
      * @ORM\JoinTable(name="app_amenity_features_tags")
      */
     private $tags;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $withPicto;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slugPicto;
 
     /**
      * Constructor.
@@ -127,14 +138,14 @@ class AmenityFeature implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @return Collection<int, Room>
+     * @return Collection<int, HotelRoom>
      */
     public function getRooms(): Collection
     {
         return $this->rooms;
     }
 
-    public function addRoom(Room $room): self
+    public function addRoom(HotelRoom $room): self
     {
         if (!$this->rooms->contains($room)) {
             $this->rooms[] = $room;
@@ -144,7 +155,7 @@ class AmenityFeature implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function removeRoom(Room $room): self
+    public function removeRoom(HotelRoom $room): self
     {
         if ($this->rooms->removeElement($room)) {
             $room->removeAmenityFeature($this);
@@ -188,6 +199,32 @@ class AmenityFeature implements ResourceInterface, TranslatableInterface
 
         return $this;
     }
+
+    public function getWithPicto(): ?bool
+    {
+        return $this->withPicto;
+    }
+
+    public function setWithPicto(?bool $withPicto): self
+    {
+        $this->withPicto = $withPicto;
+
+        return $this;
+    }
+
+    public function getSlugPicto(): ?string
+    {
+        return $this->slugPicto;
+    }
+
+    public function setSlugPicto(?string $slugPicto): self
+    {
+        $this->slugPicto = $slugPicto;
+
+        return $this;
+    }
+
+
 
     
 }

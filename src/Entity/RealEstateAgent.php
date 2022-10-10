@@ -7,6 +7,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Traits\IdentifiableTrait;
+use App\Entity\Traits\ImagesTrait;
 use App\Entity\Traits\ThingTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -24,11 +25,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(iri="http://schema.org/RealEstateAgent")
  * @ORM\Table(name="app_real_estate_agent")
  * @ORM\Entity(repositoryClass=RealEstateAgentRepository::class)
- * @ORM\HasLifecycleCallbacks()
  */
 class RealEstateAgent implements ResourceInterface
 {
     use IdentifiableTrait;
+    use ImagesTrait;
     use ThingTrait;
     use TimestampableEntity;
 
@@ -51,14 +52,6 @@ class RealEstateAgent implements ResourceInterface
      * @ORM\OneToOne(targetEntity="App\Entity\Person")
      */
     private $person;
-
-    /**
-     * @var ImageMediaObject|null indicates the main image on the page
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ImageMediaObject")
-     * @ApiProperty(iri="http://schema.org/primaryImage")
-     */
-    private $primaryImage;
 
     /**
      * @var string
@@ -128,16 +121,6 @@ class RealEstateAgent implements ResourceInterface
     public function getPerson(): ?Person
     {
         return $this->person;
-    }
-
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): void
-    {
-        $this->primaryImage = $primaryImage;
-    }
-
-    public function getPrimaryImage(): ?ImageMediaObject
-    {
-        return $this->primaryImage;
     }
 
     /**

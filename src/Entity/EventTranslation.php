@@ -20,11 +20,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *
  * @see http://schema.org/Event Documentation on Schema.org
  *
- * @ORM\Entity
- * @ORM\Table(name="app_event_translation")
  * @ApiResource(iri="http://schema.org/Event")
- * @ORM\HasLifecycleCallbacks()
- * @Vich\Uploadable
+ * @ORM\Entity()
+ * @ORM\Table(name="app_event_translation")
  */
 class EventTranslation extends AbstractTranslation implements ResourceInterface
 {

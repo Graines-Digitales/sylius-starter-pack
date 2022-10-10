@@ -2,9 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Category;
 use App\Entity\AmenityFeature;
-use App\Entity\AmenityFeatureTranslation;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 
@@ -25,41 +23,6 @@ class AmenityFeatureRepository extends EntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
-    }
-
-    public function create($data = [], $locale = 'fr_FR')
-    {
-        $entity = new AmenityFeature();
-        $entity->setCurrentLocale($locale);
-        $entityTranslation = new AmenityFeatureTranslation();
-        $entity->addTranslation($entityTranslation); 
-        $entity = $this->hydrate($data, $entity, $locale);
-
-        return $entity;
-    }
-
-    public function hydrate($data, $entity, $locale)
-    {
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
-
-        if (isset($data['name'])) {
-            $entity->getTranslation()->setName($data['name']);
-        }
-        if (isset($data['moreInfo'])) {
-            
-            $entity->getTranslation()->setDescription($data['moreInfo']);
-        }
-        if (isset($data['category'])) {
-            if (isset($data['category']['slug'])) {
-                $repository = $this->_em->getRepository(Category::class);
-                $category = $repository->findOneBySlug($data['category']['slug']);
-                $entity->setCategory($category);
-            }
-        }
-
-        return $entity;
-
     }
 
 }

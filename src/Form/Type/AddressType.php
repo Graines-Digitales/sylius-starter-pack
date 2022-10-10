@@ -29,10 +29,11 @@ class AddressType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Address::class,
+            'validation_groups' => ['address_validation'],
         ]);
     }
 
-     /**
+    /**
      * {@inheritdoc}
      */
     public function getBlockPrefix()

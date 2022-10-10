@@ -2,95 +2,98 @@
 
 namespace App\Data;
 
+use App\Tools\Media;
 use Mni\FrontYAML\Parser;
-use Symfony\Component\Finder\Finder;
+use App\Data\Action\RoomAction;
+use App\Data\Action\TripAction;
+use App\Data\Action\ArticleAction;
+use App\Data\Action\WebPageAction;
+use App\Data\Action\CategoryAction;
+use App\Data\Action\ComponentAction;
+use App\Data\Action\HotelServiceAction;
+use App\Data\Action\OrganizationAction;
+use App\Data\Action\HotelActivityAction;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use App\Data\Action\AmenityFeatureAction;
+use App\Data\Action\HotelTypicalDayAction;
+use App\Data\Action\HotelTypicalDayElementAction;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-/**
- * Service à supprimer quand sera acquis la notion d'architecture hexagonale
- */
+
 class Import
 {
-    private $container;
+    protected $container;
 
-    private $entityManager;
+    protected $entityManager;
 
-    private $dataService;
+    protected $webPageAction;
+
+    protected $articleAction;
+
+    protected $componentAction;
+
+    protected $tripAction;
+
+    protected $organizationAction;
+
+    protected $mediaService;
+
+    protected $hotelActivityAction;
+
+    protected $hotelServiceAction;
+
+    protected $amenityFeatureAction;
+
+    protected $hotelTypicalDayAction;
+
+    protected $hotelTypicalDayElementAction;
+
+    protected $roomAction;
 
     public function __construct(
         ContainerInterface $container
         , EntityManagerInterface $entityManager
-        , Action $dataService
+        , WebPageAction $webPageAction
+        , ArticleAction $articleAction
+        , CategoryAction $categoryAction
+        , ComponentAction $componentAction
+        , TripAction $tripAction
+        , OrganizationAction $organizationAction
+        , Media $mediaService
+        , HotelActivityAction $hotelActivityAction
+        , HotelServiceAction $hotelServiceAction
+        , AmenityFeatureAction $amenityFeatureAction
+        , HotelTypicalDayAction $hotelTypicalDayAction
+        , HotelTypicalDayElementAction $hotelTypicalDayElementAction
+        , RoomAction $roomAction
     ){
         $this->container = $container;
         $this->entityManager = $entityManager;
-        $this->dataService = $dataService;
-    }
-
-    public function run($contentPath)
-    {
-        $response = [];
-        $filesystem = new Filesystem();
-        $locales = $this->container->get('sylius.repository.locale')->findAll();
-        foreach($locales as $locale) {
-            $localeCode = $locale->getCode();
-            $locale = current(explode('_', $localeCode));
-            if('fr' === $locale) {
-
-                $this->createMediasAndCategoriesFromAllData($contentPath, $locale);
-
-                /**
-                 * CATEGORIES
-                 */
-                $path = $contentPath . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . 'categories';
-                if($filesystem->exists($path)) {
-                    $this->createCategories($path, $localeCode);
-                }
-                /**
-                 * WEBPAGES
-                 */
-                $path = $contentPath . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . 'web_pages';
-                if($filesystem->exists($path)) {
-                    $this->createWebPages($path, $localeCode);
-                }
-                /**
-                 * ARTICLES
-                */
-                $path = $contentPath . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . 'articles';
-                if($filesystem->exists($path)) {
-                    $this->createArticles($path, $localeCode);
-                }
-                /**
-                 * SOCIAL LINKS
-                 */
-                $path = $contentPath . DIRECTORY_SEPARATOR  . 'organizations';
-                if($filesystem->exists($path)) {
-                    $this->createSocialLinks($path, $localeCode);
-                }
-                 /**
-                 * COMPONENTS
-                 */
-                $path = $contentPath . DIRECTORY_SEPARATOR  . $locale . DIRECTORY_SEPARATOR . 'components';
-                if($filesystem->exists($path)) {
-                    $this->createComponents($path, $localeCode);
-                }
-            }
-        }
-
-        return $response;
+        $this->webPageAction = $webPageAction;
+        $this->articleAction = $articleAction;
+        $this->categoryAction = $categoryAction;
+        $this->componentAction = $componentAction;
+        $this->tripAction = $tripAction;
+        $this->organizationAction = $organizationAction;
+        $this->mediaService = $mediaService;
+        $this->hotelActivityAction = $hotelActivityAction;
+        $this->hotelServiceAction = $hotelServiceAction;
+        $this->amenityFeatureAction = $amenityFeatureAction;
+        $this->hotelTypicalDayAction = $hotelTypicalDayAction;
+        $this->hotelTypicalDayElementAction = $hotelTypicalDayElementAction;
+        $this->roomAction = $roomAction;
     }
 
     public function getMainOrganization($contentPath)
     {
-        $parser = new Parser();
         $filesystem = new Filesystem();
-        $filepath = $contentPath . DIRECTORY_SEPARATOR . 'organizations/main.md';
+        $filepath = $contentPath . DIRECTORY_SEPARATOR . 'main_organization.json';
         if($filesystem->exists($filepath)) {
-            $result = $parser->parse(file_get_contents($filepath), false);
 
-            return $result->getYaml();
+            $result = $this->extractData($filepath, 'json');
+            
+            return $result;
         }
 
         return false;
@@ -98,263 +101,160 @@ class Import
 
     public function createMainOrganization($data) 
     {
-        $organization = $this->dataService->createOrganizationDemand($data);
+        $organization = $this->organizationAction->create($data);
         $this->entityManager->persist($organization);
         $this->entityManager->flush();
     }
 
-    private function createMediasAndCategoriesFromAllData($path, $locale)
+    public function extractData($absoluteFilePath, $extension)
     {
-        dump("createMediasAndCategoriesFromAllData");
-        $directoryResourcesPath = $this->container->getParameter('path_directory_resources');
-        $imagesUploadFolder = $this->container->getParameter('folder_images_upload');
-        dump($directoryResourcesPath);
-        dump($imagesUploadFolder);
-        $filesystem = new Filesystem();
-        $directoryResourcesPath = $directoryResourcesPath . DIRECTORY_SEPARATOR . $imagesUploadFolder;
-        if(!$filesystem->exists($directoryResourcesPath)) {
-            dump('directoryResourcesPath doesnt exist!');die;
-        }
-        $parser = new Parser();
-        $finder = new Finder();
-        $finder->files()->in($path);
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $absoluteFilePath = $file->getRealPath();
-                $filename = pathinfo($file->getRelativePathname(), PATHINFO_FILENAME);
-                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-                if('md' === $extension && 'main' !== $filename) {
-                    $result = $parser->parse(file_get_contents($absoluteFilePath), false);
-                    $data = $result->getYaml();
-                    $data['description'] = $result->getContent();
-                    dump($data);
-
-                } else if('json' === $extension) {
-                    $result = json_decode(
-                        file_get_contents($absoluteFilePath)
-                        , true
-                    );
-
-                    dump($absoluteFilePath);
-                    $this->gonatoukiExtract($result);
-
-                }
-            }
-        }
-
-        die;
-    }
-
-    private function gonatoukiExtract($result)
-    {
-        foreach($result as $field=>$data) {
-
-            switch ($field) {
-                case 'category':
-                    $category = $this->dataService->createCategoryDemand($data);
-                    $this->entityManager->persist($category);
-                    $this->entityManager->flush();
-                    break;
-                case 'tags':
-                    foreach($data as $k=>$v){
-                        $category = $this->dataService->createCategoryDemand($v);
-                        $this->entityManager->persist($category);
-                        $this->entityManager->flush();
-                    }
-                    break;
-                case ($field == 'primaryImage' || $field == 'secondaryImage'):
-                    if(null !== $data) {
-                        $imageMediaObject = $this->dataService->createImageMediaObjectDemand($data);
-                        
-                        $this->entityManager->persist($imageMediaObject);
-                        $this->entityManager->flush();
-                    }
-                    break;
-                case ($field === 'gallery' || $field === 'galleryVertical'):
-                    if(null !== $data) {
-                        
-                        foreach($data['imageGalleries'] as $k=>$v){
-                            if(null !== $v){
-                                $imageMediaObject = $this->dataService->createImageMediaObjectDemand($v['image']);
-                                $this->entityManager->persist($imageMediaObject);
-                                $this->entityManager->flush();
-                            }
-                        }
-                    }
-                    break;
-                case 'elements':
-                    foreach($data as $k=>$v){
-                        $hotelTypicalDayElement = $this->dataService->createHotelTypicalDayElementDemand($v);
-                        $this->entityManager->persist($hotelTypicalDayElement);
-                        $this->entityManager->flush();
-                    }
-                    break;
-                case 'amenities':
-                    foreach($data as $k=>$v){
-                        $amenityFeature = $this->dataService->createAmenityFeatureDemand($v);
-                        $this->entityManager->persist($amenityFeature);
-                        $this->entityManager->flush();
-                    }
-                    break;
-                case 'offers':
-                    foreach($data as $k=>$v){
-                        $aggregateOffer = $this->dataService->createAggregateOfferDemand($v);
-                        $this->entityManager->persist($aggregateOffer);
-                        $this->entityManager->flush();
-                    }
-                    break;
-            }
-        }
-    }
-
-    private function createComponents($path, $locale)
-    {
-        $parser = new Parser();
-        $finder = new Finder();
-        $finder->depth('== 0');
-        $finder->files()->in($path);
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $absoluteFilePath = $file->getRealPath();
-                $filename = pathinfo($file->getRelativePathname(), PATHINFO_FILENAME);
-                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-                if('md' === $extension && 'main' !== $filename) {
-                    $result = $parser->parse(file_get_contents($absoluteFilePath), false);
-                    $data = $result->getYaml();
-                    // $data['description'] = $result->getContent();
-                    $component = $this->dataService->createComponentDemand($data, $locale);
-                    $this->entityManager->persist($component);
-                } else if('json' === $extension) {
-                    $data = json_decode(
-                        file_get_contents($absoluteFilePath)
-                        , true
-                    );
-                    // $component = $this->dataService->createComponentDemand($data, $locale);
-                    // $this->entityManager->persist($component);
-                }
+        $data = [];
+        
+        switch ($extension) {
+            case 'md':
+                $parser = new Parser();
+                $result = $parser->parse(file_get_contents($absoluteFilePath), false);
                 
-            }
-            $this->entityManager->flush();
+                $data = $result->getYaml();
+                $data['content'] = $result->getContent();
+                
+                break;
+            case 'json':
+                $data = json_decode(
+                    file_get_contents($absoluteFilePath)
+                    , true
+                );
+                break;
         }
+
+        return $data;
     }
 
-    private function createSocialLinks($path, $locale)
+    public function dataServicesDispatch($data, $folder)
     {
-        $parser = new Parser();
-        $finder = new Finder();
-        $finder->depth('== 0');
-        $finder->files()->in($path);
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $absoluteFilePath = $file->getRealPath();
-                $filename = pathinfo($file->getRelativePathname(), PATHINFO_FILENAME);
-                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-                if('md' === $extension && 'main' !== $filename) {
-                    $result = $parser->parse(file_get_contents($absoluteFilePath), false);
-                    $data = $result->getYaml();
-                    $data['description'] = $result->getContent();
-                    $organization = $this->dataService->createOrganizationDemand($data);
-                    $this->entityManager->persist($organization);
-                } else if('json' === $extension) {
-                    $data = json_decode(
-                        file_get_contents($absoluteFilePath)
-                        , true
-                    );
-                    // $organization = $this->dataService->createOrganizationDemand($data);
-                    // $this->entityManager->persist($organization);
+        switch ($folder) {
+            case 'categories':
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
                 }
-            }
-            $this->entityManager->flush();
-        }
-    }
+               
+                return $this->categoryAction->create($data);
+              
+                break;
+            case 'web_pages':
+               
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['text'] = $data['content'];
+                    unset($data['content']);
+                }
 
-    private function createArticles($path, $locale)
-    {
-        $parser = new Parser();
-        $finder = new Finder();
-        $finder->depth('== 0');
-        $finder->files()->in($path);
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $absoluteFilePath = $file->getRealPath();
-                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-                if('md' === $extension) {
-                    $result = $parser->parse(file_get_contents($absoluteFilePath), false);
-                    $data = $result->getYaml();
-                    $data['articleBody'] = $result->getContent();
-                    $article = $this->dataService->createArticleDemand($data);
-                $this->entityManager->persist($article);
-                } else if('json' === $extension) {
-                    $data = json_decode(
-                        file_get_contents($absoluteFilePath)
-                        , true
-                    );
-                    // $article = $this->dataService->createArticleDemand($data);
-                    // $this->entityManager->persist($article);
-                } 
+                return $this->webPageAction->create($data);
                 
-            }
-            $this->entityManager->flush();
-        }
-    }
-
-    private function createWebPages($path, $locale)
-    {
-        $parser = new Parser();
-        $finder = new Finder();
-        $finder->depth('== 0');
-        $finder->files()->in($path);
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $absoluteFilePath = $file->getRealPath();
-                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-                if('md' === $extension) {
-                    $result = $parser->parse(file_get_contents($absoluteFilePath), false);
-                    $data = $result->getYaml();
-                    $data['text'] = $result->getContent();
-                    $webPage = $this->dataService->createWebPageDemand($data);
-                    $this->entityManager->persist($webPage);
-                } else if('json' === $extension) {
-                    $data = json_decode(
-                        file_get_contents($absoluteFilePath)
-                        , true
-                    );
-                    // $webPage = $this->dataService->createWebPageDemand($data);
-                    // $this->entityManager->persist($webPage);
-                } 
+                break;
+            case 'articles':
                 
-            }
-            $this->entityManager->flush();
-        }
-    }
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['articleBody'] = $data['content'];
+                    unset($data['content']);
+                }
 
-    private function createCategories($path, $locale)
-    {
-        $parser = new Parser();
-        $finder = new Finder();
-        $finder->depth('== 0');
-        $finder->files()->in($path);
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $absoluteFilePath = $file->getRealPath();
-                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-                // dump($absoluteFilePath);
-                if('md' === $extension) {
-                    $result = $parser->parse(file_get_contents($absoluteFilePath), false);
-                    $data = $result->getYaml();
-                    $data['description'] = $result->getContent();
-                    $category = $this->dataService->createCategoryDemand($data);
-                    $this->entityManager->persist($category);
-                } else if('json' === $extension) {
-                    $data = json_decode(
-                        file_get_contents($absoluteFilePath)
-                        , true
-                    );
-                    $category = $this->dataService->createCategoryDemand($data);
-                    $this->entityManager->persist($category);
-                } 
-            }
-            $this->entityManager->flush();
+                return $this->articleAction->create($data);
+                
+                break;
+            case 'components':
+               
+                return $this->componentAction->create($data);
+                
+                break;
+            case 'social_links':
+                
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+                }
+
+                return $this->organizationAction->create($data);
+                
+                break;
+            case 'travels':
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+                }
+
+                return $this->tripAction->create($data);
+                
+                break;
+            case 'hotel_activities':
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+                }
+
+                return $this->hotelActivityAction->create($data);
+                
+                break;
+            case 'hotel_services':
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+                }
+
+                return $this->hotelServiceAction->create($data);
+                
+                break;
+            case 'hotel_amenities':
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+                }
+
+                return $this->amenityFeatureAction->create($data);
+                
+                break;
+            case 'hotel_typical_days':
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+                }
+
+                return $this->hotelTypicalDayAction->create($data);
+                
+                break;
+            case 'hotel_typical_day_elements':
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+                }
+
+                return $this->hotelTypicalDayElementAction->create($data);
+                
+                break;
+            case 'rooms':
+                /** hack markdown file */
+                if(isset($data['content'])) {
+                    $data['description'] = $data['content'];
+                    unset($data['content']);
+                }
+
+
+                return $this->roomAction->create($data);
+                
+                break;
+                
         }
+
+        return null;
     }
 }

@@ -61,6 +61,7 @@ class ComponentIframeType extends AbstractType
                 $string = $form->getConfig()->getName() . ' ' . $data['designation'];
                 $data['slug'] = $this->slugger->slug($string)->lower()->toString();
             }
+            unset($data['_slug']);
             $event->setData($data);
         });
     }

@@ -26,7 +26,6 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
  * @ApiResource(iri="https://schema.org/Trip")
  * @ORM\Table(name="app_trip_translation")
  * @ORM\Entity()
- * @ORM\HasLifecycleCallbacks()
  */
 class TripTranslation extends AbstractTranslation implements ResourceInterface
 {

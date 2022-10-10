@@ -6,9 +6,10 @@ namespace App\Entity;
 
 use App\Entity\Address;
 use App\Entity\Traits\SeoTrait;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
+use App\Entity\Traits\ImagesTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\Traits\IdentifiableTrait;
 use ApiPlatform\Core\Annotation\ApiFilter;
@@ -17,11 +18,9 @@ use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Symfony\Component\Validator\Constraints as Assert;
-use Sylius\Component\Resource\Model\CodeAwareInterface;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 
 /**
@@ -55,6 +54,7 @@ class Organization implements ResourceInterface
 {
     use IdentifiableTrait;
     use SeoTrait;
+    use ImagesTrait;
     use ThingTrait;
     use TimestampableEntity;
     
@@ -139,33 +139,6 @@ class Organization implements ResourceInterface
     private $numberOfEmployees;
 
     /**
-     * @var ImageMediaObject|null indicates the main image on the page
-     *
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
-     
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     * 
-     * @ApiSubresource(maxDepth=1)
-     * @ApiProperty(
-     *    readableLink=true
-     * )
-     */
-    private $primaryImage;  
-
-    /**
-     * @var ImageMediaObject|null indicates the main image on the page
-     *
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     * 
-     * @ApiSubresource(maxDepth=1)
-     * @ApiProperty(
-     *    readableLink=true
-     * )
-     */
-    private $secondaryImage;
-
-    /**
      * @ORM\Column(type="smallint", nullable=true)
      *
      */
@@ -189,7 +162,7 @@ class Organization implements ResourceInterface
     private $mobilePhone;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="organizations")
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -256,7 +229,7 @@ class Organization implements ResourceInterface
     private $fax;
 
     /**
-     * @ORM\ManyToOne(targetEntity=IconMediaObject::class, inversedBy="organizations")
+     * @ORM\ManyToOne(targetEntity=MediaObjectIcon::class, inversedBy="organizations")
      */
     private $icon;
 
@@ -273,26 +246,6 @@ class Organization implements ResourceInterface
     public function getId(): ?int
     {
         return $this->id;
-    }
-    
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): void
-    {
-        $this->primaryImage = $primaryImage;
-    }
-
-    public function getPrimaryImage(): ?ImageMediaObject
-    {
-        return $this->primaryImage;
-    }
-
-    public function setSecondaryImage(?ImageMediaObject $secondaryImage): void
-    {
-        $this->secondaryImage = $secondaryImage;
-    }
-
-    public function getSecondaryImage(): ?ImageMediaObject
-    {
-        return $this->secondaryImage;
     }
 
     /**
@@ -604,12 +557,12 @@ class Organization implements ResourceInterface
         return $this;
     }
 
-    public function getIcon(): ?IconMediaObject
+    public function getIcon(): ?MediaObjectIcon
     {
         return $this->icon;
     }
 
-    public function setIcon(?IconMediaObject $icon): self
+    public function setIcon(?MediaObjectIcon $icon): self
     {
         $this->icon = $icon;
 

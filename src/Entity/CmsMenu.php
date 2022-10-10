@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CmsMenuRepository;
+use Gedmo\Mapping\Annotation as Gedmo;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\CodeAwareInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
-use ApiPlatform\Core\Annotation\ApiProperty;
 use Symfony\Component\Validator\Constraints as Assert;
+use Sylius\Component\Resource\Model\CodeAwareInterface;
 
 
 /**
@@ -19,12 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class CmsMenu implements ResourceInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    use IdentifiableTrait;
 
     /**
      * @ORM\Column(type="boolean", options={"default": true})
@@ -68,7 +64,7 @@ class CmsMenu implements ResourceInterface
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=MediaObjectImage::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $primaryImage;
@@ -82,11 +78,6 @@ class CmsMenu implements ResourceInterface
     public function __toString()
     {
         return $this->getName();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getSlug()
@@ -209,12 +200,12 @@ class CmsMenu implements ResourceInterface
         return $this;
     }
 
-    public function getPrimaryImage(): ?ImageMediaObject
+    public function getPrimaryImage(): ?MediaObjectImage
     {
         return $this->primaryImage;
     }
 
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
+    public function setPrimaryImage(?MediaObjectImage $primaryImage): self
     {
         $this->primaryImage = $primaryImage;
 

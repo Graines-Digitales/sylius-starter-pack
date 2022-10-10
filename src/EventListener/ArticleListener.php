@@ -2,7 +2,7 @@
 
 namespace App\EventListener;
 
-use App\Data\ArticleAction as ArticleDataAction;
+use App\Data\Action\ArticleAction as ArticleDataAction;
 use App\Entity\ArticleTranslation;
 use App\Form\Type\ArticleTranslationType;
 use App\Translation\SyliusTranslator;

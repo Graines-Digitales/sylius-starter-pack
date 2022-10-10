@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\HotelRoom;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\OfferTrait;
 use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\AggregateOfferRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -20,11 +22,10 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *
  * @see http://schema.org/AggregateOffer Documentation on Schema.org
  *
- * @ORM\Entity
+ * @ORM\Entity()
  * @ORM\Table(name="app_aggregate_offer")
  * @ApiResource(iri="http://schema.org/AggregateOffer")
- * @ORM\Entity(repositoryClass="App\Repository\AggregateOfferRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=AggregateOfferRepository::class)
  */
 class AggregateOffer implements ResourceInterface
 {
@@ -57,7 +58,7 @@ class AggregateOffer implements ResourceInterface
     private $offerCount;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Room::class, mappedBy="offers")
+     * @ORM\ManyToMany(targetEntity=HotelRoom::class, mappedBy="offers")
      */
     private $rooms;
 
@@ -133,14 +134,14 @@ class AggregateOffer implements ResourceInterface
     }
 
     /**
-     * @return Collection|Room[]
+     * @return Collection|HotelRoom[]
      */
     public function getRooms(): Collection
     {
         return $this->rooms;
     }
 
-    public function addRoom(Room $room): self
+    public function addRoom(HotelRoom $room): self
     {
         if (!$this->rooms->contains($room)) {
             $this->rooms[] = $room;
@@ -150,7 +151,7 @@ class AggregateOffer implements ResourceInterface
         return $this;
     }
 
-    public function removeRoom(Room $room): self
+    public function removeRoom(HotelRoom $room): self
     {
         if ($this->rooms->removeElement($room)) {
             $room->removeOffer($this);

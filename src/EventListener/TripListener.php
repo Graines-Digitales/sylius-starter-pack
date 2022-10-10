@@ -2,7 +2,7 @@
 
 namespace App\EventListener;
 
-use App\Data\TripAction as TripDataAction;
+use App\Data\Action\TripAction as TripDataAction;
 use App\Entity\TripTranslation;
 use App\Form\Type\TripTranslationType;
 use App\Translation\SyliusTranslator;
@@ -74,7 +74,6 @@ class TripListener
         }
 
         $this->webContentSEOService->defineMetaData($entity);
-       
     }
    
 }

@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Entity\User\AdminUser;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserGroupRepository;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\CodeAwareInterface;
 
@@ -16,13 +18,9 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
  */
 class UserGroup implements ResourceInterface, CodeAwareInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
+    use IdentifiableTrait;
+    use TimestampableEntity;
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -51,11 +49,6 @@ class UserGroup implements ResourceInterface, CodeAwareInterface
     public function __construct()
     {
         $this->adminUsers = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getName(): ?string

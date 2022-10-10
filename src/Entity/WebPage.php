@@ -2,36 +2,37 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\SeoTranslatableTrait;
-use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Traits\ThingTrait;
-use App\Repository\WebPageRepository;
-use App\Entity\Traits\CreativeWorkTrait;
-use Doctrine\Common\Collections\Collection;
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\LockableTrait;
 use App\Entity\Traits\SeoTrait;
+use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ImagesTrait;
+use App\Entity\Traits\LockableTrait;
+use App\Repository\WebPageRepository;
+use App\Entity\Traits\IdentifiableTrait;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
-use Sylius\Component\Resource\Model\CodeAwareInterface;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\TranslatableInterface;
-use Symfony\Component\Validator\Constraints as Assert;
-use ApiPlatform\Core\Annotation\ApiSubresource;
-use ApiPlatform\Core\Annotation\ApiProperty;
-
 
 
 /**
- * @ApiResource()
+ * A web page. Every web page is implicitly assumed to be declared to be of type WebPage, so the various properties about that webpage, such as `breadcrumb` may be used. We recommend explicit declaration if these properties are specified, but if they are found outside of an itemscope, they will be assumed to be about the page.
+ *
+ * @see https://schema.org/WebPage
+ * @ApiResource(iri="https://schema.org/WebPage")
  * @ORM\Entity(repositoryClass=WebPageRepository::class)
  * @ORM\Table(name="app_web_page")
  */
 class WebPage implements ResourceInterface, TranslatableInterface
 {
-    use SeoTrait;
+    use IdentifiableTrait;
     use LockableTrait;
+    use SeoTrait;
+    use ImagesTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -52,38 +53,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     * 
-     * @Assert\NotBlank()
-     * 
-     * @ApiSubresource(maxDepth=1)
-     *  @ApiProperty(
-     *    readableLink=true
-     * )
-     */
-    private $primaryImage;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     * 
-     * @ApiSubresource(maxDepth=1)
-     * @ApiProperty(
-     *    readableLink=true
-     * )
-     */
-    private $secondaryImage;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -93,7 +63,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="webPages")
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="webPages", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="app_web_page_category")
      * 
      * @ApiSubresource(maxDepth=1)
@@ -124,7 +94,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity=VideoMediaObject::class, inversedBy="webPages")
+     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist", "remove"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -133,7 +103,10 @@ class WebPage implements ResourceInterface, TranslatableInterface
      */
     private $video;
 
-
+    /**
+     * @ORM\ManyToOne(targetEntity=MediaObjectIcon::class)
+     */
+    private $icon;
 
     public function __toString()
     {
@@ -143,11 +116,6 @@ class WebPage implements ResourceInterface, TranslatableInterface
         }
 
         return  get_class($this) . ' - ID = ' . $this->getId();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getMetaTitle(): ?string
@@ -197,19 +165,6 @@ class WebPage implements ResourceInterface, TranslatableInterface
     public function getSlug()
     {
         return $this->getTranslation()->getSlug();
-//        return $this->getTranslation()->getSlug();
-    }
-
-    public function getPrimaryImage(): ?ImageMediaObject
-    {
-        return $this->primaryImage;
-    }
-
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
-    {
-        $this->primaryImage = $primaryImage;
-
-        return $this;
     }
 
     public function getCategory(): ?Category
@@ -278,17 +233,6 @@ class WebPage implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getSecondaryImage(): ?ImageMediaObject
-    {
-        return $this->secondaryImage;
-    }
-
-    public function setSecondaryImage(?ImageMediaObject $secondaryImage): self
-    {
-        $this->secondaryImage = $secondaryImage;
-
-        return $this;
-    }
 
     public function getType(): ?Category
     {
@@ -302,18 +246,28 @@ class WebPage implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getVideo(): ?VideoMediaObject
+    public function getVideo(): ?MediaObjectVideo
     {
         return $this->video;
     }
 
-    public function setVideo(?VideoMediaObject $video): self
+    public function setVideo(?MediaObjectVideo $video): self
     {
         $this->video = $video;
 
         return $this;
     }
 
+    public function getIcon(): ?MediaObjectIcon
+    {
+        return $this->icon;
+    }
 
+    public function setIcon(?MediaObjectIcon $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
 
 }

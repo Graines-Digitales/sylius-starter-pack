@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ImagesTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\Traits\AdministrableTrait;
@@ -10,7 +12,6 @@ use App\Entity\Traits\TimestampableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
-use App\Entity\Traits\SeoTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -25,39 +26,20 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  * @ApiResource()
  * @ORM\Table(name="app_hotel_typical_day_element")
  * @ORM\Entity(repositoryClass="App\Repository\HotelTypicalDayElementRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
 {
     use IdentifiableTrait;
     use SeoTrait;
+    use ImagesTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
     }
 
-    /**
-     * @var ImageMediaObject|null indicates the main image on the page
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ImageMediaObject")
-     * @ApiProperty(iri="http://schema.org/primaryImage")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     *
-     * @Assert\NotBlank(message="Select the main image room")
-     */
-    private $primaryImage;
 
     /**
-     * @var ImageMediaObject|null indicates the main image on the page
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\ImageMediaObject")
-     * @ApiProperty(iri="http://schema.org/primaryImage")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     */
-    private $secondaryImage;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="HotelTypicalDay", inversedBy="elements")
+     * @ORM\ManyToOne(targetEntity="HotelTypicalDay", inversedBy="elements", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="hotel_typical_day_id", referencedColumnName="id")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
@@ -69,7 +51,12 @@ class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
     private $hours;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
@@ -77,6 +64,14 @@ class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
      * @ORM\ManyToOne(targetEntity=Event::class, inversedBy="hotelTypicalDayElements")
      */
     private $event;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @Groups("hotel_typical_day")
+     */
+    private $labelBgTransparent;
+
 
     /**
      * Constructor.
@@ -144,26 +139,6 @@ class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
         return $this->hotelTypicalDay;
     }
 
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): void
-    {
-        $this->primaryImage = $primaryImage;
-    }
-
-    public function getPrimaryImage(): ?ImageMediaObject
-    {
-        return $this->primaryImage;
-    }
-
-    public function setSecondaryImage(?ImageMediaObject $secondaryImage): void
-    {
-        $this->secondaryImage = $secondaryImage;
-    }
-
-    public function getSecondaryImage(): ?ImageMediaObject
-    {
-        return $this->secondaryImage;
-    }
-
     public function getHours(): ?string
     {
         return $this->hours;
@@ -196,6 +171,18 @@ class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
     public function setEvent(?Event $event): self
     {
         $this->event = $event;
+
+        return $this;
+    }
+
+    public function getLabelBgTransparent(): ?bool
+    {
+        return $this->labelBgTransparent;
+    }
+
+    public function setLabelBgTransparent(bool $labelBgTransparent): self
+    {
+        $this->labelBgTransparent = $labelBgTransparent;
 
         return $this;
     }

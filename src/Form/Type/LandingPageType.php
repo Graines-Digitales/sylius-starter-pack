@@ -4,11 +4,11 @@ namespace App\Form\Type;
 
 use App\Entity\WebPage;
 use App\Entity\Category;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\WebPageTranslationType;
-use App\Repository\ImageMediaObjectRepository;
+use App\Repository\MediaObjectImageRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -57,31 +57,33 @@ class LandingPageType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
-                'class' => ImageMediaObject::class,
+                'attr' => ['class' => 'select2-standard'],
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(ImageMediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingVideo($configurationProject);
                 }
             ])
             ->add('category', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class' => Category::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(CategoryRepository $repo) use ($configurationProject) {

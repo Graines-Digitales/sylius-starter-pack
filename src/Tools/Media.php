@@ -3,9 +3,9 @@
 namespace App\Tools;
 
 use App\Entity\Category;
-use App\Entity\IconMediaObject;
+use App\Entity\MediaObjectIcon;
 use App\WebContent\SEO;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Filesystem\Filesystem;
@@ -71,7 +71,7 @@ class Media
         $configurationProject = $this->container->getParameter('configuration_project');
         $imageMimeTypes = $configurationProject['media_encoding_formats']['image'];
 
-        $entity = new IconMediaObject();
+        $entity = new MediaObjectIcon();
         $originalFilename = null;
         if (empty($entity->getOriginalFilename())) {
             if (is_callable([$file, 'getClientOriginalName'])) {
@@ -124,7 +124,7 @@ class Media
         $configurationProject = $this->container->getParameter('configuration_project');
         $imageMimeTypes = $configurationProject['media_encoding_formats']['image'];
 
-        $entity = new ImageMediaObject();
+        $entity = new MediaObjectImage();
         $originalFilename = null;
         if (empty($entity->getOriginalFilename())) {
             if (is_callable([$file, 'getClientOriginalName'])) {
@@ -264,7 +264,7 @@ class Media
 
     public function getMediaArray($manager)
     {
-        $results = $manager->getRepository(ImageMediaObject::class)->findAll();
+        $results = $manager->getRepository(MediaObjectImage::class)->findAll();
         $medias = [];
         foreach ($results as $key => $value) {
             $medias[$value->getFilename()] = $value;
@@ -292,7 +292,7 @@ class Media
             'app.tools.annotation'
         );
         $constraints = $annotationEntityService->getContraintsByField(
-            ImageMediaObject::class, 'file'
+            MediaObjectImage::class, 'file'
         );
 
         $mimeTypes = [];

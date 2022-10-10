@@ -3,7 +3,7 @@
 namespace App\WebContent;
 
 use App\Entity\LocalBusiness;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use App\Entity\Person;
 
 class Form extends AbstractWebContent
@@ -45,7 +45,7 @@ class Form extends AbstractWebContent
             if(!empty($attachments)) {
                 $pathDirectoryMedia = $this->container->getParameter('path_directory_media');
                 foreach($attachments as $attachment) {
-                    $media = new ImageMediaObject();
+                    $media = new MediaObjectImage();
                     $media->setFile($attachment);
                     $this->manager->persist($media);
                     $this->manager->flush();
