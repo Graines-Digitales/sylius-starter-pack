@@ -41,14 +41,14 @@ class ComponentSliderType extends AbstractType
                 'disabled' => false,
             ])
             ->add('designation', TextType::class, [
-                'required' => false,
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['component_contact_form_validation']])
+                ],
                 'label' => 'app.ui_element.field.designation',
             ])
             ->add('title', TextType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(['groups' => ['component_slider_validation']])
-                ],
+                'required' => false,
                 'label' => 'app.ui_element.field.title',
             ])
             ->add('content', WysiwygType::class, [
@@ -71,9 +71,10 @@ class ComponentSliderType extends AbstractType
             $data = $event->getData();
             $form = $event->getForm();
             if(empty($data['slug'])) {
-                $string = $form->getConfig()->getName() . ' ' . $data['title'];
+                $string = $form->getConfig()->getName() . ' ' . $data['designation'];
                 $data['slug'] = $this->slugger->slug($string)->lower()->toString();
             }
+            unset($data['_slug']);
             $event->setData($data);
         });
     }

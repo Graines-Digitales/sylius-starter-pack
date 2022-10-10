@@ -2,9 +2,10 @@
 
 namespace App\Command;
 
-use App\Data\Action as DataAction;
+use App\Data\ImportCommand;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,7 +19,7 @@ class ProjectSetupCommand extends Command
 {
     private $container;
 
-    private $dataAction;
+    private $importAction;
 
     protected static $defaultName = 'app:project-setup';
 
@@ -26,10 +27,10 @@ class ProjectSetupCommand extends Command
 
     public function __construct(
         ContainerInterface $container
-        , DataAction $dataAction
+        , ImportCommand $importAction
     ){
         $this->container = $container;
-        $this->dataAction = $dataAction;
+        $this->importAction = $importAction;
 
         parent::__construct();
     }
@@ -47,68 +48,74 @@ class ProjectSetupCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $helper = $this->getHelper('question');
         $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
-        $contentPath = $kernelProjectDir . '/content';
-        $imagesPath = $kernelProjectDir . '/content/images';
+        $pathContentDirectory = $kernelProjectDir . '/content';
+        $pathImagesDirectory = $kernelProjectDir . '/content/images';
 
         $configurationProject = $this->container->getParameter('configuration_project');
         $folders = $configurationProject['folders'];
 
-        $finder = new Finder();
-        
-        $finder->files()->in($imagesPath);
-        if ($finder->hasResults()) {
-            $question = new ConfirmationQuestion(
-                'Voulez-vous créer les images trouvées dans le dossier content/ ? (Y|n)',
-                true
-            );
-            if ($helper->ask($input, $output, $question)) {
-                $this->dataAction->importImages();
+        $filesystem = new Filesystem();
+        if ($filesystem->exists($pathImagesDirectory)) {
+            $finder = new Finder();
+            $finder->files()->in($pathImagesDirectory);
+            if ($finder->hasResults()) {
+                $question = new ConfirmationQuestion(
+                    'Voulez-vous créer les images trouvées dans le dossier content/ ? (Y|n)',
+                    true
+                );
+                if ($helper->ask($input, $output, $question)) {
+                    $this->importAction->fromImagesFolder($io);
 
-                $io->success('Les données du dossier content/ ont bien été enregistrées.');
+                    $io->success('Les données du dossier content/ ont bien été enregistrées.');
+                }
             }
         }
 
-        $finder = new Finder();
-        
-        $finder->files()->in($contentPath);
-        if ($finder->hasResults()) {
-            $question = new ConfirmationQuestion(
-                'Voulez-vous créer les données du dossier content/ ? (Y|n)',
-                true
-            );
-            if ($helper->ask($input, $output, $question)) {
-                $this->dataAction->run($contentPath, $folders);
+        if (!$result = $this->importAction->getMainOrganization($pathContentDirectory)) {
+            $io->error('Le processus à été arrété : Les données de votre organisation n\'ont pas été trouvées');
 
-                $io->success('Les données du dossier content/ ont bien été enregistrées.');
-            }
-        }
-        
-
-        if($result = $this->dataAction->getMainOrganization($contentPath)) {
-            
-            $question = new ConfirmationQuestion(
-                'Les données de votre organisation sont elles correctes ? (Y|n)',
-                true
-            );
-            $data = $result;
-            unset($result['addresses']);
-
-            $table = new Table($output);
-            $table
-                ->setHeaders(array_keys($result))
-                ->setRows([$result])
-            ;
-            $table->render();
-            if ($helper->ask($input, $output, $question)) {
-                $this->dataAction->createMainOrganization($data);
-                $io->success('Les données de votre organisation ont bien été enregistrées.');
-
-                return Command::SUCCESS;
-            }
+            return Command::FAILURE;
         }
 
-        $io->error('Le processus à été arrété : Les données de votre organisation n\'ont pas été trouvées');
 
+        $question = new ConfirmationQuestion(
+            'Les données de votre organisation sont elles correctes ? (Y|n)',
+            true
+        );
+        $data = $result;
+        unset($result['addresses']);
+        unset($result['primaryImage']);
+        unset($result['secondaryImage']);
+        unset($result['category']);
+
+        $table = new Table($output);
+        $table
+            ->setHeaders(array_keys($result))
+            ->setRows([$result])
+        ;
+        $table->render();
+        if ($helper->ask($input, $output, $question)) {
+            $this->importAction->createMainOrganization($data);
+            $io->success('Les données de votre organisation ont bien été enregistrées.');
+        }
+        
+        $filesystem = new Filesystem();
+        if ($filesystem->exists($pathContentDirectory)) {
+            $finder = new Finder();
+            $finder->files()->in($pathContentDirectory);
+            if ($finder->hasResults()) {
+                $question = new ConfirmationQuestion(
+                    'Voulez-vous créer les données du dossier content/ ? (Y|n)',
+                    true
+                );
+                if ($helper->ask($input, $output, $question)) {
+                    $this->importAction->fromContentFolder($io);
+
+                    $io->success('Les données du dossier content/ ont bien été enregistrées.');
+                }
+            }
+        }
+ 
         return Command::SUCCESS;
     }
 }

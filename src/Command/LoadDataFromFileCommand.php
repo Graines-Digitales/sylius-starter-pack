@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Data\Action as DataAction;
+use App\Data\Import;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -24,16 +24,16 @@ class LoadDataFromFileCommand extends Command
 
     private $entityManager;
 
-    private $dataAction;
+    private $importAction;
 
     public function __construct(
         ContainerInterface $container
         , EntityManagerInterface $entityManager
-        , DataAction $dataAction
+        , Import $importAction
     ){
         $this->container = $container;
         $this->entityManager = $entityManager;
-        $this->dataAction = $dataAction;
+        $this->importAction = $importAction;
 
         parent::__construct();
     }
@@ -57,7 +57,7 @@ class LoadDataFromFileCommand extends Command
         
         if ($filename) {
             $absoluteFilePath = $kernelProjectDir . DIRECTORY_SEPARATOR;
-            $absoluteFilePath.= 'content/fr' .DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $filename;
+            $absoluteFilePath.= 'content' .DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $filename;
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
             
             if(empty($extension)) {
@@ -66,8 +66,8 @@ class LoadDataFromFileCommand extends Command
                 return Command::FAILURE;
             }
             
-            $data = $this->dataAction->extractData($absoluteFilePath, $extension);
-            $entity = $this->dataAction->dataServicesDispatch($data, $folder);
+            $data = $this->importAction->extractData($absoluteFilePath, $extension);
+            $entity = $this->importAction->dataServicesDispatch($data, $folder);
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
         }

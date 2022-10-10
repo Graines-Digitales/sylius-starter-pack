@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use App\Form\Type\PropertyValueWebPageType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -19,7 +20,10 @@ class ComponentLinkType extends AbstractType
     {
         $builder
             ->add('designation', TextType::class, [
-                'required' => false,
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['component_contact_form_validation']])
+                ],
                 'label' => 'app.ui_element.field.designation',
             ])
             ->add('label', TextType::class, [

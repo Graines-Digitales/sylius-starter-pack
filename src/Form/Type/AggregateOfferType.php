@@ -32,6 +32,15 @@ class AggregateOfferType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => AggregateOffer::class,
+            'validation_groups' => ['aggregate_offer_validation'],
         ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'app_aggregate_offer';
     }
 }

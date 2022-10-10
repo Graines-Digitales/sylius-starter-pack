@@ -2,7 +2,7 @@
 
 namespace App\EventListener;
 
-use App\Data\WebPageAction as WebPageDataAction;
+use App\Data\Action\WebPageAction as WebPageDataAction;
 use App\WebContent\SEO;
 use App\Entity\WebPageTranslation;
 use Doctrine\ORM\EntityManagerInterface;
@@ -95,10 +95,10 @@ class WebPageListener
             return;
         }
 
-        if(false === $entity->getTranslatable()->getIsLocked()) {
-            $entity = $this->webContentWebPageService->updateSlug($entity);
-            $this->entityManager->flush($entity);
-        }
+        // if(false === $entity->getTranslatable()->getIsLocked()) {
+        //     $entity = $this->webContentWebPageService->updateSlug($entity);
+        //     $this->entityManager->flush($entity);
+        // }
     }
 
 }

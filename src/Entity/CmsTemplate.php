@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\GraphQl\Resolver\Util\IdentifierTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CmsTemplateRepository;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -13,13 +15,9 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
  */
 class CmsTemplate implements ResourceInterface, CodeAwareInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    use IdentifiableTrait;
 
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -49,11 +47,6 @@ class CmsTemplate implements ResourceInterface, CodeAwareInterface
     public function __toString()
     {
         return $this->getName();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getName(): ?string

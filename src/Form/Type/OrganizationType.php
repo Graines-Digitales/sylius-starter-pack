@@ -3,8 +3,8 @@
 namespace App\Form\Type;
 
 use App\Entity\Organization;
-use App\Entity\IconMediaObject;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectIcon;
+use App\Entity\MediaObjectImage;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\MediaObjectRepository;
 use App\Repository\OrganizationRepository;
@@ -66,12 +66,12 @@ class OrganizationType extends AbstractType
             ])
             ->add('primaryImage', EntityType::class, [
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
             ])
             ->add('icon', EntityType::class, [
                 'attr' => ['class' => 'select2-icon'],
-                'class' => IconMediaObject::class,
+                'class' => MediaObjectIcon::class,
                 'placeholder' => 'app.ui_element.field.choose',
             ])
             // ->add('category', EntityType::class, [

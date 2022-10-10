@@ -40,14 +40,14 @@ class ComponentContactFormType extends AbstractType
                 'disabled' => false,
             ])
             ->add('designation', TextType::class, [
-                'required' => false,
-                'label' => 'app.ui_element.field.designation',
-            ])
-            ->add('title', TextType::class, [
                 'required' => true,
                 'constraints' => [
                     new NotBlank(['groups' => ['component_contact_form_validation']])
                 ],
+                'label' => 'app.ui_element.field.designation',
+            ])
+            ->add('title', TextType::class, [
+                'required' => false,
                 'label' => 'app.ui_element.field.title',
             ])
             ->add('subtitle', TextType::class, [
@@ -64,9 +64,10 @@ class ComponentContactFormType extends AbstractType
             $data = $event->getData();
             $form = $event->getForm();
             if(empty($data['slug'])) {
-                $string = $form->getConfig()->getName() . ' ' . $data['title'];
+                $string = $form->getConfig()->getName() . ' ' . $data['designation'];
                 $data['slug'] = $this->slugger->slug($string)->lower()->toString();
             }
+            unset($data['_slug']);
             $event->setData($data);
         });
     }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Form\Type\UiElement;
 
 use App\Entity\Category;
-use App\Entity\IconMediaObject;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectIcon;
+use App\Entity\MediaObjectImage;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -20,9 +20,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Form\DataTransformer\IconMediaObjectTransformer;
+use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use App\Form\DataTransformer\ImageMediaObjectTransformer;
+use App\Form\DataTransformer\MediaObjectImageTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -61,14 +61,14 @@ class ComponentCardType extends AbstractType
                 'disabled' => false,
             ])
             ->add('designation', TextType::class, [
-                'required' => false,
-                'label' => 'app.ui_element.field.designation',
-            ])
-            ->add('title', TextType::class, [
                 'required' => true,
+                'label' => 'app.ui_element.field.designation',
                 'constraints' => [
                     new NotBlank(['groups' => ['component_card_validation']])
                 ],
+            ])
+            ->add('title', TextType::class, [
+                'required' => false,
                 'label' => 'app.ui_element.field.title',
             ])
             ->add('subtitle', TextType::class, [
@@ -93,7 +93,7 @@ class ComponentCardType extends AbstractType
             ])
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image',
                 'attr' => ['class' => 'select2-image'],
                 'choice_label' => function ($mediaObject) {
@@ -102,7 +102,7 @@ class ComponentCardType extends AbstractType
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('content', WysiwygType::class, [
@@ -111,7 +111,7 @@ class ComponentCardType extends AbstractType
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
-                'class' => IconMediaObject::class,
+                'class' => MediaObjectIcon::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
             ])
             ->add('links', CollectionType::class, [
@@ -140,26 +140,27 @@ class ComponentCardType extends AbstractType
 
         $builder
             ->get('primaryImage')
-            ->addModelTransformer(new ImageMediaObjectTransformer($this->manager))
+            ->addModelTransformer(new MediaObjectImageTransformer($this->manager))
         ;
 
         $builder
             ->get('secondaryImage')
-            ->addModelTransformer(new ImageMediaObjectTransformer($this->manager))
+            ->addModelTransformer(new MediaObjectImageTransformer($this->manager))
         ;
 
         $builder
             ->get('icon')
-            ->addModelTransformer(new IconMediaObjectTransformer($this->manager))
+            ->addModelTransformer(new MediaObjectIconTransformer($this->manager))
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             $data = $event->getData();
             $form = $event->getForm();
             if(empty($data['slug'])) {
-                $string = $form->getConfig()->getName() . ' ' . $data['title'];
+                $string = $form->getConfig()->getName() . ' ' . $data['designation'];
                 $data['slug'] = $this->slugger->slug($string)->lower()->toString();
             }
+            unset($data['_slug']);
             $event->setData($data);
         });
 
