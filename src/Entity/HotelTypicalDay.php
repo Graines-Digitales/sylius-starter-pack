@@ -2,52 +2,52 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\IdentifiableTrait;
-use App\Entity\Traits\ThingTrait;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
+use App\Entity\Traits\IdentifiableTrait;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TranslatableTrait;
+use Sylius\Component\Resource\Model\TranslatableInterface;
+
 
 /**
  * @TODO : à revoir selon le standard schema.org
  * 
  * @ApiResource()
  * @ORM\Table(name="app_hotel_typical_day")
- * @ORM\Entity(repositoryClass="App\Repository\HotelTypicalDayRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=HotelTypicalDayRepository::class)
  */
-class HotelTypicalDay implements ResourceInterface
+class HotelTypicalDay implements ResourceInterface, TranslatableInterface
 {
     use IdentifiableTrait;
-    use ThingTrait;
+    use SeoTrait;
     use TimestampableEntity;
-
+    use TranslatableTrait {
+        __construct as private initializeTranslationsCollection;
+    }
 
     /**
-     * @ORM\OneToMany(targetEntity="HotelTypicalDayElement", mappedBy="hotelTypicalDay", cascade= { "remove" })
+     * @ORM\OneToMany(targetEntity="HotelTypicalDayElement", mappedBy="hotelTypicalDay", cascade={"persist", "remove"})
      */
     private $elements;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category")
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
-
-
-    /**
-     * @ORM\Column(type="boolean", options={"default": true})
-     */
-    private $isActive = true;
-
-    /**
-     * @Gedmo\Slug(fields={"name"}, updatable=false)
-     * @ORM\Column(length=128)
-     */
-    private $slug;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="hotelTypicalDays")
@@ -56,22 +56,31 @@ class HotelTypicalDay implements ResourceInterface
     private $tags;
 
     /**
+     * {@inheritdoc}
+     */
+    protected function createTranslation()
+    {
+        return new HotelTypicalDayElementTranslation();
+    }
+
+    /**
      * Constructor.
      */
     public function __construct()
     {
+        $this->initializeTranslationsCollection();
         $this->elements = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->getName();
+        return $this->getTranslation()->getName();
     }
 
     public function getSlug()
     {
-        return $this->slug;
+        return $this->getTranslation()->getSlug();
     }
     
     /**
@@ -91,7 +100,7 @@ class HotelTypicalDay implements ResourceInterface
             return;
         }
 
-        $element->addHotelTypicalDay($this);
+        $element->setHotelTypicalDay($this);
         $this->elements->add($element);
     }
 
@@ -116,18 +125,6 @@ class HotelTypicalDay implements ResourceInterface
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    public function getIsActive(): ?bool
-    {
-        return $this->isActive;
-    }
-
-    public function setIsActive(bool $isActive): self
-    {
-        $this->isActive = $isActive;
 
         return $this;
     }

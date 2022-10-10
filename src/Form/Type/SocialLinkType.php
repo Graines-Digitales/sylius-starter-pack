@@ -4,8 +4,8 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\Organization;
-use App\Entity\IconMediaObject;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectIcon;
+use App\Entity\MediaObjectImage;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -39,12 +39,12 @@ class SocialLinkType extends AbstractResourceType
             ->add('icon', EntityType::class, [
                 'attr' => ['class' => 'select2-icon'],
                 'required' => false,
-                'class' => IconMediaObject::class,
+                'class' => MediaObjectIcon::class,
                 'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('primaryImage', EntityType::class, [
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('name', TextType::class, [

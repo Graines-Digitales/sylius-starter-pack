@@ -16,11 +16,9 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *
  * @see http://schema.org/? Documentation on Schema.org
  *
- * @ORM\Entity
+ * @ORM\Entity()
  * @ORM\Table(name="app_rental")
  * @ApiResource(iri="http://schema.org/?")
- *
- * @ORM\HasLifecycleCallbacks()
  */
 class Rental implements ResourceInterface
 {

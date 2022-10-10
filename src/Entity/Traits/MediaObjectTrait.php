@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Traits;
 
-use App\Entity\Category;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 
 

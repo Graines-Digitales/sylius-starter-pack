@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\HotelRoom;
 use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdentifiableTrait;
@@ -15,9 +16,9 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\TranslatableInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
+use Sylius\Component\Resource\Model\TranslatableInterface;
 
 
 /**
@@ -25,11 +26,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @see http://schema.org/Event Documentation on Schema.org
  *
- * @ORM\Entity
- * @ORM\Table(name="app_event")
  * @ApiResource(iri="http://schema.org/Event")
- * @ORM\HasLifecycleCallbacks()
- * @Vich\Uploadable
+ * @ORM\Entity()
+ * @ORM\Table(name="app_event")
  */
 class Event implements ResourceInterface, TranslatableInterface
 {
@@ -94,7 +93,7 @@ class Event implements ResourceInterface, TranslatableInterface
     private $depositStatus = false;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DocumentMediaObject")
+     * @ORM\ManyToOne(targetEntity="MediaObjectDocument")
      */
     private $rentalAgreement;
 
@@ -126,7 +125,7 @@ class Event implements ResourceInterface, TranslatableInterface
     private $trackings;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Room::class, mappedBy="events")
+     * @ORM\ManyToMany(targetEntity=HotelRoom::class, mappedBy="events")
      */
     private $rooms;
 
@@ -166,11 +165,6 @@ class Event implements ResourceInterface, TranslatableInterface
     private $person;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="event")
-     */
-    private $messages;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="events")
      * @ORM\JoinTable(name="app_events_categories")
      */
@@ -184,7 +178,6 @@ class Event implements ResourceInterface, TranslatableInterface
         $this->initializeTranslationsCollection();
         $this->rooms = new ArrayCollection();
         $this->hotelTypicalDayElements = new ArrayCollection();
-        $this->messages = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
 
@@ -306,12 +299,12 @@ class Event implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getRentalAgreement(): ?DocumentMediaObject
+    public function getRentalAgreement(): ?MediaObjectDocument
     {
         return $this->rentalAgreement;
     }
 
-    public function setRentalAgreement(?DocumentMediaObject $rentalAgreement): void
+    public function setRentalAgreement(?MediaObjectDocument $rentalAgreement): void
     {
         $this->rentalAgreement = $rentalAgreement;
     }
@@ -411,14 +404,14 @@ class Event implements ResourceInterface, TranslatableInterface
     }
 
      /**
-     * @return Collection|Room[]
+     * @return Collection|HotelRoom[]
      */
     public function getRooms(): Collection
     {
         return $this->rooms;
     }
 
-    public function addRoom(Room $room): self
+    public function addRoom(HotelRoom $room): self
     {
         if (!$this->rooms->contains($room)) {
             $this->rooms[] = $room;
@@ -427,7 +420,7 @@ class Event implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function removeRoom(Room $room): self
+    public function removeRoom(HotelRoom $room): self
     {
         $this->rooms->removeElement($room);
 
@@ -530,36 +523,6 @@ class Event implements ResourceInterface, TranslatableInterface
     public function setPerson(?Person $person): self
     {
         $this->person = $person;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Message>
-     */
-    public function getMessages(): Collection
-    {
-        return $this->messages;
-    }
-
-    public function addMessage(Message $message): self
-    {
-        if (!$this->messages->contains($message)) {
-            $this->messages[] = $message;
-            $message->setEvent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessage(Message $message): self
-    {
-        if ($this->messages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
-            if ($message->getEvent() === $this) {
-                $message->setEvent(null);
-            }
-        }
 
         return $this;
     }

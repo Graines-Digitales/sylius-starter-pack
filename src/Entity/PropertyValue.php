@@ -26,15 +26,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class PropertyValue implements ResourceInterface
 {
+    use IdentifiableTrait;
     use ThingTrait;
     use TimestampableEntity;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
      /**
      * @Gedmo\Slug(fields={"name"}, updatable=false)
@@ -93,19 +87,9 @@ class PropertyValue implements ResourceInterface
     private $localBusiness;
 
 
-    public function __construct()
-    {
-     
-    }
-
     public function __toString()
     {
         return $this->getName() . ' - ' . substr($this->getValue(), 0, 30);
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
     
     public function getSlug()

@@ -16,8 +16,8 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 
 /**
- * @ApiResource()
- * @ORM\Entity()
+ * @ApiResource(iri="https://schema.org/Article")
+ * @ORM\Entity(repositoryClass=ArticleTranslationRepository::class)
  * @ORM\Table(name="app_article_translation")
  */
 class ArticleTranslation  extends AbstractTranslation implements ResourceInterface

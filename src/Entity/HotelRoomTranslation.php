@@ -27,8 +27,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  *
  * @ApiResource(iri="http://schema.org/HotelRoom")
  * @ORM\Table(name="app_hotel_room_translation")
- * @ORM\Entity(repositoryClass="App\Repository\HotelRoomTranslationRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=HotelRoomTranslationRepository::class)
  */
 class HotelRoomTranslation extends AbstractTranslation implements ResourceInterface
 {
@@ -37,6 +36,14 @@ class HotelRoomTranslation extends AbstractTranslation implements ResourceInterf
     use TimestampableEntity;
  
     /**
+     * @var string|null an alias for the item
+     *
+     * @ORM\Column(type="text", nullable=true)
+     * @ApiProperty(iri="http://schema.org/alternateName")
+     */
+    private $alternateName;
+
+    /**
      * @Gedmo\Slug(fields={"name"}, prefix="", updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
@@ -44,8 +51,36 @@ class HotelRoomTranslation extends AbstractTranslation implements ResourceInterf
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $components;
+
     public function getSlug()
     {
         return $this->slug;
+    }
+
+
+    public function setAlternateName(?string $alternateName): void
+    {
+        $this->alternateName = $alternateName;
+    }
+
+    public function getAlternateName(): ?string
+    {
+        return $this->alternateName;
+    }
+
+    public function getComponents(): ?string
+    {
+        return $this->components;
+    }
+
+    public function setComponents(?string $components): self
+    {
+        $this->components = $components;
+
+        return $this;
     }
 }

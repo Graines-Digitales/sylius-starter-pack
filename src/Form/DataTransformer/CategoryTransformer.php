@@ -39,7 +39,8 @@ class CategoryTransformer implements DataTransformerInterface
 
         return [
             'id' => $category->getId(),
-            'slug' => $category->getSlug()
+            'slug' => $category->getSlug(),
+            'name' => $category->getName()
         ];
     }
 }

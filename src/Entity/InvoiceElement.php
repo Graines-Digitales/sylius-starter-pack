@@ -14,8 +14,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *
  * @ApiResource()
  * @ORM\Table(name="app_invoice_element")
- * @ORM\Entity(repositoryClass="App\Repository\InvoiceElementRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity()
  */
 class InvoiceElement implements ResourceInterface
 {

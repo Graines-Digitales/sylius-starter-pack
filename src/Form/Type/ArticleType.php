@@ -4,8 +4,8 @@ namespace App\Form\Type;
 
 use App\Entity\Article;
 use App\Entity\Category;
-use App\Entity\ImageMediaObject;
-use App\Entity\VideoMediaObject;
+use App\Entity\MediaObjectImage;
+use App\Entity\MediaObjectVideo;
 use App\Repository\CategoryRepository;
 use App\Form\Type\ArticleTranslationType;
 use App\Repository\MediaObjectRepository;
@@ -54,22 +54,24 @@ class ArticleType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
-                'class' => VideoMediaObject::class,
+                'attr' => ['class' => 'select2-standard'],
+                'class' => MediaObjectVideo::class,
                 'placeholder' => 'app.ui_element.field.choose',
             ])
             ->add('category', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class' => Category::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(CategoryRepository $repo) use ($configurationProject) {
@@ -78,8 +80,9 @@ class ArticleType extends AbstractResourceType
             ])
             ->add('tags', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class'         => Category::class,
-                'expanded'      => true,
+                'expanded'      => false,
                 'multiple'      => true,
                 'by_reference' => false,
                 'placeholder' => 'app.ui_element.field.select_option',
