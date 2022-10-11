@@ -25,17 +25,15 @@ class CategoryListener
         $this->entityManager = $entityManager;
     }
 
-    public function postUpdate(LifecycleEventArgs $args)
+    public function preUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
         if (!$entity instanceof CategoryTranslation) {
             return;
         }
-
-        // if(false === $entity->getTranslatable()->getIsLocked()) {
-        //     $entity = $this->webContentCategoryService->updateSlug($entity);
-        //     $this->entityManager->flush($entity);
-            
-        // }
+        
+        if(false === $entity->getTranslatable()->getIsLocked()) {
+            $entity = $this->webContentCategoryService->updateSlug($entity);  
+        }
     }
 }

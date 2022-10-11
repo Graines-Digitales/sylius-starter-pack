@@ -44,14 +44,14 @@ class WebPageType extends AbstractResourceType
                 'disabled' => false,
                 'required' => false,
             ])
-            ->add('type', EntityType::class, [
-                'class' => Category::class,
-                'data' => $category,
-                'query_builder' => function(CategoryRepository $repo) use ($slug){
-                    return $repo->createQueryBuilderBySlug($slug);
-                },
-                'disabled' => true
-            ])
+            // ->add('type', EntityType::class, [
+            //     'class' => Category::class,
+            //     'data' => $category,
+            //     'query_builder' => function(CategoryRepository $repo) use ($slug){
+            //         return $repo->createQueryBuilderBySlug($slug);
+            //     },
+            //     'disabled' => true
+            // ])
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],

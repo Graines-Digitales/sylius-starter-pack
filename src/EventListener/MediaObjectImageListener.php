@@ -41,9 +41,7 @@ class MediaObjectImageListener
             return;
         }
        
-        // $this->toolsMediaService->defineEntityMediaFromFile($entity);
         $this->mediaObjectImageAction->hydrate([], $entity, 'fr');
-
         $configurationProject = $this->container->getParameter('configuration_project');
         $mimeTypes = $configurationProject['media_encoding_formats']['image'];
         if (in_array($entity->getEncodingFormat(), $mimeTypes)) {
@@ -57,8 +55,6 @@ class MediaObjectImageListener
         if (!$entity instanceof MediaObjectImage) {
             return;
         }
-       
-        // $this->toolsMediaService->defineEntityMediaFromFile($entity);
         $this->mediaObjectImageAction->hydrate([], $entity, 'fr');
     }
 
