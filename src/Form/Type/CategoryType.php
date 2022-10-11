@@ -44,6 +44,7 @@ class CategoryType extends AbstractResourceType
         $configurationProject = $this->container->getParameter('configuration_project');
         $builder
             ->add('isLocked', CheckboxType::class, [
+                'disabled' => false,
                 'required' => false,
             ])
             ->add('isEnabled', CheckboxType::class, [

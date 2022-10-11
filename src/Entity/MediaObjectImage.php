@@ -100,7 +100,6 @@ class MediaObjectImage implements ResourceInterface
     public function __construct()
     {
         $this->tags = new ArrayCollection();
-        $this->trips = new ArrayCollection();
     }
 
     public function __toString()
@@ -196,34 +195,6 @@ class MediaObjectImage implements ResourceInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Trip>
-     */
-    public function getTrips(): Collection
-    {
-        return $this->trips;
-    }
-
-    public function addTrip(Trip $trip): self
-    {
-        if (!$this->trips->contains($trip)) {
-            $this->trips[] = $trip;
-            $trip->setPrimaryImage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTrip(Trip $trip): self
-    {
-        if ($this->trips->removeElement($trip)) {
-            // set the owning side to null (unless already changed)
-            if ($trip->getPrimaryImage() === $this) {
-                $trip->setPrimaryImage(null);
-            }
-        }
-
-        return $this;
-    }
+   
     
 }

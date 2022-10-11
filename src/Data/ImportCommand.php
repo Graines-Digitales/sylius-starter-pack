@@ -3,6 +3,9 @@
 namespace App\Data;
 
 use App\Data\Import;
+use App\Entity\Category;
+use App\Entity\MediaObjectIcon;
+use App\Entity\MediaObjectImage;
 use Symfony\Component\Finder\Finder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -83,37 +86,51 @@ class ImportCommand extends Import
     {
         $categoryRoot = $this->categoryAction->create(["name" => "Root"]);
 
-        $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
-        $contentPath = $kernelProjectDir . '/content';
-        $finder = new Finder();
-        $finder->depth('<= 1');
-        $finder->files()->in($contentPath);
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $absoluteFilePath = $file->getRealPath();
-                $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
-                $filename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
-                $dirname = pathinfo($file->getRelativePathname(),  PATHINFO_DIRNAME);
-                $io->info('Fichier trouvé : ' . $dirname . ' ' .  $filename);
-         
-                $data = $this->extractData($absoluteFilePath, $extension);
-                if(empty($data)) {
-                    $io->error('Un fichier vide a été trouvé : ' .$dirname . ' ' .  $filename);
-                    die;
-                }
-                if('.' !== $dirname) {
-                    $entity = $this->dataServicesDispatch($data, $dirname);
-                    if(empty($entity)) {
-                        $io->error('Une erreur est survenue :' . $dirname . ' ' . $filename);
-                        die;
+        $locales = $this->container->get('sylius.repository.locale')->findAll();
+     
+        foreach ($locales as $locale) {
+            $localeCode = $locale->getCode();
+            // dump($localeCode);die;
+            // $locale = current(explode('_', $localeCode));
+
+            $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
+            $contentPath = $kernelProjectDir . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . $localeCode;
+            $filesystem = new Filesystem();
+            if ('fr' === $localeCode) {
+                if ($filesystem->exists($contentPath)) {
+                    $finder = new Finder();
+                    $finder->depth('<= 1');
+                    $finder->files()->in($contentPath);
+                    if ($finder->hasResults()) {
+                        foreach ($finder as $file) {
+                            $absoluteFilePath = $file->getRealPath();
+                            $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
+                            $filename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
+                            $dirname = pathinfo($file->getRelativePathname(), PATHINFO_DIRNAME);
+                            $io->info('Fichier trouvé : ' . $localeCode . ' ' . $dirname . ' ' .  $filename);
+
+                            $data = $this->extractData($absoluteFilePath, $extension);
+                            if (empty($data)) {
+                                continue;
+                                $io->error('Un fichier vide a été trouvé : ' .$dirname . ' ' .  $filename);
+                                die;
+                            }
+                            if ('.' !== $dirname) {
+                                $entity = $this->dataServicesDispatch($data, $dirname, $localeCode);
+
+                                if (empty($entity)) {
+                                    $io->error('Une erreur est survenue :' . $dirname . ' ' . $filename);
+                                    die;
+                                }
+                                $this->entityManager->persist($entity);
+                                $this->entityManager->flush();
+                            }
+                        }
                     }
-                    $this->entityManager->persist($entity);
-                    $this->entityManager->flush();
                 }
-               
             }
-           
         }
+
 
         // $locales = $this->container->get('sylius.repository.locale')->findAll();
      

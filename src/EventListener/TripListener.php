@@ -47,23 +47,16 @@ class TripListener
             return;
         }
 
-        if($entity->getLocale() == 'en_GB') {
-            
-            $serializer = $this->container->get('serializer');
-            $form = $this->container->get('form.factory')->create(TripTranslationType::class);
-            $currentData = $serializer->normalize($entity, null);
-            $referenceData = $serializer->normalize(
-                $entity->getTranslatable()->getTranslation('fr_FR'), 
-                null
+        $translatedData = $this->translate($entity);
+        if(!empty($translatedData)) {
+            $this->webPageDataAction->hydrate(
+                $translatedData,
+                $entity->getTranslatable(),
+                $entity->getLocale()
             );
-
-            $currentData = $this->syliusTranslator->translateEntity($currentData, $referenceData, $form);
-            $this->tripDataAction->hydrate($currentData, $entity->getTranslatable(), 'en_GB');
         }
 
-        $this->webContentSEOService->defineMetaData($entity);
-        $metaData = $this->metaDataService->getData($entity);
-        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+        $entity = $this->enrich($entity);
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -73,7 +66,28 @@ class TripListener
             return;
         }
 
-        $this->webContentSEOService->defineMetaData($entity);
+        $entity = $this->enrich($entity);
     }
-   
+
+    private function enrich($entity)
+    {
+        $this->webContentSEOService->defineMetaData($entity);
+        $metaData = $this->metaDataService->getData($entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+
+        return $entity;
+    }
+
+    private function translate($entity)
+    {
+        $serializer = $this->container->get('serializer');
+        $form = $this->container->get('form.factory')->create(TripTranslationType::class);
+        $currentData = $serializer->normalize($entity, null);
+        $referenceData = $serializer->normalize(
+            $entity->getTranslatable()->getTranslation($this->container->getParameter('locale')), 
+            null
+        );
+
+        return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
+    }
 }

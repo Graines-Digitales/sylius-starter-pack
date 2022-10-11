@@ -39,7 +39,7 @@ class ComponentAction
             ;
         }
 
-        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug($data['name'])->lower()->toString();
+        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug(str_replace("'", "", $data['name']))->lower()->toString();
         $entity = $this->entityManager->getRepository(Component::class)
             ->findOneBySlug($slug)
         ;
@@ -75,6 +75,7 @@ class ComponentAction
 
     public function createComponents($data)
     {
+        $data = (!is_array($data))? json_decode($data, true): $data;
         $components = [];
         foreach($data as $result) {
             $array = [];
@@ -91,7 +92,7 @@ class ComponentAction
 
             $array['code'] = $result['code'];
             unset($result['code']);
-            $array['data'] = $result;
+            $array['data'] = $result['data'];
             array_push($components, $array);
         }
         

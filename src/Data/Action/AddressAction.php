@@ -3,6 +3,7 @@
 namespace App\Data\Action;
 
 use App\Entity\Address;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 
@@ -10,9 +11,14 @@ class AddressAction
 {
     private $slugger;
 
-    public function __construct(SluggerInterface $slugger)
-    {
+    private $entityManager;
+
+    public function __construct(
+        SluggerInterface $slugger
+        , EntityManagerInterface $entityManager
+    ){
         $this->slugger = $slugger;
+        $this->entityManager = $entityManager;
     }
 
     public function create($data = [], $locale = 'fr', $persist = true)
@@ -25,9 +31,8 @@ class AddressAction
             ;
         }
 
-        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug($data['name'])->lower()->toString();
         $entity = $this->entityManager->getRepository(Address::class)
-            ->findOneBySlug($slug)
+            ->findOneBy(["name" => $data['name'] ])
         ;
         if(null === $entity) {
             $entity = new Address();
@@ -43,16 +48,28 @@ class AddressAction
 
     public function hydrate($data = [], $entity)
     {
-        $entity->setAddress($data['streetAddress']);
-        $entity->setCity($data['addressLocality']);
-        $entity->setPostcode($data['postalCode']);
-
-        if(isset($data['addressCountry'])) {
-            $entity->setCountry($data['addressCountry']);
+        if(isset($data['name'])) {
+            $entity->setName($data['name']);
         }
 
-        if(isset($data['phone'])) {
-            $entity->setPhone($data['phone']);
+        if(isset($data['city'])) {
+            $entity->setCity($data['city']);
+        }
+
+        if(isset($data['address'])) {
+            $entity->setAddress($data['address']);
+        }
+
+        if(isset($data['postcode'])) {
+            $entity->setPostcode($data['postcode']);
+        }
+
+        if(isset($data['country'])) {
+            $entity->setCountry($data['country']);
+        }
+
+        if(isset($data['additionalStreetAddress'])) {
+            $entity->setAdditionalStreetAddress($data['additionalStreetAddress']);
         }
 
         return $entity;

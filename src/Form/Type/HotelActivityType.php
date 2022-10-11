@@ -13,7 +13,7 @@ class HotelActivityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('isLocked')
+
             ->add('isEnabled')
             ->add('isIndexed')
             ->add('createdAt')

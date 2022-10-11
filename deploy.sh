@@ -11,15 +11,15 @@ user=root
 ##########################
 # project path variables #
 ##########################
-directory_prod_app=/mnt/disk/www/villa-gonatouki/preproduction/digital-management-system
-directory_dev_app=/home/www/graines-digitales/villa-gonatouki/digital-management-system-sylius
+directory_prod_app=/var/www/kazen-garden/production/digital-management-system
+directory_dev_app=/home/www/graines-digitales/kazen-garden/digital-management-system
 
 ##########################
 ##### commands deploy ####
 ##########################
 
 
-commandSiteSyncPreprod="sh ./site-sync-prod.sh" 
+# commandSiteSyncPreprod="sh ./site-sync-prod.sh" 
 
 
 
@@ -30,14 +30,18 @@ commandSiteSyncPreprod="sh ./site-sync-prod.sh"
 
 ssh -f $user@$host -p $port "cd $directory_prod_app && mkdir -p public/media/image" && \
 
+ssh -f $user@$host -p $port "cd $directory_prod_app && git checkout master && git pull origin master" && \
+
 rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $directory_dev_app/src/EventListener/AdminMenuListener.php $user@$host:$directory_prod_app/src/EventListener/AdminMenuListener.php && \
 rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $directory_dev_app/assets/images $user@$host:$directory_prod_app/assets/ && \
-rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $directory_dev_app/config/configuration_project.yaml $user@$host:$directory_prod_app/config/configuration_project.yaml && \
+rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $directory_dev_app/config/project.yaml $user@$host:$directory_prod_app/config/project.yaml && \
 rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $directory_dev_app/content/ $user@$host:$directory_prod_app/content/ && \
 rsync -avc --stats --delete --force --ignore-errors --omit-dir-times -e "ssh -p $port" $directory_dev_app/assets/app/styles/_variables.scss $user@$host:$directory_prod_app/assets/app/styles/_variables.scss && \
 
-ssh -f $user@$host -p $port "cd $directory_prod_app && git checkout master" && \
-ssh -f $user@$host -p $port "cd $directory_prod_app && git pull origin master" && \
+
+# ssh -f $user@$host -p $port "cd $directory_prod_app && git pull origin master" && \
+
+exit 0
 # ssh -f $user@$host -p $port "cd $directory_prod_app && composer install" && \
 # ssh -f $user@$host -p $port "cd $directory_prod_app && yarn install" && \
 # ssh -f $user@$host -p $port "cd $directory_prod_app && ./bin/console cache:clear --env=prod" && \

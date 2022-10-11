@@ -45,11 +45,16 @@ class WebPageAction
             ;
         }
 
-        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug($data['headline'])->lower()->toString();
+        // dump(str_replace("'", "", $data['headline']));die;
+        $slug = (isset($data['_slug']))? $data['slug']: $this->slugger->slug(str_replace("'", "", $data['headline']))->lower()->toString();
         $entity = $this->entityManager
             ->getRepository(WebPage::class)
             ->findOneBySlug($slug)
         ;
+        // dump($data['translations']);
+        // dump($entity);
+        // die;
+
         if(null === $entity) {
             $entity = new WebPage();
             $entity->setCurrentLocale($locale);
@@ -139,6 +144,7 @@ class WebPageAction
         if (isset($data['components']) && !empty($data['components'])) {
            
             $components = $this->componentAction->createComponents($data['components']);
+            // dump($components);die;   
             $entity->getTranslation($locale)->setComponents(
                 json_encode($components, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
             );

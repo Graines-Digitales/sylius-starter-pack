@@ -31,7 +31,6 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 class HotelActivity implements ResourceInterface, TranslatableInterface
 {
     use IdentifiableTrait;
-    use LockableTrait;
     use SeoTrait;
     use ImagesTrait;
     use TimestampableEntity;   

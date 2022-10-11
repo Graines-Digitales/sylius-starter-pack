@@ -36,7 +36,7 @@ class CategoryRepository extends EntityRepository
     {
         return $this->createQueryBuilder('entity')
             ->innerJoin('entity.translations', 'translation')
-            ->andWhere('entity.type is not null')
+            ->andWhere('entity.parent is not null')
             ->getQuery()
             ->getResult()
         ;

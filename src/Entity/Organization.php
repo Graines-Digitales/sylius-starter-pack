@@ -46,7 +46,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *     }
  * )
  * @ApiResource()
- * @ApiFilter(SearchFilter::class, properties={ "category.translations.slug": "exact", "slug": "exact" })
+ * @ ApiFilter(SearchFilter::class, properties={ "category.translations.slug": "exact", "slug": "exact" })
  * @ORM\Entity@ORM\Entity(repositoryClass=OrganizationRepository::class)
  * @ORM\Table(name="app_organization")
  */

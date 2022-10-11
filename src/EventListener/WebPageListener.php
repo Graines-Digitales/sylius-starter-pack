@@ -55,26 +55,18 @@ class WebPageListener
             return;
         }
 
-        
-
-        if($entity->getLocale() == 'en_GB') {
-            $serializer = $this->container->get('serializer');
-            $form = $this->container->get('form.factory')->create(WebPageTranslationType::class);
-            $currentData = $serializer->normalize($entity, null);
-            $referenceData = $serializer->normalize(
-                $entity->getTranslatable()->getTranslation('fr_FR'), 
-                null
+        $translatedData = $this->translate($entity);
+        if(!empty($translatedData)) {
+            $this->webPageDataAction->hydrate(
+                $translatedData,
+                $entity->getTranslatable(),
+                $entity->getLocale()
             );
-
-            $currentData = $this->syliusTranslator->translateEntity($currentData, $referenceData, $form);
-            $this->webPageDataAction->hydrate($currentData, $entity->getTranslatable(), 'en_GB');
         }
-
-        // dump($this->webContentWebPageService);die;
-        $this->webContentWebPageService->moreData($entity);
-        $this->webContentSEOService->defineMetaData($entity);
-        $metaData = $this->metaDataService->getData($entity);
-        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+        $entity = $this->enrich($entity);
+        if(false === $entity->getTranslatable()->getIsLocked()) {
+            $entity = $this->webContentWebPageService->updateSlug($entity);  
+        }
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -84,21 +76,30 @@ class WebPageListener
             return;
         }
         
-        $this->webContentWebPageService->moreData($entity);
-        $this->webContentSEOService->defineMetaData($entity);
+        $entity = $this->enrich($entity);
     }
 
-    public function postUpdate(LifecycleEventArgs $args)
+    private function enrich($entity)
     {
-        $entity = $args->getObject();
-        if (!$entity instanceof WebPageTranslation) {
-            return;
-        }
+        $this->webContentWebPageService->moreData($entity);
+        $this->webContentSEOService->defineMetaData($entity);
+        $metaData = $this->metaDataService->getData($entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
 
-        // if(false === $entity->getTranslatable()->getIsLocked()) {
-        //     $entity = $this->webContentWebPageService->updateSlug($entity);
-        //     $this->entityManager->flush($entity);
-        // }
+        return $entity;
+    }
+
+    private function translate($entity)
+    {
+        $serializer = $this->container->get('serializer');
+        $form = $this->container->get('form.factory')->create(WebPageTranslationType::class);
+        $currentData = $serializer->normalize($entity, null);
+        $referenceData = $serializer->normalize(
+            $entity->getTranslatable()->getTranslation($this->container->getParameter('locale')), 
+            null
+        );
+
+        return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }
 
 }

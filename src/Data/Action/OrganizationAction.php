@@ -45,7 +45,7 @@ class OrganizationAction
             ;
         }
 
-        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug($data['name'])->lower()->toString();
+        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug(str_replace("'", "", $data['name']))->lower()->toString();
         $entity = $this->entityManager
             ->getRepository(Organization::class)
             ->findOneBySlug($slug)
@@ -103,13 +103,17 @@ class OrganizationAction
         }
 
         if (isset($data['addresses'])) {
-            foreach ($addresses as $address) {
+            foreach ($data['addresses'] as $address) {
+            
                 $address = $this->addressAction->create($address);
+                
                 if(null === $address) {
                     throw new \Exception('Error form OrganizationAction relation field addresses');
                 }
                 $entity->addAddress($address);
             }
+
+    
         }
 
         if(isset($data['socials'])) {

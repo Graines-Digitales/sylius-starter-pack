@@ -45,7 +45,7 @@ class TripAction
             ;
         }
 
-        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug($data['slug'])->lower()->toString();
+        $slug = (isset($data['_slug']))? $data['slug']: $this->slugger->slug(str_replace("'", "", $data['headline']))->lower()->toString();
         $entity = $this->entityManager
             ->getRepository(Trip::class)
             ->findOneBySlug($slug)

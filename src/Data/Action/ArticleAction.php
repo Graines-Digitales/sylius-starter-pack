@@ -45,7 +45,7 @@ class ArticleAction
             ;
         }
 
-        $slug = (isset($data['slug']))? $data['slug']: $this->slugger->slug($data['headline'])->lower()->toString();
+        $slug = (isset($data['_slug']))? $data['slug']: $this->slugger->slug(str_replace("'", "", $data['headline']))->lower()->toString();
         $entity = $this->entityManager->getRepository(Article::class)
             ->findOneBySlug($slug)
         ;
@@ -119,6 +119,10 @@ class ArticleAction
 
         if(isset($data['textResume'])){
             $entity->getTranslation($locale)->setTextResume($data['textResume']);
+        }
+
+        if(isset($data['isLocked'])){
+            $entity->setIsLocked($data['isLocked']);
         }
 
         if (isset($data['components']) && !empty($data['components'])) {

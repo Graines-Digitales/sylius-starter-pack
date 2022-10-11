@@ -2,6 +2,7 @@
 
 namespace App\EventListener;
 
+use App\Data\Action\MediaObjectDocumentAction;
 use App\Tools\Media;
 use App\Entity\MediaObjectDocument;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,15 +18,19 @@ class MediaObjectDocumentListener
 
     protected $toolsMediaService;
 
+    protected $mediaObjectDocumentAction;
+
     public function __construct(
         ContainerInterface $container
         , Media $toolsMediaService
         , EntityManagerInterface $entityManager
+        , MediaObjectDocumentAction $mediaObjectDocumentAction
     )
     {
         $this->container = $container;
         $this->entityManager = $entityManager;
         $this->toolsMediaService = $toolsMediaService;
+        $this->mediaObjectDocumentAction = $mediaObjectDocumentAction;
     }
 
 
@@ -35,6 +40,7 @@ class MediaObjectDocumentListener
         if (!$entity instanceof MediaObjectDocument) {
             return; 
         }
+        $this->mediaObjectDocumentAction->hydrate([], $entity, 'fr');
     }
 
     public function preUpdate(LifecycleEventArgs $args)
@@ -43,21 +49,7 @@ class MediaObjectDocumentListener
         if (!$entity instanceof MediaObjectDocument) {
             return; 
         }
+        $this->mediaObjectDocumentAction->hydrate([], $entity, 'fr');
     }
 
-    public function postPersist(LifecycleEventArgs $args)
-    {
-        $entity = $args->getObject();
-        if (!$entity instanceof MediaObjectDocument) {
-            return;
-        }
-    }
-
-    public function postUpdate(LifecycleEventArgs $args)
-    {
-        $entity = $args->getObject();
-        if (!$entity instanceof MediaObjectDocument) {
-            return;
-        }
-    }
 }
