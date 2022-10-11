@@ -103,13 +103,17 @@ class OrganizationAction
         }
 
         if (isset($data['addresses'])) {
-            foreach ($addresses as $address) {
+            foreach ($data['addresses'] as $address) {
+            
                 $address = $this->addressAction->create($address);
+                
                 if(null === $address) {
                     throw new \Exception('Error form OrganizationAction relation field addresses');
                 }
                 $entity->addAddress($address);
             }
+
+    
         }
 
         if(isset($data['socials'])) {

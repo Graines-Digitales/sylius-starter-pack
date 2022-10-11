@@ -56,9 +56,7 @@ class TripListener
             );
         }
 
-        $this->webContentSEOService->defineMetaData($entity);
-        $metaData = $this->metaDataService->getData($entity);
-        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+        $entity = $this->enrich($entity);
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -68,10 +66,19 @@ class TripListener
             return;
         }
 
-        $this->webContentSEOService->defineMetaData($entity);
+        $entity = $this->enrich($entity);
     }
-   
-    public function translate($entity)
+
+    private function enrich($entity)
+    {
+        $this->webContentSEOService->defineMetaData($entity);
+        $metaData = $this->metaDataService->getData($entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+
+        return $entity;
+    }
+
+    private function translate($entity)
     {
         $serializer = $this->container->get('serializer');
         $form = $this->container->get('form.factory')->create(TripTranslationType::class);

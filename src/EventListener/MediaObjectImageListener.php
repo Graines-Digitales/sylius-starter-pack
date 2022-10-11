@@ -2,11 +2,9 @@
 
 namespace App\EventListener;
 
+use App\Data\Action\MediaObjectImageAction;
 use App\Tools\Media;
-use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
-use App\Entity\MediaObjectVideo;
-use App\Entity\MediaObjectDocument;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -20,15 +18,19 @@ class MediaObjectImageListener
 
     protected $toolsMediaService;
 
+    protected $mediaObjectImageAction;
+
     public function __construct(
         ContainerInterface $container
         , Media $toolsMediaService
         , EntityManagerInterface $entityManager
+        , MediaObjectImageAction $mediaObjectImageAction
     )
     {
         $this->container = $container;
         $this->entityManager = $entityManager;
         $this->toolsMediaService = $toolsMediaService;
+        $this->mediaObjectImageAction = $mediaObjectImageAction;
     }
 
 
@@ -39,7 +41,8 @@ class MediaObjectImageListener
             return;
         }
        
-        $this->toolsMediaService->defineEntityMediaFromFile($entity);
+        // $this->toolsMediaService->defineEntityMediaFromFile($entity);
+        $this->mediaObjectImageAction->hydrate([], $entity, 'fr');
 
         $configurationProject = $this->container->getParameter('configuration_project');
         $mimeTypes = $configurationProject['media_encoding_formats']['image'];
@@ -55,7 +58,8 @@ class MediaObjectImageListener
             return;
         }
        
-        $this->toolsMediaService->defineEntityMediaFromFile($entity);
+        // $this->toolsMediaService->defineEntityMediaFromFile($entity);
+        $this->mediaObjectImageAction->hydrate([], $entity, 'fr');
     }
 
 }

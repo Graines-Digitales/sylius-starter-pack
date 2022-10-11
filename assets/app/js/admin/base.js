@@ -54,19 +54,20 @@ $(document).ready(function () {
   $('.select2-image').select2({
     templateResult: formatState,
     templateSelection: formatState
-
   });
-  
 });
 
 $(document).ready(function () {
   $('.select2-icon').select2({
     templateResult: formatState2,
     templateSelection: formatState2
-
   });
-  
 });
+
+$(document).ready(function () {
+  $('.select2-standard').select2();
+});
+
 
 const formatState = (opt) => {
   if (!opt.id) {
