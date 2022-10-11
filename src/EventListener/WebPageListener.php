@@ -63,12 +63,7 @@ class WebPageListener
                 $entity->getLocale()
             );
         }
-
-        // dump($this->webContentWebPageService);die;
-        $this->webContentWebPageService->moreData($entity);
-        $this->webContentSEOService->defineMetaData($entity);
-        $metaData = $this->metaDataService->getData($entity);
-        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+        $entity = $this->enrich($entity);
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -78,24 +73,20 @@ class WebPageListener
             return;
         }
         
+        $entity = $this->enrich($entity);
+    }
+
+    private function enrich($entity)
+    {
         $this->webContentWebPageService->moreData($entity);
         $this->webContentSEOService->defineMetaData($entity);
+        $metaData = $this->metaDataService->getData($entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+
+        return $entity;
     }
 
-    public function postUpdate(LifecycleEventArgs $args)
-    {
-        $entity = $args->getObject();
-        if (!$entity instanceof WebPageTranslation) {
-            return;
-        }
-
-        // if(false === $entity->getTranslatable()->getIsLocked()) {
-        //     $entity = $this->webContentWebPageService->updateSlug($entity);
-        //     $this->entityManager->flush($entity);
-        // }
-    }
-
-    public function translate($entity)
+    private function translate($entity)
     {
         $serializer = $this->container->get('serializer');
         $form = $this->container->get('form.factory')->create(WebPageTranslationType::class);

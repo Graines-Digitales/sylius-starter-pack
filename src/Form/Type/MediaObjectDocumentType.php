@@ -59,9 +59,9 @@ class MediaObjectDocumentType extends AbstractType
                 'required' => false,
                 'attr' => ['class' => 'select2-standard'],
                 'class'         => Category::class,
-                'expanded'      => true,
+                'expanded'      => false,
                 'multiple'      => true,
-                'by_reference' => false,
+                'by_reference' => true,
                 'placeholder' => 'app.ui_element.field.select_option',
             ])
             ->add(

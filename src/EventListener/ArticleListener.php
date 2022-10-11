@@ -59,11 +59,7 @@ class ArticleListener
                 $entity->getLocale()
             );
         }
-
-        $this->webContentArticleService->moreData($entity);
-        $this->webContentSEOService->defineMetaData($entity);
-        $metaData = $this->metaDataService->getData($entity);
-        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+        $entity = $this->enrich($entity);
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -72,12 +68,20 @@ class ArticleListener
         if (!$entity instanceof ArticleTranslation) {
             return;
         }
-
-        $this->webContentArticleService->moreData($entity);
-        $this->webContentSEOService->defineMetaData($entity);
+        $entity = $this->enrich($entity);
     }
 
-    public function translate($entity)
+    private function enrich($entity)
+    {
+        $this->webContentArticleService->moreData($entity);
+        $this->webContentSEOService->defineMetaData($entity);
+        $metaData = $this->metaDataService->getData($entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+
+        return $entity;
+    }
+
+    private function translate($entity)
     {
         $serializer = $this->container->get('serializer');
         $form = $this->container->get('form.factory')->create(ArticleTranslationType::class);

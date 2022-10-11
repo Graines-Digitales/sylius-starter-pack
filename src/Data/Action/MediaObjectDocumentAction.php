@@ -2,7 +2,7 @@
 
 namespace App\Data\Action;
 
-use App\Entity\MediaObjectIcon;
+use App\Entity\MediaObjectDocument;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
@@ -10,7 +10,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class MediaObjectIconAction
+class MediaObjectDocumentAction
 {
     private $slugger;
 
@@ -33,7 +33,7 @@ class MediaObjectIconAction
         if(!is_array($data)) {
             
             return $this->entityManager
-                ->getRepository(MediaObjectIcon::class)
+                ->getRepository(MediaObjectDocument::class)
                 ->findOneBySlug($data)
             ;
         }
@@ -41,19 +41,19 @@ class MediaObjectIconAction
         $filename = (isset($data['filename']))? $data['filename']: null;
 
         $directoryProject = $this->container->getParameter('kernel.project_dir');
-        $folderImage = $this->container->getParameter('directory_icon_media_object');
+        $folderImage = $this->container->getParameter('directory_document_media_object');
         $filepath = $directoryProject . DIRECTORY_SEPARATOR . 'public' .  $folderImage;
         $filepath.= DIRECTORY_SEPARATOR . $filename;
         $filesystem = new Filesystem();
         if(!$filesystem->exists($filepath)) {
-            throw new \Exception(sprintf('Error form MediaObjectIconAction filepath icon %s', $filepath));
+            throw new \Exception(sprintf('Error form MediaObjectDocumentAction filepath document %s', $filepath));
         }
 
-        $entity = $this->entityManager->getRepository(MediaObjectIcon::class)
+        $entity = $this->entityManager->getRepository(MediaObjectDocument::class)
             ->findOneBy(['filename' => $filename ])
         ;
         if(null === $entity) {
-            $entity = new MediaObjectIcon();
+            $entity = new MediaObjectDocument();
 
             $file = new File($filepath);
             $entity->setFile($file);
@@ -143,12 +143,12 @@ class MediaObjectIconAction
 
     public function extract($image)
     {
-        if(!$image instanceof MediaObjectIcon) {
+        if(!$image instanceof MediaObjectDocument) {
             $image = $this->create($image);  
         }
         
         if(null === $image) {
-            throw new \Exception('Error form MediaObjectImageAction create image');
+            throw new \Exception('Error form MediaObjectDocumentAction create docuement');
         }
 
         return $image;
