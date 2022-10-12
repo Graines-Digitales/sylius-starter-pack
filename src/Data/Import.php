@@ -97,11 +97,14 @@ class Import
 
     public function getMainOrganization($contentPath)
     {
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $mainFile = $configurationProject['main_file'];
+        $extension = pathinfo($mainFile, PATHINFO_EXTENSION);
         $filesystem = new Filesystem();
-        $filepath = $contentPath . DIRECTORY_SEPARATOR . 'main_organization.md';
+        $filepath = $contentPath . DIRECTORY_SEPARATOR . $mainFile;
         if($filesystem->exists($filepath)) {
 
-            $result = $this->extractData($filepath, 'md');
+            $result = $this->extractData($filepath, $extension);
             
             return $result;
         }
