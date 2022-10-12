@@ -98,10 +98,10 @@ class Import
     public function getMainOrganization($contentPath)
     {
         $filesystem = new Filesystem();
-        $filepath = $contentPath . DIRECTORY_SEPARATOR . 'main_organization.md';
+        $filepath = $contentPath . DIRECTORY_SEPARATOR . 'main_organization.json';
         if($filesystem->exists($filepath)) {
 
-            $result = $this->extractData($filepath, 'md');
+            $result = $this->extractData($filepath, 'json');
             
             return $result;
         }
