@@ -80,6 +80,10 @@ class ComponentAction
         foreach($data as $result) {
             $array = [];
             
+            if(!isset($result['data'])) {
+                $result['data'] = $result;
+            }
+
             if(isset($result['data']['primaryImage']) && !empty($result['data']['primaryImage'])){
                 $image = $this->mediaObjectImageAction->extract($result['data']['primaryImage']);
             }
