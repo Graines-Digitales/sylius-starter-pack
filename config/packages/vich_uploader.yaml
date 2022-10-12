@@ -2,16 +2,16 @@ vich_uploader:
     db_driver: orm
 
     mappings:
-        image_media_object:
+        media_object_image:
             uri_prefix:         '%directory_image_media_object%'
             upload_destination: '%kernel.project_dir%/public%directory_image_media_object%'
             # namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
             # namer:
             #     service: Vich\UploaderBundle\Naming\PropertyNamer
             #     options: { property: 'slug' } 
-        document_media_object:
+        media_object_document:
             uri_prefix:         '%directory_document_media_object%'
             upload_destination: '%kernel.project_dir%/public%directory_document_media_object%'
-        icon_media_object:
+        media_object_icon:
             uri_prefix:         '%directory_icon_media_object%'
             upload_destination: '%kernel.project_dir%/public%directory_icon_media_object%'
