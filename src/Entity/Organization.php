@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\ImageMediaObject;
+use App\Entity\Address;
 use App\Entity\Traits\SeoTrait;
+use App\Entity\MediaObjectImage;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
+use App\Entity\Traits\ImagesTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
-use App\Repository\OrganizationRepository;
+use App\Entity\Traits\IdentifiableTrait;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\IdentifiableTrait;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\CodeAwareInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -26,7 +28,25 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @see http://schema.org/Organization Documentation on Schema.org
  *
+ * @ApiResource(
+  *     collectionOperations={
+ *       "get"={
+ *         "method"="GET",  
+ *       },
+ *       "organization_configuration"={
+ *         "method"= "GET",
+ *         "path"= "/api/v2/organization/configuration",
+ *         "controller"= OrganizationController::class     
+ *       },
+ *       "organization_media_encoding_formats"={
+ *         "method"= "GET",
+ *         "path"= "/api/v2/organization/media-encoding-formats",
+ *         "controller"= OrganizationController::class 
+ *       }
+ *     }
+ * )
  * @ApiResource()
+ * @ ApiFilter(SearchFilter::class, properties={ "category.translations.slug": "exact", "slug": "exact" })
  * @ORM\Entity@ORM\Entity(repositoryClass=OrganizationRepository::class)
  * @ORM\Table(name="app_organization")
  */
@@ -34,6 +54,7 @@ class Organization implements ResourceInterface
 {
     use IdentifiableTrait;
     use SeoTrait;
+    use ImagesTrait;
     use ThingTrait;
     use TimestampableEntity;
     
@@ -101,6 +122,11 @@ class Organization implements ResourceInterface
      *  }
      *
      * )
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      **/
     private $addresses;
 
@@ -111,24 +137,6 @@ class Organization implements ResourceInterface
      *
      */
     private $numberOfEmployees;
-
-    /**
-     * @var ImageMediaObject|null indicates the main image on the page
-     *
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
-     * @ApiProperty(iri="http://schema.org/primaryImage")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     */
-    private $primaryImage;  
-
-    /**
-     * @var ImageMediaObject|null indicates the main image on the page
-     *
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
-     * @ApiProperty(iri="http://schema.org/primaryImage")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     */
-    private $secondaryImage;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
@@ -154,33 +162,63 @@ class Organization implements ResourceInterface
     private $mobilePhone;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="organizations")
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
     /**
      * @ORM\OneToMany(targetEntity=LocalBusiness::class, mappedBy="organization")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $localBusinesses;
 
     /**
      * @ORM\ManyToMany(targetEntity=Organization::class, inversedBy="organizations")
      * @ORM\JoinTable(name="app_social_link_organization")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $socialLinks;
 
     /**
      * @ORM\ManyToMany(targetEntity=Organization::class, mappedBy="socialLinks")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $organizations;
 
     /**
      * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="parents")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="parent")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $parents;
 
@@ -191,9 +229,14 @@ class Organization implements ResourceInterface
     private $fax;
 
     /**
-     * @ORM\ManyToOne(targetEntity=IconMediaObject::class, inversedBy="organizations")
+     * @ORM\ManyToOne(targetEntity=MediaObjectIcon::class, inversedBy="organizations")
      */
     private $icon;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $additionalPhone;
 
     public function getSlug()
     {
@@ -203,26 +246,6 @@ class Organization implements ResourceInterface
     public function getId(): ?int
     {
         return $this->id;
-    }
-    
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): void
-    {
-        $this->primaryImage = $primaryImage;
-    }
-
-    public function getPrimaryImage(): ?ImageMediaObject
-    {
-        return $this->primaryImage;
-    }
-
-    public function setSecondaryImage(?ImageMediaObject $secondaryImage): void
-    {
-        $this->secondaryImage = $secondaryImage;
-    }
-
-    public function getSecondaryImage(): ?ImageMediaObject
-    {
-        return $this->secondaryImage;
     }
 
     /**
@@ -361,7 +384,7 @@ class Organization implements ResourceInterface
     /**
      * Add address.
      *
-     * @param \App\Entity\Address $address
+     * @param Address $address
      *
      * @return Person
      */
@@ -377,7 +400,7 @@ class Organization implements ResourceInterface
     /**
      * Remove address.
      *
-     * @param \App\Entity\Address $address
+     * @param Address $address
      */
     public function removeAddress($address)
     {
@@ -398,17 +421,6 @@ class Organization implements ResourceInterface
         return $this->addresses;
     }
 
-    public function getOrganization(): ?self
-    {
-        return $this->organization;
-    }
-
-    public function setOrganization(?self $organization): self
-    {
-        $this->organization = $organization;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, LocalBusiness>
@@ -545,14 +557,26 @@ class Organization implements ResourceInterface
         return $this;
     }
 
-    public function getIcon(): ?IconMediaObject
+    public function getIcon(): ?MediaObjectIcon
     {
         return $this->icon;
     }
 
-    public function setIcon(?IconMediaObject $icon): self
+    public function setIcon(?MediaObjectIcon $icon): self
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getAdditionalPhone(): ?string
+    {
+        return $this->additionalPhone;
+    }
+
+    public function setAdditionalPhone(?string $additionalPhone): self
+    {
+        $this->additionalPhone = $additionalPhone;
 
         return $this;
     }

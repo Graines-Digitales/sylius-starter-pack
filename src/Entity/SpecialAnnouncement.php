@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ImagesTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
-use App\Repository\SpecialAnnouncementRepository;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
@@ -25,7 +28,9 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  */
 class SpecialAnnouncement implements ResourceInterface, TranslatableInterface   
 {
+    use IdentifiableTrait;
     use SeoTrait;
+    use ImagesTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -45,12 +50,6 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
         return new WebPageTranslation();
     }
 
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
      /**
      * Publication date of an online listing.
      *
@@ -64,13 +63,12 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
     private $datePosted;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
-    private $primaryImage;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
@@ -83,11 +81,6 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
     public function __toString()
     {
         return $this->getTranslation()->getName();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getHeadline(): ?string
@@ -121,18 +114,6 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
     public function getDatePosted(): ?\DateTimeInterface
     {
         return $this->datePosted;
-    }
-
-    public function getPrimaryImage(): ?ImageMediaObject
-    {
-        return $this->primaryImage;
-    }
-
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
-    {
-        $this->primaryImage = $primaryImage;
-
-        return $this;
     }
 
     public function getCategory(): ?Category

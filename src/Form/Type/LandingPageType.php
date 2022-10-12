@@ -4,39 +4,41 @@ namespace App\Form\Type;
 
 use App\Entity\WebPage;
 use App\Entity\Category;
-use App\Entity\ImageMediaObject;
-use App\WebContent\WebPage as WebContentWebPage;
+use App\Entity\MediaObjectImage;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\WebPageTranslationType;
-use App\Repository\MediaObjectRepository;
+use App\Repository\MediaObjectImageRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
-use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
+
 
 class LandingPageType extends AbstractResourceType
 {
     private $container;
+    
+    private $entityManager;
 
     public function __construct(
         ContainerInterface $container,
-        WebContentWebPage $webPageService
+        EntityManagerInterface $entityManager
     ){
         $this->container = $container;
-        $this->webPageService = $webPageService;
+        $this->entityManager = $entityManager;
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $configurationProject = $this->container->getParameter('configuration_project');
-        $slug = 'landing-page';
-        $category = $this->webPageService->getCategory($slug);
+        $slug = 'web-page';
+        $category = $this->entityManager->getRepository(Category::class)
+            ->findOneBySlug($slug);
+
         $builder
             ->add('isEnabled', CheckboxType::class, [
                 'required' => false,
@@ -44,16 +46,6 @@ class LandingPageType extends AbstractResourceType
             ->add('isIndexed', CheckboxType::class, [
                 'required' => false,
             ])
-            // ->add('createdAt', DateTimeType::class, [
-            //     'disabled' => true,
-            //     'widget' => 'single_text',
-            //     'required' => false,
-            // ])
-            // ->add('updatedAt', DateTimeType::class, [
-            //     'disabled' => true,
-            //     'widget' => 'single_text',
-            //     'required' => false,
-            // ])
             ->add('type', EntityType::class, [
                 'class' => Category::class,
                 'data' => $category,
@@ -65,45 +57,39 @@ class LandingPageType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
-                'class' => ImageMediaObject::class,
+                'attr' => ['class' => 'select2-standard'],
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingVideo($configurationProject);
                 }
             ])
             ->add('category', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class' => Category::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(CategoryRepository $repo) use ($configurationProject) {
                     return $repo->createQueryBuilderByTypeWebPage($configurationProject);
                 }
             ])
-            // ->add('tags', EntityType::class, [
-            //     'class'         => Category::class,
-            //     'expanded'      => true,
-            //     'multiple'      => true,
-            //     'by_reference' => false,
-            //     'placeholder' => 'app.ui_element.field.select_option',
-            // ])
-           
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => WebPageTranslationType::class,
             ])
@@ -122,6 +108,6 @@ class LandingPageType extends AbstractResourceType
      */
     public function getBlockPrefix()
     {
-        return 'app_web_page';
+        return 'app_landing_page';
     }
 }

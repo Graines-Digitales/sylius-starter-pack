@@ -1,4 +1,4 @@
-{% if element.title is not defined %}
+{% if element.title is empty %}
     <h3>{{element.designation}}</h3>
 {% else %}
     <h3>{{element.title}}</h3>

@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\AccommodationTranslation;
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\Traits\AccommodationTrait;
+use App\Repository\AccommodationRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -27,8 +28,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  *
  * @ORM\Table(name="app_accomodation")
  * @ApiResource(iri="http://schema.org/Accommodation")
- * @ORM\HasLifecycleCallbacks()
- * @ORM\Entity(repositoryClass="App\Repository\AccommodationRepository")
+ * @ORM\Entity(repositoryClass=AccommodationRepository::class)
  */
 class Accommodation implements ResourceInterface, TranslatableInterface
 {
@@ -40,7 +40,7 @@ class Accommodation implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Event", mappedBy="accommodation")
+     * @ORM\OneToMany(targetEntity=Event::class, mappedBy="accommodation")
      */
     private $rentals;
 
@@ -108,12 +108,12 @@ class Accommodation implements ResourceInterface, TranslatableInterface
     private $owner;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
+     * @ORM\ManyToOne(targetEntity=MediaObjectImage::class)
      */
     private $primaryImage;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class)
+     * @ORM\ManyToOne(targetEntity=MediaObjectImage::class)
      */
     private $secondaryImage;
 
@@ -124,9 +124,9 @@ class Accommodation implements ResourceInterface, TranslatableInterface
     private $tags;
 
     /**
-     * @ORM\ManyToMany(targetEntity=DocumentMediaObject::class, mappedBy="accommodations")
+     * @ORM\ManyToMany(targetEntity=MediaObjectDocument::class, mappedBy="accommodations")
      */
-    private $documentMediaObjects;
+    private $mediaObjectDocuments;
 
 
     public function __construct()
@@ -141,7 +141,7 @@ class Accommodation implements ResourceInterface, TranslatableInterface
         $this->items = new ArrayCollection();
         $this->teams = new ArrayCollection();
         $this->owner = new ArrayCollection();
-        $this->documentMediaObjects = new ArrayCollection();
+        $this->mediaObjectDocuments = new ArrayCollection();
     }
 
     /**
@@ -434,24 +434,24 @@ class Accommodation implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getPrimaryImage(): ?ImageMediaObject
+    public function getPrimaryImage(): ?MediaObjectImage
     {
         return $this->primaryImage;
     }
 
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
+    public function setPrimaryImage(?MediaObjectImage $primaryImage): self
     {
         $this->primaryImage = $primaryImage;
 
         return $this;
     }
 
-    public function getSecondaryImage(): ?ImageMediaObject
+    public function getSecondaryImage(): ?MediaObjectImage
     {
         return $this->secondaryImage;
     }
 
-    public function setSecondaryImage(?ImageMediaObject $secondaryImage): self
+    public function setSecondaryImage(?MediaObjectImage $secondaryImage): self
     {
         $this->secondaryImage = $secondaryImage;
 
@@ -483,27 +483,27 @@ class Accommodation implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @return Collection<int, DocumentMediaObject>
+     * @return Collection<int, MediaObjectDocument>
      */
-    public function getDocumentMediaObjects(): Collection
+    public function getMediaObjectDocuments(): Collection
     {
-        return $this->documentMediaObjects;
+        return $this->mediaObjectDocuments;
     }
 
-    public function addDocumentMediaObject(DocumentMediaObject $documentMediaObject): self
+    public function addMediaObjectDocument(MediaObjectDocument $mediaObjectDocument): self
     {
-        if (!$this->documentMediaObjects->contains($documentMediaObject)) {
-            $this->documentMediaObjects[] = $documentMediaObject;
-            $documentMediaObject->addAccommodation($this);
+        if (!$this->mediaObjectDocuments->contains($mediaObjectDocument)) {
+            $this->mediaObjectDocuments[] = $mediaObjectDocument;
+            $mediaObjectDocument->addAccommodation($this);
         }
 
         return $this;
     }
 
-    public function removeDocumentMediaObject(DocumentMediaObject $documentMediaObject): self
+    public function removeMediaObjectDocument(MediaObjectDocument $mediaObjectDocument): self
     {
-        if ($this->documentMediaObjects->removeElement($documentMediaObject)) {
-            $documentMediaObject->removeAccommodation($this);
+        if ($this->mediaObjectDocuments->removeElement($mediaObjectDocument)) {
+            $mediaObjectDocument->removeAccommodation($this);
         }
 
         return $this;

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\IdentifiableTrait;
 use App\Repository\CmsLinkTranslationRepository;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
@@ -13,22 +14,12 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
  */
 class CmsLinkTranslation extends AbstractTranslation implements ResourceInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    use IdentifiableTrait;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $label;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getLabel(): ?string
     {

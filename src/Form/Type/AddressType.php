@@ -14,6 +14,7 @@ class AddressType extends AbstractType
         $builder
             ->add('name')
             ->add('address')
+            ->add('additionalStreetAddress')
             ->add('postcode')
             ->add('city')
             ->add('country')
@@ -28,10 +29,11 @@ class AddressType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Address::class,
+            'validation_groups' => ['address_validation'],
         ]);
     }
 
-     /**
+    /**
      * {@inheritdoc}
      */
     public function getBlockPrefix()

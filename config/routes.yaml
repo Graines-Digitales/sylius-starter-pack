@@ -18,13 +18,19 @@ app_schema_save_form_contact:
     methods: [POST]
     defaults:
         _controller: app.controller.schema::saveFormMessage
-        
-app_sitemap:
-    path: /sitemap
-    methods: [GET]
+
+app_nuxt_build:
+    path: /nuxt/build
+    methods: [POST]
     defaults:
-        _controller: app.controller.sitemap::index
-        format: xml
+        _controller: app.controller.nuxt::build
+        
+# app_sitemap:
+#     path: /sitemap
+#     methods: [GET]
+#     defaults:
+#         _controller: app.controller.sitemap::index
+#         format: xml
         
 # app_page_landing_page:
 #     path: /{_locale}/landing-page/{slug}
@@ -32,29 +38,29 @@ app_sitemap:
 #     defaults:
 #         _controller: sylius.controller.shop.homepage::landingPage
         
-app_webpage_about:
-    path: /{_locale}/qui-sommes-nous
-    methods: [GET]
-    defaults:
-        _controller: app.controller.webpage::aboutPage
+# app_webpage_about:
+#     path: /{_locale}/qui-sommes-nous
+#     methods: [GET]
+#     defaults:
+#         _controller: app.controller.webpage::aboutPage
 
-app_webpage_contact:
-    path: /{_locale}/contactez-nous
-    methods: [GET]
-    defaults:
-        _controller: app.controller.webpage::contactPage
+# app_webpage_contact:
+#     path: /{_locale}/contactez-nous
+#     methods: [GET]
+#     defaults:
+#         _controller: app.controller.webpage::contactPage
 
-app_webpage_articles:
-    path: /{_locale}/blog
-    methods: [GET]
-    defaults:
-        _controller: app.controller.webpage::articles
+# app_webpage_articles:
+#     path: /{_locale}/blog
+#     methods: [GET]
+#     defaults:
+#         _controller: app.controller.webpage::articles
 
-app_webpage_article:
-    path: /{_locale}/news/{category}/{slug}
-    methods: [GET]
-    defaults:
-        _controller: app.controller.webpage::article
+# app_webpage_article:
+#     path: /{_locale}/news/{category}/{slug}
+#     methods: [GET]
+#     defaults:
+#         _controller: app.controller.webpage::article
         
 app_webpage_show:
     path: /{_locale}/{slug}

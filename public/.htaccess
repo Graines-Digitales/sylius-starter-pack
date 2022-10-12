@@ -53,8 +53,13 @@ DirectoryIndex index.php
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule ^ - [L]
 
+    #RewriteRule /admin/ https://dms.le-petit-naturier.com/admin/web-pages [L,R=301]
+    #RewriteRule !^(admin|api)($|/) https://dms.le-petit-naturier.com/admin/web-pages [L,R=301]
+
     # Rewrite all other queries to the front controller.
     RewriteRule ^ %{ENV:BASE}/index.php [L]
+
+
 </IfModule>
 
 <IfModule !mod_rewrite.c>

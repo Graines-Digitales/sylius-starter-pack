@@ -16,10 +16,20 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class MessageRepository extends EntityRepository
 {
-
     public function findByTypeContact($configurationProject)
     {
         $slug = $configurationProject['forms']['contact_default']['slug'];
+
+        return $this->createQueryBuilder('entity')
+            ->andWhere('entity.origin = :slug')
+            ->setParameter('slug', $slug)
+            ->orderBy('entity.dateSent', 'DESC')
+        ;
+    }
+
+    public function findByTypeProduct($configurationProject)
+    {
+        $slug = $configurationProject['forms']['contact_product']['slug'];
 
         return $this->createQueryBuilder('entity')
             ->andWhere('entity.origin = :slug')

@@ -6,6 +6,7 @@ use App\Entity\Organization;
 use App\Entity\ArticleTranslation;
 use App\Entity\WebPageTranslation;
 use App\Entity\CategoryTranslation;
+use App\Entity\TripTranslation;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Tools\Content;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -70,6 +71,15 @@ class SEO
                 $entity->getText(), 150, ' ', ''
             );
             $entity->setMetaDescription($metaDescription);
+        } 
+        else if ($entity instanceof TripTranslation) {
+            
+            $metaTitle = ucfirst(substr($entity->getHeadline(), 0, 50) . $suffixe);
+            $entity->setMetaTitle($metaTitle);
+            $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
+                $entity->getText(), 150, ' ', ''
+            );
+            $entity->setMetaDescription($metaDescription);
         }
         
         return $entity;
@@ -80,9 +90,10 @@ class SEO
         return $media->getName();
     }
 
-    public function getStructuredData($metaData, $entities)
-    {
-        return $this->webContentStructuredDataService->generate($metaData, $entities);
     
+    public function defineStructuredData($metaData, $entity)
+    {
+        $structuredData = $this->webContentStructuredDataService->generate($metaData, $entity);
+        $entity->setStructuredData($structuredData);
     }
 }

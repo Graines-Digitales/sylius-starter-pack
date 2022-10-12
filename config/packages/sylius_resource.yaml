@@ -129,6 +129,13 @@ sylius_resource:
                 form: App\Form\Type\MessageType
                 repository: App\Repository\MessageRepository
 
+        app.message_product:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Message
+                form: App\Form\Type\MessageType
+                repository: App\Repository\MessageRepository
+
         app.message_quote:
             driver: doctrine/orm # You can use also different driver here
             classes:
@@ -160,30 +167,30 @@ sylius_resource:
         app.media_image:
             driver: doctrine/orm # You can use also different driver here
             classes:
-                model: App\Entity\ImageMediaObject
-                form: App\Form\Type\ImageMediaObjectType
-                repository: App\Repository\ImageMediaObjectRepository
+                model: App\Entity\MediaObjectImage
+                form: App\Form\Type\MediaObjectImageType
+                repository: App\Repository\MediaObjectImageRepository
 
         app.media_video:
             driver: doctrine/orm # You can use also different driver here
             classes:
-                model: App\Entity\VideoMediaObject
-                form: App\Form\Type\VideoMediaObjectType
-                repository: App\Repository\VideoMediaObjectRepository
+                model: App\Entity\MediaObjectVideo
+                form: App\Form\Type\MediaObjectVideoType
+                repository: App\Repository\MediaObjectVideoRepository
 
         app.media_document:
             driver: doctrine/orm # You can use also different driver here
             classes:
-                model: App\Entity\DocumentMediaObject
-                form: App\Form\Type\DocumentMediaObjectType
-                repository: App\Repository\DocumentMediaObjectRepository
+                model: App\Entity\MediaObjectDocument
+                form: App\Form\Type\MediaObjectDocumentType
+                repository: App\Repository\MediaObjectDocumentRepository
 
         app.media_icon:
             driver: doctrine/orm # You can use also different driver here
             classes:
-                model: App\Entity\IconMediaObject
-                form: App\Form\Type\IconMediaObjectType
-                repository: App\Repository\IconMediaObjectRepository
+                model: App\Entity\MediaObjectIcon
+                form: App\Form\Type\MediaObjectIconType
+                repository: App\Repository\MediaObjectIconRepository
 
         app.search_action:
             driver: doctrine/orm # You can use also different driver here
@@ -212,7 +219,7 @@ sylius_resource:
                 model: App\Entity\Organization
                 form: App\Form\Type\ManufacturerType
         
-        app.social_links:
+        app.social_link:
             driver: doctrine/orm # You can use also different driver here
             classes:
                 model: App\Entity\Organization
@@ -253,9 +260,105 @@ sylius_resource:
                 form: App\Form\Type\AddressType
                 repository: App\Repository\AddressRepository 
         
+        app.offer:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\AggregateOffer
+                form: App\Form\Type\AggregateOfferType
+                repository: App\Repository\AggregateOfferRepository
+
+        app.hotel_typical_day:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\HotelTypicalDay
+                form: App\Form\Type\HotelTypicalDayType
+                repository: App\Repository\HotelTypicalDayRepository
+            translation:
+                classes:
+                    model: App\Entity\HotelTypicalDayTranslation 
+                    form: App\Form\Type\HotelTypicalDayTranslationType
+
+        app.hotel_typical_day_element:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\HotelTypicalDayElement
+                form: App\Form\Type\HotelTypicalDayElementType
+                repository: App\Repository\HotelTypicalDayElementRepository
+            translation:
+                classes:
+                    model: App\Entity\HotelTypicalDayElementTranslation 
+                    form: App\Form\Type\HotelTypicalDayElementTranslationType
+
+        app.amenity_feature:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\AmenityFeature
+                form: App\Form\Type\AmenityFeatureType
+                repository: App\Repository\AmenityFeatureRepository
+            translation:
+                classes:
+                    model: App\Entity\AmenityFeatureTranslation 
+                    form: App\Form\Type\AmenityFeatureTranslationType
+
         app.travel:
             driver: doctrine/orm # You can use also different driver here
             classes:
                 model: App\Entity\Trip
                 form: App\Form\Type\TripType
-                repository: App\Repository\TripRepository 
+                repository: App\Repository\TripRepository
+            translation:
+                classes:
+                    model: App\Entity\TripTranslation 
+                    form: App\Form\Type\TripTranslationType
+
+        app.hotel_activity:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\HotelActivity
+                form: App\Form\Type\HotelActivityType
+                repository: App\Repository\HotelActivityRepository
+            translation:
+                classes:
+                    model: App\Entity\HotelActivityTranslation 
+                    form: App\Form\Type\HotelActivityTranslationType
+
+        app.hotel_service:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\HotelService
+                form: App\Form\Type\HotelServiceType
+                repository: App\Repository\HotelServiceRepository
+            translation:
+                classes:
+                    model: App\Entity\HotelServiceTranslation 
+                    form: App\Form\Type\HotelServiceTranslationType
+        
+        app.hotel_room:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\HotelRoom
+                form: App\Form\Type\HotelRoomType
+                repository: App\Repository\HotelRoomRepository
+            translation:
+                classes:
+                    model: App\Entity\HotelRoomTranslation 
+                    form: App\Form\Type\HotelRoomTranslationType
+    
+        app.event:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Event
+                form: App\Form\Type\EventType
+                repository: App\Repository\EventRepository
+            translation:
+                classes:
+                    model: App\Entity\EventTranslation 
+                    form: App\Form\Type\EventTranslationType
+
+        app.booking:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Trip
+                form: App\Form\Type\TripType
+                repository: App\Repository\TripRepository
+            

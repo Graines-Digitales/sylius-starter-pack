@@ -7,6 +7,7 @@ fos_ck_editor:
     configs:
         base_config:
             toolbar:
+                - { name: "document", items: [ 'Source', 'Image' ] }
                 - { name: "styles", items: [ 'Format', 'Bold', 'Italic', 'Link', 'Heading', 'BulletedList', 'NumberedList' ] }
                 - { name: "basicstyles", items: [ 'Outdent', 'Indent', '-', 'Blockquote' ] }
                 - { name: "basicstyles", items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Undo', 'Redo', 'cleanup' ] }

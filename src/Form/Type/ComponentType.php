@@ -4,7 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\Component;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use App\Repository\CategoryRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\MediaObjectRepository;
@@ -57,6 +57,7 @@ class ComponentType extends AbstractResourceType
             // ])
             ->add('category', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class' => Category::class,
                 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(CategoryRepository $repo) use ($configurationProject) {
@@ -65,10 +66,11 @@ class ComponentType extends AbstractResourceType
             ])
             ->add('tags', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class'         => Category::class,
-                'expanded'      => true,
+                'expanded'      => false,
                 'multiple'      => true,
-                'by_reference' => false,
+                'by_reference' => true,
                 'placeholder' => 'app.ui_element.field.select_option',
             ])
             ->add('translations', ResourceTranslationsType::class, [

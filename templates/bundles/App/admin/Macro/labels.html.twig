@@ -1,6 +1,6 @@
 {% macro default(text) %}
-
-    <span class="ui label">{{ text|trans }}</span>
+    {% set label = (text is not empty) ? text : 'Aucune' %}
+    <span class="ui label">{{ label|trans }}</span>
 {% endmacro %}
 
 {% macro lock(status) %}

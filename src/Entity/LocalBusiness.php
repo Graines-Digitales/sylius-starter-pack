@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\PlaceTrait;
 use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
+use App\Entity\Traits\IdentifiableTrait;
 use App\Repository\LocalBusinessRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
@@ -24,17 +25,12 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  */
 class LocalBusiness implements ResourceInterface
 {
+    use IdentifiableTrait;
     use SeoTrait;
     use ThingTrait;
     use PlaceTrait;
     use TimestampableEntity;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+   
 
     /**
      * @Gedmo\Slug(fields={"name"}, prefix="")
@@ -45,13 +41,13 @@ class LocalBusiness implements ResourceInterface
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="localBusinesses", cascade={"persist"}))
+     * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="localBusinesses", cascade={"persist", "remove"}))
      * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
      */
     private $organization;
 
     /**
-     * @ORM\OneToMany(targetEntity=OpeningHoursSpecification::class, mappedBy="localBusiness", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=OpeningHoursSpecification::class, mappedBy="localBusiness", cascade={"persist", "remove"})
      */
     private $openingHours;
 
@@ -76,32 +72,17 @@ class LocalBusiness implements ResourceInterface
      */
     private $products;
 
-    // /**
-    //  * @ORM\ManyToOne(targetEntity=Message::class, inversedBy="localBusiness")
-    //  */
-    // private $message;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="localBusiness")
-     */
-    private $messages;
 
     public function __construct()
     {
         $this->openingHours = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->categories = new ArrayCollection();
-        $this->messages = new ArrayCollection();
     }
 
     public function __toString()
     {     
         return $this->getName();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getSlug()
@@ -229,45 +210,5 @@ class LocalBusiness implements ResourceInterface
         return $this;
     }
 
-    // public function getMessage(): ?Message
-    // {
-    //     return $this->message;
-    // }
-
-    // public function setMessage(?Message $message): self
-    // {
-    //     $this->message = $message;
-
-    //     return $this;
-    // }
-
-    // /**
-    //  * @return Collection<int, Message>
-    //  */
-    // public function getMessages(): Collection
-    // {
-    //     return $this->messages;
-    // }
-
-    // public function addMessage(Message $message): self
-    // {
-    //     if (!$this->messages->contains($message)) {
-    //         $this->messages[] = $message;
-    //         $message->setLocalBusiness($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    public function removeMessage(Message $message): self
-    {
-        if ($this->messages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
-            if ($message->getLocalBusiness() === $this) {
-                $message->setLocalBusiness(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

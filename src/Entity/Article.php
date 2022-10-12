@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ImagesTrait;
+use App\Entity\Traits\LockableTrait;
 use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -15,14 +19,19 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 
 
 /**
- * @ApiResource()
+ * An article, such as a news article or piece of investigative report. Newspapers and magazines have articles of many different types and this is intended to cover them all.\\n\\nSee also \[blog post\](http://blog.schema.org/2014/09/schemaorg-support-for-bibliographic\_2.html).
+ *
+ * @see https://schema.org/Article
+ * @ApiResource(iri="https://schema.org/Article")
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  * @ORM\Table(name="app_article")
  */
 class Article implements ResourceInterface, TranslatableInterface
 {
-    use SeoTrait;
     use IdentifiableTrait;
+    use LockableTrait;
+    use SeoTrait;
+    use ImagesTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -53,35 +62,43 @@ class Article implements ResourceInterface, TranslatableInterface
     private $lastReview;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
-    private $primaryImage;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
-    private $secondaryImage;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
-     * @ORM\JoinTable(name="app_article_category")
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="app_articles_categories")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $tags;
 
     /**
      * @ORM\OneToMany(targetEntity=PropertyValue::class, mappedBy="article")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $propertyValues;
 
     /**
-     * @ORM\ManyToOne(targetEntity=VideoMediaObject::class, inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist", "remove"})
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $video;
 
@@ -197,30 +214,6 @@ class Article implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getPrimaryImage(): ?ImageMediaObject
-    {
-        return $this->primaryImage;
-    }
-
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
-    {
-        $this->primaryImage = $primaryImage;
-
-        return $this;
-    }
-
-    public function getSecondaryImage(): ?ImageMediaObject
-    {
-        return $this->secondaryImage;
-    }
-
-    public function setSecondaryImage(?ImageMediaObject $secondaryImage): self
-    {
-        $this->secondaryImage = $secondaryImage;
-
-        return $this;
-    }
-    
     /**
      * @return Collection<int, PropertyValue>
      */
@@ -251,12 +244,12 @@ class Article implements ResourceInterface, TranslatableInterface
         return $this;
     }
 
-    public function getVideo(): ?VideoMediaObject
+    public function getVideo(): ?MediaObjectVideo
     {
         return $this->video;
     }
 
-    public function setVideo(?VideoMediaObject $video): self
+    public function setVideo(?MediaObjectVideo $video): self
     {
         $this->video = $video;
 

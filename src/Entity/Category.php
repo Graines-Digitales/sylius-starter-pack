@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Traits\IdentifiableTrait;
+use App\Entity\Traits\ImagesTrait;
 use App\Entity\Traits\LockableTrait;
 use App\Entity\Traits\SeoTrait;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,8 +15,8 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
+
 /**
- * @ApiResource()
  * @ApiResource(iri="http://schema.org/Category")
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @ORM\Table(name="app_category")
@@ -23,8 +24,9 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 class Category implements ResourceInterface , TranslatableInterface
 {
     use IdentifiableTrait;
-    use SeoTrait;
     use LockableTrait;
+    use SeoTrait;
+    use ImagesTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -41,13 +43,14 @@ class Category implements ResourceInterface , TranslatableInterface
         $this->searchActions = new ArrayCollection();
         $this->localBusinesses = new ArrayCollection();
         $this->tags = new ArrayCollection();
-        $this->mediaObjects = new ArrayCollection();
         $this->components = new ArrayCollection();
         $this->accommodations = new ArrayCollection();
         $this->hotelTypicalDays = new ArrayCollection();
         $this->hotelServices = new ArrayCollection();
         $this->hotelActivities = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->amenityFeatures = new ArrayCollection();
+        $this->trips = new ArrayCollection();
     }
 
     /**
@@ -66,16 +69,6 @@ class Category implements ResourceInterface , TranslatableInterface
     private $specialAnnouncements;
 
     /**
-     * @ORM\OneToMany(targetEntity=Organization::class, mappedBy="category")
-     */
-    private $organizations;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $type;
-
-    /**
      * @ORM\ManyToMany(targetEntity=SearchAction::class, mappedBy="tags")
      * 
      */
@@ -88,30 +81,24 @@ class Category implements ResourceInterface , TranslatableInterface
     private $localBusinesses;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ImageMediaObject::class, mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity=MediaObjectImage::class, mappedBy="tags")
      */
-    private $imageMediaObjects;
+    private $mediaObjectImages;
 
     /**
-     * @ORM\ManyToMany(targetEntity=VideoMediaObject::class, mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity=MediaObjectVideo::class, mappedBy="tags")
      */
-    private $videoMediaObjects;
+    private $mediaObjectVideos;
 
     /**
-     * @ORM\ManyToMany(targetEntity=DocumentMediaObject::class, mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity=MediaObjectDocument::class, mappedBy="tags")
      */
-    private $documentMediaObjects;
+    private $mediaObjectDocuments;
 
     /**
-     * @ORM\ManyToMany(targetEntity=IconMediaObject::class, mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity=MediaObjectIcon::class, mappedBy="tags")
      */
     private $iconMediaObjects;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
-    private $primaryImage;
 
     /**
      * @ORM\ManyToMany(targetEntity=Accommodation::class, mappedBy="tags")
@@ -142,6 +129,21 @@ class Category implements ResourceInterface , TranslatableInterface
      * @ORM\ManyToMany(targetEntity=Component::class, mappedBy="tags")
      */
     private $components;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=AmenityFeature::class, mappedBy="tags")
+     */
+    private $amenityFeatures;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Trip::class, mappedBy="tags")
+     */
+    private $trips;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class)
+     */
+    private $parent;
     
     /**
      * {@inheritdoc}
@@ -153,12 +155,20 @@ class Category implements ResourceInterface , TranslatableInterface
 
     public function __toString()
     {
-        return $this->getName();
+        if($this->getName()) {
+            return $this->getName();
+        }
+        return 'test';
     }
 
     public function getSlug(): ?string
     {
         return $this->getTranslation()->getSlug();
+    }
+
+    public function setSlug($slug)
+    {
+        $this->getTranslation()->setSlug($slug);
     }
 
     public function getName(): ?string
@@ -227,60 +237,6 @@ class Category implements ResourceInterface , TranslatableInterface
     }
 
     /**
-     * @return Collection<int, Organization>
-     */
-    public function getOrganizations(): Collection
-    {
-        return $this->organizations;
-    }
-
-    public function addOrganization(Organization $organization): self
-    {
-        if (!$this->organizations->contains($organization)) {
-            $this->organizations[] = $organization;
-            $organization->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrganization(Organization $organization): self
-    {
-        if ($this->organizations->removeElement($organization)) {
-            // set the owning side to null (unless already changed)
-            if ($organization->getCategory() === $this) {
-                $organization->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
-    
-    public function getPrimaryImage(): ?ImageMediaObject
-    {
-        return $this->primaryImage;
-    }
-
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
-    {
-        $this->primaryImage = $primaryImage;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(?string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, SearchAction>
      */
     public function getSearchActions(): Collection
@@ -327,33 +283,6 @@ class Category implements ResourceInterface , TranslatableInterface
     public function removeLocalBusiness(LocalBusiness $localBusiness): self
     {
         $this->localBusinesses->removeElement($localBusiness);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ImageMediaObject>
-     */
-    public function getMediaObjects(): Collection
-    {
-        return $this->mediaObjects;
-    }
-
-    public function addMediaObject(ImageMediaObject $mediaObject): self
-    {
-        if (!$this->mediaObjects->contains($mediaObject)) {
-            $this->mediaObjects[] = $mediaObject;
-            $mediaObject->addTag($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMediaObject(ImageMediaObject $mediaObject): self
-    {
-        if ($this->mediaObjects->removeElement($mediaObject)) {
-            $mediaObject->removeTag($this);
-        }
 
         return $this;
     }
@@ -489,6 +418,75 @@ class Category implements ResourceInterface , TranslatableInterface
         if ($this->components->removeElement($component)) {
             $component->removeTag($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AmenityFeature>
+     */
+    public function getAmenityFeatures(): Collection
+    {
+        return $this->amenityFeatures;
+    }
+
+    public function addAmenityFeature(AmenityFeature $amenityFeature): self
+    {
+        if (!$this->amenityFeatures->contains($amenityFeature)) {
+            $this->amenityFeatures[] = $amenityFeature;
+            $amenityFeature->addTag($this);
+        }
+
+        return $this;
+    }
+    
+    /**
+     * @return Collection<int, Trip>
+     */
+    public function getTrips(): Collection
+    {
+        return $this->trips;
+    }
+
+    public function addTrip(Trip $trip): self
+    {
+        if (!$this->trips->contains($trip)) {
+            $this->trips[] = $trip;
+            $trip->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAmenityFeature(AmenityFeature $amenityFeature): self
+    {
+        if ($this->amenityFeatures->removeElement($amenityFeature)) {
+            $amenityFeature->removeTag($this);
+        }
+
+        return $this;
+    }
+    
+    public function removeTrip(Trip $trip): self
+    {
+        if ($this->trips->removeElement($trip)) {
+            // set the owning side to null (unless already changed)
+            if ($trip->getCategory() === $this) {
+                $trip->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
 
         return $this;
     }

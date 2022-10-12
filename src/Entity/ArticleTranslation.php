@@ -10,14 +10,15 @@ use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\Traits\SeoTranslatableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Repository\ArticleTranslationRepository;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 
 
 /**
- * @ApiResource()
- * @ORM\Entity()
+ * @ApiResource(iri="https://schema.org/Article")
+ * @ORM\Entity(repositoryClass=ArticleTranslationRepository::class)
  * @ORM\Table(name="app_article_translation")
  */
 class ArticleTranslation  extends AbstractTranslation implements ResourceInterface
@@ -28,8 +29,17 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     use CreativeWorkTrait;
     use TimestampableEntity;
 
+    /** 
+     * @var TranslatableInterface|null 
+     * 
+     * @ApiProperty(
+     *    readableLink=true
+     * )
+    */
+    protected $translatable;
+
     /**
-     * @Gedmo\Slug(fields={"headline"}, prefix="")
+     * @Gedmo\Slug(fields={"headline"}, updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
@@ -57,6 +67,11 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
      */
     private $components;
 
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $structuredData = [];
 
     /**
      * Get the value of slug
@@ -98,6 +113,18 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     public function setComponents(?string $components): self
     {
         $this->components = $components;
+
+        return $this;
+    }
+
+    public function getStructuredData(): ?array
+    {
+        return $this->structuredData;
+    }
+
+    public function setStructuredData(?array $structuredData): self
+    {
+        $this->structuredData = $structuredData;
 
         return $this;
     }

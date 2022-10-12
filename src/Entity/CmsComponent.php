@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\IdentifiableTrait;
 use App\Repository\CmsComponentRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,12 +16,7 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
  */
 class CmsComponent implements ResourceInterface, CodeAwareInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    use IdentifiableTrait;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -56,11 +52,6 @@ class CmsComponent implements ResourceInterface, CodeAwareInterface
     {
         $this->templates = new ArrayCollection();
         $this->styles = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getName(): ?string

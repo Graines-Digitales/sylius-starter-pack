@@ -14,71 +14,70 @@ liip_imagine:
         generate: true
 
     filter_sets:
-        mini_jpeg:
-            format: jpeg
-            quality: 80
-            filters:
-                thumbnail: { size: [80, 80], mode: inset }
+        # mini_jpeg:
+        #     format: jpeg
+        #     quality: 80
+        #     filters:
+        #         thumbnail: { size: [80, 80], mode: inset }
                 
-        mini_webp:
-            format: webp
-            quality: 100
-            filters:
-                thumbnail: { size: [80, 80], mode: inset }
+        # mini_webp:
+        #     format: webp
+        #     quality: 100
+        #     filters:
+        #         thumbnail: { size: [80, 80], mode: inset }
                 
-        # *****************************************************
-        full_jpeg:
-            format: jpg
-            quality: 80
-            filters:
-                thumbnail: { size: [ 1920 ], mode: inset }  
-        full_webp:
-            format: webp
-            quality: 100
-            filters:
-                thumbnail: { size: [ 1920 ], mode: inset }  
-        full_hero_jpeg:
-            format: jpg
-            quality: 80
-            filters:
-                thumbnail: { size: [ 1920, 680 ], mode: inset }
+        # full_jpeg:
+        #     format: jpg
+        #     quality: 80
+        #     filters:
+        #         thumbnail: { size: [ 1920 ], mode: inset }  
+        # full_webp:
+        #     format: webp
+        #     quality: 100
+        #     filters:
+        #         thumbnail: { size: [ 1920 ], mode: inset }  
+        # full_hero_jpeg:
+        #     format: jpg
+        #     quality: 80
+        #     filters:
+        #         thumbnail: { size: [ 1920, 680 ], mode: inset }
                 
-        full_hero_webp:
-            format: webp
-            quality: 100
-            filters:
-                thumbnail: { size: [ 1920, 680 ], mode: inset }  
+        # full_hero_webp:
+        #     format: webp
+        #     quality: 100
+        #     filters:
+        #         thumbnail: { size: [ 1920, 680 ], mode: inset }  
                 
-        large_jpeg:
-            format: jpg
-            quality: 80
-            filters:
-                thumbnail: { size: [ 1200 ], mode: inset }
-        large_webp:
-            format: webp
-            quality: 100
-            filters:
-                thumbnail: { size: [ 1200 ], mode: inset }
-        medium_jpeg:
-            format: jpg
-            quality: 80
-            filters:
-                thumbnail: { size: [ 900 ], mode: inset }
-        medium_webp:
-            format: webp
-            quality: 100
-            filters:
-                thumbnail: { size: [ 900 ], mode: inset }  
-        small_jpeg:
-            format: jpg
-            quality: 80
-            filters:
-                thumbnail: { size: [ 576 ], mode: inset }
-        small_webp:
-            format: webp
-            quality: 100
-            filters:
-                thumbnail: { size: [ 576 ], mode: inset }  
+        # large_jpeg:
+        #     format: jpg
+        #     quality: 80
+        #     filters:
+        #         thumbnail: { size: [ 1200 ], mode: inset }
+        # large_webp:
+        #     format: webp
+        #     quality: 100
+        #     filters:
+        #         thumbnail: { size: [ 1200 ], mode: inset }
+        # medium_jpeg:
+        #     format: jpg
+        #     quality: 80
+        #     filters:
+        #         thumbnail: { size: [ 900 ], mode: inset }
+        # medium_webp:
+        #     format: webp
+        #     quality: 100
+        #     filters:
+        #         thumbnail: { size: [ 900 ], mode: inset }  
+        # small_jpeg:
+        #     format: jpg
+        #     quality: 80
+        #     filters:
+        #         thumbnail: { size: [ 576 ], mode: inset }
+        # small_webp:
+        #     format: webp
+        #     quality: 100
+        #     filters:
+        #         thumbnail: { size: [ 576 ], mode: inset }  
         thumbnail_jpeg:
             format: jpg
             quality: 80

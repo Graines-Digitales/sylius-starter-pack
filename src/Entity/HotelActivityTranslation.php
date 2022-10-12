@@ -2,39 +2,35 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
-use App\Entity\Traits\AdministrableTrait;
+use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ThingTrait;
+use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\Traits\CreativeWorkTrait;
 use App\Entity\Traits\IdentifiableTrait;
-use App\Entity\Traits\ThingTrait;
-use App\Entity\Traits\TimestampableTrait;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
+use App\Entity\Traits\SeoTranslatableTrait;
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Sylius\Component\Resource\Model\AbstractTranslation;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\AbstractTranslation;
+
 
 /**
  * @TODO : à revoir selon le standard schema.org
  * 
  * @ApiResource()
+ * @ORM\Entity(repositoryClass=HotelActivityTranslationRepository::class)
  * @ORM\Table(name="app_hotel_activity_translation")
- * @ORM\Entity(repositoryClass="App\Repository\HotelActivityTranslationRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class HotelActivityTranslation extends AbstractTranslation implements ResourceInterface
 {
     use IdentifiableTrait;
+    use SeoTranslatableTrait;
     use ThingTrait;
     use CreativeWorkTrait;
     use TimestampableEntity;    
 
+    
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -57,7 +53,7 @@ class HotelActivityTranslation extends AbstractTranslation implements ResourceIn
     {
         return $this->slug;
     }
-    
+
     /**
      * Set the value of Label.
      *
