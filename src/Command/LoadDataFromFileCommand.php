@@ -57,7 +57,7 @@ class LoadDataFromFileCommand extends Command
         
         if ($filename) {
             $absoluteFilePath = $kernelProjectDir . DIRECTORY_SEPARATOR;
-            $absoluteFilePath.= 'content' .DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $filename;
+            $absoluteFilePath.= 'content/fr' .DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $filename;
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
             
             if(empty($extension)) {
@@ -67,7 +67,7 @@ class LoadDataFromFileCommand extends Command
             }
             
             $data = $this->importAction->extractData($absoluteFilePath, $extension);
-            $entity = $this->importAction->dataServicesDispatch($data, $folder);
+            $entity = $this->importAction->dataServicesDispatch($data, $folder, 'fr');
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
         }
