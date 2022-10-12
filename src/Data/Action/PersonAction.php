@@ -3,6 +3,7 @@
 namespace App\Data\Action;
 
 use App\Entity\Person;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 
@@ -10,46 +11,64 @@ class PersonAction
 {
     private $slugger;
 
-    public function __construct(SluggerInterface $slugger)
-    {
+    private $entityManager;
+
+    public function __construct(
+        SluggerInterface $slugger
+        , EntityManagerInterface $entityManager
+    ){
         $this->slugger = $slugger;
+        $this->entityManager = $entityManager;
     }
     
-    public function create($data = [])
+    public function create($data = [], $locale = 'fr', $persist = true)
     {
-        $person = new Person();
-        $person = $this->hydrate($data, $person);
-
-        return $person;
+        $entity = null;
+        if(isset($data['email'])) {
+            $entity = $this->entityManager
+                ->getRepository(Person::class)
+                ->findOneBy([ 'email' => $data['email'] ])
+            ;
+        }
+        if(null === $entity) {
+            $entity = new Person();
+        }
+        $entity = $this->hydrate($data, $entity);
+        if($persist) {
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush();
+        }
+   
+        return $entity;
     }
 
-    public function hydrate($data = [], $person)
+    public function hydrate($data = [], $entity)
     {
-        $person->setLastname($data['lastname']);
-        $person->setFirstname($data['firstname']);
+        $entity->setLastname($data['lastname']);
+        $entity->setFirstname($data['firstname']);
         if(isset($data['email'])) {
-            $person->setEmail($data['email']);
+            $entity->setEmail($data['email']);
         }
         if(isset($data['phone'])) {
-            $person->setPhone($data['phone']);
+            $entity->setPhone($data['phone']);
         }
         if(isset($data['entreprise'])) {
-            $person->setOrganization($data['entreprise']);
+            $entity->setOrganization($data['entreprise']);
         }
         if(isset($data['collaborateur'])) {
-            $person->setNumberOfEmployees($data['collaborateur']);
+            $entity->setNumberOfEmployees($data['collaborateur']);
         }
         if(isset($data['site_web'])) {
-            $person->setUrl($data['site_web']);
+            $entity->setUrl($data['site_web']);
         }
         if(isset($data['optin'])) {
-            $person->setOptin($data['optin']);
+            $entity->setOptin($data['optin']);
         }
         if(isset($data['gender'])) {
-            $person->setGender($data['gender']);
+            $entity->setGender($data['gender']);
         }
 
-        return $person;
+        return $entity;
     }
 
 }

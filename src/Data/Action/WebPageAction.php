@@ -3,7 +3,6 @@
 namespace App\Data\Action;
 
 use App\Entity\WebPage;
-use App\Entity\MediaObjectImage;
 use App\Entity\WebPageTranslation;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
