@@ -98,10 +98,10 @@ class Import
     public function getMainOrganization($contentPath)
     {
         $filesystem = new Filesystem();
-        $filepath = $contentPath . DIRECTORY_SEPARATOR . 'main_organization.json';
+        $filepath = $contentPath . DIRECTORY_SEPARATOR . 'main_organization.md';
         if($filesystem->exists($filepath)) {
 
-            $result = $this->extractData($filepath, 'json');
+            $result = $this->extractData($filepath, 'md');
             
             return $result;
         }
@@ -124,10 +124,8 @@ class Import
             case 'md':
                 $parser = new Parser();
                 $result = $parser->parse(file_get_contents($absoluteFilePath), false);
-                
                 $data = $result->getYaml();
                 $data['content'] = $result->getContent();
-                
                 break;
             case 'json':
                 $data = json_decode(
