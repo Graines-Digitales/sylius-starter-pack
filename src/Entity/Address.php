@@ -4,29 +4,25 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 
 /**
- * Address.
+ * The mailing address.
  *
+ * @see https://schema.org/PostalAddress
+ * 
  * @ORM\Table(name="app_address")
- * @ORM\Entity
+ * @ORM\Entity()
  * @ORM\Entity(repositoryClass=AddressRepository::class)
-
  */
 class Address implements ResourceInterface
 {
+    use IdentifiableTrait;
     use TimestampableEntity;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @var string
@@ -79,6 +75,11 @@ class Address implements ResourceInterface
     private $phone;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $additionalStreetAddress;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -95,11 +96,6 @@ class Address implements ResourceInterface
     public function getFullAddress()
     {
         return trim($this->getAddress().' '.$this->getPostcode().' '.$this->getCity().' '.$this->getCountry());
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     /**
@@ -231,7 +227,7 @@ class Address implements ResourceInterface
             return;
         }
         $this->organizations->add($organization);
-        $organization->addOrganization($this);
+        // $organization->addOrganization($this);
     }
 
     /**
@@ -243,7 +239,7 @@ class Address implements ResourceInterface
             return;
         }
         $this->organizations->removeElement($organization);
-        $organization->removeOrganization($this);
+        // $organization->removeOrganization($this);
     }
 
     /**
@@ -302,6 +298,18 @@ class Address implements ResourceInterface
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getAdditionalStreetAddress(): ?string
+    {
+        return $this->additionalStreetAddress;
+    }
+
+    public function setAdditionalStreetAddress(?string $additionalStreetAddress): self
+    {
+        $this->additionalStreetAddress = $additionalStreetAddress;
 
         return $this;
     }

@@ -3,7 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Service;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use App\Entity\LocalBusiness;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\MediaObjectRepository;
@@ -32,7 +32,7 @@ class ServiceType extends AbstractType
             ->add('isEnabled')
             ->add('name')
             ->add('icon', EntityType::class, [
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingSvg($configurationProject);

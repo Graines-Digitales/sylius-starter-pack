@@ -117,7 +117,7 @@ security:
             security: false
 
         image_resolver:
-            pattern: ^/media/cache/resolve
+            pattern: ^/media/cache
             security: false
 
     access_control:

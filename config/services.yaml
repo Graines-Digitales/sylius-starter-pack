@@ -52,19 +52,13 @@ services:
         class: App\Controller\Web\SchemaController
         autowire: true
         tags: ['controller.service_arguments']
-
-    app.controller.sitemap:
-        class: App\Controller\Web\SitemapController
-        autowire: true
-        tags: ['controller.service_arguments']
-
-     # WebPage controller that handle CMS management
-    app.controller.webpage:
-        class: App\Controller\Web\WebPageController
-        autowire: true
-        tags: ['controller.service_arguments']
     
     App\EventListener\ArticleListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    App\EventListener\TripListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
@@ -73,18 +67,25 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
-            # - { name: doctrine.event_listener, event: preRemove }
-            - { name: doctrine.event_listener, event: postUpdate }
 
     App\EventListener\CategoryListener:
         tags:
-            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: preUpdate }
 
-    App\EventListener\MediaObjectListener:
+    App\EventListener\MediaObjectImageListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: postPersist }
-            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: preUpdate }
+    
+    App\EventListener\MediaObjectIconListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    App\EventListener\MediaObjectDocumentListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
 
      # Menu Listener
     app.listener.admin.menu_builder:
@@ -99,7 +100,7 @@ services:
         class: App\Form\Type\WebPageType
         tags:
             - { name: form.type }
-        arguments: ['@service_container', '@App\WebContent\WebPage', '%app.model.web_page.class%', ['sylius']]
+        arguments: ['@doctrine.orm.default_entity_manager', '%app.model.web_page.class%', ['sylius']]
 
     app.web_page_translation.form.type:
         class: App\Form\Type\WebPageTranslationType
@@ -111,7 +112,7 @@ services:
         class: App\Form\Type\LandingPageType
         tags:
             - { name: form.type }
-        arguments: ['@service_container', '@App\WebContent\WebPage', '%app.model.web_page.class%', ['sylius']]
+        arguments: ['@service_container', '@doctrine.orm.default_entity_manager', '%app.model.web_page.class%', ['sylius']]
 
     app.landing_page_translation.form.type:
         class: App\Form\Type\LandingPageTranslationType
@@ -183,7 +184,7 @@ services:
         class: App\Form\Type\CategoryTypeProductType
         tags:
             - { name: form.type }
-        arguments: ['@service_container', '@doctrine.orm.default_entity_manager', '@App\Configuration\Project', '@App\WebContent\WebPage', '%app.model.category.class%', ['sylius']]
+        arguments: ['@service_container', '%app.model.category.class%', ['sylius']]
 
     app.category_translation.form.type:
         class: App\Form\Type\CategoryTranslationType
@@ -201,13 +202,13 @@ services:
         class: App\Form\Type\LocalBusinessType
         tags:
             - { name: form.type }
-        arguments: [ '@service_container', '%app.model.local_business.class%', ['sylius']]
+        arguments: [ '@service_container', '@doctrine.orm.default_entity_manager', '%app.model.local_business.class%', ['sylius']]
 
     app.organization_local_business.form.type:
         class: App\Form\Type\OrganizationLocalBusinessType
         tags:
             - { name: form.type }
-        arguments: [ '@service_container', '@App\WebContent\WebPage', '%app.model.organization.class%', ['sylius']]
+        arguments: [ '@service_container', '@doctrine.orm.default_entity_manager', '%app.model.organization.class%', ['sylius']]
 
     app.organization.form.type:
         class: App\Form\Type\OrganizationType
@@ -231,13 +232,13 @@ services:
         class: App\Form\Type\ManufacturerType
         tags:
             - { name: form.type }
-        arguments: [ '@service_container', '@App\WebContent\WebPage', '%app.model.organization.class%', ['sylius']]
+        arguments: [ '@service_container', '@doctrine.orm.default_entity_manager', '%app.model.organization.class%', ['sylius']]
 
     app.social_link.form.type:
         class: App\Form\Type\SocialLinkType
         tags:
             - { name: form.type }
-        arguments: [ '@service_container', '@App\WebContent\WebPage', '@App\Tools\Media', '%app.model.organization.class%', ['sylius']]
+        arguments: [ '@doctrine.orm.default_entity_manager', '%app.model.organization.class%', ['sylius']]
 
     app.cms_menu.form.type:
         class: App\Form\Type\CmsMenuType
@@ -249,7 +250,7 @@ services:
         class: App\Form\Type\CmsLinkType
         tags:
             - { name: form.type }
-        arguments: ['@service_container', '@App\WebContent\Component', '%app.model.cms_link.class%', ['sylius']]
+        arguments: ['@service_container', '@doctrine.orm.default_entity_manager', '%app.model.cms_link.class%', ['sylius']]
 
     app.cms_link_translation.form.type:
         class: App\Form\Type\CmsLinkTranslationType

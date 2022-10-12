@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\IdentifiableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\IdentifiableTrait;
-use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,13 +18,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * 
  * @ApiResource(iri="https://schema.org/Reservation")
  * @ORM\Table(name="app_reservation")
- * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=ReservationRepository::class)
  */
 class Reservation
 {
     use IdentifiableTrait;
-
+    use TimestampableEntity;
+    
     /**
      * The date and time the reservation was booked.
      *

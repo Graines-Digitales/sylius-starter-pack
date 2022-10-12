@@ -22,8 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ApiResource(iri="http://schema.org/AmenityFeature")
  * @ORM\Table(name="app_amenity_feature_translation")
- * @ORM\Entity(repositoryClass="App\Repository\AmenityFeatureTranslationRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity()
  */
 class AmenityFeatureTranslation extends AbstractTranslation implements ResourceInterface
 {
@@ -44,6 +43,11 @@ class AmenityFeatureTranslation extends AbstractTranslation implements ResourceI
      * @ORM\JoinTable(name="app_amenity_features_accommodations")
      */
     private $accommodations;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $moreInfo;
 
     /**
      * Constructor.
@@ -106,5 +110,15 @@ class AmenityFeatureTranslation extends AbstractTranslation implements ResourceI
         return $this->accommodations;
     }
 
-    
+    public function getMoreInfo(): ?string
+    {
+        return $this->moreInfo;
+    }
+
+    public function setMoreInfo(string $moreInfo): self
+    {
+        $this->moreInfo = $moreInfo;
+
+        return $this;
+    }
 }

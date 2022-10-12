@@ -7,6 +7,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\PlaceTrait;
 use App\Entity\Traits\ThingTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
@@ -19,20 +20,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  */
 class Place implements ResourceInterface
 {
-   use ThingTrait;
-   use PlaceTrait;
-
-   /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
+    use IdentifiableTrait;
+    use ThingTrait;
+    use PlaceTrait;
 }

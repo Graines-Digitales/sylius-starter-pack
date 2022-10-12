@@ -3,7 +3,7 @@
 namespace App\WebContent;
 
 use App\Entity\LocalBusiness;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use App\Entity\Person;
 
 class Form extends AbstractWebContent
@@ -12,25 +12,25 @@ class Form extends AbstractWebContent
     {
         if(isset($data['email'])) {
 
-            $message = $this->dataAction->createMessageDemand($data);
+            $message = $this->messageAction->create($data);
             
             $person = $this->manager->getRepository(Person::class)
                 ->findOneBy(['email' => $data['email']])
             ;
             if(null === $person) {
                 if (isset($data['streetAddress'])){
-                    $address = $this->dataAction->createAddressDemand($data);
-                    $person = $this->dataAction->createPersonDemand($data);
+                    $address = $this->addressAction->create($data);
+                    $person = $this->personAction->create($data);
                     $person->addAddress($address);
                     $this->manager->persist($address);
                 }else{
-                    $person = $this->dataAction->createPersonDemand($data);
+                    $person = $this->personAction->create($data);
                 }
                 $this->manager->persist($person);
                 $this->manager->flush();
 
             } else {
-                $person = $this->dataAction->hydratePersonDemand($data, $person);
+                $person = $this->personAction->hydrate($data, $person);
             }
             $message->setSender($person);
 
@@ -45,7 +45,7 @@ class Form extends AbstractWebContent
             if(!empty($attachments)) {
                 $pathDirectoryMedia = $this->container->getParameter('path_directory_media');
                 foreach($attachments as $attachment) {
-                    $media = new ImageMediaObject();
+                    $media = new MediaObjectImage();
                     $media->setFile($attachment);
                     $this->manager->persist($media);
                     $this->manager->flush();

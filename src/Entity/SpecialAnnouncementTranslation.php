@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\Traits\CreativeWorkTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\Traits\SeoTranslatableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
-use App\Repository\SpecialAnnouncementTranslationRepository;              
 
 
 /**
@@ -26,17 +26,11 @@ use App\Repository\SpecialAnnouncementTranslationRepository;
  */
 class SpecialAnnouncementTranslation extends AbstractTranslation implements ResourceInterface
 {
+    use IdentifiableTrait;
     use SeoTranslatableTrait;
     use ThingTrait;
     use CreativeWorkTrait;
     use TimestampableEntity;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -50,11 +44,6 @@ class SpecialAnnouncementTranslation extends AbstractTranslation implements Reso
      * @ApiProperty(identifier=true)
      */
     private $slug;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getComponents(): ?string
     {

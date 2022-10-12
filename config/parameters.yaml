@@ -1,17 +1,26 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 imports:
-    - { resource: configuration_project.yaml }
+    - { resource: project.yaml }
     
 parameters:
-    locale: fr_FR
+    locale: fr
     sylius_installer_currency: EUR
+    developers: [ 'johan.remy@graines-digitales.online' ]
     directory_image_media_object: /media/image
     directory_document_media_object: /media/document
     directory_icon_media_object: /media/icon
+    path_directory_resources: "%env(PATH_DIRECTORY_RESOURCES)%"
+    folder_images_upload: "%env(FOLDER_IMAGES_UPLOAD)%"
     directory_cache_prefix: media/cache/resolve
     path_directory_media: '%kernel.project_dir%/public/media/image'
-    developers: [ 'johan.remy@graines-digitales.online' ]
+    sendinblue_api_key: '%env(resolve:SENDINBLUE_API_KEY)%'
+    sendinblue_list_newsletter_id: '%env(resolve:SENDINBLUE_LIST_NEWSLETTER_ID)%'
+    google_cloud_api_key: '%env(resolve:GOOGLE_CLOUD_API_KEY)%'
+    cdn_media: '%env(resolve:CDN_MEDIA)%'
+    
+
+    
     
 <<<<<<< HEAD
     # la configuration du projet est 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\WebContent\Component;
 use App\Form\Type\SearchActionType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -19,23 +18,14 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class ComponentSearchActionType extends AbstractType
 {
-    // private $componentService;
-
     private $slugger;
 
-    public function __construct(
-        // Component $componentService
-    ){
-        // $this->componentService = $componentService;
+    public function __construct(){
         $this->slugger = new AsciiSlugger();
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $code = 'component_search_action'; // Use the code defined on the component creation in admin pannel
-        // $templates = $this->componentService->getTemplates($code);
-        // $styles = $this->componentService->getStyles($code);
-
         $builder
             ->add('_slug', TextType::class, [
                 'disabled' => true,
@@ -55,23 +45,11 @@ class ComponentSearchActionType extends AbstractType
                 ],
                 'label' => 'app.ui_element.field.designation',
             ])
-            // ->add('category', EntityType::class, [
-            //     'class' => Category::class,
-            //     'placeholder' => 'app.ui_element.field.select_category',
-            // ])
             ->add('searchAction', SearchActionType::class, [
                 'by_reference' => false,
                 'label' => '',
                 'block_name' => 'entry'
             ])
-            // ->add('template', ChoiceType::class, [
-            //     'choices' => $templates,
-            //     'required' => true,
-            // ])
-            // ->add('style', ChoiceType::class, [
-            //     'choices' => $styles,
-            //     'required' => true,
-            // ])
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
@@ -81,6 +59,7 @@ class ComponentSearchActionType extends AbstractType
                 $string = $form->getConfig()->getName() . ' ' . $data['designation'];
                 $data['slug'] = $this->slugger->slug($string)->lower()->toString();
             }
+            unset($data['_slug']);
             $event->setData($data);
         });
     }

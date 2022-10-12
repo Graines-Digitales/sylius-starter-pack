@@ -1,0 +1,49 @@
+{% from '@App/admin/Macro/tripTranslationForm.html.twig' import translationForm %}
+
+{% set translationForm = form.translations %}
+{{ form.offsetUnset('translations') }}
+
+<h4 class="ui horizontal divider header">
+    <i class="info icon"></i>
+    {{ 'app.ui.form.page_general' | trans }}
+</h4>
+<div class="ui segment">
+     {{ form_errors(form) }}
+        {# Issue with Symfony 5, Sylius 1.9 : https://github.com/Sylius/Sylius/pull/12439 #}
+        {# So we render the fields #}
+        {{ form_row(form.isEnabled) }}
+        {{ form_row(form.isIndexed) }}
+        {{ form_row(form.arrivalTime) }}
+        {{ form_row(form.departureTime) }}
+        {{ form_row(form.offers) }}
+      
+		<div class="ui two column divided grid"> 
+			<div class="row">
+				<div class="column">
+					{{ form_row(form.primaryImage) }}
+				</div>
+				<div class="column">
+				{% if travel.primaryImage is not null and travel.primaryImage.filename is not null and travel.primaryImage.filename != '' %}
+					<div class="ui centered medium image">
+						<img src="{{ asset(directory_image_media_object ~ '/' ~ travel.primaryImage.filename) }}">
+					</div>
+				{% endif %}
+				</div>
+			</div>
+		</div>
+
+        {{ form_row(form.category) }}
+        {{ form_row(form.tags) }}
+        
+	{# Instead of #}
+	{# {{ form_rest(form) }} #}
+</div>
+<h4 class="ui horizontal divider header">
+    <i class="flag icon"></i>
+    {{ 'app.ui.form.page_translation' | trans }}
+</h4>
+
+{% for locale in translationForm %}
+    
+{% endfor %}
+{{ translationForm(translationForm) }}

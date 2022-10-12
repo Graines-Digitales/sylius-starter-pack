@@ -2,11 +2,14 @@
 
 namespace App\EventListener;
 
-use App\Entity\WebPageTranslation;
-use App\Entity\WebPage;
+use App\Data\Action\WebPageAction as WebPageDataAction;
 use App\WebContent\SEO;
-use App\WebContent\WebPage as WebContentWebPage;
+use App\Entity\WebPageTranslation;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\Type\WebPageTranslationType;
+use App\Translation\SyliusTranslator;
+use App\WebContent\MetaData;
+use App\WebContent\WebPage as WebContentWebPage;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -21,33 +24,49 @@ class WebPageListener
     
     private $entityManager;
 
+    private $webPageDataAction;
+
+    private $syliusTranslator;
+
+    private $metaDataService;
+
     public function __construct(
         ContainerInterface $container
         , SEO $webContentSEOService
         , WebContentWebPage $webContentWebPageService
         , EntityManagerInterface $entityManager
-    )
-    {
+        , WebPageDataAction $webPageDataAction
+        , SyliusTranslator $syliusTranslator
+        , MetaData $metaDataService
+    ){
         $this->container = $container;
         $this->webContentSEOService = $webContentSEOService;
         $this->webContentWebPageService = $webContentWebPageService;
         $this->entityManager = $entityManager;
+        $this->webPageDataAction = $webPageDataAction;
+        $this->syliusTranslator = $syliusTranslator;
+        $this->metaDataService = $metaDataService;
     }
 
     public function preUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        // if ($entity instanceof WebPage) {
-        //     dump($entity->getTranslation('fr_FR'));
-        //     foreach($entity->getTranslations()->getIterator() as $value) {
-        //         dump($value);
-        //     }
-        //     die;
-        // }
         if (!$entity instanceof WebPageTranslation) {
             return;
         }
-        $this->execute($entity);
+
+        $translatedData = $this->translate($entity);
+        if(!empty($translatedData)) {
+            $this->webPageDataAction->hydrate(
+                $translatedData,
+                $entity->getTranslatable(),
+                $entity->getLocale()
+            );
+        }
+        $entity = $this->enrich($entity);
+        if(false === $entity->getTranslatable()->getIsLocked()) {
+            $entity = $this->webContentWebPageService->updateSlug($entity);  
+        }
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -56,35 +75,31 @@ class WebPageListener
         if (!$entity instanceof WebPageTranslation) {
             return;
         }
-        $this->execute($entity);
-    }
-
-    public function postUpdate(LifecycleEventArgs $args)
-    {
-        $entity = $args->getObject();
-        if (!$entity instanceof WebPageTranslation) {
-            return;
-        }
-
-        // if (is_callable([$entity, 'getSlug'])) {
-
-            if(false === $entity->getTranslatable()->getIsLocked()) {
-                $entity = $this->webContentWebPageService->updateSlug($entity);
-                $this->entityManager->flush($entity);
-            }
-            
-        // }
         
+        $entity = $this->enrich($entity);
     }
 
-    private function execute($entity) 
+    private function enrich($entity)
     {
-        if (is_callable([$entity, 'getTextResume'])) {
-            $this->webContentWebPageService->moreData($entity);
-        }
-        
-        if (is_callable([$entity, 'getMetaTitle'])) {
-            $this->webContentSEOService->defineMetaData($entity);
-        }
+        $this->webContentWebPageService->moreData($entity);
+        $this->webContentSEOService->defineMetaData($entity);
+        $metaData = $this->metaDataService->getData($entity);
+        $this->webContentSEOService->defineStructuredData($metaData, $entity);
+
+        return $entity;
     }
+
+    private function translate($entity)
+    {
+        $serializer = $this->container->get('serializer');
+        $form = $this->container->get('form.factory')->create(WebPageTranslationType::class);
+        $currentData = $serializer->normalize($entity, null);
+        $referenceData = $serializer->normalize(
+            $entity->getTranslatable()->getTranslation($this->container->getParameter('locale')), 
+            null
+        );
+
+        return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
+    }
+
 }

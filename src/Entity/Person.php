@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
+use App\Entity\Traits\IdentifiableTrait;
+use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 
 /**
@@ -20,20 +21,14 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  * @see http://schema.org/Person Documentation on Schema.org
  *
  * @ApiResource(iri="http://schema.org/Person")
- * @ORM\Entity
+ * @ORM\Entity()
  * @ORM\Table(name="app_person")
  */
 class Person implements ResourceInterface
 {
+    use IdentifiableTrait;
     use ThingTrait;
     use TimestampableEntity;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @var string
@@ -139,9 +134,9 @@ class Person implements ResourceInterface
     private $events;
 
     /**
-     * @ORM\ManyToMany(targetEntity=DocumentMediaObject::class, mappedBy="persons")
+     * @ORM\ManyToMany(targetEntity=MediaObjectDocument::class, mappedBy="persons")
      */
-    private $documentMediaObjects;
+    private $mediaObjectDocuments;
 
 
     /**
@@ -152,17 +147,12 @@ class Person implements ResourceInterface
         $this->addresses = new ArrayCollection();
         $this->accommodations = new ArrayCollection();
         $this->events = new ArrayCollection();
-        $this->documentMediaObjects = new ArrayCollection();
+        $this->mediaObjectDocuments = new ArrayCollection();
     }
 
     public function __toString()
     {
         return $this->getFullName();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     /**
@@ -402,27 +392,27 @@ class Person implements ResourceInterface
     }
 
     /**
-     * @return Collection<int, DocumentMediaObject>
+     * @return Collection<int, MediaObjectDocument>
      */
-    public function getDocumentMediaObjects(): Collection
+    public function getMediaObjectDocuments(): Collection
     {
-        return $this->documentMediaObjects;
+        return $this->mediaObjectDocuments;
     }
 
-    public function addDocumentMediaObject(DocumentMediaObject $documentMediaObject): self
+    public function addMediaObjectDocument(MediaObjectDocument $mediaObjectDocument): self
     {
-        if (!$this->documentMediaObjects->contains($documentMediaObject)) {
-            $this->documentMediaObjects[] = $documentMediaObject;
-            $documentMediaObject->addPerson($this);
+        if (!$this->mediaObjectDocuments->contains($mediaObjectDocument)) {
+            $this->mediaObjectDocuments[] = $mediaObjectDocument;
+            $mediaObjectDocument->addPerson($this);
         }
 
         return $this;
     }
 
-    public function removeDocumentMediaObject(DocumentMediaObject $documentMediaObject): self
+    public function removeMediaObjectDocument(MediaObjectDocument $mediaObjectDocument): self
     {
-        if ($this->documentMediaObjects->removeElement($documentMediaObject)) {
-            $documentMediaObject->removePerson($this);
+        if ($this->mediaObjectDocuments->removeElement($mediaObjectDocument)) {
+            $mediaObjectDocument->removePerson($this);
         }
 
         return $this;

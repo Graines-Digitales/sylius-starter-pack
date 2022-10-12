@@ -44,6 +44,9 @@ class ArticleTranslationType extends AbstractResourceType
             ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('metaTitle', TextType::class, [
                 'required' => false
