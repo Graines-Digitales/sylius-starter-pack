@@ -18,8 +18,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  * 
  * @ApiResource()
  * @ORM\Table(name="app_hotel_typical_day_element_translation")
- * @ORM\Entity(repositoryClass="App\Repository\HotelTypicalDayElementTranslationRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=HotelTypicalDayElementTranslationRepository::class)
  */
 class HotelTypicalDayElementTranslation extends AbstractTranslation implements ResourceInterface
 {

@@ -52,6 +52,7 @@ class SearchActionType extends AbstractResourceType
                 'placeholder' => 'app.ui_element.field.select_option',
             ])
             ->add('tags', EntityType::class, [
+                'attr' => ['class' => 'select2-standard'],
                 'class'         => Category::class,
                 'expanded'      => true,
                 'multiple'      => true,

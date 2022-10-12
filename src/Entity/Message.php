@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\IdentifiableTrait;
+use App\Controller\Api\MessageController;
+use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Controller\Api\MessageController;
 
 
 /**
@@ -42,20 +43,14 @@ use App\Controller\Api\MessageController;
  *       }
  *     }
  * )
- * @ORM\Entity
+ * @ORM\Entity()
  * @ORM\Table(name="app_message")
  */
 class Message implements ResourceInterface
 {
+    use IdentifiableTrait;
     use TimestampableEntity;
   
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
     /**
      * @var \DateTimeInterface|null the date/time at which the message was sent
      *
@@ -106,47 +101,10 @@ class Message implements ResourceInterface
      */
     private $origin;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=LocalBusiness::class, inversedBy="messages")
-     * 
-     * @Assert\NotEqualTo(
-     *     value = "-1",
-     *     message="Choose a local business please"
-     * )
-     */
-    private $localBusiness;
-
-    /**
-     * @ORM\OneToMany(targetEntity=ImageMediaObject::class, mappedBy="message")
-     * 
-     * @Assert\File(
-     *     maxSize = "20M",
-     *     mimeTypes = {
-     *          "image/png",
-     *          "image/jpeg",
-     *          "image/jpg",
-     *          "image/gif",
-     *          "application/pdf"
-     *      },
-     *     mimeTypesMessage = "Formats autorisés : pdf, png, jpeg, jpg, gif"
-     * )
-     */
-    private $messageAttachments;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Event::class, inversedBy="messages")
-     */
-    private $event;
 
     public function __construct()
     {
-        $this->messageAttachments = new ArrayCollection();
-    }
-
-
-    public function getId(): ?int
-    {
-        return $this->id;
+        
     }
 
     public function setSubject(?string $subject): void
@@ -207,60 +165,6 @@ class Message implements ResourceInterface
     public function setOrigin(?string $origin): self
     {
         $this->origin = $origin;
-
-        return $this;
-    }
-
-    public function getLocalBusiness(): ?LocalBusiness
-    {
-        return $this->localBusiness;
-    }
-
-    public function setLocalBusiness(?LocalBusiness $localBusiness): self
-    {
-        $this->localBusiness = $localBusiness;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ImageMediaObject>
-     */
-    public function getMessageAttachments(): Collection
-    {
-        return $this->messageAttachments;
-    }
-
-    public function addMessageAttachment(ImageMediaObject $messageAttachment): self
-    {
-        if (!$this->messageAttachments->contains($messageAttachment)) {
-            $this->messageAttachments[] = $messageAttachment;
-            $messageAttachment->setMessage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessageAttachment(ImageMediaObject $messageAttachment): self
-    {
-        if ($this->messageAttachments->removeElement($messageAttachment)) {
-            // set the owning side to null (unless already changed)
-            if ($messageAttachment->getMessage() === $this) {
-                $messageAttachment->setMessage(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getEvent(): ?Event
-    {
-        return $this->event;
-    }
-
-    public function setEvent(?Event $event): self
-    {
-        $this->event = $event;
 
         return $this;
     }

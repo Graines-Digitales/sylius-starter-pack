@@ -8,10 +8,13 @@ use App\Entity\AggregateOffer;
 use App\Entity\Traits\SeoTrait;
 use App\Entity\TripTranslation;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ImagesTrait;
+use App\Entity\Traits\LockableTrait;
 use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -28,13 +31,14 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  * 
  * @ApiResource(iri="https://schema.org/Trip")
  * @ORM\Table(name="app_trip")
- * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=TripRepository::class)
  */
 class Trip  implements ResourceInterface, TranslatableInterface   
 {
-    use SeoTrait;
     use IdentifiableTrait;
+    use LockableTrait;
+    use SeoTrait;
+    use ImagesTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;
@@ -73,19 +77,25 @@ class Trip  implements ResourceInterface, TranslatableInterface
      */
     private ?\DateTimeInterface $departureTime = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=ImageMediaObject::class, inversedBy="trips")
-     */
-    private $primaryImage;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $category;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="trips")
      * @ORM\JoinTable(name="app_amenity_trips_categories")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $tags;
 
@@ -98,6 +108,11 @@ class Trip  implements ResourceInterface, TranslatableInterface
      *      max = 5,
      *      minMessage = "You must specify at least one offer",
      *      maxMessage = "You cannot specify more than {{ limit }} offers"
+     * )
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
      * )
      */
     private $offers;
@@ -123,9 +138,21 @@ class Trip  implements ResourceInterface, TranslatableInterface
         return $this->getTranslation()->getMetaDescription();
     }
 
+    public function setHeadline(string $headline): self
+    {
+        $this->getTranslation()->setHeadline($headline);
+
+        return $this;
+    }
+
+    public function getAlternativeHeadline(): ?string
+    {
+        return $this->getTranslation()->getAlternativeHeadline();
+    }
+    
     public function setComponents(string $components): self
     {
-        $this->getTranslation('fr_FR')->setComponents($components);
+        $this->getTranslation()->setComponents($components);
 
         return $this;
     }
@@ -150,17 +177,6 @@ class Trip  implements ResourceInterface, TranslatableInterface
         return $this->departureTime;
     }
 
-    public function getPrimaryImage(): ?ImageMediaObject
-    {
-        return $this->primaryImage;
-    }
-
-    public function setPrimaryImage(?ImageMediaObject $primaryImage): self
-    {
-        $this->primaryImage = $primaryImage;
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {
@@ -221,4 +237,5 @@ class Trip  implements ResourceInterface, TranslatableInterface
 
         return $this;
     }
+    
 }

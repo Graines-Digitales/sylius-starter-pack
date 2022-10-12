@@ -5,39 +5,31 @@ namespace App\Form\Type;
 use App\Entity\Article;
 use App\Entity\CmsLink;
 use App\Entity\WebPage;
-use App\Entity\ImageMediaObject;
-use App\WebContent\Component;
+use App\Entity\MediaObjectImage;
 use App\Form\Type\CmsLinkTranslationType;
-use App\Repository\MediaObjectRepository;
+use App\Repository\MediaObjectImageRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
-use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
+
 
 class CmsLinkType extends AbstractResourceType
 {
-    private $componentService;
     private $container;
 
-    public function __construct(
-        ContainerInterface $container,
-        Component $componentService
-    ){
+    public function __construct(ContainerInterface $container)
+    {
         $this->container = $container;
-        $this->componentService = $componentService;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // $icons = $this->componentService->getIcons(null);
         $configurationProject = $this->container->getParameter('configuration_project');
         $builder
             ->add('translations', ResourceTranslationsType::class, [
@@ -51,10 +43,10 @@ class CmsLinkType extends AbstractResourceType
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
-                'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'attr' => ['class' => 'select2-icon'],
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
+                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingSvg($configurationProject);
                 }
             ])
@@ -75,15 +67,7 @@ class CmsLinkType extends AbstractResourceType
                 'required' => false,
                 'placeholder' => 'app.ui_element.field.choose',
             ])
-            // ->add('cmsLinks', CollectionType::class, [
-            //     'entry_type' => CmsLinkType::class,
-            //     'label' => 'app.ui_element.field.cms_links',
-            //     'allow_add' => true,
-            //     'allow_delete' => true,
-            //     'by_reference' => false,
-            //     'delete_empty' => true,
-            // ])
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

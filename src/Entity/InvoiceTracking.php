@@ -15,8 +15,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *
  * @ApiResource()
  * @ORM\Table(name="app_invoice_tracking")
- * @ORM\Entity(repositoryClass="App\Repository\InvoiceTrackingRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=InvoiceTrackingRepository::class)
  */
 class InvoiceTracking implements ResourceInterface
 {

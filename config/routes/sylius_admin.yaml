@@ -247,22 +247,22 @@ app_admin_media_icon:
     type: sylius.resource
     prefix: /admin  
 
-app_admin_organizations:
-    resource: |
-        alias: app.organization
-        section: admin
-        templates: "@SyliusAdmin\\Crud"
-        redirect: update
-        grid: app_admin_organization
-        vars:
-            all:
-                subheader: app.ui.organization
-                templates:
-                    form: "@App/admin/form/Organization/views/_form.html.twig"
-            index:
-                icon: 'building outline'
-    type: sylius.resource
-    prefix: /admin 
+# app_admin_organizations:
+#     resource: |
+#         alias: app.organization
+#         section: admin
+#         templates: "@SyliusAdmin\\Crud"
+#         redirect: update
+#         grid: app_admin_organization
+#         vars:
+#             all:
+#                 subheader: app.ui.organization
+#                 templates:
+#                     form: "@App/admin/form/Organization/views/_form.html.twig"
+#             index:
+#                 icon: 'building outline'
+#     type: sylius.resource
+#     prefix: /admin 
 
 app_admin_organization:
     resource: |
@@ -279,32 +279,32 @@ app_admin_organization:
     type: sylius.resource
     prefix: /admin 
 
-app_admin_service:
+app_admin_hotel_service:
     resource: |
-        alias: app.service
+        alias: app.hotel_service
         section: admin
         templates: "@SyliusAdmin\\Crud"
         redirect: update
-        grid: app_admin_service
+        grid: app_admin_hotel_service
         vars:
             all:
-                subheader: app.ui.service
+                subheader: app.ui.hotel_service
                 
             index:
-                icon: 'file image outline'
+                icon: 'hotel_service'
     type: sylius.resource
     prefix: /admin
 
-app_admin_social_links:
+app_admin_social_link:
     resource: |
-        alias: app.social_links
+        alias: app.social_link
         section: admin
         templates: "@SyliusAdmin\\Crud"
         redirect: update
-        grid: app_admin_social_links
+        grid: app_admin_social_link
         vars:
             all:
-                subheader: app.ui.social_links
+                subheader: app.ui.social_link
                 templates:
                     form: "@App/admin/form/SocialLinks/views/_form.html.twig"
             index:
@@ -330,4 +330,115 @@ app_admin_travel:
     type: sylius.resource
     prefix: /admin/
 
+app_admin_hotel_room:
+    resource: |
+        alias: app.hotel_room
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_hotel_room
+        vars:
+            all:
+                header: app.ui.hotel_rooms
+                subheader: app.ui.hotel_room
+            index:
+                icon: 'room'
+    type: sylius.resource
+    prefix: /admin/
+
+app_admin_offer:
+    resource: |
+        alias: app.offer
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_offer
+        vars:
+            all:
+                header: app.ui.offers
+                subheader: app.ui.offer
+            index:
+                icon: 'offer'
+    type: sylius.resource
+    prefix: /admin/
+
+app_admin_event:
+    resource: |
+        alias: app.event
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_event
+        vars:
+            all:
+                header: app.ui.events
+                subheader: app.ui.event
+            index:
+                icon: 'event'
+    type: sylius.resource
+    prefix: /admin/
+
+app_admin_booking:
+    resource: |
+        alias: app.booking
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_booking
+        vars:
+            all:
+                header: app.ui.bookings
+                subheader: app.ui.booking
+            index:
+                icon: 'booking'
+    type: sylius.resource
+    prefix: /admin/
+
+app_admin_amenity_feature:
+    resource: |
+        alias: app.amenity_feature
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_amenity_feature
+        vars:
+            all:
+                header: app.ui.amenity_features
+                subheader: app.ui.amenity_feature
+            index:
+                icon: 'amenity_feature'
+    type: sylius.resource
+    prefix: /admin/
+
+app_admin_hotel_activity:
+    resource: |
+        alias: app.hotel_activity
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_hotel_activity
+        vars:
+            all:
+                header: app.ui.hotel_activities
+                subheader: app.ui.hotel_activity
+            index:
+                icon: 'hotel_activity'
+    type: sylius.resource
+    prefix: /admin
     
+app_admin_hotel_typical_day:
+    resource: |
+        alias: app.hotel_typical_day
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_hotel_typical_day
+        vars:
+            all:
+                header: app.ui.hotel_typical_days
+                subheader: app.ui.hotel_typical_day
+            index:
+                icon: 'hotel_typical_day'
+    type: sylius.resource
+    prefix: /admin
+

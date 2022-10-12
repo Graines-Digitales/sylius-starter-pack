@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\SeoTranslatableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\Traits\CreativeWorkTrait;
+use App\Entity\Traits\IdentifiableTrait;
+use App\Entity\Traits\SeoTranslatableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\WebPageTranslationRepository;
@@ -16,23 +17,17 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 
 /**
- * @ApiResource()
+ * @ApiResource(iri="https://schema.org/WebPage")
  * @ORM\Entity(repositoryClass=WebPageTranslationRepository::class)
  * @ORM\Table(name="app_web_page_translation")
  */
 class WebPageTranslation extends AbstractTranslation implements ResourceInterface
 {
+    use IdentifiableTrait;
     use SeoTranslatableTrait;
     use ThingTrait;
     use CreativeWorkTrait;
     use TimestampableEntity;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -47,11 +42,11 @@ class WebPageTranslation extends AbstractTranslation implements ResourceInterfac
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $structuredData = [];
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getComponents(): ?string
     {
@@ -80,4 +75,15 @@ class WebPageTranslation extends AbstractTranslation implements ResourceInterfac
         return $this->slug;
     }
 
+    public function getStructuredData(): ?array
+    {
+        return $this->structuredData;
+    }
+
+    public function setStructuredData(?array $structuredData): self
+    {
+        $this->structuredData = $structuredData;
+
+        return $this;
+    }
 }

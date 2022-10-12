@@ -1,0 +1,944 @@
+{
+    "@context": "/api/contexts/HotelTypicalDay",
+    "@id": "/api/hotel_typical_days",
+    "@type": "hydra:Collection",
+    "hydra:member": [
+        {
+            "@id": "/api/hotel_typical_days/1",
+            "@type": "http://schema.org/?",
+            "elements": [
+                {
+                    "@id": "/api/hotel_typical_day_elements/1",
+                    "@type": "http://schema.org/?",
+                    "label": "REVEIL EN DOUCEUR",
+                    "value": "Sur ma terrasse à mon rythme",
+                    "slug": "sur-ma-terrasse-a-mon-rythme",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-ftour.jpg",
+                        "name": "Day Type Img Ftour",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-ftour.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-ftour.jpg",
+                        "name": "Day Type Img Ftour",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-ftour.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "10h",
+                    "labelBgTransparent": true,
+                    "description": "Sur ma terrasse à mon rythme",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/15",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "petit-dejeuner",
+                        "name": "petit déjeuner",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/2",
+                    "@type": "http://schema.org/?",
+                    "label": "FARNIENTE",
+                    "value": "Baignades, lecture, musique, discussions …",
+                    "slug": "baignades-lecture-musique-discussions",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-pool.jpg",
+                        "name": "Day Type Img Pool",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-pool.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-pool.jpg",
+                        "name": "Day Type Img Pool",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-pool.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "11h",
+                    "labelBgTransparent": true,
+                    "description": "Baignades, lecture, musique, discussions …",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/16",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "piscine",
+                        "name": "piscine",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/3",
+                    "@type": "http://schema.org/?",
+                    "label": "VUE SUR LA MER",
+                    "value": "Trop bon avec en plus le sourire d’Hafssa",
+                    "slug": "trop-bon-avec-en-plus-le-sourire-dhafssa",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+                        "name": "Activities Rag180331 Essaouira Chr 020072",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+                        "name": "Activities Rag180331 Essaouira Chr 020072",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "14h",
+                    "labelBgTransparent": true,
+                    "description": "Trop bon avec en plus le sourire d’Hafssa",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/17",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "dejeuner",
+                        "name": "déjeuner",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/4",
+                    "@type": "http://schema.org/?",
+                    "label": "UNE MERVEILLE",
+                    "value": "Ouah! Le petit galop sur la plage",
+                    "slug": "ouah-le-petit-galop-sur-la-plage",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+                        "name": "Activities Rag180331 Essaouira Chr 020072",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+                        "name": "Activities Rag180331 Essaouira Chr 020072",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "15h30",
+                    "labelBgTransparent": true,
+                    "description": "Ouah! Le petit galop sur la plage",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/18",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "equitation",
+                        "name": "équitation",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/5",
+                    "@type": "http://schema.org/?",
+                    "label": "RELAX",
+                    "value": "En sirotant un cocktail de fruits",
+                    "slug": "en-sirotant-un-cocktail-de-fruits",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=piscines-img-33321-jpg;id=141",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "piscines-img-33321.jpg",
+                        "name": "Piscines Img 33321",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/piscines-img-33321.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=piscines-img-33321-jpg;id=141",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "piscines-img-33321.jpg",
+                        "name": "Piscines Img 33321",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/piscines-img-33321.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "17h30",
+                    "labelBgTransparent": true,
+                    "description": "En sirotant un cocktail de fruits",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/16",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "piscine",
+                        "name": "piscine",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/6",
+                    "@type": "http://schema.org/?",
+                    "label": "DU CHARME",
+                    "value": "Bonne douche et coucher de soleil sur ma terrasse",
+                    "slug": "bonne-douche-et-coucher-de-soleil-sur-ma-terrasse",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+                        "name": "Activities Rag180331 Essaouira Chr 020072",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+                        "name": "Activities Rag180331 Essaouira Chr 020072",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "19h30",
+                    "labelBgTransparent": true,
+                    "description": "Bonne douche et coucher de soleil sur ma terrasse",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/19",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "la-chambre",
+                        "name": "la chambre",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/7",
+                    "@type": "http://schema.org/?",
+                    "label": "QUEL PLAISIR",
+                    "value": "Les mignardises maison et les histoires de Bruno",
+                    "slug": "les-mignardises-maison-et-les-histoires-de-bruno",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+                        "name": "Activities Rag180331 Essaouira Chr 020072",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+                        "name": "Activities Rag180331 Essaouira Chr 020072",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "20h",
+                    "labelBgTransparent": true,
+                    "description": "Les mignardises maison et les histoires de Bruno",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/20",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "aperitif",
+                        "name": "apéritif",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/8",
+                    "@type": "http://schema.org/?",
+                    "label": "UN DELICE",
+                    "value": "Aux chandelles en amoureux à Gonatouki",
+                    "slug": "aux-chandelles-en-amoureux-a-gonatouki",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=piscines-img-33321-jpg;id=141",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "piscines-img-33321.jpg",
+                        "name": "Piscines Img 33321",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/piscines-img-33321.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=piscines-img-33321-jpg;id=141",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "piscines-img-33321.jpg",
+                        "name": "Piscines Img 33321",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/piscines-img-33321.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "20h30",
+                    "labelBgTransparent": true,
+                    "description": "Aux chandelles en amoureux à Gonatouki",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/21",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "diner",
+                        "name": "diner",
+                        "isActive": true
+                    },
+                    "event": null
+                }
+            ],
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/13",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "accueil",
+                    "name": "accueil",
+                    "isActive": true
+                }
+            ],
+            "slug": "une-journee-cool",
+            "name": "Une journée cool",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_typical_days/2",
+            "@type": "http://schema.org/?",
+            "elements": [
+                {
+                    "@id": "/api/hotel_typical_day_elements/9",
+                    "@type": "http://schema.org/?",
+                    "label": "MERCI!!!",
+                    "value": "jus frais, Fruits, pain maison, crêpe, pancake, beignet, œufs, café et thé…",
+                    "slug": "jus-frais-fruits-pain-maison-crepe-pancake-beignet-oeufs-cafe-et-the",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-ftour.jpg",
+                        "name": "Day Type Img Ftour",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-ftour.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-ftour.jpg",
+                        "name": "Day Type Img Ftour",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-ftour.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "8h30",
+                    "labelBgTransparent": true,
+                    "description": "jus frais, Fruits, pain maison, crêpe, pancake, beignet, œufs, café et thé…",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/15",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "petit-dejeuner",
+                        "name": "petit déjeuner",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/10",
+                    "@type": "http://schema.org/?",
+                    "label": "QUEL PLAISIR!",
+                    "value": "Avec Gona et Touki",
+                    "slug": "avec-gona-et-touki",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-pool.jpg",
+                        "name": "Day Type Img Pool",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-pool.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-pool.jpg",
+                        "name": "Day Type Img Pool",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-pool.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "9h",
+                    "labelBgTransparent": true,
+                    "description": "Avec Gona et Touki",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/22",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "promenade",
+                        "name": "promenade",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/11",
+                    "@type": "http://schema.org/?",
+                    "label": "EN PLEINE FORME!",
+                    "value": "50 longueurs dans le couloir de nage",
+                    "slug": "50-longueurs-dans-le-couloir-de-nage",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=activities-img-nautique-inversed-jpeg;id=81",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-img-nautique-inversed.jpeg",
+                        "name": "Activities Img Nautique Inversed",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-img-nautique-inversed.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=activities-img-nautique-inversed-jpeg;id=81",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-img-nautique-inversed.jpeg",
+                        "name": "Activities Img Nautique Inversed",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-img-nautique-inversed.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "10h30",
+                    "labelBgTransparent": true,
+                    "description": "50 longueurs dans le couloir de nage",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/23",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "natation",
+                        "name": "natation",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/12",
+                    "@type": "http://schema.org/?",
+                    "label": "JE M’ÉCLATE!",
+                    "value": "Matériel top et conditions parfaites. Merci pour les conseils.",
+                    "slug": "materiel-top-et-conditions-parfaites-merci-pour-les-conseils",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-accueil-hotel-tasgua-yan-01.jpg",
+                        "name": "Activities Accueil Hotel Tasgua Yan 01",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-accueil-hotel-tasgua-yan-01.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-accueil-hotel-tasgua-yan-01.jpg",
+                        "name": "Activities Accueil Hotel Tasgua Yan 01",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-accueil-hotel-tasgua-yan-01.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "12h",
+                    "labelBgTransparent": true,
+                    "description": "Matériel top et conditions parfaites. Merci pour les conseils.",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/24",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "kitesurf",
+                        "name": "Kitesurf",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/13",
+                    "@type": "http://schema.org/?",
+                    "label": "QUEL SPECTACLE!",
+                    "value": "En bordure de mer: diététique et très bon",
+                    "slug": "en-bordure-de-mer-dietetique-et-tres-bon",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-essaouira-1139708-1920.jpg",
+                        "name": "Demo Essaouira 1139708 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-essaouira-1139708-1920.jpg",
+                        "name": "Demo Essaouira 1139708 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "14h30",
+                    "labelBgTransparent": true,
+                    "description": "En bordure de mer: diététique et très bon",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/17",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "dejeuner",
+                        "name": "déjeuner",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/14",
+                    "@type": "http://schema.org/?",
+                    "label": "PASSIONNANT",
+                    "value": "La négo: une sacrée expérience",
+                    "slug": "la-nego-une-sacree-experience",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-essaouira-1139708-1920.jpg",
+                        "name": "Demo Essaouira 1139708 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-essaouira-1139708-1920.jpg",
+                        "name": "Demo Essaouira 1139708 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "16h",
+                    "labelBgTransparent": true,
+                    "description": "La négo: une sacrée expérience",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/25",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "medina",
+                        "name": "médina",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/15",
+                    "@type": "http://schema.org/?",
+                    "label": "SUPER SYMPA",
+                    "value": "Echanges avec d’autres hôtes sur nos expériences du jour",
+                    "slug": "echanges-avec-dautres-hotes-sur-nos-experiences-du-jour",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-casablanca-4620328-1920.jpg",
+                        "name": "Demo Casablanca 4620328 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-casablanca-4620328-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-casablanca-4620328-1920.jpg",
+                        "name": "Demo Casablanca 4620328 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-casablanca-4620328-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "20h30",
+                    "labelBgTransparent": true,
+                    "description": "Echanges avec d’autres hôtes sur nos expériences du jour",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/20",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "aperitif",
+                        "name": "apéritif",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/16",
+                    "@type": "http://schema.org/?",
+                    "label": "TROP BON!",
+                    "value": "Devant la cheminée. La pastilla de poisson quelle saveur!",
+                    "slug": "devant-la-cheminee-la-pastilla-de-poisson-quelle-saveur",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-casablanca-4620328-1920.jpg",
+                        "name": "Demo Casablanca 4620328 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-casablanca-4620328-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-casablanca-4620328-1920.jpg",
+                        "name": "Demo Casablanca 4620328 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-casablanca-4620328-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "21h15",
+                    "labelBgTransparent": true,
+                    "description": "Devant la cheminée. La pastilla de poisson quelle saveur!",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/21",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "diner",
+                        "name": "diner",
+                        "isActive": true
+                    },
+                    "event": null
+                }
+            ],
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/13",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "accueil",
+                    "name": "accueil",
+                    "isActive": true
+                }
+            ],
+            "slug": "une-journee-tonique",
+            "name": "Une journée tonique",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        },
+        {
+            "@id": "/api/hotel_typical_days/3",
+            "@type": "http://schema.org/?",
+            "elements": [
+                {
+                    "@id": "/api/hotel_typical_day_elements/17",
+                    "@type": "http://schema.org/?",
+                    "label": "DEPAYSANT",
+                    "value": "Retour direct au 19ème siècle",
+                    "slug": "retour-direct-au-19eme-siecle",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-ftour.jpg",
+                        "name": "Day Type Img Ftour",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-ftour.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-ftour-jpg;id=36",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-ftour.jpg",
+                        "name": "Day Type Img Ftour",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-ftour.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "9h30",
+                    "labelBgTransparent": true,
+                    "description": "Retour direct au 19ème siècle",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/26",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "le-marche-dhaddra",
+                        "name": "Le marché d’Had’Dra",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/18",
+                    "@type": "http://schema.org/?",
+                    "label": "ETONNANT",
+                    "value": "Le port et son marché aux poissons",
+                    "slug": "le-port-et-son-marche-aux-poissons",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-pool.jpg",
+                        "name": "Day Type Img Pool",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-pool.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "day-type-img-pool.jpg",
+                        "name": "Day Type Img Pool",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-pool.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "11h30",
+                    "labelBgTransparent": true,
+                    "description": "Le port et son marché aux poissons",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/27",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "le-port",
+                        "name": "Le port",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/19",
+                    "@type": "http://schema.org/?",
+                    "label": "SURPRENANT",
+                    "value": "A la découverte de l’objet improbable",
+                    "slug": "a-la-decouverte-de-lobjet-improbable",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=activities-img-nautique-inversed-jpeg;id=81",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-img-nautique-inversed.jpeg",
+                        "name": "Activities Img Nautique Inversed",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-img-nautique-inversed.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=activities-img-nautique-inversed-jpeg;id=81",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-img-nautique-inversed.jpeg",
+                        "name": "Activities Img Nautique Inversed",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-img-nautique-inversed.jpeg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "13h30",
+                    "labelBgTransparent": true,
+                    "description": "A la découverte de l’objet improbable",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/28",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "le-marche-aux-puces",
+                        "name": "Le marché aux puces",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/20",
+                    "@type": "http://schema.org/?",
+                    "label": "A COUPER LE SOUFFLE!",
+                    "value": "Seul au monde",
+                    "slug": "seul-au-monde",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-accueil-hotel-tasgua-yan-01.jpg",
+                        "name": "Activities Accueil Hotel Tasgua Yan 01",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-accueil-hotel-tasgua-yan-01.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=activities-accueil-hotel-tasgua-yan-01-jpg;id=86",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "activities-accueil-hotel-tasgua-yan-01.jpg",
+                        "name": "Activities Accueil Hotel Tasgua Yan 01",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-accueil-hotel-tasgua-yan-01.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "14h30",
+                    "labelBgTransparent": true,
+                    "description": "Seul au monde",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/29",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "les-plages-sauvages",
+                        "name": "Les plages sauvages",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/21",
+                    "@type": "http://schema.org/?",
+                    "label": "AUTHENTIQUE",
+                    "value": "Les ruelles, les artisans, le marché aux épices…",
+                    "slug": "les-ruelles-les-artisans-le-marche-aux-epices",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-essaouira-1139708-1920.jpg",
+                        "name": "Demo Essaouira 1139708 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-essaouira-1139708-1920.jpg",
+                        "name": "Demo Essaouira 1139708 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "17h",
+                    "labelBgTransparent": true,
+                    "description": "Les ruelles, les artisans, le marché aux épices…",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/30",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "la-medina",
+                        "name": "La médina",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/22",
+                    "@type": "http://schema.org/?",
+                    "label": "INCONTOURNABLE",
+                    "value": "Quelle détente! j’en veux un tous les jours",
+                    "slug": "quelle-detente-jen-veux-un-tous-les-jours",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-essaouira-1139708-1920.jpg",
+                        "name": "Demo Essaouira 1139708 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=demo-essaouira-1139708-1920-jpg;id=24",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-essaouira-1139708-1920.jpg",
+                        "name": "Demo Essaouira 1139708 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-essaouira-1139708-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "19h",
+                    "labelBgTransparent": true,
+                    "description": "Quelle détente! j’en veux un tous les jours",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/31",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "massage",
+                        "name": "Massage",
+                        "isActive": true
+                    },
+                    "event": null
+                },
+                {
+                    "@id": "/api/hotel_typical_day_elements/23",
+                    "@type": "http://schema.org/?",
+                    "label": "ENCORE!",
+                    "value": "Avec le sourire d’Hafssa de l’apéritif au dessert",
+                    "slug": "avec-le-sourire-dhafssa-de-laperitif-au-dessert",
+                    "primaryImage": {
+                        "@id": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-casablanca-4620328-1920.jpg",
+                        "name": "Demo Casablanca 4620328 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-casablanca-4620328-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "secondaryImage": {
+                        "@id": "/api/media_objects/slug=demo-casablanca-4620328-1920-jpg;id=12",
+                        "@type": "http://schema.org/MediaObject",
+                        "filename": "demo-casablanca-4620328-1920.jpg",
+                        "name": "Demo Casablanca 4620328 1920",
+                        "description": null,
+                        "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-casablanca-4620328-1920.jpg",
+                        "mainEntityOfPage": null
+                    },
+                    "hours": "21h",
+                    "labelBgTransparent": true,
+                    "description": "Avec le sourire d’Hafssa de l’apéritif au dessert",
+                    "isActive": true,
+                    "category": {
+                        "@id": "/api/tags/21",
+                        "@type": "http://schema.org/Thing",
+                        "slug": "diner",
+                        "name": "diner",
+                        "isActive": true
+                    },
+                    "event": null
+                }
+            ],
+            "category": {
+                "@id": "/api/tags/13",
+                "@type": "http://schema.org/Thing",
+                "slug": "accueil",
+                "name": "accueil",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/13",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "accueil",
+                    "name": "accueil",
+                    "isActive": true
+                }
+            ],
+            "slug": "une-journee-visite",
+            "name": "Une journée visite",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null
+        }
+    ],
+    "hydra:totalItems": 3,
+    "hydra:view": {
+        "@id": "/api/hotel_typical_days?isActive=1&pagination=0&order%5Bid%5D=DESC",
+        "@type": "hydra:PartialCollectionView"
+    }
+}

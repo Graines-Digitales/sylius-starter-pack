@@ -23,9 +23,7 @@ class TagsTransformer implements DataTransformerInterface
         }
         
         $tags = [];
-        
         foreach($data as $key=>$value) {
-       
             if(is_bool($value)) {
                 if(true === $value) {
                     $tag = $this->manager
@@ -41,8 +39,6 @@ class TagsTransformer implements DataTransformerInterface
                 ;
                 $tags[] = $tag;
             }
-            
-            
         }
 
         return $tags;
@@ -50,7 +46,6 @@ class TagsTransformer implements DataTransformerInterface
 
     public function reverseTransform($tags)
     {
-        
         if (null === $tags) {
             return '';
         }
@@ -59,7 +54,8 @@ class TagsTransformer implements DataTransformerInterface
         foreach($tags as $tag) {
             $array[] = [
                 'id' => $tag->getId(),
-                'slug' => $tag->getSlug()
+                'slug' => $tag->getSlug(),
+                'name' => $tag->getName()
             ];
         }
         

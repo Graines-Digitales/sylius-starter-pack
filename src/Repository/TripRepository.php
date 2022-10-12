@@ -14,5 +14,14 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
  */
 class TripRepository extends EntityRepository
 {
-    
+    public function findOneBySlug($slug)
+    {
+        return $this->createQueryBuilder('entity')
+            ->innerJoin('entity.translations', 'translation')
+            ->andWhere('translation.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

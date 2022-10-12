@@ -4,7 +4,7 @@ namespace App\Form\Type;
 
 use App\Configuration\Project;
 use App\Entity\Category;
-use App\Entity\ImageMediaObject;
+use App\Entity\MediaObjectImage;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\MediaObjectRepository;
 use App\Form\Type\CategoryTranslationType;
@@ -44,18 +44,19 @@ class CategoryType extends AbstractResourceType
         $configurationProject = $this->container->getParameter('configuration_project');
         $builder
             ->add('isLocked', CheckboxType::class, [
+                'disabled' => false,
                 'required' => false,
             ])
             ->add('isEnabled', CheckboxType::class, [
                 'required' => false,
             ])
-            ->add('type', ChoiceType::class, [
+            ->add('parent', ChoiceType::class, [
                 'choices' => $categoryTypeSlugs,
                 'placeholder' => 'app.ui_element.field.choose',
                 'required' => false,
             ])
             // ->add('icon', EntityType::class, [
-            //     'class' => ImageMediaObject::class,
+            //     'class' => MediaObjectImage::class,
             //     'placeholder' => 'app.ui_element.field.select_icon',
             //     'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
             //         return $repo->createQueryBuilderByEncodingSvg($configurationProject);
@@ -64,7 +65,7 @@ class CategoryType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
-                'class' => ImageMediaObject::class,
+                'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose'
             ])
             ->add('translations', ResourceTranslationsType::class, [

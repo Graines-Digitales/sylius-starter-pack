@@ -13,7 +13,8 @@
         {# So we render the fields #}
         {{ form_row(form.isEnabled) }}
         {{ form_row(form.isIndexed) }}
-        {{ form_row(form.type) }}
+        {{ form_row(form.isLocked) }}
+        {# {{ form_row(form.type) }} #}
         {# {{ form_row(form.createdAt) }}
         {{ form_row(form.updatedAt) }} #}
       
@@ -35,6 +36,7 @@
 		</div>
 
         {{ form_row(form.secondaryImage) }}
+        {{ form_row(form.icon) }}
         {{ form_row(form.video) }}
         {{ form_row(form.category) }}
         

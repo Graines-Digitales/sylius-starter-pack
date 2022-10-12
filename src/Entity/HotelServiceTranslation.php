@@ -20,8 +20,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * 
  * @ApiResource()
  * @ORM\Table(name="app_hotel_service_translation")
- * @ORM\Entity(repositoryClass="App\Repository\HotelServiceTranslationRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass=HotelServiceTranslationRepository::class)
  */
 class HotelServiceTranslation extends AbstractTranslation implements ResourceInterface
 {

@@ -1,0 +1,1984 @@
+{
+    "@context": "/api/contexts/HotelActivity",
+    "@id": "/api/hotel_activities",
+    "@type": "hydra:Collection",
+    "hydra:member": [
+        {
+            "@id": "/api/hotel_activities/1",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=demo-5-nuits-en-riad-a-essaouira-jpg;id=13",
+                "@type": "http://schema.org/MediaObject",
+                "slug": "demo-5-nuits-en-riad-a-essaouira-jpg",
+                "contentSize": 267348,
+                "encodingFormat": "image/jpg",
+                "caption": null,
+                "filename": "demo-5-nuits-en-riad-a-essaouira.jpg",
+                "originalFilename": "5-nuits-en-riad-a-essaouira.jpg",
+                "dimensions": [
+                    "2000",
+                    "1142",
+                    "2",
+                    "width=\"2000\" height=\"1142\"",
+                    "8",
+                    "3",
+                    "image/jpeg"
+                ],
+                "file": null,
+                "isConform": false,
+                "link": null,
+                "isActive": true,
+                "originalStampedImage": false,
+                "alt": "Demo 5 Nuits En Riad A Essaouira",
+                "name": "Demo 5 Nuits En Riad A Essaouira",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-5-nuits-en-riad-a-essaouira.jpg",
+                "mainEntityOfPage": null
+            },
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "golf",
+            "name": "Golf",
+            "description": "Aa quelques longueurs de drive de Gonatouki, un somptueux golf parfaitement entretenu,dessiné par le prestigieux Gary Player, surplombe la mer. Il vient dʼêtre classé parmi les 10 plus beaux golfs du monde par une équipe de semi-pros. Profitez du climat exceptionnel pour découvrir ce 18 trous au parcours enchanteur. Par 72 de 6608 mètres qui convient tant aux joueurs expérimentés quʼaux amateurs, jeunes et moins jeunes. Le club est ouvert aux visiteurs toute lʼannée.",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": "Extraordinaire!",
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/2",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "sports-nautiques",
+            "name": "SPORTS NAUTIQUES",
+            "description": "Essaouira, Sidi Kaouki, Moulay… La côte atlantique marocaine offre elle aussi des spots réputés ! Equipez-vous dʼun kite, une planche à voile, un surf ou un bodyboard et partez à lʼassaut des vagues ! Pétole ? Profitez-en pour faire du kayak de mer et contourner lʼîle de Mogador. Les nombreux clubs bordant le littoral proposent des stages dʼinitiation ou de perfectionnement et du matériel de qualité en location.",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": "Fantastique!",
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/3",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "equitation-et-meharee",
+            "name": "Equitation et MÉHARÉE",
+            "description": "Vous pensiez que galoper sur une plage déserte au coucher du soleil nʼétait possible quʼau cinéma ? Détrompez-vous et tentez cette expérience unique lors de votre séjour ! Que vous soyez cavalier expert, confirmé ou débutant, Jawad vous emmènera faire dʼinoubliables balades en bord de mer ou en forêt. Vous voulez encore plus de dépaysement ? Jouez les Lawrence dʼArabie à lʼoccasion dʼune balade en dromadaire dans les dunes.",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": "Topissime!",
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/4",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "equitation",
+            "name": "Equitation",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/5",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=demo-desert-1979000-1920-jpg;id=18",
+                "@type": "http://schema.org/MediaObject",
+                "slug": "demo-desert-1979000-1920-jpg",
+                "contentSize": 214540,
+                "encodingFormat": "image/jpg",
+                "caption": null,
+                "filename": "demo-desert-1979000-1920.jpg",
+                "originalFilename": "desert-1979000_1920.jpg",
+                "dimensions": [
+                    "1920",
+                    "1280",
+                    "2",
+                    "width=\"1920\" height=\"1280\"",
+                    "8",
+                    "3",
+                    "image/jpeg"
+                ],
+                "file": null,
+                "isConform": false,
+                "link": null,
+                "isActive": true,
+                "originalStampedImage": false,
+                "alt": "Demo Desert 1979000 1920",
+                "name": "Demo Desert 1979000 1920",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-desert-1979000-1920.jpg",
+                "mainEntityOfPage": null
+            },
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "quad",
+            "name": "Quad",
+            "description": "Mettez une pointe de frissons dans votre séjour et partez en quad pour un circuit inoubliable, à la beauté époustouflante ! Vous sillonnerez le bord de mer, en passant par les dunes et la lisière de la forêt lors dʼune sortie de 1 à 3 heures selon votre choix. Amateurs de sensations, vous apprécierez la pointe de vitesse sur la plage ou la descente dʼune dune à pic !",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": "De prodigieuses sensations!",
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/6",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "buggy",
+            "name": "Buggy",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/7",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "surf",
+            "name": "Surf",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/8",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "planche-a-voile",
+            "name": "Planche à voile",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/9",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=activities-img-nautique-jpeg;id=89",
+                "@type": "http://schema.org/MediaObject",
+                "slug": "activities-img-nautique-jpeg",
+                "contentSize": 105816,
+                "encodingFormat": "image/jpeg",
+                "caption": null,
+                "filename": "activities-img-nautique.jpeg",
+                "originalFilename": "IMG_NAUTIQUE.jpeg",
+                "dimensions": [
+                    "1400",
+                    "787",
+                    "2",
+                    "width=\"1400\" height=\"787\"",
+                    "8",
+                    "3",
+                    "image/jpeg"
+                ],
+                "file": null,
+                "isConform": false,
+                "link": null,
+                "isActive": true,
+                "originalStampedImage": false,
+                "alt": "Activities Img Nautique",
+                "name": "Activities Img Nautique",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-img-nautique.jpeg",
+                "mainEntityOfPage": null
+            },
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "kitesurf",
+            "name": "Kitesurf",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/10",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "paddle",
+            "name": "Paddle",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/11",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "running",
+            "name": "Running",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/12",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "natation",
+            "name": "Natation",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/13",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "stack",
+            "name": "Stack",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/14",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "gymnastique-fitness-avec-ou-sans-coach",
+            "name": "Gymnastique / fitness avec ou sans coach",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/15",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "yoga",
+            "name": "Yoga",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/16",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "peche",
+            "name": "Pêche",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/17",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "velo-mountain-bike",
+            "name": "Vélo / mountain bike",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/18",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "petanque",
+            "name": "Pétanque",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/19",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "slack-line",
+            "name": "Slack line",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/20",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/32",
+                "@type": "http://schema.org/Thing",
+                "slug": "sportives",
+                "name": "Sportives",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/32",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sportives",
+                    "name": "Sportives",
+                    "isActive": true
+                }
+            ],
+            "slug": "frisbee",
+            "name": "Frisbee",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/21",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/33",
+                "@type": "http://schema.org/Thing",
+                "slug": "balades",
+                "name": "Balades",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/33",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "balades",
+                    "name": "Balades",
+                    "isActive": true
+                }
+            ],
+            "slug": "balades-avec-ou-sans-guides",
+            "name": "Balades avec ou sans guides",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/22",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/33",
+                "@type": "http://schema.org/Thing",
+                "slug": "balades",
+                "name": "Balades",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/33",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "balades",
+                    "name": "Balades",
+                    "isActive": true
+                }
+            ],
+            "slug": "pique-niques",
+            "name": "Pique niques",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/23",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=day-type-img-pool-jpg;id=32",
+                "@type": "http://schema.org/MediaObject",
+                "slug": "day-type-img-pool-jpg",
+                "contentSize": 232753,
+                "encodingFormat": "image/jpg",
+                "caption": null,
+                "filename": "day-type-img-pool.jpg",
+                "originalFilename": "IMG_POOL.jpg",
+                "dimensions": [
+                    "1920",
+                    "780",
+                    "2",
+                    "width=\"1920\" height=\"780\"",
+                    "8",
+                    "3",
+                    "image/jpeg"
+                ],
+                "file": null,
+                "isConform": false,
+                "link": null,
+                "isActive": true,
+                "originalStampedImage": false,
+                "alt": "Day Type Img Pool",
+                "name": "Day Type Img Pool",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/day-type-img-pool.jpg",
+                "mainEntityOfPage": null
+            },
+            "category": {
+                "@id": "/api/tags/34",
+                "@type": "http://schema.org/Thing",
+                "slug": "sport-et-exterieur",
+                "name": "Sport et Extérieur",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/34",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sport-et-exterieur",
+                    "name": "Sport et Extérieur",
+                    "isActive": true
+                }
+            ],
+            "slug": "piscine",
+            "name": "Piscine",
+            "description": "Essaouira, Sidi Kaouki, Moulay… La côte atlantique marocaine offre elle aussi des spots réputés ! Equipez-vous dʼun kite, une planche à voile, un surf ou un bodyboard et partez à lʼassaut des vagues ! Pétole ? Profitez-en pour faire du kayak, contourner lʼîle de Mogador. Les nombreux clubs bordant le littoral proposent des stages dʼinitiation ou de perfectionnement et du matériel de qualité en location.",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/24",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=activities-rag180331-essaouira-chr-020072-jpeg;id=85",
+                "@type": "http://schema.org/MediaObject",
+                "slug": "activities-rag180331-essaouira-chr-020072-jpeg",
+                "contentSize": 739874,
+                "encodingFormat": "image/jpeg",
+                "caption": null,
+                "filename": "activities-rag180331-essaouira-chr-020072.jpeg",
+                "originalFilename": "rag180331-essaouira-chr-020072.jpeg",
+                "dimensions": [
+                    "3840",
+                    "2560",
+                    "2",
+                    "width=\"3840\" height=\"2560\"",
+                    "8",
+                    "3",
+                    "image/jpeg"
+                ],
+                "file": null,
+                "isConform": false,
+                "link": null,
+                "isActive": true,
+                "originalStampedImage": false,
+                "alt": "Activities Rag180331 Essaouira Chr 020072",
+                "name": "Activities Rag180331 Essaouira Chr 020072",
+                "description": null,
+                "url": "https://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/activities-rag180331-essaouira-chr-020072.jpeg",
+                "mainEntityOfPage": null
+            },
+            "category": {
+                "@id": "/api/tags/34",
+                "@type": "http://schema.org/Thing",
+                "slug": "sport-et-exterieur",
+                "name": "Sport et Extérieur",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/34",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sport-et-exterieur",
+                    "name": "Sport et Extérieur",
+                    "isActive": true
+                }
+            ],
+            "slug": "visites",
+            "name": "Visites",
+            "description": "Déambulez dans la célèbre médina grouillante d'artisans et de commerçants pour découvrir bijoux berbères, épices ou poteries en tous genres. A l’occasion de la visite d’une coopérative, dénichez la célèbre huile d'argan, véritable élixir de beauté pour la peau et les cheveux. Profitez des randonnées pédestres en forêt, flânez le long des plages de sable fin (grandiose), visitez les cascades, admirez les panoramas du littoral ou furetez dans les marchés locaux (retour au XIX siècle garanti). Essaouira et ses environs vous offrent un choix considérable de balades relaxantes et dépaysantes.",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": "Epoustouflant, dépaysant!",
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/25",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/34",
+                "@type": "http://schema.org/Thing",
+                "slug": "sport-et-exterieur",
+                "name": "Sport et Extérieur",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/34",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sport-et-exterieur",
+                    "name": "Sport et Extérieur",
+                    "isActive": true
+                }
+            ],
+            "slug": "visites-de-la-medina",
+            "name": "Visites de la médina",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/26",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/34",
+                "@type": "http://schema.org/Thing",
+                "slug": "sport-et-exterieur",
+                "name": "Sport et Extérieur",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/34",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sport-et-exterieur",
+                    "name": "Sport et Extérieur",
+                    "isActive": true
+                }
+            ],
+            "slug": "les-marches",
+            "name": "Les marchés",
+            "description": "Had’dra, un marché gigantesque. Retour direct au 19ème siècle. Une expérience inoubliable.",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/27",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/34",
+                "@type": "http://schema.org/Thing",
+                "slug": "sport-et-exterieur",
+                "name": "Sport et Extérieur",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/34",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sport-et-exterieur",
+                    "name": "Sport et Extérieur",
+                    "isActive": true
+                }
+            ],
+            "slug": "visites-de-marches",
+            "name": "Visites de marchés",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/28",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/34",
+                "@type": "http://schema.org/Thing",
+                "slug": "sport-et-exterieur",
+                "name": "Sport et Extérieur",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/34",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sport-et-exterieur",
+                    "name": "Sport et Extérieur",
+                    "isActive": true
+                }
+            ],
+            "slug": "le-marche-aux-epices",
+            "name": "Le marché aux épices",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/29",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/34",
+                "@type": "http://schema.org/Thing",
+                "slug": "sport-et-exterieur",
+                "name": "Sport et Extérieur",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/34",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "sport-et-exterieur",
+                    "name": "Sport et Extérieur",
+                    "isActive": true
+                }
+            ],
+            "slug": "peche-et-bateau",
+            "name": "Pêche et bateau",
+            "description": "Mieux que taquiner le goujon, revenez avec une pêche miraculeuse. Faites vous plaisir en mer ou du bord de la plage et Layla cuisinera vos prises. Tournez autour des îles de Mogador à bord d'un voilier de 12,50 m, observez les faucons Eléonors et les pêcheurs de sardines et regardez la medina avec un autre point de vue.",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/30",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/35",
+                "@type": "http://schema.org/Thing",
+                "slug": "spa",
+                "name": "Spa",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/35",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "spa",
+                    "name": "Spa",
+                    "isActive": true
+                }
+            ],
+            "slug": "hammam",
+            "name": "Hammam",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/31",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=demo-spa-3184610-1920-jpg;id=2",
+                "@type": "http://schema.org/MediaObject",
+                "slug": "demo-spa-3184610-1920-jpg",
+                "contentSize": 174455,
+                "encodingFormat": "image/jpg",
+                "caption": null,
+                "filename": "demo-spa-3184610-1920.jpg",
+                "originalFilename": "spa-3184610_1920.jpg",
+                "dimensions": [
+                    "1920",
+                    "1280",
+                    "2",
+                    "width=\"1920\" height=\"1280\"",
+                    "8",
+                    "3",
+                    "image/jpeg"
+                ],
+                "file": null,
+                "isConform": false,
+                "link": null,
+                "isActive": true,
+                "originalStampedImage": false,
+                "alt": "Demo Spa 3184610 1920",
+                "name": "Demo Spa 3184610 1920",
+                "description": null,
+                "url": "http://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-spa-3184610-1920.jpg",
+                "mainEntityOfPage": null
+            },
+            "category": {
+                "@id": "/api/tags/36",
+                "@type": "http://schema.org/Thing",
+                "slug": "detente",
+                "name": "Détente",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/36",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "detente",
+                    "name": "Détente",
+                    "isActive": true
+                }
+            ],
+            "slug": "spa",
+            "name": "Spa",
+            "description": "Depuis quand nʼavez-vous pas pris un moment de pure détente, rien que pour vous ? Laissez-vous aller et expérimentez le traditionnel hammam avec gommage au savon noir, enveloppement au ghazoul et masque capillaire. Faites confiance aux mains expertes d’Hafssa et de Malika pour un massage tonique ou relaxant à lʼhuile dʼarganet avec le coeur. Vous pouvez également opter pour un soin beauté du visage, une manucure, une pédicure ou une épilation.",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": "Le bien être absolu!",
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/32",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/36",
+                "@type": "http://schema.org/Thing",
+                "slug": "detente",
+                "name": "Détente",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/36",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "detente",
+                    "name": "Détente",
+                    "isActive": true
+                }
+            ],
+            "slug": "massage",
+            "name": "Massage",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/33",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/36",
+                "@type": "http://schema.org/Thing",
+                "slug": "detente",
+                "name": "Détente",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/36",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "detente",
+                    "name": "Détente",
+                    "isActive": true
+                }
+            ],
+            "slug": "soins-du-corps",
+            "name": "Soins du corps",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/34",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/36",
+                "@type": "http://schema.org/Thing",
+                "slug": "detente",
+                "name": "Détente",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/36",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "detente",
+                    "name": "Détente",
+                    "isActive": true
+                }
+            ],
+            "slug": "epilation",
+            "name": "Epilation",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/35",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/36",
+                "@type": "http://schema.org/Thing",
+                "slug": "detente",
+                "name": "Détente",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/36",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "detente",
+                    "name": "Détente",
+                    "isActive": true
+                }
+            ],
+            "slug": "soins-du-visage",
+            "name": "Soins du visage",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/36",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/37",
+                "@type": "http://schema.org/Thing",
+                "slug": "les-cours",
+                "name": "Les cours",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/37",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "les-cours",
+                    "name": "Les cours",
+                    "isActive": true
+                }
+            ],
+            "slug": "atelier-de-cuisine",
+            "name": "Atelier de cuisine",
+            "description": "Ramenez plus que vos souvenirs de vacances, prolongez lʼexpérience en apprenant les secrets de la cuisine locale avec notre chef Layla. Elle cuisine avec son cœur et adore partager ! Couscous, tajines, safa, soupes, pâtisseries... La cuisine marocaine est riche en saveurs issues du mélange des traditions culinaires berbère, arabe et même andalouse. Avec Layla, découvrez des recettes typiques et savoureuses, simples à refaire à la maison.",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": "Un savoir-faire ancestral à partager",
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/37",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/37",
+                "@type": "http://schema.org/Thing",
+                "slug": "les-cours",
+                "name": "Les cours",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/37",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "les-cours",
+                    "name": "Les cours",
+                    "isActive": true
+                }
+            ],
+            "slug": "cours-de-cuisine",
+            "name": "Cours de cuisine",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/38",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/37",
+                "@type": "http://schema.org/Thing",
+                "slug": "les-cours",
+                "name": "Les cours",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/37",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "les-cours",
+                    "name": "Les cours",
+                    "isActive": true
+                }
+            ],
+            "slug": "cours-de-danse-marocaine",
+            "name": "Cours de danse marocaine",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/39",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/37",
+                "@type": "http://schema.org/Thing",
+                "slug": "les-cours",
+                "name": "Les cours",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/37",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "les-cours",
+                    "name": "Les cours",
+                    "isActive": true
+                }
+            ],
+            "slug": "cours-de-peinture",
+            "name": "Cours de peinture",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/40",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/37",
+                "@type": "http://schema.org/Thing",
+                "slug": "les-cours",
+                "name": "Les cours",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/37",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "les-cours",
+                    "name": "Les cours",
+                    "isActive": true
+                }
+            ],
+            "slug": "cours-de-massage",
+            "name": "Cours de massage",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/41",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/37",
+                "@type": "http://schema.org/Thing",
+                "slug": "les-cours",
+                "name": "Les cours",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/37",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "les-cours",
+                    "name": "Les cours",
+                    "isActive": true
+                }
+            ],
+            "slug": "cours-de-photos",
+            "name": "Cours de photos",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/42",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/37",
+                "@type": "http://schema.org/Thing",
+                "slug": "les-cours",
+                "name": "Les cours",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/37",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "les-cours",
+                    "name": "Les cours",
+                    "isActive": true
+                }
+            ],
+            "slug": "cours-de-marchandage",
+            "name": "Cours de marchandage",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/43",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/38",
+                "@type": "http://schema.org/Thing",
+                "slug": "cerebrales-et-emotionnelles",
+                "name": "Cérébrales et émotionnelles",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/38",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "cerebrales-et-emotionnelles",
+                    "name": "Cérébrales et émotionnelles",
+                    "isActive": true
+                }
+            ],
+            "slug": "lecture",
+            "name": "Lecture",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/44",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/38",
+                "@type": "http://schema.org/Thing",
+                "slug": "cerebrales-et-emotionnelles",
+                "name": "Cérébrales et émotionnelles",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/38",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "cerebrales-et-emotionnelles",
+                    "name": "Cérébrales et émotionnelles",
+                    "isActive": true
+                }
+            ],
+            "slug": "television",
+            "name": "Télévision",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/45",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": {
+                "@id": "/api/media_objects/slug=demo-spa-3184610-1920-jpg;id=2",
+                "@type": "http://schema.org/MediaObject",
+                "slug": "demo-spa-3184610-1920-jpg",
+                "contentSize": 174455,
+                "encodingFormat": "image/jpg",
+                "caption": null,
+                "filename": "demo-spa-3184610-1920.jpg",
+                "originalFilename": "spa-3184610_1920.jpg",
+                "dimensions": [
+                    "1920",
+                    "1280",
+                    "2",
+                    "width=\"1920\" height=\"1280\"",
+                    "8",
+                    "3",
+                    "image/jpeg"
+                ],
+                "file": null,
+                "isConform": false,
+                "link": null,
+                "isActive": true,
+                "originalStampedImage": false,
+                "alt": "Demo Spa 3184610 1920",
+                "name": "Demo Spa 3184610 1920",
+                "description": null,
+                "url": "http://cdn-villa-gonatouki.graines-digitales.onlineuploads/media/files/demo-spa-3184610-1920.jpg",
+                "mainEntityOfPage": null
+            },
+            "category": {
+                "@id": "/api/tags/38",
+                "@type": "http://schema.org/Thing",
+                "slug": "cerebrales-et-emotionnelles",
+                "name": "Cérébrales et émotionnelles",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/38",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "cerebrales-et-emotionnelles",
+                    "name": "Cérébrales et émotionnelles",
+                    "isActive": true
+                }
+            ],
+            "slug": "jeux",
+            "name": "Jeux",
+            "description": "Découvrez et pratiquez des jeux passionnants qui donnent lieu à des parties acharnées. Il y en a pour tous les goûts et tous les âges, en solitaire, à deux, en famille ou en groupe. Voici quelquesexemples: jeux de cartes classiques, tarot, jeux de dés, dés de poker menteur, échecs, dames, majong, abalone, quarto, go, dominos, rubikubes, ballons de foot, balles, stack line, doodle…",
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": "Passionnant!",
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/46",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/38",
+                "@type": "http://schema.org/Thing",
+                "slug": "cerebrales-et-emotionnelles",
+                "name": "Cérébrales et émotionnelles",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/38",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "cerebrales-et-emotionnelles",
+                    "name": "Cérébrales et émotionnelles",
+                    "isActive": true
+                }
+            ],
+            "slug": "bains-de-soleil",
+            "name": "Bains de soleil",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/47",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/38",
+                "@type": "http://schema.org/Thing",
+                "slug": "cerebrales-et-emotionnelles",
+                "name": "Cérébrales et émotionnelles",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/38",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "cerebrales-et-emotionnelles",
+                    "name": "Cérébrales et émotionnelles",
+                    "isActive": true
+                }
+            ],
+            "slug": "rencontres",
+            "name": "Rencontres",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        },
+        {
+            "@id": "/api/hotel_activities/48",
+            "@type": "http://schema.org/?",
+            "label": null,
+            "value": null,
+            "primaryImage": null,
+            "category": {
+                "@id": "/api/tags/38",
+                "@type": "http://schema.org/Thing",
+                "slug": "cerebrales-et-emotionnelles",
+                "name": "Cérébrales et émotionnelles",
+                "isActive": true
+            },
+            "tags": [
+                {
+                    "@id": "/api/tags/38",
+                    "@type": "http://schema.org/Thing",
+                    "slug": "cerebrales-et-emotionnelles",
+                    "name": "Cérébrales et émotionnelles",
+                    "isActive": true
+                }
+            ],
+            "slug": "ne-rien-faire-et-en-profiter",
+            "name": "Ne rien faire et en profiter",
+            "description": null,
+            "url": null,
+            "mainEntityOfPage": null,
+            "headline": null,
+            "alternativeHeadline": null,
+            "pushForward": null,
+            "text": null,
+            "textResume": null,
+            "datePublished": null,
+            "expire": null,
+            "metaTitle": null,
+            "metaDescription": null
+        }
+    ],
+    "hydra:totalItems": 48,
+    "hydra:view": {
+        "@id": "/api/hotel_activities?isActive=1&pagination=0&order%5Bid%5D=DESC",
+        "@type": "hydra:PartialCollectionView"
+    }
+}
