@@ -40,7 +40,6 @@ class MediaObjectDocumentListener
         if (!$entity instanceof MediaObjectDocument) {
             return; 
         }
-
         $this->mediaObjectDocumentAction->hydrate([], $entity, 'fr');
     }
 
@@ -50,7 +49,6 @@ class MediaObjectDocumentListener
         if (!$entity instanceof MediaObjectDocument) {
             return; 
         }
-
         $this->mediaObjectDocumentAction->hydrate([], $entity, 'fr');
     }
 

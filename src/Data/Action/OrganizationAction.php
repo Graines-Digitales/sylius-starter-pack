@@ -66,8 +66,18 @@ class OrganizationAction
     {
         if(isset($data['category']) && !empty($data['category'])){
             $array = explode( '\\', get_class($entity));
-            $data['category']['type'] = [ "name" => end($array) ];
+            if(!is_array($data['category'])) {
+                $name = $data['category'];
+                $data['category'] = [
+                    'type' => [ "name" => end($array) ],
+                    'name' => $name
+                ];
+         
+            } else {
+                $data['category']['type'] = [ "name" => end($array) ];
+            }
             $data['category'] = $this->categoryAction->create($data['category']);
+
             if(null === $data['category']) {
                 throw new \Exception('Error form OrganizationAction relation field category');
             }
@@ -106,14 +116,11 @@ class OrganizationAction
             foreach ($data['addresses'] as $address) {
             
                 $address = $this->addressAction->create($address);
-                
                 if(null === $address) {
                     throw new \Exception('Error form OrganizationAction relation field addresses');
                 }
                 $entity->addAddress($address);
             }
-
-    
         }
 
         if(isset($data['socials'])) {

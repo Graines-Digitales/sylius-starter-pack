@@ -1084,6 +1084,10 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\MediaObjectVideo
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
             fields:
 
                 url:
@@ -1143,6 +1147,10 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\MediaObjectIcon
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
             fields:
 
                 filename:
@@ -1209,6 +1217,10 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\MediaObjectDocument
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
 
             fields:
  

@@ -15,8 +15,10 @@ use App\Data\Action\OrganizationAction;
 use App\Data\Action\HotelActivityAction;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Data\Action\AmenityFeatureAction;
+use App\Data\Action\EventAction;
 use App\Data\Action\HotelTypicalDayAction;
 use App\Data\Action\HotelTypicalDayElementAction;
+use App\Data\Action\PersonAction;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -51,6 +53,10 @@ class Import
 
     protected $roomAction;
 
+    protected $personAction;
+
+    protected $eventAction;
+
     public function __construct(
         ContainerInterface $container
         , EntityManagerInterface $entityManager
@@ -67,6 +73,8 @@ class Import
         , HotelTypicalDayAction $hotelTypicalDayAction
         , HotelTypicalDayElementAction $hotelTypicalDayElementAction
         , RoomAction $roomAction
+        , PersonAction $personAction
+        , EventAction $eventAction
     ){
         $this->container = $container;
         $this->entityManager = $entityManager;
@@ -83,15 +91,20 @@ class Import
         $this->hotelTypicalDayAction = $hotelTypicalDayAction;
         $this->hotelTypicalDayElementAction = $hotelTypicalDayElementAction;
         $this->roomAction = $roomAction;
+        $this->personAction = $personAction;
+        $this->eventAction = $eventAction;
     }
 
     public function getMainOrganization($contentPath)
     {
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $mainFile = $configurationProject['main_file'];
+        $extension = pathinfo($mainFile, PATHINFO_EXTENSION);
         $filesystem = new Filesystem();
-        $filepath = $contentPath . DIRECTORY_SEPARATOR . 'main_organization.json';
+        $filepath = $contentPath . DIRECTORY_SEPARATOR . $mainFile;
         if($filesystem->exists($filepath)) {
 
-            $result = $this->extractData($filepath, 'json');
+            $result = $this->extractData($filepath, $extension);
             
             return $result;
         }
@@ -114,10 +127,8 @@ class Import
             case 'md':
                 $parser = new Parser();
                 $result = $parser->parse(file_get_contents($absoluteFilePath), false);
-                
                 $data = $result->getYaml();
                 $data['content'] = $result->getContent();
-                
                 break;
             case 'json':
                 $data = json_decode(
@@ -252,7 +263,16 @@ class Import
                 return $this->roomAction->create($data, $localeCode);
                 
                 break;
+            case 'persons':
+ 
+                return $this->personAction->create($data, $localeCode);
                 
+                break;
+            case 'events':
+
+                return $this->eventAction->create($data, $localeCode);
+                
+                break;
         }
 
         return null;

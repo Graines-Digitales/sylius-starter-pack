@@ -64,6 +64,9 @@ class WebPageListener
             );
         }
         $entity = $this->enrich($entity);
+        if(false === $entity->getTranslatable()->getIsLocked()) {
+            $entity = $this->webContentWebPageService->updateSlug($entity);  
+        }
     }
 
     public function prePersist(LifecycleEventArgs $args)

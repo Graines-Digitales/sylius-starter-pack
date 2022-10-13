@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Entity\HotelRoom;
 use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ThingTrait;
 use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -34,6 +35,7 @@ class Event implements ResourceInterface, TranslatableInterface
 {
     use SeoTrait;
     use IdentifiableTrait;
+    use ThingTrait;
     use TimestampableEntity;
     use TranslatableTrait {
         __construct as private initializeTranslationsCollection;

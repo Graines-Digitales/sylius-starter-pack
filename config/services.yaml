@@ -70,7 +70,7 @@ services:
 
     App\EventListener\CategoryListener:
         tags:
-            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: preUpdate }
 
     App\EventListener\MediaObjectImageListener:
         tags:

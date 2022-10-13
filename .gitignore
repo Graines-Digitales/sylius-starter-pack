@@ -71,6 +71,7 @@ mysqldump.sql
 mysqldump.zip
 site-sync-preprod.sh
 site-sync-prod.sh
+site-sync.sh
 build.sh
 deploy.sh
 

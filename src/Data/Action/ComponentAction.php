@@ -62,6 +62,10 @@ class ComponentAction
             $entity->setName($data['name']);
             $entity->getTranslation($locale)->setHeadline($data['name']);
         }
+        if(isset($data['translation'])) {
+            $data = array_merge($data, $data['translation']);
+            unset($data['translation']);
+        }
 
         if (isset($data['components']) && !empty($data['components'])) {
             $components = $this->createComponents($data['components']);
@@ -75,11 +79,16 @@ class ComponentAction
 
     public function createComponents($data)
     {
+        
         $data = (!is_array($data))? json_decode($data, true): $data;
         $components = [];
         foreach($data as $result) {
             $array = [];
             
+            if(!isset($result['data'])) {
+                $result['data'] = $result;
+            }
+
             if(isset($result['data']['primaryImage']) && !empty($result['data']['primaryImage'])){
                 $image = $this->mediaObjectImageAction->extract($result['data']['primaryImage']);
             }
