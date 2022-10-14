@@ -53,39 +53,39 @@ services:
         autowire: true
         tags: ['controller.service_arguments']
     
-    App\EventListener\ArticleListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+    # App\EventListener\ArticleListener:
+    #     tags:
+    #         - { name: doctrine.event_listener, event: prePersist }
+    #         - { name: doctrine.event_listener, event: preUpdate }
 
-    App\EventListener\TripListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+    # App\EventListener\TripListener:
+    #     tags:
+    #         - { name: doctrine.event_listener, event: prePersist }
+    #         - { name: doctrine.event_listener, event: preUpdate }
 
-    App\EventListener\WebPageListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+    # App\EventListener\WebPageListener:
+    #     tags:
+    #         - { name: doctrine.event_listener, event: prePersist }
+    #         - { name: doctrine.event_listener, event: preUpdate }
 
-    App\EventListener\CategoryListener:
-        tags:
-            - { name: doctrine.event_listener, event: preUpdate }
+    # App\EventListener\CategoryListener:
+    #     tags:
+    #         - { name: doctrine.event_listener, event: preUpdate }
 
-    App\EventListener\MediaObjectImageListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+    # App\EventListener\MediaObjectImageListener:
+    #     tags:
+    #         - { name: doctrine.event_listener, event: prePersist }
+    #         - { name: doctrine.event_listener, event: preUpdate }
     
-    App\EventListener\MediaObjectIconListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+    # App\EventListener\MediaObjectIconListener:
+    #     tags:
+    #         - { name: doctrine.event_listener, event: prePersist }
+    #         - { name: doctrine.event_listener, event: preUpdate }
 
-    App\EventListener\MediaObjectDocumentListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+    # App\EventListener\MediaObjectDocumentListener:
+    #     tags:
+    #         - { name: doctrine.event_listener, event: prePersist }
+    #         - { name: doctrine.event_listener, event: preUpdate }
 
      # Menu Listener
     app.listener.admin.menu_builder:
