@@ -39,7 +39,8 @@ class MediaObjectImageTransformer implements DataTransformerInterface
         return [
             'id' => $media->getId(),
             'filename' => $media->getFilename(),
-            'alt' => $media->getCaption()
+            'alt' => $media->getCaption(),
+            'caption' => $media->getCaption(),
         ];
     }
 }
