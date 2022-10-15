@@ -111,7 +111,7 @@ class ComponentCardsType extends AbstractType
         
         $builder
             ->get('icon')
-            ->addModelTransformer(new MediaObjectIconTransformer($this->manager))
+            ->addModelTransformer(new MediaObjectIconTransformer($this->entityManager))
         ;
 
         $builder
