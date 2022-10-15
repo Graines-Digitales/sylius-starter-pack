@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
+use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
 use App\Entity\MediaObjectVideo;
 use Symfony\Component\Form\FormEvent;
@@ -15,6 +16,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Form\DataTransformer\MediaObjectImageTransformer;
 use App\Form\DataTransformer\MediaObjectVideoTransformer;
@@ -73,6 +75,11 @@ class ComponentCardsType extends AbstractType
                     return $mediaObject->getFileName();
                 }
             ])
+            ->add('icon', EntityType::class, [
+                'required' => false,
+                'class' => MediaObjectIcon::class,
+                'placeholder' => 'app.ui_element.field.select_icon',
+            ])
             ->add('video', EntityType::class, [
                 'required' => false,
                 'class' => MediaObjectVideo::class,
@@ -102,6 +109,11 @@ class ComponentCardsType extends AbstractType
             ->addModelTransformer(new MediaObjectImageTransformer($this->entityManager))
         ;
         
+        $builder
+            ->get('icon')
+            ->addModelTransformer(new MediaObjectIconTransformer($this->manager))
+        ;
+
         $builder
             ->get('video')
             ->addModelTransformer(new MediaObjectVideoTransformer($this->entityManager))
