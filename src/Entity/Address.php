@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Traits\IdentifiableTrait;
+use App\Entity\Traits\ThingTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -16,48 +17,19 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  * @see https://schema.org/PostalAddress
  * 
  * @ORM\Table(name="app_address")
- * @ORM\Entity()
  * @ORM\Entity(repositoryClass=AddressRepository::class)
  */
 class Address implements ResourceInterface
 {
     use IdentifiableTrait;
+    use ThingTrait;
     use TimestampableEntity;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $name;
+    private $additionalStreetAddress;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="string", length=255)
-     */
-    private $address;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="postcode", type="string", length=255)
-     */
-    private $postcode;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=255)
-     */
-    private $city;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=255, nullable=true)
-     */
-    private $country;
 
     /**
      * @ ORM\ManyToMany(targetEntity="Person", mappedBy="addresses")
@@ -75,9 +47,36 @@ class Address implements ResourceInterface
     private $phone;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $additionalStreetAddress;
+    private $streetAddress;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $postalCode;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $postOfficeBoxNumber;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $addressRegion;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $addressLocality;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $addressCountry;
+
+
 
     /**
      * Constructor.
@@ -95,103 +94,7 @@ class Address implements ResourceInterface
 
     public function getFullAddress()
     {
-        return trim($this->getAddress().' '.$this->getPostcode().' '.$this->getCity().' '.$this->getCountry());
-    }
-
-    /**
-     * Set name.
-     *
-     * @param string $name
-     *
-     * @return Address
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set city.
-     *
-     * @param string $city
-     *
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city.
-     *
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPostcode()
-    {
-        return $this->postcode;
-    }
-
-    /**
-     * @param string $postcode
-     */
-    public function setPostcode($postcode)
-    {
-        $this->postcode = $postcode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * @param string $country
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
+        return trim($this->getStreetAddress().' '.$this->getPostalCode().' '.$this->getAddressLocality().' '.$this->getAddressCountry());
     }
 
     /**
@@ -203,7 +106,7 @@ class Address implements ResourceInterface
             return;
         }
         $this->persons->add($person);
-        $person->addAddress($this);
+        $person->addStreetAddress($this);
     }
 
     /**
@@ -290,18 +193,6 @@ class Address implements ResourceInterface
         return $this->organizations;
     }
 
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(string $phone): self
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
     public function getAdditionalStreetAddress(): ?string
     {
         return $this->additionalStreetAddress;
@@ -310,6 +201,78 @@ class Address implements ResourceInterface
     public function setAdditionalStreetAddress(?string $additionalStreetAddress): self
     {
         $this->additionalStreetAddress = $additionalStreetAddress;
+
+        return $this;
+    }
+
+    public function getStreetAddress(): ?string
+    {
+        return $this->streetAddress;
+    }
+
+    public function setStreetAddress(?string $streetAddress): self
+    {
+        $this->streetAddress = $streetAddress;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(?string $postalCode): self
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    public function getPostOfficeBoxNumber(): ?string
+    {
+        return $this->postOfficeBoxNumber;
+    }
+
+    public function setPostOfficeBoxNumber(?string $postOfficeBoxNumber): self
+    {
+        $this->postOfficeBoxNumber = $postOfficeBoxNumber;
+
+        return $this;
+    }
+
+    public function getAddressRegion(): ?string
+    {
+        return $this->addressRegion;
+    }
+
+    public function setAddressRegion(?string $addressRegion): self
+    {
+        $this->addressRegion = $addressRegion;
+
+        return $this;
+    }
+
+    public function getAddressLocality(): ?string
+    {
+        return $this->addressLocality;
+    }
+
+    public function setAddressLocality(?string $addressLocality): self
+    {
+        $this->addressLocality = $addressLocality;
+
+        return $this;
+    }
+
+    public function getAddressCountry(): ?string
+    {
+        return $this->addressCountry;
+    }
+
+    public function setAddressCountry(?string $addressCountry): self
+    {
+        $this->addressCountry = $addressCountry;
 
         return $this;
     }

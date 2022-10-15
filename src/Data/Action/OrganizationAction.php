@@ -119,7 +119,7 @@ class OrganizationAction
                 if(null === $address) {
                     throw new \Exception('Error form OrganizationAction relation field addresses');
                 }
-                $entity->addAddress($address);
+                $entity->addStreetAddress($address);
             }
         }
 
