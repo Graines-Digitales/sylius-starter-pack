@@ -24,10 +24,12 @@ const initComponent = () => {
 }
 
 const initObserver = () => {
-  const addButtons = document.querySelectorAll('.js-uie-add')
+  
   const editButtons = document.querySelectorAll('.js-uie-edit')
   editButtons.forEach(button => {
     button.addEventListener('click', function handleClick(event) {
+      console.log('editButtons')
+      console.log(button)
       let mutationObserver = new MutationObserver(initComponent)
       let richContainer = document.querySelectorAll('.uie-panels.js-uie-panels-edit')
       richContainer.forEach(element => mutationObserver.observe(element, {
@@ -38,8 +40,11 @@ const initObserver = () => {
     })
   })
 
+  const addButtons = document.querySelectorAll('.js-uie-add')
   addButtons.forEach(button => {
     button.addEventListener('click', function handleClick(event) {
+      console.log('addButtons')
+      console.log(button)
       const cards = document.querySelectorAll('.js-uie-panels-selector .link.uie-card')
       cards.forEach(card => {
         card.addEventListener('click', function handleClick(event) {
