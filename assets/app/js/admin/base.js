@@ -4,16 +4,59 @@ import '../../styles/admin/base.scss';
  * START Région Accordion elements
  * Permet d'initialiser l'accordion de Semantic UI afin que les éléments dans les composants MonsieurBizz puissent se collapser
  */
- 
 
- 
 const initComponent = () => {
   initSelect2()
   initAccordion()
+  const addCollectionButton = document.querySelector('[data-form-collection="add"]')
+  if(null !== addCollectionButton) {
+    addCollectionButton.addEventListener('click', function handleClick(event) {
+      const collectionList = document.querySelector('[data-form-collection="list"]')
+      let mutationObserver = new MutationObserver(initComponent)
+      mutationObserver.observe(collectionList, {
+        childList: true,
+        attributes: true,
+        subtree: false
+      })
+    })
+  }     
+}
+
+const initObserver = () => {
+  const addButtons = document.querySelectorAll('.js-uie-add')
+  const editButtons = document.querySelectorAll('.js-uie-edit')
+  editButtons.forEach(button => {
+    button.addEventListener('click', function handleClick(event) {
+      let mutationObserver = new MutationObserver(initComponent)
+      let richContainer = document.querySelectorAll('.uie-panels.js-uie-panels-edit')
+      richContainer.forEach(element => mutationObserver.observe(element, {
+        childList: true,
+        attributes: true,
+        subtree: false
+      }))
+    })
+  })
+
+  addButtons.forEach(button => {
+    button.addEventListener('click', function handleClick(event) {
+      const cards = document.querySelectorAll('.js-uie-panels-selector .link.uie-card')
+      cards.forEach(card => {
+        card.addEventListener('click', function handleClick(event) {
+          let mutationObserver = new MutationObserver(initComponent)
+          let richContainer = document.querySelectorAll('.uie-panels__new.js-uie-panels-new')
+          richContainer.forEach(element => mutationObserver.observe(element, {
+            childList: true,
+            attributes: true,
+            subtree: false
+          }))
+        })
+      })
+    })
+  })
 }
 
 const initAccordion = () => {
-  $('.ui.accordion_alt').accordion();
+  $('.ui.accordion_alt').accordion()
 }
 
 const initSelect2 = () => {
@@ -21,27 +64,14 @@ const initSelect2 = () => {
     $('.select2-image').select2({
       templateResult: formatState,
       templateSelection: formatState
-    });
+    })
     $('.select2-icon').select2({
       templateResult: formatState2,
       templateSelection: formatState2
-    });
-  });
-
-  $(() => {
+    })
     $('.select2-standard').select2();
-  });
+  })
 }
-
-let mutAtionObserver = new MutationObserver(initComponent);
-let richContainer = document.querySelectorAll('.uie-panels')
-let observerOptions = {
-  childList: false,
-  attributes: true,
-  subtree: false,
-};
-
-richContainer.forEach(element => mutAtionObserver.observe(element, observerOptions))
 
 /**
  * END Région Accordion elements
@@ -51,22 +81,19 @@ richContainer.forEach(element => mutAtionObserver.observe(element, observerOptio
  * START Région Select2
  */
 $(document).ready(function () {
-  $('.select2-image').select2({
-    templateResult: formatState,
-    templateSelection: formatState
-  });
-});
+  initSelect2()
+})
 
-$(document).ready(function () {
-  $('.select2-icon').select2({
-    templateResult: formatState2,
-    templateSelection: formatState2
-  });
-});
+// $(document).ready(function () {
+//   $('.select2-icon').select2({
+//     templateResult: formatState2,
+//     templateSelection: formatState2
+//   });
+// });
 
-$(document).ready(function () {
-  $('.select2-standard').select2();
-});
+// $(document).ready(function () {
+//   $('.select2-standard').select2();
+// });
 
 
 const formatState = (opt) => {
@@ -99,11 +126,24 @@ const formatState2 = (opt) => {
  * END Région Select2
  */
  $(".ui.image").on("click", function() {
-  let elem = $(this);
-  let slug = elem.data( "slug" );
+  let elem = $(this)
+  let slug = elem.data( "slug" )
   $(document).find(".ui.image_modal[data-slug='" + slug + "']")
     .modal('setting', 'transition', 'fly left')  
     .modal('show')
   ;
 });
 
+
+
+let componentsContainerObserver = new MutationObserver(initObserver)
+let componentsContainer = document.querySelectorAll('.components-container')
+componentsContainer.forEach(element => {
+  console.log('componentsContainerObserver')
+  console.log(element)
+  componentsContainerObserver.observe(element, {
+    childList: true,
+    attributes: true,
+    subtree: false,
+  })
+})
