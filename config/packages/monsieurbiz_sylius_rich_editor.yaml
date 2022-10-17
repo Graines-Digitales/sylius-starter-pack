@@ -80,17 +80,6 @@ monsieurbiz_sylius_richeditor:
                 admin_render: '@App/admin/UiElement/component_search_action.html.twig'
                 front_render: '/shop/UiElement/component_search_action.html.twig'
             tags: []                 
-        app.component_slider:
-            title: 'app.ui_element.component_slider.title'
-            description: 'app.ui_element.component_slider.description'
-            icon: address card outline
-            classes:
-                form: App\Form\Type\UiElement\ComponentSliderType
-                #ui_element: App\UiElement\MyUiElement
-            templates:
-                admin_render: '@App/admin/UiElement/component_slider.html.twig'
-                front_render: '/shop/UiElement/component_slider.html.twig'
-            tags: []
         app.component_contact_form:
             title: 'app.ui_element.component_contact_form.title'
             description: 'app.ui_element.component_contact_form.description'

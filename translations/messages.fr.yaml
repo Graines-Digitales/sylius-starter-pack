@@ -306,10 +306,6 @@ app:
         component_search_action:
             title: 'Composant Search Action'
             description: 'Composant pour créer une collection sur différent type de données'
-        component_slider:
-            title: 'Composant Slider'
-            short_description: 'Slider avec image et textes'
-            description: 'Une section avec titre texte et une collection de cartes'
         component_contact_form:
             title: 'Composant Contact Form'
             short_description: 'Composant pour un formulaire de contact'

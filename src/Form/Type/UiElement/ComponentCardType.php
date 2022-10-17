@@ -77,6 +77,7 @@ class ComponentCardType extends AbstractType
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
+                'attr' => ['class' => 'select2-standard'],
                 'placeholder' => 'app.ui_element.field.select_category',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
@@ -86,10 +87,10 @@ class ComponentCardType extends AbstractType
             ])
             ->add('tags', EntityType::class, [
                 'class'         => Category::class,
-                'expanded'      => true,
+                'expanded'      => false,
                 'multiple'      => true,
-                // 'by_reference' => false,
                 'placeholder' => 'app.ui_element.field.select_option',
+                'attr' => ['class' => 'select2-standard'],
             ])
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
@@ -102,6 +103,7 @@ class ComponentCardType extends AbstractType
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
@@ -111,6 +113,7 @@ class ComponentCardType extends AbstractType
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-icon'],
                 'class' => MediaObjectIcon::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
             ])

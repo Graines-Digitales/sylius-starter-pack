@@ -77,11 +77,13 @@ class ComponentCardsType extends AbstractType
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-icon'],
                 'class' => MediaObjectIcon::class,
                 'placeholder' => 'app.ui_element.field.select_icon',
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
+                'attr' => ['class' => 'select2-standard'],
                 'class' => MediaObjectVideo::class,
                 'placeholder' => 'app.ui_element.field.choose',
             ])
