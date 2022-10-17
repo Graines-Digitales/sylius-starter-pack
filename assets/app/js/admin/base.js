@@ -19,7 +19,8 @@ const initComponent = () => {
         subtree: false
       })
     })
-  }     
+  }
+  console.log('initComponent')  
 }
 
 const initObserver = () => {
