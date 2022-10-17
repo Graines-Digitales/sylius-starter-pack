@@ -154,6 +154,6 @@ componentsContainer.forEach(element => {
   componentsContainerObserver.observe(element, {
     childList: true,
     attributes: true,
-    subtree: false,
+    subtree: true,
   })
 })
