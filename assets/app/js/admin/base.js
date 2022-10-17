@@ -16,7 +16,7 @@ const initComponent = () => {
       mutationObserver.observe(collectionList, {
         childList: true,
         attributes: true,
-        subtree: false
+        subtree: true
       })
     })
   }
@@ -37,7 +37,7 @@ const initObserver = () => {
       richContainer.forEach(element => mutationObserver.observe(element, {
         childList: true,
         attributes: true,
-        subtree: false
+        subtree: true
       }))
     })
   })
@@ -57,7 +57,7 @@ const initObserver = () => {
           richContainer.forEach(element => mutationObserver.observe(element, {
             childList: true,
             attributes: true,
-            subtree: false
+            subtree: true
           }))
         })
       })
