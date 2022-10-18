@@ -101,6 +101,30 @@ class Component extends AbstractWebContent
         return $styles;
     }
 
+    public function getComponentViews()
+    {
+        $views = [];
+        $path = $this->container->getParameter('directory_web') . DIRECTORY_SEPARATOR . 'components';
+        if($this->filesystem->exists($path)) {
+            $this->finder->depth('== 0');
+            $this->finder->files()->in($path);
+            if ($this->finder->hasResults()) {
+                foreach ($this->finder as $file) {
+                    $absoluteFilePath = $file->getRealPath();
+                    $filePath = $file->getPath();
+                    $fileNameWithExtension = $file->getRelativePathname();
+                    $ext = pathinfo($fileNameWithExtension, PATHINFO_EXTENSION);
+                    $filename = pathinfo($fileNameWithExtension,  PATHINFO_FILENAME);
+                    $views[$fileNameWithExtension] = $filename;
+                }
+            }
+    
+        }
+        
+        return $views;
+    }
+
+
     public function getIcons($code)
     {
         $icons = [];
