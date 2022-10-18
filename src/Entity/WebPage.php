@@ -105,6 +105,11 @@ class WebPage implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=MediaObjectIcon::class)
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $icon;
 
