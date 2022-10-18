@@ -120,6 +120,7 @@ class Component extends AbstractWebContent
             }
     
         }
+        ksort($views);
         
         return $views;
     }

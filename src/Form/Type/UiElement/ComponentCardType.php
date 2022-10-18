@@ -141,6 +141,7 @@ class ComponentCardType extends AbstractType
             ])
             ->add('view', ChoiceType::class, [
                 'choices' => $views,
+                'attr' => ['class' => 'select2-standard'],
                 'required' => true,
             ])
             ->add('params', CollectionType::class, [
@@ -155,16 +156,6 @@ class ComponentCardType extends AbstractType
                 'delete_empty' => true,
                 'label' => 'app.ui_element.field.params_collection.default',
             ])
-            // ->add('params', ParamsType::class, [
-            //     'by_reference' => false,
-            //     'label' => 'app.ui_element.field.link_to_external_link',
-            //     'block_name' => 'entry',
-            //     'required' => false,
-            //     // 'label' => 'app.ui_element.field.link',
-            //     // 'constraints' => [
-            //     //     new Assert\Url([]),
-            //     // ],
-            // ])
         ;
        
         $builder

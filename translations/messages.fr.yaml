@@ -293,13 +293,13 @@ app:
             description: 'Une section avec un lien Iframe (Google, Facebook, Youtube...)'
             link: 'Link'
         component_card:
-            title: 'Composant Carte'
-            short_description: 'Carte avec image et textes'
-            description: 'Une section avec titre texte et une collection de carte'
+            title: 'Composant Default'
+            short_description: 'Composant avec icons, images, textes ...etc'
+            description: 'Une section composé de icons, images, textes ...etc'
         component_cards:
             title: 'Composant Cartes Liste'
-            short_description: 'Liste de cartes avec image et textes'
-            description: 'Une section avec titre texte et une collection de cartes'
+            short_description: 'Liste de cartes avec icons, images, textes ...etc'
+            description: 'Une section avec titre texte et une collection d icons, images, textes ...etc'
         component_documents:
             title: 'Composant Documents'
             description: 'Une section pour télécharger des documents'

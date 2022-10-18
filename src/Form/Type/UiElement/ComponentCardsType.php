@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
+use App\Form\Type\ParamsType;
+use App\WebContent\Component;
 use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
 use App\Entity\MediaObjectVideo;
@@ -20,6 +22,7 @@ use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Form\DataTransformer\MediaObjectImageTransformer;
 use App\Form\DataTransformer\MediaObjectVideoTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -31,14 +34,19 @@ class ComponentCardsType extends AbstractType
 
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    private $componentService;
+
+    public function __construct(EntityManagerInterface $entityManager, Component $componentService)
     {
         $this->slugger = new AsciiSlugger();
         $this->entityManager = $entityManager;
+        $this->componentService = $componentService;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $views = $this->componentService->getComponentViews();
+
         $builder
             ->add('_slug', TextType::class, [
                 'disabled' => true,
@@ -87,14 +95,23 @@ class ComponentCardsType extends AbstractType
                 'class' => MediaObjectVideo::class,
                 'placeholder' => 'app.ui_element.field.choose',
             ])
-            // ->add('template', ChoiceType::class, [
-            //     'choices' => $templates,
-            //     'required' => true,
-            // ])
-            // ->add('style', ChoiceType::class, [
-            //     'choices' => $styles,
-            //     'required' => true,
-            // ])
+            ->add('view', ChoiceType::class, [
+                'choices' => $views,
+                'attr' => ['class' => 'select2-standard'],
+                'required' => true,
+            ])
+            ->add('params', CollectionType::class, [
+                'entry_type' => ParamsType::class,
+                'button_add_label' => 'app.ui_element.form.add_params',
+                'attr' => [
+                    'data-type' => 'sub_accordion'
+                ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'delete_empty' => true,
+                'label' => 'app.ui_element.field.params_collection.default',
+            ])
             ->add('cards', CollectionType::class, [
                 'entry_type' => ComponentCardType::class,
                 'button_add_label' => 'app.ui_element.form.add_item',
