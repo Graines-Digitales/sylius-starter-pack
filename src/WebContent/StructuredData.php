@@ -224,9 +224,9 @@ class StructuredData extends AbstractWebContent
                         if (0 == $j) {
                             $addresses = [
                             "@type"=> "PostalAddress",
-                            "addressLocality" => $metaData->getAddresses()[0]->getCity().', '.$metaData->getAddresses()[0]->getCountry(),
-                            "postalCode"=> $metaData->getAddresses()[0]->getPostcode(),
-                            "streetAddress"=> $metaData->getAddresses()[0]->getAddress()
+                            "addressLocality" => $metaData->getAddresses()[0]->getAddressLocality().', '.$metaData->getAddresses()[0]->getAddressCountry(),
+                            "postalCode"=> $metaData->getAddresses()[0]->getPostalCode(),
+                            "streetAddress"=> $metaData->getAddresses()[0]->getStreetAddress()
                         ];
                         }
                         $j++;

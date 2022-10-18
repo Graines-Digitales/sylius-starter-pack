@@ -384,31 +384,31 @@ class Organization implements ResourceInterface
     /**
      * Add address.
      *
-     * @param Address $address
+     * @param Address $streetAddress
      *
      * @return Person
      */
-    public function addAddress($address)
+    public function addAddress($streetAddress)
     {
-        if ($this->addresses->contains($address)) {
+        if ($this->addresses->contains($streetAddress)) {
             return;
         }
 
-        $this->addresses->add($address);
+        $this->addresses->add($streetAddress);
     }
 
     /**
      * Remove address.
      *
-     * @param Address $address
+     * @param Address $streetAddress
      */
-    public function removeAddress($address)
+    public function removeAddress($streetAddress)
     {
-        if (!$this->addresses->contains($address)) {
+        if (!$this->addresses->contains($streetAddress)) {
             return;
         }
 
-        $this->addresses->removeElement($address);
+        $this->addresses->removeElement($streetAddress);
     }
 
     /**

@@ -55,27 +55,27 @@ class AddressAction
         
 
         if(isset($data['address'])) {
-            $entity->setAddress($data['address']);
+            $entity->setStreetAddress($data['address']);
         } else if(isset($data['streetAddress'])) {
-            $entity->setAddress($data['streetAddress']);
+            $entity->setStreetAddress($data['streetAddress']);
         }
 
         if(isset($data['postcode'])) {
-            $entity->setPostcode($data['postcode']);
+            $entity->setPostalCode($data['postcode']);
         } else if(isset($data['postalCode'])) {
-            $entity->setPostcode($data['postalCode']);
+            $entity->setPostalCode($data['postalCode']);
         }
 
         if(isset($data['city'])) {
-            $entity->setCity($data['city']);
+            $entity->setAddressLocality($data['city']);
         } else if(isset($data['addressLocality'])) {
-            $entity->setCity($data['addressLocality']);
+            $entity->setAddressLocality($data['addressLocality']);
         }
 
         if(isset($data['country'])) {
-            $entity->setCountry($data['country']);
+            $entity->setAddressCountry($data['country']);
         } else if(isset($data['addressCountry'])) {
-            $entity->setCountry($data['addressCountry']);
+            $entity->setAddressCountry($data['addressCountry']);
         }
 
         if(isset($data['additionalStreetAddress'])) {

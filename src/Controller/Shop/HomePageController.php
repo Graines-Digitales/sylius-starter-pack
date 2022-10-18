@@ -40,27 +40,29 @@ final class HomePageController extends AbstractController
         SEO $seoService
     ): Response
     {
-        $webpage = $webPageService->getData('accueil');
-        if (null === $webpage) {
-            $params = ['message' => 'Page Not Found'];
+        return $this->redirectToRoute('app_admin_web_page_index');
 
-            return $this->render('@App/web/template_404.html.twig', $params);
-            // return $this->render('@TwigBundle/Exception/error404.html.twig', $params);
-        }
+        // $webpage = $webPageService->getData('accueil');
+        // if (null === $webpage) {
+        //     $params = ['message' => 'Page Not Found'];
 
-        $components = $componentService->getComponents($webpage);
-        $metaData = $metaDataService->getData($webpage);
-        $entities = [ 'WebPage' => $webpage ];
-        $structuredData = $seoService->getStructuredData($metaData, $entities);
+        //     return $this->render('@App/web/template_404.html.twig', $params);
+        //     // return $this->render('@TwigBundle/Exception/error404.html.twig', $params);
+        // }
 
-        $data = [
-            'page' => $webpage,
-            'meta_data' => $metaData,
-            'components' => $components,
-            'structuredData' => $structuredData,
-        ];
+        // $components = $componentService->getComponents($webpage);
+        // $metaData = $metaDataService->getData($webpage);
+        // $entities = [ 'WebPage' => $webpage ];
+        // $structuredData = $seoService->getStructuredData($metaData, $entities);
 
-        return new Response($this->twig->render('@App/web/pages/home.html.twig', $data));
+        // $data = [
+        //     'page' => $webpage,
+        //     'meta_data' => $metaData,
+        //     'components' => $components,
+        //     'structuredData' => $structuredData,
+        // ];
+
+        // return new Response($this->twig->render('@App/web/pages/home.html.twig', $data));
     }
 
     /**

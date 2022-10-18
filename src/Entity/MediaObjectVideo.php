@@ -60,7 +60,10 @@ class MediaObjectVideo implements ResourceInterface
 
     public function __toString()
     {
-        return $this->getName();
+        if($this->getName()) {
+            return $this->getName();
+        }
+        return 'test';
     }
    
     public function setFile(?File $file = null): void

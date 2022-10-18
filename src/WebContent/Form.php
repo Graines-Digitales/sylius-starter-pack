@@ -21,7 +21,7 @@ class Form extends AbstractWebContent
                 if (isset($data['streetAddress'])){
                     $address = $this->addressAction->create($data);
                     $person = $this->personAction->create($data);
-                    $person->addAddress($address);
+                    $person->addStreetAddress($address);
                     $this->manager->persist($address);
                 }else{
                     $person = $this->personAction->create($data);
