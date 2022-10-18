@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Form\Type\UiElement;
 
 use App\Entity\Category;
+use App\Form\Type\ParamsType;
 use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
 use Doctrine\ORM\EntityRepository;
+use App\Form\Type\PropertyValueType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,6 +25,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Form\DataTransformer\MediaObjectImageTransformer;
+use App\WebContent\Component;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -37,17 +41,23 @@ class ComponentCardType extends AbstractType
 
     private $slugger;
 
+    private $componentService;
+
     public function __construct(
         EntityManagerInterface $manager,
-        ContainerInterface $container
+        ContainerInterface $container,
+        Component $componentService
     ){
         $this->manager = $manager;
         $this->container = $container;
+        $this->componentService = $componentService;
         $this->slugger = new AsciiSlugger();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $views = $this->componentService->getComponentViews();
+        
         $builder
             ->add('_slug', TextType::class, [
                 'disabled' => true,
@@ -129,6 +139,32 @@ class ComponentCardType extends AbstractType
                 'delete_empty' => true,
                 'label' => 'app.ui_element.field.link_collection.default',
             ])
+            ->add('view', ChoiceType::class, [
+                'choices' => $views,
+                'required' => true,
+            ])
+            ->add('params', CollectionType::class, [
+                'entry_type' => ParamsType::class,
+                'button_add_label' => 'app.ui_element.form.add_params',
+                'attr' => [
+                    'data-type' => 'sub_accordion'
+                ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'delete_empty' => true,
+                'label' => 'app.ui_element.field.params_collection.default',
+            ])
+            // ->add('params', ParamsType::class, [
+            //     'by_reference' => false,
+            //     'label' => 'app.ui_element.field.link_to_external_link',
+            //     'block_name' => 'entry',
+            //     'required' => false,
+            //     // 'label' => 'app.ui_element.field.link',
+            //     // 'constraints' => [
+            //     //     new Assert\Url([]),
+            //     // ],
+            // ])
         ;
        
         $builder

@@ -225,6 +225,8 @@ app:
         
     ui_element:
         field:
+            key: Clé
+            value: Valeur
             devkey: Clé développeur
             title: Titre
             name: Nom
@@ -270,6 +272,8 @@ app:
             url: URL
             category_type: Type de catégorie
             icon_media: Icône
+            params_collection:
+                default: Paramètres (clé, valeur)
             link_collection:
                 default: Liens - Boutons
             card_collection:
@@ -280,7 +284,9 @@ app:
             arrival_date: Date d'arrivée
         form:
             item_list: Liste des éléments
+            item_params: Liste des paramètres
             add_item: Ajouter un élément
+            add_params: Ajouter un paramètre
         component_iframe:
             title: 'Composant Iframe'
             short_description: 'Pour insérer une Iframe'
