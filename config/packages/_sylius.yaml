@@ -301,7 +301,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [ category.translations.name ]
+                        fields: [ category ]
                     form_options:
                         class: "%app.model.category.class%"  
 
@@ -568,7 +568,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [ category.translations.name ]
+                        fields: [ category ]
                     form_options:
                         class: "%app.model.category.class%"  
 
@@ -648,7 +648,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [ category.translations.name ]
+                        fields: [ category ]
                     form_options:
                         class: "%app.model.category.class%"  
 
@@ -1054,7 +1054,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [category.translations.name]
+                        fields: [category]
                     form_options:
                         class: "%app.model.category.class%"
 
@@ -1117,7 +1117,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [category.translations.name]
+                        fields: [category]
                     form_options:
                         class: "%app.model.category.class%"
 
@@ -1187,7 +1187,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [category.translations.name]
+                        fields: [category]
                     form_options:
                         class: "%app.model.category.class%"
 
@@ -1259,7 +1259,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [category.translations.name]
+                        fields: [category]
                     form_options:
                         class: "%app.model.category.class%"
 

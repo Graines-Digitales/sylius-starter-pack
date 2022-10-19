@@ -16,15 +16,19 @@ class MediaObjectImageAction
     private $entityManager;
 
     private $container;
+    
+    private $categoryAction;
 
     public function __construct(
         SluggerInterface $slugger
         , EntityManagerInterface $entityManager
         , ContainerInterface $container
+        , CategoryAction $categoryAction
     ){
         $this->slugger = $slugger;
         $this->entityManager = $entityManager;
         $this->container = $container;
+        $this->categoryAction = $categoryAction;
     }
 
     public function create($data = [], $locale = 'fr', $persist = true)
@@ -71,7 +75,7 @@ class MediaObjectImageAction
         return $entity;
     }
 
-    public function hydrate($data, $entity, $locale)
+    public function hydrate($data, $entity, $locale = 'fr')
     {
         if (isset($data['name'])) {
             $entity->setName($data['name']);
@@ -86,6 +90,18 @@ class MediaObjectImageAction
             $entity->setFilename($data['filename']);
         }
         
+        if(isset($data['category']) && !empty($data['category'])){
+            
+            $array = explode( '\\', get_class($entity));
+       
+            $data['category']['type'] = [ "name" => end($array) ];
+            $data['category'] = $this->categoryAction->create($data['category']);
+            if(null === $data['category']) {
+                throw new \Exception('Error form WebPageAction relation field category');
+            }
+            $entity->setCategory($data['category']);
+        }
+
         if (null !== $entity->getFile()) {
             $file = $entity->getFile();
             $originalFilename = null;

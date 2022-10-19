@@ -35,23 +35,29 @@ class ImportCommand extends Import
                 $filename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
                 $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
                 $category = null;
+                $data = [];
                 if('images' !== $dirname) {
-                    $data['name'] = $dirname;
+                    $d['name'] = $dirname;
                     $category = $this->entityManager->getRepository(Category::class)
-                        ->findOneBySlug($data['name']);
+                        ->findOneBySlug($d['name']);
                     if(null === $category) {
                         
-                        $category = $this->categoryAction->create($data);
+                        $category = $this->categoryAction->create($d);
                     }
+                    $data['category']['name'] = $category;
                 }
+
                 $file = new File($absoluteFilePath);
                 if (in_array($file->getMimeType(), $imageMimeTypes)) {
                     $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/image/' . $filename);
                     $entity = $this->entityManager->getRepository(MediaObjectImage::class)
                     ->findOneBy([ 'filename' => $filename ]);
+                    $data['filename'] = $filename;
                     if(null === $entity) {
                         
-                        $entity = $this->mediaService->defineEntityMediaFromFile2($file, $category);
+                        $entity = $this->mediaImageService->create($data);
+                    } else {
+                        $entity = $this->mediaImageService->hydrate($data, $entity);
                     }
                     $this->entityManager->persist($entity);
                 }
@@ -72,9 +78,13 @@ class ImportCommand extends Import
                 $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/icon/' . $filename);
                 $entity = $this->entityManager->getRepository(MediaObjectIcon::class)
                 ->findOneBy([ 'filename' => $filename ]);
+                $data = [];
+                $data['filename'] = $filename;
                 if(null === $entity) {
                     
-                    $entity = $this->mediaService->defineIconMediaFromFile($file);
+                    $entity = $this->mediaIconService->create($data);
+                } else {
+                    $entity = $this->mediaIconService->hydrate($data, $entity);
                 }
                 $this->entityManager->persist($entity);
             }

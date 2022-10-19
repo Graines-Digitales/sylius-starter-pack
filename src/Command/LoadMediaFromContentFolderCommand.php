@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Data\Import;
+use App\Data\ImportCommand;
 use Symfony\Component\Finder\Finder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -30,7 +31,7 @@ class LoadMediaFromContentFolderCommand extends Command
     public function __construct(
         ContainerInterface $container
         , EntityManagerInterface $entityManager
-        , Import $importAction
+        , ImportCommand $importAction
     ){
         $this->container = $container;
         $this->entityManager = $entityManager;
@@ -50,7 +51,7 @@ class LoadMediaFromContentFolderCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $this->importAction->fromImagesFolder();
+        $this->importAction->fromImagesFolder($io);
         $io->success('Les données du dossier content/ ont bien été enregistrées.');
    
         return Command::SUCCESS;
