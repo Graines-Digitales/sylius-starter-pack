@@ -5,6 +5,7 @@ namespace App\Form\Type;
 use App\Entity\Trip;
 use App\Entity\Category;
 use App\Entity\MediaObjectImage;
+use Doctrine\ORM\EntityRepository;
 use App\Form\Type\AggregateOfferType;
 use App\Form\Type\TripTranslationType;
 use Symfony\Component\Form\AbstractType;
@@ -70,7 +71,12 @@ class TripType extends AbstractType
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image'
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('category', EntityType::class, [
                 'required' => false,

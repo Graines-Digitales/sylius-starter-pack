@@ -86,8 +86,12 @@ class MediaObjectIconAction
         if (isset($data['filename'])) {
             $entity->setFilename($data['filename']);
         }
+        
         if (isset($data['html'])) {
             $entity->setHtml($data['html']);
+        } else if($entity->getFile()->getPathname()) {
+            $html = file_get_contents($entity->getFile()->getPathname());
+            $entity->setHtml($html);
         }
 
         if (null !== $entity->getFile()) {

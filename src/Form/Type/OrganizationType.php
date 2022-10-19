@@ -5,6 +5,7 @@ namespace App\Form\Type;
 use App\Entity\Organization;
 use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\MediaObjectRepository;
 use App\Repository\OrganizationRepository;
@@ -68,6 +69,11 @@ class OrganizationType extends AbstractType
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
                 'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('icon', EntityType::class, [
                 'attr' => ['class' => 'select2-icon'],
@@ -76,7 +82,7 @@ class OrganizationType extends AbstractType
             ])
             // ->add('category', EntityType::class, [
             //     'class' => Category::class,
-            //     'placeholder' => 'app.ui_element.field.select_category',
+            //     'placeholder' => 'app.ui_element.field.choose',
             //     'query_builder' => function(CategoryRepository $repo) {
             //         return $repo->createQueryBuilderByTypeOrganization();
             //     }
@@ -97,7 +103,7 @@ class OrganizationType extends AbstractType
                 'expanded'      => true,
                 'multiple'      => true,
                 // 'by_reference' => false,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function (OrganizationRepository $repo) use ($configurationProject) {
                     return $repo->createQueryBuilderByCategorySocialLink($configurationProject);
                 }

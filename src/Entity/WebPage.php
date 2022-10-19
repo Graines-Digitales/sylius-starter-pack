@@ -105,6 +105,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=MediaObjectIcon::class)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(

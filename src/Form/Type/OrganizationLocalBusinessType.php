@@ -59,7 +59,7 @@ class OrganizationLocalBusinessType extends AbstractType
             ])
             ->add('primaryImage', EntityType::class, [
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }

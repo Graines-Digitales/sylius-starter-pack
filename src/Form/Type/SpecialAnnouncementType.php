@@ -43,14 +43,14 @@ class SpecialAnnouncementType extends AbstractResourceType
             ])
             ->add('primaryImage', EntityType::class, [
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingImage($configurationProject);
                 }
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                // 'placeholder' => 'app.ui_element.field.select_category',
+                // 'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(CategoryRepository $repo) use ($configurationProject) {
                     return $repo->createQueryBuilderByTypeSpecialAnnouncement($configurationProject);
                 }

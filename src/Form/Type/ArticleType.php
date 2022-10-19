@@ -55,19 +55,34 @@ class ArticleType extends AbstractResourceType
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image'
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.choose'
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-standard'],
                 'class' => MediaObjectVideo::class,
                 'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('category', EntityType::class, [
                 'required' => false,

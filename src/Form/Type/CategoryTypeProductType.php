@@ -34,9 +34,11 @@ class CategoryTypeProductType extends AbstractResourceType
             ])
             ->add('primaryImage', EntityType::class, [
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
-                'query_builder' => function(MediaObjectImageRepository $repo) use ($configurationProject){
-                    return $repo->createQueryBuilderByEncodingImage($configurationProject);
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
                 }
             ])
             ->add('localBusinesses', EntityType::class, [

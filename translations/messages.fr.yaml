@@ -286,6 +286,7 @@ app:
             item_list: Liste des éléments
             item_params: Liste des paramètres
             add_item: Ajouter un élément
+            add_link: Ajouter un lien
             add_params: Ajouter un paramètre
         component_iframe:
             title: 'Composant Iframe'

@@ -79,29 +79,46 @@ class ComponentCardsType extends AbstractType
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
+                'placeholder' => 'app.ui_element.field.choose',
                 'attr' => ['class' => 'select2-image'],
-                'choice_label' => function ($mediaObject) {
-                    return $mediaObject->getFileName();
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
                 }
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image'
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-icon'],
                 'class' => MediaObjectIcon::class,
-                'placeholder' => 'app.ui_element.field.select_icon',
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-standard'],
                 'class' => MediaObjectVideo::class,
                 'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('content', WysiwygType::class, [
                 'required' => false,
@@ -110,7 +127,7 @@ class ComponentCardsType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'attr' => ['class' => 'select2-standard'],
-                'placeholder' => 'app.ui_element.field.select_category',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                     ->innerJoin('c.translations', 'translation')
@@ -128,6 +145,7 @@ class ComponentCardsType extends AbstractType
                 'choices' => $views,
                 'attr' => ['class' => 'select2-standard'],
                 'required' => true,
+                'placeholder' => 'app.ui_element.field.choose',
             ])
             ->add('params', CollectionType::class, [
                 'entry_type' => ParamsType::class,
@@ -143,7 +161,7 @@ class ComponentCardsType extends AbstractType
             ])
             ->add('cards', CollectionType::class, [
                 'entry_type' => ComponentCardType::class,
-                'button_add_label' => 'app.ui_element.form.add_item',
+                'button_add_label' => 'app.ui_element.form.add_link',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,

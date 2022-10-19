@@ -7,6 +7,7 @@ use App\Entity\Category;
 use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
 use App\Entity\MediaObjectVideo;
+use Doctrine\ORM\EntityRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\WebPageTranslationType;
@@ -56,7 +57,12 @@ class WebPageType extends AbstractResourceType
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.choose'
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
@@ -68,7 +74,7 @@ class WebPageType extends AbstractResourceType
                 'required' => false,
                 'attr' => ['class' => 'select2-icon'],
                 'class' => MediaObjectIcon::class,
-                'placeholder' => 'app.ui_element.field.select_icon',
+                'placeholder' => 'app.ui_element.field.choose',
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
