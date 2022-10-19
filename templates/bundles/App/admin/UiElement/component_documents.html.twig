@@ -1,5 +1,14 @@
-{% if element.title is empty %}
-    <h3>{{element.designation}}</h3>
-{% else %}
-    <h3>{{element.title}}</h3>
-{% endif %}
+<h2 class="ui huge header">
+    {% if element.primaryImage is defined and element.primaryImage is not empty %}
+        <img class="ui huge rounded image" src="{{ element.primaryImage.filename|imagine_filter('thumbnail_webp') }}" />
+    {% elseif element.icon is defined and element.icon is not empty %}
+        <img class="ui huge rounded image" src="{{ asset('media/icon/' ~ element.icon.filename) }}"/>
+    {% endif %}
+    <div class="content">
+        {% if element.designation is defined and element.designation is not empty %}
+            {{element.designation}}
+        {% else %}
+            {{element.title}}
+        {% endif %}
+    </div>
+</h2>
