@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
+use App\Entity\Category;
 use App\Form\Type\ParamsType;
 use App\WebContent\Component;
 use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
 use App\Entity\MediaObjectVideo;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
@@ -70,9 +72,9 @@ class ComponentCardsType extends AbstractType
                 'required' => false,
                 'label' => 'app.ui_element.field.title',
             ])
-            ->add('content', WysiwygType::class, [
+            ->add('subtitle', TextType::class, [
                 'required' => false,
-                'label' => 'app.ui_element.field.content',
+                'label' => 'app.ui_element.field.subtitle',
             ])
             ->add('primaryImage', EntityType::class, [
                 'required' => false,
@@ -82,6 +84,12 @@ class ComponentCardsType extends AbstractType
                 'choice_label' => function ($mediaObject) {
                     return $mediaObject->getFileName();
                 }
+            ])
+            ->add('secondaryImage', EntityType::class, [
+                'required' => false,
+                'attr' => ['class' => 'select2-image'],
+                'class' => MediaObjectImage::class,
+                'placeholder' => 'app.ui_element.field.select_primary_image'
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
@@ -94,6 +102,27 @@ class ComponentCardsType extends AbstractType
                 'attr' => ['class' => 'select2-standard'],
                 'class' => MediaObjectVideo::class,
                 'placeholder' => 'app.ui_element.field.choose',
+            ])
+            ->add('content', WysiwygType::class, [
+                'required' => false,
+                'label' => 'app.ui_element.field.content',
+            ])
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'attr' => ['class' => 'select2-standard'],
+                'placeholder' => 'app.ui_element.field.select_category',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                    ->innerJoin('c.translations', 'translation')
+                        ->orderBy('translation.name', 'ASC');
+                }
+            ])
+            ->add('tags', EntityType::class, [
+                'class'         => Category::class,
+                'expanded'      => false,
+                'multiple'      => true,
+                'placeholder' => 'app.ui_element.field.select_option',
+                'attr' => ['class' => 'select2-standard'],
             ])
             ->add('view', ChoiceType::class, [
                 'choices' => $views,

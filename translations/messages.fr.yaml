@@ -232,7 +232,7 @@ app:
             name: Nom
             slug: Slug
             description: Description
-            subtitle: Sous-titre
+            subtitle: Titre alternatif
             link: 'Lien'
             content: Contenu
             image: Image

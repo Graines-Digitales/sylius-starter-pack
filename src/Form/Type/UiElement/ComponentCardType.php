@@ -6,8 +6,10 @@ namespace App\Form\Type\UiElement;
 
 use App\Entity\Category;
 use App\Form\Type\ParamsType;
+use App\WebContent\Component;
 use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
+use App\Entity\MediaObjectVideo;
 use Doctrine\ORM\EntityRepository;
 use App\Form\Type\PropertyValueType;
 use Symfony\Component\Form\FormEvent;
@@ -25,7 +27,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Form\DataTransformer\MediaObjectImageTransformer;
-use App\WebContent\Component;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
@@ -85,6 +86,37 @@ class ComponentCardType extends AbstractType
                 'required' => false,
                 'label' => 'app.ui_element.field.subtitle',
             ])
+            ->add('primaryImage', EntityType::class, [
+                'required' => false,
+                'class' => MediaObjectImage::class,
+                'placeholder' => 'app.ui_element.field.select_primary_image',
+                'attr' => ['class' => 'select2-image'],
+                'choice_label' => function ($mediaObject) {
+                    return $mediaObject->getFileName();
+                }
+            ])
+            ->add('secondaryImage', EntityType::class, [
+                'required' => false,
+                'attr' => ['class' => 'select2-image'],
+                'class' => MediaObjectImage::class,
+                'placeholder' => 'app.ui_element.field.select_primary_image'
+            ])
+            ->add('icon', EntityType::class, [
+                'required' => false,
+                'attr' => ['class' => 'select2-icon'],
+                'class' => MediaObjectIcon::class,
+                'placeholder' => 'app.ui_element.field.select_icon',
+            ])
+            ->add('video', EntityType::class, [
+                'required' => false,
+                'attr' => ['class' => 'select2-standard'],
+                'class' => MediaObjectVideo::class,
+                'placeholder' => 'app.ui_element.field.choose',
+            ])
+            ->add('content', WysiwygType::class, [
+                'required' => false,
+                'label' => 'app.ui_element.field.content',
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'attr' => ['class' => 'select2-standard'],
@@ -101,31 +133,6 @@ class ComponentCardType extends AbstractType
                 'multiple'      => true,
                 'placeholder' => 'app.ui_element.field.select_option',
                 'attr' => ['class' => 'select2-standard'],
-            ])
-            ->add('primaryImage', EntityType::class, [
-                'required' => false,
-                'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image',
-                'attr' => ['class' => 'select2-image'],
-                'choice_label' => function ($mediaObject) {
-                    return $mediaObject->getFileName();
-                }
-            ])
-            ->add('secondaryImage', EntityType::class, [
-                'required' => false,
-                'attr' => ['class' => 'select2-image'],
-                'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image'
-            ])
-            ->add('content', WysiwygType::class, [
-                'required' => false,
-                'label' => 'app.ui_element.field.content',
-            ])
-            ->add('icon', EntityType::class, [
-                'required' => false,
-                'attr' => ['class' => 'select2-icon'],
-                'class' => MediaObjectIcon::class,
-                'placeholder' => 'app.ui_element.field.select_icon',
             ])
             ->add('links', CollectionType::class, [
                 'entry_type' => ComponentLinkType::class,
