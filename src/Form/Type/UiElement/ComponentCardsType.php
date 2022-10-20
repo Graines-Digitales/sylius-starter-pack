@@ -161,7 +161,7 @@ class ComponentCardsType extends AbstractType
             ])
             ->add('cards', CollectionType::class, [
                 'entry_type' => ComponentCardType::class,
-                'button_add_label' => 'app.ui_element.form.add_link',
+                'button_add_label' => 'app.ui_element.form.add_item',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,

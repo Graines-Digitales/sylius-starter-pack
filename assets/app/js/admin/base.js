@@ -6,21 +6,11 @@ import '../../styles/admin/base.scss';
  */
 
 const initComponent = () => {
-  initSelect2()
-  initAccordion()
-  const addCollectionButton = document.querySelector('[data-form-collection="add"]')
-  if(null !== addCollectionButton) {
-    addCollectionButton.addEventListener('click', function handleClick(event) {
-      const collectionList = document.querySelector('[data-form-collection="list"]')
-      let mutationObserver = new MutationObserver(initComponent)
-      mutationObserver.observe(collectionList, {
-        childList: true,
-        attributes: true,
-        subtree: false
-      })
-    })
-  }
   console.log('initComponent')  
+  initSelect2()
+  // initAccordion()
+ 
+  
 }
 
 const initObserver = () => {
@@ -52,15 +42,27 @@ const initObserver = () => {
       const cards = document.querySelectorAll('.js-uie-panels-selector .link.uie-card')
       cards.forEach(card => {
         card.addEventListener('click', function handleClick(event) {
-          let mutationObserver = new MutationObserver(initComponent)
+
           let richContainer = document.querySelectorAll('.uie-panels__new.js-uie-panels-new')
-          richContainer.forEach(element => mutationObserver.observe(element, {
+
+          let mutationObserver1 = new MutationObserver(initComponent)
+          richContainer.forEach(element => mutationObserver1.observe(element, {
             childList: true,
             attributes: true,
             subtree: false
           }))
+          let mutationObserver2 = new MutationObserver(initSelect2ForCollection)
+          richContainer.forEach(element => mutationObserver2.observe(element, {
+            childList: true,
+            attributes: true,
+            subtree: false
+          }))
+        
         })
       })
+
+      
+      
     })
   })
 }
@@ -69,18 +71,86 @@ const initAccordion = () => {
   $('.ui.accordion_alt').accordion()
 }
 
-const initSelect2 = () => {
-  $(() => {
-    $('.select2-image').select2({
-      templateResult: formatState,
-      templateSelection: formatState
+const initSelect2ForCollection = () => {
+
+  const addCollectionButton = document.querySelector('#component_cards_cards [data-form-collection="add"]')
+  console.log('addCollectionButton')
+  console.log(addCollectionButton)
+  if(null !== addCollectionButton) {
+     // buttons.forEach(button => {
+      addCollectionButton.addEventListener('click', function handleClick(event) {
+        console.log('click')
+        // const addCollectionButton = document.querySelector('[data-form-collection="add"]')
+        // console.log('initSelect2ForCollection addCollectionButton')
+        // console.log(addCollectionButton)
+        const collectionLists = document.querySelectorAll('#component_cards_cards [data-form-collection="item"]')
+        console.log('collectionLists')
+        console.log(collectionLists)
+        var lastElement = collectionLists[collectionLists.length - 1]
+        if(typeof lastElement === "undefined") {
+          const selector = '#component_cards_cards [data-form-collection-index="0"]'
+          // const collection = document.querySelector(selector)
+          initSelect2(selector)
+          // console.log(collection)
+        } else {
+          
+          const currentIndex = parseInt(lastElement.dataset.formCollectionIndex)
+          const newIndex = currentIndex + 1
+          const selector = '#component_cards_cards [data-form-collection-index="' + newIndex +'"]'
+          // const collection = document.querySelector(selector)
+          console.log(lastElement)
+          console.log(lastElement.className)
+          console.log(lastElement.dataset.formCollectionIndex)
+          initSelect2(selector)
+          // console.log(collection)
+        }
+        
+        // collectionLists.forEach(collection => {
+          // let mutationObserver = new MutationObserver(initComponent)
+          // mutationObserver.observe(collection, {
+          //   childList: true,
+          //   attributes: true,
+          //   subtree: false
+          // })
+        // })
+        
+       
+      // })
     })
-    $('.select2-icon').select2({
-      templateResult: formatState2,
-      templateSelection: formatState2
+  }
+ 
+}
+
+const initSelect2 = (selector = null) => {
+  
+  if(null !== selector) {
+    $(() => {
+      console.log('initSelect2 selector')
+      $(selector + ' .select2-image').select2({
+        templateResult: formatState,
+        templateSelection: formatState
+      })
+      $(selector + ' .select2-icon').select2({
+        templateResult: formatState2,
+        templateSelection: formatState2
+      })
+      $(selector + ' .select2-standard').select2()
     })
-    $('.select2-standard').select2();
-  })
+  } else {
+    console.log('initSelect2')
+    $(() => {
+      $('.select2-image').select2({
+        templateResult: formatState,
+        templateSelection: formatState
+      })
+      $('.select2-icon').select2({
+        templateResult: formatState2,
+        templateSelection: formatState2
+      })
+      $('.select2-standard').select2()
+    })
+  }
+  
 }
 
 /**
