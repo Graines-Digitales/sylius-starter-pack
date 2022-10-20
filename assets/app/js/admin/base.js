@@ -22,9 +22,15 @@ const initObserver = () => {
     button.addEventListener('click', function handleClick(event) {
       console.log('editButtons click')
       console.log(button)
-      let mutationObserver = new MutationObserver(initComponent)
-      let richContainer = document.querySelectorAll('.uie-panels.js-uie-panels-edit')
-      richContainer.forEach(element => mutationObserver.observe(element, {
+      let richContainer = document.querySelectorAll('.uie-panels__new.js-uie-panels-new')
+      let mutationObserver1 = new MutationObserver(initComponent)
+      richContainer.forEach(element => mutationObserver1.observe(element, {
+        childList: true,
+        attributes: true,
+        subtree: false
+      }))
+      let mutationObserver2 = new MutationObserver(initSelect2ForCollection)
+      richContainer.forEach(element => mutationObserver2.observe(element, {
         childList: true,
         attributes: true,
         subtree: false
@@ -60,9 +66,6 @@ const initObserver = () => {
         
         })
       })
-
-      
-      
     })
   })
 }
@@ -72,7 +75,6 @@ const initAccordion = () => {
 }
 
 const initSelect2ForCollection = () => {
-
   const addCollectionButton = document.querySelector('#component_cards_cards [data-form-collection="add"]')
   console.log('addCollectionButton')
   console.log(addCollectionButton)
@@ -80,45 +82,19 @@ const initSelect2ForCollection = () => {
      // buttons.forEach(button => {
       addCollectionButton.addEventListener('click', function handleClick(event) {
         console.log('click')
-        // const addCollectionButton = document.querySelector('[data-form-collection="add"]')
-        // console.log('initSelect2ForCollection addCollectionButton')
-        // console.log(addCollectionButton)
         const collectionLists = document.querySelectorAll('#component_cards_cards [data-form-collection="item"]')
-        console.log('collectionLists')
-        console.log(collectionLists)
         var lastElement = collectionLists[collectionLists.length - 1]
         if(typeof lastElement === "undefined") {
           const selector = '#component_cards_cards [data-form-collection-index="0"]'
-          // const collection = document.querySelector(selector)
           initSelect2(selector)
-          // console.log(collection)
         } else {
-          
           const currentIndex = parseInt(lastElement.dataset.formCollectionIndex)
           const newIndex = currentIndex + 1
           const selector = '#component_cards_cards [data-form-collection-index="' + newIndex +'"]'
-          // const collection = document.querySelector(selector)
-          console.log(lastElement)
-          console.log(lastElement.className)
-          console.log(lastElement.dataset.formCollectionIndex)
           initSelect2(selector)
-          // console.log(collection)
         }
-        
-        // collectionLists.forEach(collection => {
-          // let mutationObserver = new MutationObserver(initComponent)
-          // mutationObserver.observe(collection, {
-          //   childList: true,
-          //   attributes: true,
-          //   subtree: false
-          // })
-        // })
-        
-       
-      // })
     })
   }
- 
 }
 
 const initSelect2 = (selector = null) => {

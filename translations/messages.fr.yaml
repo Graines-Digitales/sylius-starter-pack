@@ -298,11 +298,11 @@ app:
             short_description: 'Composant avec icons, images, textes ...etc'
             description: 'Une section composé de icons, images, textes ...etc'
         component_cards:
-            title: 'Composant Cartes Liste'
+            title: 'Composant Liste'
             short_description: 'Liste de cartes avec icons, images, textes ...etc'
             description: 'Une section avec titre texte et une collection d icons, images, textes ...etc'
         component_documents:
-            title: 'Composant Documents'
+            title: 'Composant Document'
             description: 'Une section pour télécharger des documents'
         component_call_to_action:
             title: 'Composant Call To Action'
