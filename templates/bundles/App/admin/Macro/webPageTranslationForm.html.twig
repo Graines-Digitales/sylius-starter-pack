@@ -23,11 +23,11 @@
                         {{ form_row(translationForm.name)}}
 					    {{ form_row(translationForm.description)}}
 					</div> #}
-					<div class="title active">
+					<div class="title {% if loop.first %} active{% endif %}">
 						<i class="dropdown icon"></i>
 						{{ 'app.ui.form.page_content' | trans }}
 					</div>
-					<div class="content active components-container">
+					<div class="content {% if loop.first %} active{% endif %} components-container">
                         {{ form_row(translationForm.headline)}}
                         {{ form_row(translationForm.alternativeHeadline)}}
                         {{ form_row(translationForm.pushForward)}}

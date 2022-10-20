@@ -102,7 +102,7 @@
 
             <div class="ui styled fluid accordion_alt" data-form-collection="list">
                 {% for child in form %}
-                    <div class="title">
+                    <div class="title {% if loop.first %} active{% endif %}">
                     {# {{ dump(child.vars.value) }} #}
                     {% if child.vars.value.designation is defined %}
                         {{ child.vars.value.designation|capitalize }}
@@ -115,7 +115,7 @@
                     {% endif %}
                         <i class="dropdown icon"></i>
                     </div>
-                    <div class="cc content">
+                    <div class="content {% if loop.first %} active{% endif %}">
                         {{ self.collection_item(child, allow_delete, button_delete_label, loop.index0) }}
                     </div>
                 {% endfor %}
