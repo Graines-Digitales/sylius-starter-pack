@@ -46,7 +46,7 @@ class OpeningHoursSpecification
     private $validTrough;
 
     /**
-     * @ORM\ManyToOne(targetEntity=LocalBusiness::class, inversedBy="openingHours", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=LocalBusiness::class, inversedBy="openingHours", cascade={"persist"})
      */
     private $localBusiness;
 

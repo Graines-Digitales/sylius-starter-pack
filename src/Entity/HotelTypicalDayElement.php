@@ -39,7 +39,7 @@ class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="HotelTypicalDay", inversedBy="elements", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="HotelTypicalDay", inversedBy="elements", cascade={"persist"})
      * @ORM\JoinColumn(name="hotel_typical_day_id", referencedColumnName="id")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
@@ -51,7 +51,7 @@ class HotelTypicalDayElement implements ResourceInterface, TranslatableInterface
     private $hours;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(

@@ -53,7 +53,7 @@ class HotelService implements ResourceInterface, TranslatableInterface
     private $slugPicto;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -68,7 +68,7 @@ class HotelService implements ResourceInterface, TranslatableInterface
     private $moreInfo;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="hotelServices", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="hotelServices", cascade={"persist"})
      * @ORM\JoinTable(name="app_hotel_services_categories")
      */
     private $tags;

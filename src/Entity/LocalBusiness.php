@@ -41,13 +41,13 @@ class LocalBusiness implements ResourceInterface
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="localBusinesses", cascade={"persist", "remove"}))
+     * @ORM\ManyToOne(targetEntity=Organization::class, inversedBy="localBusinesses", cascade={"persist"}))
      * @ORM\JoinColumn(referencedColumnName="id", nullable=false)
      */
     private $organization;
 
     /**
-     * @ORM\OneToMany(targetEntity=OpeningHoursSpecification::class, mappedBy="localBusiness", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=OpeningHoursSpecification::class, mappedBy="localBusiness", cascade={"persist"})
      */
     private $openingHours;
 

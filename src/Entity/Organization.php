@@ -162,7 +162,7 @@ class Organization implements ResourceInterface
     private $mobilePhone;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(

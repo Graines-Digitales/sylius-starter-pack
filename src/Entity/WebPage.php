@@ -53,7 +53,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -63,7 +63,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="webPages", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="webPages", cascade={"persist"})
      * @ORM\JoinTable(name="app_web_page_category")
      * 
      * @ApiSubresource(maxDepth=1)
@@ -94,7 +94,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(

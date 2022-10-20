@@ -62,7 +62,7 @@ class Article implements ResourceInterface, TranslatableInterface
     private $lastReview;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -72,7 +72,7 @@ class Article implements ResourceInterface, TranslatableInterface
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles", cascade={"persist"})
      * @ORM\JoinTable(name="app_articles_categories")
      * 
      * @ApiSubresource(maxDepth=1)
@@ -93,7 +93,7 @@ class Article implements ResourceInterface, TranslatableInterface
     private $propertyValues;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(

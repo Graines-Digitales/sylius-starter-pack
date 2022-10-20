@@ -13,7 +13,7 @@ use ApiPlatform\Core\Annotation\ApiSubresource;
 trait ImagesTrait
 {
    /**
-     * @ORM\ManyToOne(targetEntity=MediaObjectImage::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=MediaObjectImage::class, cascade={"persist"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      * 
      * @ApiSubresource(maxDepth=1)
@@ -24,7 +24,7 @@ trait ImagesTrait
     private $primaryImage;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObjectImage::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=MediaObjectImage::class, cascade={"persist"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      * 
      * @ApiSubresource(maxDepth=1)
