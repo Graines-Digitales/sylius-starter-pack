@@ -1,14 +1,24 @@
 import '../../styles/admin/base.scss';
 
 
-// const initComponent = () => {
-//   console.log('initComponent')  
-//   initSelect2()
-//   // initAccordion()
-// }
+const initComponent = () => {
+  initSelect2()
+  initAccordion()
+}
 
 const initAccordion = () => {
-  $('.ui.accordion_alt').accordion()
+  // $('.ui.accordion_alt').accordion()
+  $('.ui.accordion_alt').each(function( index ) {
+    const elem = $( this );
+    const attr = elem.attr('data-form-collection');
+    console.log(attr)
+    // if (typeof attr === 'undefined' || attr === false) {
+    //   elem.select2({
+    //     templateResult: formatState,
+    //     templateSelection: formatState
+    //   });
+    // }
+  });
 }
 
 const initSelect2 = () => {
