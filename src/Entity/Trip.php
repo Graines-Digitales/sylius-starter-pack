@@ -117,6 +117,11 @@ class Trip  implements ResourceInterface, TranslatableInterface
      */
     private $offers;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
 
     public function __toString()
     {
@@ -234,6 +239,18 @@ class Trip  implements ResourceInterface, TranslatableInterface
     public function removeOffer(AggregateOffer $offer): self
     {
         $this->offers->removeElement($offer);
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

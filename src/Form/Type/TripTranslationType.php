@@ -32,6 +32,9 @@ class TripTranslationType extends AbstractType
             ->add('pushForward', TextType::class, [
                 'required' => false
             ])
+            ->add('description', CKEditorType::class, [
+                'required' => false
+            ])
             ->add('text', CKEditorType::class, [
                 'required' => false
             ])
