@@ -53,7 +53,7 @@ class ArticleListener
 
         $translatedData = $this->translate($entity);
         if(!empty($translatedData)) {
-            $this->webPageDataAction->hydrate(
+            $this->articleDataAction->hydrate(
                 $translatedData,
                 $entity->getTranslatable(),
                 $entity->getLocale()
