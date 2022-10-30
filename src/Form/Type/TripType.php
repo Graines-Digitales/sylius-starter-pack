@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
@@ -31,10 +32,10 @@ class TripType extends AbstractType
             ->add('isIndexed', CheckboxType::class, [
                 'required' => false,
             ])
-            ->add('arrivalTime', DateTimeType::class, [
+            ->add('arrivalTime', DateType::class, [
                 // 'disabled' => true,
                 'widget' => 'single_text',
-                'with_minutes' => true,
+                // 'with_minutes' => false,
                 'required' => false,
                 'label' => 'app.ui_element.field.arrival_date',
                 'required' => false,
@@ -42,9 +43,10 @@ class TripType extends AbstractType
                 //     new NotBlank(['groups' => ['trip_validation']])
                 // ]
             ])
-            ->add('departureTime', DateTimeType::class, [
+            ->add('departureTime', DateType::class, [
                 // 'disabled' => true,
                 'widget' => 'single_text',
+                // 'with_minutes' => false,
                 'required' => false,
                 'label' => 'app.ui_element.field.departure_date',
                 'required' => false,

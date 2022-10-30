@@ -105,6 +105,7 @@ security:
                 name: APP_SHOP_REMEMBER_ME
                 lifetime: 31536000
                 remember_me_parameter: _remember_me
+                always_remember_me: true
             logout:
                 path: sylius_shop_logout
                 target: sylius_shop_login

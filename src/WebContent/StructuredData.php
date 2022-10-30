@@ -15,6 +15,8 @@ class StructuredData extends AbstractWebContent
 
     private $cdn;
 
+    private $organization;
+
     public function generate($metaData, $entity)
     {
         $structuredData = [];
@@ -23,6 +25,8 @@ class StructuredData extends AbstractWebContent
 
             return $structuredData;
         }
+
+        $this->organization = $metaData['organization'];
 
         $kernelProjectDir = $this->container->getParameter('kernel.project_dir');
 
@@ -259,6 +263,26 @@ class StructuredData extends AbstractWebContent
             if ('description' == $key) {
                 $schema[$key] = $entity->getMetaDescription();
             }
+            if ('offers' == $key) {
+                $schema[$key] = [
+                    "@type" => "Offer",
+                    "name" => $entity->getName(),
+                    "description" => $entity->getDescription(),
+                    "price" => $entity->getTranslatable()->getOffers()[0]->getPrice(),
+                    "priceCurrency" => "EUR",
+                    "availabilityEnds" => $entity->getTranslatable()->getDepartureTime(),
+                    "url" => $this->url . DIRECTORY_SEPARATOR . 'stays' . DIRECTORY_SEPARATOR . $entity->getSlug(),
+                    "eligibleRegion" => [
+                        "@type" => "Country",
+                        "name" => "MOROCCO"
+                    ],
+                    "offeredBy" => [
+                        "@type" => "Organization",
+                        "name" => $this->organization->getName(),
+                        "url" => $this->url
+                    ]
+                ];
+            }
         }
 
         return $schema;
@@ -301,7 +325,7 @@ class StructuredData extends AbstractWebContent
                 $itemListElement = [];
                 $url = $this->url;
                 foreach($itemList as $i=>$item) {     
-                    $url.= ($item == 'home')? '/' . '': '/' . $item;
+                    $url.= ($item === 'home')? '':  DIRECTORY_SEPARATOR . $item;
                     array_push(
                         $itemListElement,
                         [
@@ -314,7 +338,7 @@ class StructuredData extends AbstractWebContent
                         ]
                     );
                 }
-                
+
                 $schema[$key] = $itemListElement;
             }
         }
