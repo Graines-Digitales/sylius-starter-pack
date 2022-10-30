@@ -267,7 +267,7 @@ class StructuredData extends AbstractWebContent
                 $schema[$key] = [
                     "@type" => "Offer",
                     "name" => $entity->getTranslatable()->getOffers()[0]->getName(),
-                    "description" => $entity->getTranslatable()->getOffers()[0]->getDescription(),
+                    // "description" => $entity->getTranslatable()->getOffers()[0]->getDescription(),
                     "price" => $entity->getTranslatable()->getOffers()[0]->getPrice(),
                     "priceCurrency" => "EUR",
                     "availabilityEnds" => $entity->getTranslatable()->getDepartureTime(),
