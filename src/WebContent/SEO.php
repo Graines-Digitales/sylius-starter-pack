@@ -81,7 +81,7 @@ class SEO
             );
             $entity->setMetaDescription($metaDescription);
         }
-        
+        dump($entity);die;
         return $entity;
     }
 

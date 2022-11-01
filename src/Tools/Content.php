@@ -17,6 +17,6 @@ class Content
             }
         }
 
-        return $string;
+        return preg_replace( "/\r|\n/", "", $string );
     }
 }
