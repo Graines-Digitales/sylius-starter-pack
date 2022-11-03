@@ -14,6 +14,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class NuxtController extends AbstractController
 {
+    public function fetch(): JsonResponse
+    {
+        $kernelProjectDir = $this->getParameter('kernel.project_dir');
+        $response = [];
+        $command = $kernelProjectDir.'/fetch.sh';
+        
+        $process = new Process(
+            [$command, $kernelProjectDir]
+        );
+        $process->setTimeout(10800); // 3 heures
+        try {
+            $process->mustRun();
+            $response['success'] = $process->getOutput();
+        } catch (ProcessFailedException $exception) {
+            $response['error'] = $exception->getMessage();
+        }
+        return new JsonResponse(
+            $response,
+            JsonResponse::HTTP_OK
+        );
+    }
+
     public function build(): JsonResponse
     {
         $kernelProjectDir = $this->getParameter('kernel.project_dir');

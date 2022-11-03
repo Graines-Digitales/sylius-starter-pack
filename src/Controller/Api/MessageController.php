@@ -57,7 +57,11 @@ class MessageController extends AbstractController
         if (!isset($data['email']) || empty($data['email'])) {
 
             return new JsonResponse(
-                [ 'message' => 'email not found' ]
+                [ 
+                    'title' => 'An error has occurred',
+                    'message' => 'email not found',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
@@ -65,7 +69,11 @@ class MessageController extends AbstractController
         if (!isset($data['slug-product']) || empty($data['slug-product'])) {
 
             return new JsonResponse(
-                [ 'message' => 'slug product not found' ]
+                [ 
+                    'title' => 'An error has occurred',
+                    'message' => 'slug product not found',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
@@ -101,8 +109,13 @@ class MessageController extends AbstractController
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
             
+            $response = json_decode($e->getResponseBody(), true);
             return new JsonResponse(
-                [ 'message' => $e->getMessage() ]
+                [ 
+                    'title' => 'An error has occurred',
+                    'message' => $response['message'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
                 , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
             );
         }
@@ -134,7 +147,11 @@ class MessageController extends AbstractController
         if (!isset($data['email']) || empty($data['email'])) {
 
             return new JsonResponse(
-                [ 'message' => 'email not found' ]
+                [ 
+                    'title' => 'An error has occurred',
+                    'message' => 'email not found',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
@@ -169,16 +186,25 @@ class MessageController extends AbstractController
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
-            
+            dump($e);die;
+            $response = json_decode($e->getResponseBody(), true);
             return new JsonResponse(
-                [ 'message' => $e->getMessage() ]
-                , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+                [ 
+                    'title' => 'An error has occurred',
+                    'message' => $response['message'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
             );
         }
         
     
         return new JsonResponse(
-            [ 'message' => 'success' ]
+            [
+                'title' => 'Success',
+                'message' => 'Your form has been registered',
+                'statutCode' => JsonResponse::HTTP_OK
+            ]
             , JsonResponse::HTTP_OK
         );
     }
@@ -203,7 +229,9 @@ class MessageController extends AbstractController
         if(!$this->getParameter('sendinblue_api_key')) {
 
             return new JsonResponse(
-                [ 'message' => 'api sendinblue not configured' ]
+                [ 
+                    'message' => 'api sendinblue not configured' 
+                ]
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
@@ -232,20 +260,33 @@ class MessageController extends AbstractController
             if(null === $response) {
 
                 return new JsonResponse(
-                    [ 'message' => 'email already exist' ]
+                    [ 
+                        'title' => 'An error has occurred',
+                        'message' => 'email already exist',
+                        'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                    ]
                     , JsonResponse::HTTP_BAD_REQUEST
                 );
             }
         } catch (Exception $e) {
             
+            $response = json_decode($e->getResponseBody(), true);
             return new JsonResponse(
-                [ 'message' => $e->getMessage() ]
+                [ 
+                    'title' => 'An error has occurred',
+                    'message' => $response['message'],
+                    'statutCode' => JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+                ]
                 , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
             );
         }
 
         return new JsonResponse(
-            [ 'message' => 'success' ]
+            [
+                'title' => 'Success',
+                'message' => 'Your email has been registered',
+                'statutCode' => JsonResponse::HTTP_OK
+            ]
             , JsonResponse::HTTP_OK
         );
     }

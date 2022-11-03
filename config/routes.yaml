@@ -24,7 +24,13 @@ app_nuxt_build:
     methods: [POST]
     defaults:
         _controller: app.controller.nuxt::build
-        
+
+app_nuxt_fetch:
+    path: /nuxt/fetch
+    methods: [POST]
+    defaults:
+        _controller: app.controller.nuxt::fetch
+
 # app_sitemap:
 #     path: /sitemap
 #     methods: [GET]
