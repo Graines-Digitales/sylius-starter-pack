@@ -275,9 +275,9 @@ class MessageController extends AbstractController
                 [ 
                     'title' => 'An error has occurred',
                     'message' => $response['message'],
-                    'statutCode' => JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
-                , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+                , JsonResponse::HTTP_BAD_REQUEST
             );
         }
 
