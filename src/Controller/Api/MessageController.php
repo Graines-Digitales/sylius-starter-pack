@@ -225,6 +225,19 @@ class MessageController extends AbstractController
         **/
         // $data = $request->request->all();
         $data = json_decode($request->getContent(), true);
+
+        if (!isset($data['email']) || empty($data['email'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'An error has occurred',
+                    'message' => 'email not found',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+        
         // dump($data);die;
         if(!$this->getParameter('sendinblue_api_key')) {
 
