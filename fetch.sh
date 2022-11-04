@@ -5,4 +5,11 @@ directory_prod_app=/home/www/graines-digitales/kazen-garden/nuxt3-modern-website
 directory_prod_api=/home/www/graines-digitales/kazen-garden/data-json-schemaorg-format-from-apis
 
 cd $directory_prod_api
-node --experimental-json-modules $directory_prod_api/api_sylius.js
+node --experimental-json-modules ./api_sylius.js
+
+if [ $? -eq 0 ]
+then
+    exit 0
+else
+    exit 1
+fi

@@ -19,7 +19,7 @@ class NuxtController extends AbstractController
         $kernelProjectDir = $this->getParameter('kernel.project_dir');
         $response = [];
         $command = $kernelProjectDir.'/fetch.sh';
-        
+       
         $process = new Process(
             [$command, $kernelProjectDir]
         );
