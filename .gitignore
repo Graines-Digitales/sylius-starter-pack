@@ -74,6 +74,7 @@ site-sync-prod.sh
 site-sync.sh
 build.sh
 deploy.sh
+fetch.sh
 
 ### folder à insérer dans deploy.sh
 /assets/images/
