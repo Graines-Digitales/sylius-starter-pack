@@ -122,12 +122,6 @@ class Trip  implements ResourceInterface, TranslatableInterface
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $activities;
-
-
     public function __toString()
     {
         return $this->getTranslation()->getHeadline();
@@ -256,18 +250,6 @@ class Trip  implements ResourceInterface, TranslatableInterface
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getActivities(): ?string
-    {
-        return $this->activities;
-    }
-
-    public function setActivities(?string $activities): self
-    {
-        $this->activities = $activities;
 
         return $this;
     }

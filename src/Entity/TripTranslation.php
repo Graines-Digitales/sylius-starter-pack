@@ -53,6 +53,11 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
      */
     private $structuredData = [];
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $activities;
+
     public function getComponents(): ?string
     {
         return $this->components;
@@ -86,6 +91,18 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
     public function setStructuredData(?array $structuredData): self
     {
         $this->structuredData = $structuredData;
+
+        return $this;
+    }
+
+    public function getActivities(): ?string
+    {
+        return $this->activities;
+    }
+
+    public function setActivities(?string $activities): self
+    {
+        $this->activities = $activities;
 
         return $this;
     }
