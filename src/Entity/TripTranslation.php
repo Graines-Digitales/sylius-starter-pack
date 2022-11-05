@@ -41,7 +41,7 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
     private $components;
 
      /**
-     * @Gedmo\Slug(fields={"headline"}, updatable=false)
+     * @ Gedmo\Slug(fields={"headline"}, updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
@@ -71,6 +71,11 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
     public function getStructuredData(): ?array

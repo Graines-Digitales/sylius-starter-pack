@@ -55,14 +55,14 @@ class WebPageListener
             return;
         }
 
-        $translatedData = $this->translate($entity);
-        if(!empty($translatedData)) {
-            $this->webPageDataAction->hydrate(
-                $translatedData,
-                $entity->getTranslatable(),
-                $entity->getLocale()
-            );
-        }
+        // $translatedData = $this->translate($entity);
+        // if(!empty($translatedData)) {
+        //     $this->webPageDataAction->hydrate(
+        //         $translatedData,
+        //         $entity->getTranslatable(),
+        //         $entity->getLocale()
+        //     );
+        // }
         $entity = $this->enrich($entity);
         if(false === $entity->getTranslatable()->getIsLocked()) {
             $entity = $this->webContentWebPageService->updateSlug($entity);  

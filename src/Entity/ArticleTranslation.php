@@ -39,7 +39,7 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     protected $translatable;
 
     /**
-     * @Gedmo\Slug(fields={"headline"}, updatable=false)
+     * @Gedmo\Slug(fields={"headline"}, updatable=true)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)

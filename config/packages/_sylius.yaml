@@ -1662,7 +1662,7 @@ sylius_grid:
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
 
-                translation.headline:
+                translation.alternativeHeadline:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
@@ -1671,9 +1671,9 @@ sylius_grid:
                 #     type: string
                 #     label: sylius.ui.slug
 
-                departureTime:
-                    type: datetime
-                    label: app.ui.departureTime
+                # departureTime:
+                #     type: datetime
+                #     label: app.ui.departureTime
 
                 arrivalTime:
                     type: datetime

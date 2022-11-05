@@ -74,7 +74,7 @@ class SEO
         } 
         else if ($entity instanceof TripTranslation) {
             
-            $metaTitle = ucfirst(substr($entity->getHeadline(), 0, 50) . $suffixe);
+            $metaTitle = ucfirst(substr($entity->getAlternativeHeadline(), 0, 50) . $suffixe);
             $entity->setMetaTitle($metaTitle);
             $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
                 $entity->getText(), 150, ' ', ''

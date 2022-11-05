@@ -10,7 +10,7 @@ use App\WebContent\MetaData;
 use App\WebContent\SEO;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class TripListener
 {
@@ -23,6 +23,8 @@ class TripListener
     protected $tripDataAction;
 
     protected $metaDataService;
+    
+    protected $slugger;
 
     public function __construct(
         ContainerInterface $container
@@ -30,6 +32,7 @@ class TripListener
         , SyliusTranslator $syliusTranslator
         , TripDataAction $tripDataAction
         , MetaData $metaDataService
+        , SluggerInterface $slugger
     )
     {
         $this->container = $container;
@@ -37,6 +40,7 @@ class TripListener
         $this->syliusTranslator = $syliusTranslator;
         $this->tripDataAction = $tripDataAction;
         $this->metaDataService = $metaDataService;
+        $this->slugger = $slugger;
 
     }
 
@@ -71,9 +75,16 @@ class TripListener
 
     private function enrich($entity)
     {
+        $this->createSlug($entity);
+        
+        if(empty($entity->getAlternativeHeadline())) {
+            $entity->setAlternativeHeadline($entity->getHeadline() . ' ' . $entity->getTranslatable()->getArrivalTime()->format('Y-m-d'));
+        }
+        
         $this->webContentSEOService->defineMetaData($entity);
         $metaData = $this->metaDataService->getData($entity);
         $this->webContentSEOService->defineStructuredData($metaData, $entity);
+        
 
         return $entity;
     }
@@ -89,5 +100,14 @@ class TripListener
         );
 
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
+    }
+
+    public function createSlug($entity)
+    {
+        $slug = $this->slugger->slug($entity->getHeadline() . ' ' . $entity->getTranslatable()->getArrivalTime()->format('Y-m-d'))->lower()->toString();
+        
+        $entity->setSlug($slug);
+
+        return $entity;
     }
 }
