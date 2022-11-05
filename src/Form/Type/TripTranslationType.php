@@ -35,6 +35,9 @@ class TripTranslationType extends AbstractType
             ->add('description', CKEditorType::class, [
                 'required' => false
             ])
+            ->add('activities', TextType::class, [
+                'required' => false
+            ])
             ->add('text', CKEditorType::class, [
                 'required' => false
             ])

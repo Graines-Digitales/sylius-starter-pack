@@ -100,7 +100,7 @@ class SEO
             }
             if (empty($entity->getMetaDescription())) {
                 $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
-                    $entity->getText(),
+                    $entity->getDescription(),
                     150,
                     ' ',
                     ''
