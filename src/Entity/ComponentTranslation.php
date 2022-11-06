@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\Traits\CreativeWorkTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\IdentifiableTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
@@ -21,12 +22,12 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 class ComponentTranslation extends AbstractTranslation implements ResourceInterface
 {
     use IdentifiableTrait;
+    use ThingTrait;
     use CreativeWorkTrait;
     use TimestampableEntity;
 
-
     /**
-     * @Gedmo\Slug(fields={"headline"}, prefix="")
+     * @Gedmo\Slug(fields={"name"}, prefix="", updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)

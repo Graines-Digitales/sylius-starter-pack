@@ -122,7 +122,11 @@ class MessageController extends AbstractController
         
     
         return new JsonResponse(
-            [ 'message' => 'success' ]
+            [
+                'title' => 'Success',
+                'message' => 'Your form has been registered',
+                'statutCode' => JsonResponse::HTTP_OK
+            ]
             , JsonResponse::HTTP_OK
         );
     }

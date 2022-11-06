@@ -39,7 +39,7 @@ class Component implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="")
+     * @Gedmo\Slug(fields={"name"}, prefix="", updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
