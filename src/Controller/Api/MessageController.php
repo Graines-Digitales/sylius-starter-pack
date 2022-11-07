@@ -82,7 +82,7 @@ class MessageController extends AbstractController
          * Save form
         **/
         $data = $this->form->saveFormContact($data);
-        if (!isset($data['errors']) || empty($data['errors'])) {
+        if (isset($data['errors'])) {
 
             return new JsonResponse(
                 [ 
@@ -176,7 +176,7 @@ class MessageController extends AbstractController
          * Save form
         **/
         $data = $this->form->saveFormContact($data);
-        if (!isset($data['errors']) || empty($data['errors'])) {
+        if (isset($data['errors'])) {
 
             return new JsonResponse(
                 [ 
