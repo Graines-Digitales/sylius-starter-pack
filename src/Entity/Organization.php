@@ -238,6 +238,11 @@ class Organization implements ResourceInterface
      */
     private $additionalPhone;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contactPoint;
+
     public function getSlug()
     {
         return $this->slug;
@@ -577,6 +582,18 @@ class Organization implements ResourceInterface
     public function setAdditionalPhone(?string $additionalPhone): self
     {
         $this->additionalPhone = $additionalPhone;
+
+        return $this;
+    }
+
+    public function getContactPoint(): ?string
+    {
+        return $this->contactPoint;
+    }
+
+    public function setContactPoint(?string $contactPoint): self
+    {
+        $this->contactPoint = $contactPoint;
 
         return $this;
     }

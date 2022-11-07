@@ -52,6 +52,7 @@ class OrganizationType extends AbstractType
             // ->add('numberOfProjects')
             
             // ->add('isIndexed')
+            ->add('contactPoint')
             ->add('description')
             ->add('url')
             // ->add('mainEntityOfPage')
