@@ -83,12 +83,12 @@ class Person implements ResourceInterface
      *     message="Please, enter email or phone"
      * )
      *
-     * @Assert\Regex(
+     * @ Assert\Regex(
      *  pattern="/^(0)[0-9]{9}$/",
      *  match=true,
      *  message="This phone number is invalid"
      * )
-     * @Assert\NotBlank(message="Enter a phone please")
+     * @ Assert\NotBlank(message="Enter a phone please")
      */
     private $phone;
 

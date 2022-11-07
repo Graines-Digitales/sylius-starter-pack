@@ -4,10 +4,10 @@ namespace App\WebContent;
 
 
 use App\Tools\Content;
-use App\Data\Action\PersonAction;
-use App\Data\Action\MessageAction;
 use App\Configuration\Project;
+use App\Data\Action\PersonAction;
 use App\Data\Action\AddressAction;
+use App\Data\Action\MessageAction;
 use Symfony\Component\Finder\Finder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
@@ -16,6 +16,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Sylius\Bundle\ThemeBundle\Filesystem\FilesystemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
 class AbstractWebContent
@@ -50,6 +51,8 @@ class AbstractWebContent
     protected $messageAction;
     
     protected $personAction;
+    
+    protected $validator;
 
     public function __construct(
           ContainerInterface $container
@@ -64,6 +67,7 @@ class AbstractWebContent
         , MessageAction $messageAction
         , PersonAction $personAction
         , AddressAction $addressAction
+        , ValidatorInterface $validator
     ){
         $this->container = $container;
         $this->manager = $manager;
@@ -77,6 +81,7 @@ class AbstractWebContent
         $this->filesystem = $filesystem;
         $this->serializer = $serializer;
         $this->translator = $translator;
+        $this->validator = $validator;
         $this->configurationService = $configurationService;
         $this->finder = new Finder();
     }

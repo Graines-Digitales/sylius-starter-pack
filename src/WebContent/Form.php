@@ -53,7 +53,16 @@ class Form extends AbstractWebContent
                     $message->addMessageAttachment($media); 
                 }
             }
-            
+
+            $errors = $this->validator->validate($message->getSender());
+            if (count($errors) > 0) {
+                $data['errors'] = $errors[0]->getMessage();
+            }
+            $errors = $this->validator->validate($message);
+            if (count($errors) > 0) {
+                $data['errors'] = $errors[0]->getMessage();
+            }
+           
             $this->manager->persist($message);
             $this->manager->flush();
         }

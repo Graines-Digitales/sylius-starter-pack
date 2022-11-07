@@ -37,4 +37,5 @@ class WebPageController extends ResourceController
 
         return $this->createRestView($configuration, $resources);
     }
+    
 }

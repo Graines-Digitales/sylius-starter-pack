@@ -82,6 +82,17 @@ class MessageController extends AbstractController
          * Save form
         **/
         $data = $this->form->saveFormContact($data);
+        if (!isset($data['errors']) || empty($data['errors'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'An error has occurred',
+                    'message' => $data['errors'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
         $data = $this->form->dataFieldTranslation($data);
      
         $configurationProject = $this->getParameter('configuration_project');
@@ -165,6 +176,17 @@ class MessageController extends AbstractController
          * Save form
         **/
         $data = $this->form->saveFormContact($data);
+        if (!isset($data['errors']) || empty($data['errors'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'An error has occurred',
+                    'message' => $data['errors'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
         $data = $this->form->dataFieldTranslation($data);
         
         $configurationProject = $this->getParameter('configuration_project');
