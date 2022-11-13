@@ -940,20 +940,71 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\Person
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
             fields:
-                name:
+                createdAt:
+                    type: datetime
+                    label: app.ui.createdAt
+                    sortable: createdAt
+                
+                firstname:
                     type: string
-                    label: sylius.ui.name
-                    sortable: translation.name
-                description:
+                    label: sylius.ui.firstname
+                    sortable: translation.firstname
+                
+                email:
                     type: string
-                    label: sylius.ui.description
-                    sortable: translation.description
-                is_enabled:
-                    type: twig
-                    label: app.ui_element.field.enabled
-                    options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                    label: sylius.ui.email
+                    sortable: translation.email
+                # description:
+                #     type: string
+                #     label: sylius.ui.description
+                #     sortable: translation.description
+                # is_enabled:
+                #     type: twig
+                #     label: app.ui_element.field.enabled
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/enabled.html.twig"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete 
+
+        app_admin_order_trip:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\Order
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
+            fields:
+                createdAt:
+                    type: datetime
+                    label: app.ui.createdAt
+                    sortable: createdAt
+
+                customer:
+                    type: string
+                    label: app.ui.person
+  
+                orderItem:
+                    type: string
+                    label: app.ui.product
+                    
+                orderStatus:
+                    type: string
+                    label: app.ui.product
+
             actions:
                 main:
                     create:

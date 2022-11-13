@@ -19,6 +19,12 @@ app_schema_save_form_contact:
     defaults:
         _controller: app.controller.schema::saveFormMessage
 
+# app_payment_create:
+#     path: /payment/create
+#     methods: [POST]
+#     defaults:
+#         _controller: app.controller.payment::create
+
 app_nuxt_build:
     path: /nuxt/build
     methods: [POST]

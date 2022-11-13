@@ -124,7 +124,7 @@ class Trip  implements ResourceInterface, TranslatableInterface
 
     public function __toString()
     {
-        return $this->getTranslation()->getHeadline();
+        return $this->getTranslation()->getAlternativeHeadline();
     }
 
     public function getHeadline(): ?string

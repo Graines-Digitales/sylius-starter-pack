@@ -30,10 +30,12 @@ class AddressAction
                 ->findOneBySlug($data)
             ;
         }
-
-        $entity = $this->entityManager->getRepository(Address::class)
-            ->findOneBy(["name" => $data['name'] ])
-        ;
+        $entity = null;
+        // if (isset($data['name'])) {
+        //     $entity = $this->entityManager->getRepository(Address::class)
+        //         ->findOneBy(["name" => $data['name'] ])
+        //     ;
+        // }
         if(null === $entity) {
             $entity = new Address();
         }
@@ -51,8 +53,6 @@ class AddressAction
         if(isset($data['name'])) {
             $entity->setName($data['name']);
         }
-
-        
 
         if(isset($data['address'])) {
             $entity->setStreetAddress($data['address']);

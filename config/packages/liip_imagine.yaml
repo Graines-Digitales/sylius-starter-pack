@@ -81,11 +81,31 @@ liip_imagine:
         thumbnail_jpeg:
             format: jpg
             quality: 80
+            png_compression_level: 7
             filters:
                 thumbnail: { size: [ 150, 150 ], mode: inset }
+                
         thumbnail_webp:
             format: webp
             quality: 100
             filters:
                 thumbnail: { size: [ 150, 150 ], mode: inset }  
+        
+        horizontal:
+            format: jpg
+            jpeg_quality:          70
+            png_compression_level: 7
+            # setup the filter steps to apply for this transformation
+            filters:
+                relative_resize:
+                    widen: 1920
 
+        vertical:
+            format: jpg
+            jpeg_quality:          70
+            png_compression_level: 7
+            # setup the filter steps to apply for this transformation
+            filters:
+                fixed:
+                    width: 980
+                    height: 1920

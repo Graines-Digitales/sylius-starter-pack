@@ -105,8 +105,8 @@ class Person implements ResourceInterface
     private $email;
 
     /**
-     * @ ORM\ManyToMany(targetEntity="Address", inversedBy="persons", cascade= {"persist"})
-     * @ ORM\JoinTable(
+     * @ORM\ManyToMany(targetEntity="Address", inversedBy="persons", cascade= {"persist"})
+     * @ORM\JoinTable(
      *  name="app_persons_addresses",
      *  joinColumns={
      *      @ORM\JoinColumn(name="person_id", referencedColumnName="id")

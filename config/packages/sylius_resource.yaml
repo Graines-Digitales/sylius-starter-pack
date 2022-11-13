@@ -161,8 +161,15 @@ sylius_resource:
             driver: doctrine/orm # You can use also different driver here
             classes:
                 model: App\Entity\Person
-                # form: App\Form\Type\MessageType
-                # repository: App\Repository\MessageRepository  
+                form: App\Form\Type\PersonType
+                repository: App\Repository\PersonRepository  
+
+        app.order_trip:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\Order
+                form: App\Form\Type\OrderType
+                repository: App\Repository\OrderRepository  
 
         app.media_image:
             driver: doctrine/orm # You can use also different driver here

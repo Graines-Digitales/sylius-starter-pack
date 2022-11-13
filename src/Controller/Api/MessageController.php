@@ -37,7 +37,7 @@ class MessageController extends AbstractController
         $this->mailer = $mailer;
     }
 
-        /**
+    /**
      * @Route("/api/v2/message/product/create",
      * name="message_product_create",
      * methods = { "POST" },

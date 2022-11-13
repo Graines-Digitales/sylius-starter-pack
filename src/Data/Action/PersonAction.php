@@ -3,6 +3,7 @@
 namespace App\Data\Action;
 
 use App\Entity\Person;
+use App\Data\Action\AddressAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -13,12 +14,16 @@ class PersonAction
 
     private $entityManager;
 
+    private $addressAction;
+
     public function __construct(
         SluggerInterface $slugger
         , EntityManagerInterface $entityManager
+        , AddressAction $addressAction
     ){
         $this->slugger = $slugger;
         $this->entityManager = $entityManager;
+        $this->addressAction = $addressAction;
     }
     
     public function create($data = [], $locale = 'fr', $persist = true)
@@ -66,6 +71,20 @@ class PersonAction
         }
         if(isset($data['gender'])) {
             $entity->setGender($data['gender']);
+        }
+        if(isset($data['streetAddress'])) {
+            $address = $this->addressAction->create($data);
+            $entity->addAddress($address);
+        }
+        if (isset($data['addresses'])) {
+            foreach ($data['addresses'] as $address) {
+            
+                $address = $this->addressAction->create($address);
+                if(null === $address) {
+                    throw new \Exception('Error form OrganizationAction relation field addresses');
+                }
+                $entity->addAddress($address);
+            }
         }
 
         return $entity;
