@@ -5,23 +5,23 @@ monsieurbiz_sylius_richeditor:
     ui_elements:
         #Element monsieurbiz désactivés
         monsieurbiz.youtube:
-            enabled: false
+            enabled: true
         monsieurbiz.html:
             enabled: false
         monsieurbiz.text:
-            enabled: false   
+            enabled: true   
         monsieurbiz.title:
             enabled: false  
         monsieurbiz.h1:
             enabled: false
         monsieurbiz.h2:
-            enabled: false
+            enabled: true
         monsieurbiz.h3:
             enabled: false   
         monsieurbiz.image:
             enabled: false  
         monsieurbiz.quote:
-            enabled: false
+            enabled: true
         monsieurbiz.video:
             enabled: false
         monsieurbiz.separator:
@@ -32,7 +32,39 @@ monsieurbiz_sylius_richeditor:
             enabled: false
 
         #Element custom
-
+        app.component_icon:
+            title: 'app.ui_element.component_icon.title'
+            description: 'app.ui_element.component_icon.description'
+            icon: list alternate outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentIconType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_icon.html.twig'
+                front_render: '/shop/UiElement/component_icon.html.twig'
+            tags: [] 
+        app.component_image:
+            title: 'app.ui_element.component_image.title'
+            description: 'app.ui_element.component_image.description'
+            icon: list alternate outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentImageType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_image.html.twig'
+                front_render: '/shop/UiElement/component_image.html.twig'
+            tags: [] 
+        app.component_images:
+            title: 'app.ui_element.component_images.title'
+            description: 'app.ui_element.component_images.description'
+            icon: list alternate outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentImagesType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_images.html.twig'
+                front_render: '/shop/UiElement/component_images.html.twig'
+            tags: []  
         app.component_cards:
             title: 'app.ui_element.component_cards.title'
             description: 'app.ui_element.component_cards.description'

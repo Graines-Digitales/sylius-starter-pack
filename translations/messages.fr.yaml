@@ -226,6 +226,9 @@ app:
         arrivalTime: Date d'arrivée
         
     ui_element:
+        monsieurbiz.youtube:
+            title: 'Lame Youtube'
+
         field:
             key: Clé
             value: Valeur
@@ -296,9 +299,21 @@ app:
             description: 'Une section avec un lien Iframe (Google, Facebook, Youtube...)'
             link: 'Link'
         component_card:
-            title: 'Composant Default'
+            title: 'Composant Card'
             short_description: 'Composant avec icons, images, textes ...etc'
             description: 'Une section composé de icons, images, textes ...etc'
+        component_images:
+            title: 'Composant Galerie d images'
+            short_description: 'Liste d images'
+            description: 'Une section avec une collection d images'
+        component_image:
+            title: 'Component image'
+            short_description: 'Image'
+            description: 'Une section avec une image'
+        component_icon:
+            title: 'Component icon'
+            short_description: 'Icon'
+            description: 'Une section avec un icon'
         component_cards:
             title: 'Composant Liste'
             short_description: 'Liste de cartes avec icons, images, textes ...etc'

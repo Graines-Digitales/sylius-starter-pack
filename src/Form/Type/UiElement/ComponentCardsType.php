@@ -124,41 +124,41 @@ class ComponentCardsType extends AbstractType
                 'required' => false,
                 'label' => 'app.ui_element.field.content',
             ])
-            ->add('category', EntityType::class, [
-                'class' => Category::class,
-                'attr' => ['class' => 'select2-standard'],
-                'placeholder' => 'app.ui_element.field.choose',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('c')
-                    ->innerJoin('c.translations', 'translation')
-                        ->orderBy('translation.name', 'ASC');
-                }
-            ])
-            ->add('tags', EntityType::class, [
-                'class'         => Category::class,
-                'expanded'      => false,
-                'multiple'      => true,
-                'placeholder' => 'app.ui_element.field.select_option',
-                'attr' => ['class' => 'select2-standard'],
-            ])
-            ->add('view', ChoiceType::class, [
-                'choices' => $views,
-                'attr' => ['class' => 'select2-standard'],
-                'required' => true,
-                'placeholder' => 'app.ui_element.field.choose',
-            ])
-            ->add('params', CollectionType::class, [
-                'entry_type' => ParamsType::class,
-                'button_add_label' => 'app.ui_element.form.add_params',
-                'attr' => [
-                    'data-type' => 'sub_accordion'
-                ],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'delete_empty' => true,
-                'label' => 'app.ui_element.field.params_collection.default',
-            ])
+            // ->add('category', EntityType::class, [
+            //     'class' => Category::class,
+            //     'attr' => ['class' => 'select2-standard'],
+            //     'placeholder' => 'app.ui_element.field.choose',
+            //     'query_builder' => function (EntityRepository $er) {
+            //         return $er->createQueryBuilder('c')
+            //         ->innerJoin('c.translations', 'translation')
+            //             ->orderBy('translation.name', 'ASC');
+            //     }
+            // ])
+            // ->add('tags', EntityType::class, [
+            //     'class'         => Category::class,
+            //     'expanded'      => false,
+            //     'multiple'      => true,
+            //     'placeholder' => 'app.ui_element.field.select_option',
+            //     'attr' => ['class' => 'select2-standard'],
+            // ])
+            // ->add('view', ChoiceType::class, [
+            //     'choices' => $views,
+            //     'attr' => ['class' => 'select2-standard'],
+            //     'required' => true,
+            //     'placeholder' => 'app.ui_element.field.choose',
+            // ])
+            // ->add('params', CollectionType::class, [
+            //     'entry_type' => ParamsType::class,
+            //     'button_add_label' => 'app.ui_element.form.add_params',
+            //     'attr' => [
+            //         'data-type' => 'sub_accordion'
+            //     ],
+            //     'allow_add' => true,
+            //     'allow_delete' => true,
+            //     'by_reference' => false,
+            //     'delete_empty' => true,
+            //     'label' => 'app.ui_element.field.params_collection.default',
+            // ])
             ->add('cards', CollectionType::class, [
                 'entry_type' => ComponentCardType::class,
                 'button_add_label' => 'app.ui_element.form.add_item',
@@ -167,6 +167,13 @@ class ComponentCardsType extends AbstractType
                 'by_reference' => false,
                 'delete_empty' => true,
                 'label' => 'app.ui_element.field.card_collection.default',
+            ])
+            ->add('images', EntityType::class, [
+                'class'         => MediaObjectImage::class,
+                'expanded'      => false,
+                'multiple'      => true,
+                'placeholder' => 'app.ui_element.field.select_option',
+                'attr' => ['class' => 'select2-image'],
             ])
         ;
 

@@ -51,4 +51,14 @@ class MediaObjectIconListener
 
         $this->mediaObjectIconAction->hydrate([], $entity, 'fr');
     }
+
+    public function postRemove(LifecycleEventArgs $args): void
+    {
+        $entity = $args->getObject();
+        if (!$entity instanceof MediaObjectIcon) {
+            return;
+        }
+
+        $this->toolsMediaService->removeIcon($entity);
+    }
 }

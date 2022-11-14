@@ -138,13 +138,21 @@ class Media
 
         return $url;
     }
+    public function removeIcon($media)
+    {
+        $folderUploadedImages = $this->container->getParameter('path_directory_icon');
+        $filename = $media->getOriginalFilename();
+        $uploadedFilePath = $folderUploadedImages . DIRECTORY_SEPARATOR . $filename;
+  
+        $this->filesystem->remove($uploadedFilePath);
+    }
 
     public function remove($media)
     {
         $folderUploadedImages = $this->container->getParameter('path_directory_media');
         $filename = $media->getOriginalFilename();
         $uploadedFilePath = $folderUploadedImages . DIRECTORY_SEPARATOR . $filename;
-        
+    
         $this->cacheManager->remove($filename);
         $this->cacheManager->remove($filename . '.webp');
         $this->filesystem->remove($uploadedFilePath);
