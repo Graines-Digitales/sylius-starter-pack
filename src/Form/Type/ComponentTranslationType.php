@@ -19,9 +19,9 @@ class ComponentTranslationType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('slug', TextType::class, [
-            //     'disabled' => true,
-            // ])
+            ->add('slug', TextType::class, [
+                'disabled' => true,
+            ])
         ;
         $builder->remove('components');
         $builder->add('components', RichEditorType::class, [

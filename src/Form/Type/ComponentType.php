@@ -45,6 +45,12 @@ class ComponentType extends AbstractResourceType
                     new NotBlank(['groups' => ['component_validation']])
                 ]
             ])
+            // ->add('headline', TextType::class, [
+            //     'required' => true,
+            //     'constraints' => [
+            //         new NotBlank(['groups' => ['component_validation']])
+            //     ]
+            // ])
             ->add('alternateName', TextType::class, [
                 'required' => false
             ])

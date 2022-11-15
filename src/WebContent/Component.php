@@ -327,4 +327,13 @@ class Component extends AbstractWebContent
 
         return $results;
     }
+
+    public function updateSlug($entity)
+    {
+        $slug = $this->slugger->slug($entity->getTranslatable()->getName() . ' ' . $entity->getLocale())->lower()->toString();
+        
+        $entity->setSlug($slug);
+
+        return $entity;
+    }
 }

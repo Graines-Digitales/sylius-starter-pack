@@ -91,6 +91,11 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
 
+    App\EventListener\ComponentListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
      # Menu Listener
     app.listener.admin.menu_builder:
         class: App\EventListener\AdminMenuListener

@@ -5,8 +5,8 @@ const formatState = (opt) => {
   }
   // console.log(opt)
   const optImage = $(
-    '<span style="display:flex; align-items: center; padding: 5px 0;">' +
-    `<img class="thumbnail_webp" src="/media/cache/thumbnail_webp/${opt.text}" style="width:100px; max-height: 150px; margin-right: 20px;">${opt.text
+    '<span style="display:flex; align-items: center; padding: 5px 0;font-size:0.8rem;">' +
+    `<img class="thumbnail_webp" src="/media/cache/thumbnail_webp/${opt.text}" style="width:90px; height: 90px; margin-right: 10px;">${opt.text
     }</span>`,
   );
   return optImage;
@@ -18,8 +18,8 @@ const formatState2 = (opt) => {
   }
   // console.log(opt)
   const optImage = $(
-    '<span style="display:flex; align-items: center; padding: 5px 0;">' +
-    `<img src="/media/icon/${opt.text}" style="width:80px; max-height: 150px; margin-right: 20px;">${opt.text
+    '<span style="display:flex; align-items: center; padding: 5px 0;font-size:0.8rem;">' +
+    `<img src="/media/icon/${opt.text}" style="width:70px; height: 70px; margin-right: 10px;">${opt.text
     }</span>`,
   );
   return optImage;
@@ -34,7 +34,11 @@ $('.ui.image').on('click', function () {
     .modal('show');
 });
 
-
+$('.ui.labeled.icon.button.orange').on('click', function (e) {
+  e.preventDefault();
+  console.log('icii')
+  $('.ui.modal.test').modal('show');
+});
 const initComponent = (mutations) => {
   initSelect2();
   initAccordion();

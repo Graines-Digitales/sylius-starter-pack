@@ -1130,14 +1130,14 @@ sylius_grid:
                 main:
                     create:
                         type: create
-                    upload_images:
-                        type: upload_images
-                        label: upload_images
-                        options:
-                            link:
-                                route: app_admin_media_image_index
-                                parameters:
-                                    format: csv
+                    # upload_images:
+                    #     type: upload_images
+                    #     label: upload_images
+                    #     options:
+                    #         link:
+                    #             route: app_admin_media_image_index
+                    #             parameters:
+                    #                 format: csv
                 item:
                     update:
                         type: update

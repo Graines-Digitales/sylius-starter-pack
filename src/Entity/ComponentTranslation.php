@@ -27,7 +27,7 @@ class ComponentTranslation extends AbstractTranslation implements ResourceInterf
     use TimestampableEntity;
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="", updatable=false)
+     * @ Gedmo\Slug(fields={"name"}, prefix="", updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
@@ -45,6 +45,11 @@ class ComponentTranslation extends AbstractTranslation implements ResourceInterf
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
     public function getComponents(): ?string
