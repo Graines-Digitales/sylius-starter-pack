@@ -26,7 +26,7 @@ class ImportCommand extends Import
         $svgsPath = $kernelProjectDir . '/content/svgs';
 
         $filesystem = new Filesystem();
-        if(!$filesystem->exists($svgsPath)) {
+        if($filesystem->exists($svgsPath)) {
             $finder = new Finder();
             $finder->files()->in($imagesPath);
             if ($finder->hasResults()) {
@@ -88,7 +88,7 @@ class ImportCommand extends Import
         }
 
         $filesystem = new Filesystem();
-        if(!$filesystem->exists($svgsPath)) {
+        if($filesystem->exists($svgsPath)) {
             $finder = new Finder();
             $finder->files()->in($svgsPath);
             if ($finder->hasResults()) {
