@@ -27,6 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Form\DataTransformer\MediaObjectImageTransformer;
+use App\Form\DataTransformer\MediaObjectVideoTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
@@ -134,7 +135,13 @@ class ComponentCardType extends AbstractType
                     ;
                 }
             ])
-       
+            ->add('images', EntityType::class, [
+                'class'         => MediaObjectImage::class,
+                'expanded'      => false,
+                'multiple'      => true,
+                'placeholder' => 'app.ui_element.field.select_option',
+                'attr' => ['class' => 'select2-image'],
+            ])
             // ->add('category', EntityType::class, [
             //     'class' => Category::class,
             //     'attr' => ['class' => 'select2-standard'],
@@ -207,6 +214,11 @@ class ComponentCardType extends AbstractType
         $builder
             ->get('icon')
             ->addModelTransformer(new MediaObjectIconTransformer($this->manager))
+        ;
+
+        $builder
+            ->get('video')
+            ->addModelTransformer(new MediaObjectVideoTransformer($this->manager))
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {

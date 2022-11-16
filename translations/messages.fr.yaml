@@ -295,40 +295,60 @@ app:
             add_params: Ajouter un paramètre
         component_iframe:
             title: 'Composant Iframe'
-            short_description: 'Pour insérer une Iframe'
-            description: 'Une section avec un lien Iframe (Google, Facebook, Youtube...)'
+            short_description: 'Une section pour afficher une Iframe'
+            description: 'Une section pour afficher une Iframe'
             link: 'Link'
         component_card:
-            title: 'Composant Card'
-            short_description: 'Composant avec icons, images, textes ...etc'
-            description: 'Une section composé de icons, images, textes ...etc'
+            title: 'Composant Carte'
+            short_description: 'Une section pour afficher de multiples éléments'
+            description: 'Une section pour afficher de multiples éléments'
         component_images:
-            title: 'Composant Galerie d images'
-            short_description: 'Liste d images'
-            description: 'Une section avec une collection d images'
+            title: 'Composant Galerie d Images'
+            short_description: 'Une section pour afficher une liste d images'
+            description: 'Une section pour afficher une liste d images'
         component_image:
-            title: 'Component image'
-            short_description: 'Image'
-            description: 'Une section avec une image'
+            title: 'Composant Image'
+            short_description: 'Une section pour afficher une image'
+            description: 'Une section pour afficher une image'
         component_icon:
-            title: 'Component icon'
-            short_description: 'Icon'
-            description: 'Une section avec un icon'
+            title: 'Composant Icône'
+            short_description: 'Une section pour afficher un icône'
+            description: 'Une section pour afficher un icône'
+        component_youtube:
+            title: 'Composant Youtube'
+            short_description: 'Une section pour afficher une vidéo youtube'
+            description: 'Une section pour afficher une vidéo youtube'
+        component_blockquote:
+            title: 'Composant Citation'
+            short_description: 'Une section pour afficher une citation'
+            description: 'Une section pour afficher une citation'
+        component_text:
+            title: 'Composant Texte'
+            short_description: 'Une section pour afficher un texte'
+            description: 'Une section pour afficher un texte'
+        component_title:
+            title: 'Composant Titre'
+            short_description: 'Une section pour afficher un titre'        
+            description: 'Une section pour afficher un titre'        
         component_cards:
             title: 'Composant Liste'
             short_description: 'Liste de cartes avec icons, images, textes ...etc'
             description: 'Une section avec titre texte et une collection d icons, images, textes ...etc'
         component_documents:
             title: 'Composant Document'
+            short_description: 'Une section pour télécharger des documents'
             description: 'Une section pour télécharger des documents'
         component_call_to_action:
             title: 'Composant Call To Action'
-            description: 'Une section avec titre, texte, bouton et Call to Action'
+            short_description: 'Une section pour afficher un titre, un texte et un bouton'
+            description: 'Une section pour afficher un titre, un texte et un bouton'
         component_contact:
             title: 'Composant Contact'
-            description: 'Carte coordonnées'
+            short_description: 'Une section pour afficher des coordonnées de contact'
+            description: 'Une section pour afficher des coordonnées de contact'
         component_search_action:
             title: 'Composant Search Action'
+            short_description: 'Composant pour créer une collection sur différent type de données'
             description: 'Composant pour créer une collection sur différent type de données'
         component_contact_form:
             title: 'Composant Contact Form'

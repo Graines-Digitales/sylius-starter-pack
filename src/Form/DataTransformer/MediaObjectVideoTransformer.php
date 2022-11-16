@@ -38,7 +38,8 @@ class MediaObjectVideoTransformer implements DataTransformerInterface
 
         return [
             'id' => $media->getId(),
-            'name' => $media->getName()
+            'name' => $media->getName(),
+            'url' => $media->getUrl()
         ];
     }
 }
