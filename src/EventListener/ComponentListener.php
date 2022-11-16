@@ -48,7 +48,7 @@ class ComponentListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
-        if (!$entity instanceof WebPageTranslation) {
+        if (!$entity instanceof ComponentTranslation) {
             return;
         }
 
