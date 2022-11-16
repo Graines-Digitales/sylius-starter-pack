@@ -51,7 +51,7 @@ class ComponentListener
         if (!$entity instanceof ComponentTranslation) {
             return;
         }
-
+        
         if(false === $entity->getTranslatable()->getIsLocked()) {
             $entity = $this->webContentComponentService->updateSlug($entity);  
         }

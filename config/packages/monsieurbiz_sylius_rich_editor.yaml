@@ -9,7 +9,7 @@ monsieurbiz_sylius_richeditor:
         monsieurbiz.html:
             enabled: false
         monsieurbiz.text:
-            enabled: true   
+            enabled: false   
         monsieurbiz.title:
             enabled: false  
         monsieurbiz.h1:
