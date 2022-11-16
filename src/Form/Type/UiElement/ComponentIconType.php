@@ -4,31 +4,23 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\Entity\Category;
 use App\WebContent\Component;
 use App\Entity\MediaObjectIcon;
-use App\Entity\MediaObjectImage;
-use App\Entity\MediaObjectVideo;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
-use App\Form\DataTransformer\TagsTransformer;
-use App\Form\Type\UiElement\ComponentLinkType;
 use Symfony\Component\Form\FormBuilderInterface;
-use App\Form\DataTransformer\CategoryTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use App\Form\DataTransformer\MediaObjectImageTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 
 class ComponentIconType extends AbstractType
@@ -91,7 +83,7 @@ class ComponentIconType extends AbstractType
 
         $builder
             ->get('icon')
-            ->addModelTransformer(new MediaObjectImageTransformer($this->manager))
+            ->addModelTransformer(new MediaObjectIconTransformer($this->manager))
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
