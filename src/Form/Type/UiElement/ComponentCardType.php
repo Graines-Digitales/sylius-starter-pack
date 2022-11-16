@@ -28,6 +28,7 @@ use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Form\DataTransformer\MediaObjectImageTransformer;
 use App\Form\DataTransformer\MediaObjectVideoTransformer;
+use App\Form\DataTransformer\MediaObjectImagesTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
@@ -219,6 +220,11 @@ class ComponentCardType extends AbstractType
         $builder
             ->get('video')
             ->addModelTransformer(new MediaObjectVideoTransformer($this->manager))
+        ;
+
+        $builder
+            ->get('images')
+            ->addModelTransformer(new MediaObjectImagesTransformer($this->manager))
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {

@@ -18,6 +18,7 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Form\DataTransformer\MediaObjectImagesTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 
@@ -26,14 +27,14 @@ class ComponentImagesType extends AbstractType
 {
     private $slugger;
 
-    private $entityManager;
+    private $manager;
 
     private $componentService;
 
-    public function __construct(EntityManagerInterface $entityManager, Component $componentService)
+    public function __construct(EntityManagerInterface $manager, Component $componentService)
     {
         $this->slugger = new AsciiSlugger();
-        $this->entityManager = $entityManager;
+        $this->manager = $manager;
         $this->componentService = $componentService;
     }
 
@@ -67,6 +68,11 @@ class ComponentImagesType extends AbstractType
                 'placeholder' => 'app.ui_element.field.select_option',
                 'attr' => ['class' => 'select2-image'],
             ])
+        ;
+
+        $builder
+            ->get('images')
+            ->addModelTransformer(new MediaObjectImagesTransformer($this->manager))
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
