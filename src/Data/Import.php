@@ -22,6 +22,7 @@ use App\Data\Action\MediaObjectIconAction;
 use App\Data\Action\MediaObjectImageAction;
 use Symfony\Component\Filesystem\Filesystem;
 use App\Data\Action\HotelTypicalDayElementAction;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
@@ -60,6 +61,8 @@ class Import
     protected $personAction;
 
     protected $eventAction;
+    
+    protected $slugger;
 
     public function __construct(
         ContainerInterface $container
@@ -99,6 +102,7 @@ class Import
         $this->roomAction = $roomAction;
         $this->personAction = $personAction;
         $this->eventAction = $eventAction;
+        $this->slugger = new AsciiSlugger();
     }
 
     public function getMainOrganization($contentPath)

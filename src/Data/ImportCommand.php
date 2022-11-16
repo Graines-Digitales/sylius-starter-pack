@@ -32,27 +32,47 @@ class ImportCommand extends Import
             foreach ($finder as $file) {
                 $absoluteFilePath = $file->getRealPath();
                 $dirname = pathinfo(pathinfo($file->getRealPath(), PATHINFO_DIRNAME), PATHINFO_BASENAME);
-                $filename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
+                $filename = pathinfo($file->getRelativePathname(), PATHINFO_FILENAME);
+                $basename = pathinfo($file->getRelativePathname(), PATHINFO_BASENAME);
                 $extension = pathinfo($file->getRelativePathname(), PATHINFO_EXTENSION);
                 $category = null;
                 $data = [];
                 if('images' !== $dirname) {
-                    $d['name'] = $dirname;
+                    $d['name'] = $this->slugger->slug($dirname)->lower()->toString();
                     $category = $this->entityManager->getRepository(Category::class)
                         ->findOneBySlug($d['name']);
+                        
                     if(null === $category) {
                         
                         $category = $this->categoryAction->create($d);
                     }
                     $data['category']['name'] = $category;
+
+                    
+                    if (str_contains($filename, '-')) { 
+                        $items = explode("-", $filename);
+                       
+                    }
+                    $d['name'] = $this->slugger->slug(trim($items[1]))->lower()->toString();
+                    $category = $this->entityManager->getRepository(Category::class)
+                        ->findOneBySlug($d['name']);
+                        
+                    if(null === $category) {
+                        
+                        $category = $this->categoryAction->create($d);
+                    }
+                    $data['tags'][0]['name'] = $category;
+                    
                 }
 
                 $file = new File($absoluteFilePath);
+                
                 if (in_array($file->getMimeType(), $imageMimeTypes)) {
-                    $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/image/' . $filename);
+                   
+                    $filesystem->copy($absoluteFilePath, $kernelProjectDir .  '/public/media/image/' . $basename);
                     $entity = $this->entityManager->getRepository(MediaObjectImage::class)
-                    ->findOneBy([ 'filename' => $filename ]);
-                    $data['filename'] = $filename;
+                    ->findOneBy([ 'filename' => $basename ]);
+                    $data['filename'] = $basename;
                     if(null === $entity) {
                         
                         $entity = $this->mediaImageService->create($data);
@@ -63,7 +83,6 @@ class ImportCommand extends Import
                 }
             }
             $this->entityManager->flush();
-            
         }
 
         $filesystem = new Filesystem();

@@ -48,6 +48,7 @@ class MediaObjectImageAction
         $filepath = $directoryProject . DIRECTORY_SEPARATOR . 'public' .  $folderImage;
         $filepath.= DIRECTORY_SEPARATOR . $filename;
         $filesystem = new Filesystem();
+        
         if(!$filesystem->exists($filepath)) {
             throw new \Exception(sprintf('Error form MediaObjectImageAction filepath image %s', $filepath));
         }
@@ -77,6 +78,8 @@ class MediaObjectImageAction
 
     public function hydrate($data, $entity, $locale = 'fr')
     {
+       
+        
         if (isset($data['name'])) {
             $entity->setName($data['name']);
         }
@@ -102,6 +105,18 @@ class MediaObjectImageAction
             $entity->setCategory($data['category']);
         }
 
+        if(isset($data['tags'])){
+            foreach ($data['tags'] as $key => $category) {
+                $array = explode( '\\', get_class($entity));
+                $category['type'] = [ "name" => end($array) ];
+                $category = $this->categoryAction->create($category);
+                if(null === $category) {
+                    throw new \Exception('Error form MediaImageAction relation field tags');
+                }
+                $entity->addTag($category);
+            }
+        }
+        
         if (null !== $entity->getFile()) {
             $file = $entity->getFile();
             $originalFilename = null;
