@@ -161,7 +161,7 @@ class MediaObjectImageAction
         $name = null;
         if (empty($entity->getName())) {
             $basename = pathinfo($entity->getFilename(), PATHINFO_BASENAME);
-            dump($basename);die;
+            
             $name = $this->slugger->slug($basename)->lower()->toString();
             $name = ucwords(str_replace('-', ' ', $name));
             $entity->setName($name);
