@@ -109,17 +109,17 @@ monsieurbiz_sylius_richeditor:
                 admin_render: '@App/admin/UiElement/component_images.html.twig'
                 front_render: '/shop/UiElement/component_images.html.twig'
             tags: []  
-        app.component_cards:
-            title: 'app.ui_element.component_cards.title'
-            description: 'app.ui_element.component_cards.description'
-            icon: list alternate outline
-            classes:
-                form: App\Form\Type\UiElement\ComponentCardsType
-                #ui_element: App\UiElement\MyUiElement
-            templates:
-                admin_render: '@App/admin/UiElement/component_cards.html.twig'
-                front_render: '/shop/UiElement/component_cards.html.twig'
-            tags: []  
+        # app.component_cards:
+        #     title: 'app.ui_element.component_cards.title'
+        #     description: 'app.ui_element.component_cards.description'
+        #     icon: list alternate outline
+        #     classes:
+        #         form: App\Form\Type\UiElement\ComponentCardsType
+        #         #ui_element: App\UiElement\MyUiElement
+        #     templates:
+        #         admin_render: '@App/admin/UiElement/component_cards.html.twig'
+        #         front_render: '/shop/UiElement/component_cards.html.twig'
+        #     tags: []  
         app.component_card:
             alias: app.ui_element.component_card.alias
             # section: 'app.ui_element.component_card.section'
