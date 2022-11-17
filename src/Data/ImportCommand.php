@@ -7,11 +7,8 @@ use App\Entity\Category;
 use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
 use Symfony\Component\Finder\Finder;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
 class ImportCommand extends Import

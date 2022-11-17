@@ -4,11 +4,26 @@ const formatState = (opt) => {
   if (!opt.id) {return opt.text;
   }
   // console.log(opt)
+  // const optImage = $(
+  //   `<div style="padding: 5px 0;font-size:0.8rem;">
+  //   <img class="thumbnail_webp" src="/media/cache/thumbnail_webp/${opt.text}" style="width:90px; height: 90px;">
+    // <span class="img-text">
+    //   ${opt.text}
+    // </span>
+  //   </div>`,
+  // );
+
   const optImage = $(
-    '<span style="display:flex; align-items: center; padding: 5px 0;font-size:0.8rem;">' +
-    `<img class="thumbnail_webp" src="/media/cache/thumbnail_webp/${opt.text}" style="width:90px; height: 90px; margin-right: 10px;">${opt.text
-    }</span>`,
+    `
+    <div style="display: flex; align-items: center;margin-left: 3px;">
+    <img class="thumbnail_webp" src="/media/cache/thumbnail_webp/${opt.text}" style="width:90px; height: 90px;">
+    <b class="img-text" style="margin-left: 10px;">
+    ${opt.text}
+    </b>
+    </div>
+  `,
   );
+
   return optImage;
 };
 
@@ -18,10 +33,16 @@ const formatState2 = (opt) => {
   }
   // console.log(opt)
   const optImage = $(
-    '<span style="display:flex; align-items: center; padding: 5px 0;font-size:0.8rem;">' +
-    `<img src="/media/icon/${opt.text}" style="width:70px; height: 70px; margin-right: 10px;">${opt.text
-    }</span>`,
+    `
+    <div style="display: flex; align-items: center;margin-left: 3px;">
+    <img src="/media/icon/${opt.text}" style="width:70px; height: 70px;">
+    <b class="img-text" style="margin-left: 10px;">
+    ${opt.text}
+    </b>
+    </div>
+    `,
   );
+
   return optImage;
 };
 
@@ -36,10 +57,11 @@ $('.ui.image').on('click', function () {
 
 $('.ui.labeled.icon.button.orange').on('click', function (e) {
   e.preventDefault();
-  console.log('icii')
+  
   $('.ui.modal.test').modal('show');
 });
 const initComponent = (mutations) => {
+  console.log('initComponent')
   initSelect2();
   initAccordion();
 };
