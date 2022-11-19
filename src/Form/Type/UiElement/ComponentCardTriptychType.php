@@ -69,7 +69,7 @@ class ComponentCardTriptychType extends AbstractType
                 'required' => true,
                 'label' => 'app.ui_element.field.designation',
                 'constraints' => [
-                    new NotBlank(['groups' => ['component_card_validation']])
+                    new NotBlank(['groups' => ['component_card_triptych_validation']])
                 ],
             ])
             ->add('title', TextType::class, [

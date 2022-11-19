@@ -72,7 +72,7 @@ class ComponentHeadbandType extends AbstractType
                 'required' => true,
                 'label' => 'app.ui_element.field.designation',
                 'constraints' => [
-                    new NotBlank(['groups' => ['component_card_validation']])
+                    new NotBlank(['groups' => ['component_headband_validation']])
                 ],
             ])
             ->add('title', TextType::class, [
@@ -124,7 +124,7 @@ class ComponentHeadbandType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'validation_groups' => ['component_card_headband_validation'],
+            'validation_groups' => ['component_headband_validation'],
         ]);
     }
 }
