@@ -313,6 +313,7 @@ sylius_resource:
                 model: App\Entity\Trip
                 form: App\Form\Type\TripType
                 repository: App\Repository\TripRepository
+                controller: App\Controller\Admin\TripController
             translation:
                 classes:
                     model: App\Entity\TripTranslation 

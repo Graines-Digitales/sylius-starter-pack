@@ -35,12 +35,18 @@ class ComponentLinkType extends AbstractType
                 'label' => 'app.ui_element.field.link_to_webpage',
                 'block_name' => 'entry',
                 'required' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('external_link', PropertyValueType::class, [
                 'by_reference' => false,
                 'label' => 'app.ui_element.field.link_to_external_link',
                 'block_name' => 'entry',
                 'required' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
                 // 'label' => 'app.ui_element.field.link',
                 // 'constraints' => [
                 //     new Assert\Url([]),

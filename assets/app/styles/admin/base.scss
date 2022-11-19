@@ -83,6 +83,10 @@ img.ui.tiny.image {
 	display: block;
 }
 
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+	display: block;
+}
+
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
 	max-width: 100px;
 	padding-left:0;
@@ -95,18 +99,16 @@ img.ui.tiny.image {
 	b.img-text {
 		display:block;
 		padding: 2px;
-		font-size: 0.5rem;
+		font-size: 0.75rem;
 		margin: 0 !important;
 	}
 
-	.select2-selection__rendered {
-		display: block;
-		list-style: none;
-		padding: 0;
-	}
-	
 	.select2-selection__choice__display {
 		padding: 0;
+		div {
+			display:block !important;
+			flex: none !important;
+		}
 	}
 
 	white-space: normal;

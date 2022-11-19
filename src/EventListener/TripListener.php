@@ -51,15 +51,23 @@ class TripListener
             return;
         }
 
-        // $translatedData = $this->translate($entity);
-        // if(!empty($translatedData)) {
-        //     $this->tripDataAction->hydrate(
-        //         $translatedData,
-        //         $entity->getTranslatable(),
-        //         $entity->getLocale()
-        //     );
-        // }
-
+        if ($entity->getLocale() !== $this->container->getParameter('locale')) {
+           
+            $translatedData = $this->translate($entity);
+            
+            if (!empty($translatedData)) {
+              
+                $this->tripDataAction->hydrate(
+                    $translatedData,
+                    $entity->getTranslatable(),
+                    $entity->getLocale()
+                );
+            }
+        }
+        // dump($entity);
+        // dump($entity->getLocale());
+        // dump($entity->getTranslatable());
+        // die;
         $entity = $this->enrich($entity);
     }
 
@@ -98,6 +106,13 @@ class TripListener
             $entity->getTranslatable()->getTranslation($this->container->getParameter('locale')), 
             null
         );
+
+        if(!empty($referenceData['components'])) {
+            $translatedComponents = $this->syliusTranslator->translateComponents($currentData, $referenceData, $entity->getLocale());
+        }
+
+        $entity->setComponents(json_encode($translatedComponents));
+
 
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }

@@ -302,6 +302,22 @@ app:
             title: 'Composant Carte'
             short_description: 'Une section pour afficher de multiples éléments'
             description: 'Une section pour afficher de multiples éléments'
+        component_card_image:
+            title: 'Composant Carte Image'
+            short_description: 'Une section pour afficher un titre, icon, paragraphe + une image de coté'
+            description: 'Une section pour afficher un titre, icon, paragraphe + une image de coté'
+        component_card_paragraph:
+            title: 'Composant Carte Paragraphe'
+            short_description: 'Une section pour afficher un titre et un paragraphe'
+            description: 'Une section pour afficher un titre et un paragraphe'
+        component_headband:
+            title: 'Composant Carte Bandeau'
+            short_description: 'Une section pour afficher une image avec titre et un paragraphe par dessus'
+            description: 'Une section pour afficher une image avec titre et un paragraphe par dessus'
+        component_card_triptych:
+            title: 'Composant Carte Triptyque'
+            short_description: 'Une section pour afficher un titre, icon, paragraphe + 3 images de coté'
+            description: 'Une section pour afficher un titre, icon, paragraphe + 3 images de coté'
         component_images:
             title: 'Composant Galerie d Images'
             short_description: 'Une section pour afficher une liste d images'

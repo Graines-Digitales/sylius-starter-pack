@@ -34,9 +34,15 @@ class ComponentSearchActionType extends AbstractType
                 'mapped' => false,
                 'help' => 'This field will be automatically edited',
                 'required' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('slug', HiddenType::class, [
                 'disabled' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('designation', TextType::class, [
                 'required' => true,
@@ -48,7 +54,10 @@ class ComponentSearchActionType extends AbstractType
             ->add('searchAction', SearchActionType::class, [
                 'by_reference' => false,
                 'label' => '',
-                'block_name' => 'entry'
+                'block_name' => 'entry',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
         ;
 

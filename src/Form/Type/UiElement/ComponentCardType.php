@@ -69,9 +69,15 @@ class ComponentCardType extends AbstractType
                 'mapped' => false,
                 'help' => 'This field will be automatically edited',
                 'required' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('slug', HiddenType::class, [
                 'disabled' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('designation', TextType::class, [
                 'required' => true,
@@ -101,7 +107,10 @@ class ComponentCardType extends AbstractType
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.updatedAt', 'DESC')
                     ;
-                }
+                },
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
@@ -112,7 +121,10 @@ class ComponentCardType extends AbstractType
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.updatedAt', 'DESC')
                     ;
-                }
+                },
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
@@ -123,7 +135,10 @@ class ComponentCardType extends AbstractType
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.updatedAt', 'DESC')
                     ;
-                }
+                },
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
@@ -134,14 +149,23 @@ class ComponentCardType extends AbstractType
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.updatedAt', 'DESC')
                     ;
-                }
+                },
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('images', EntityType::class, [
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ],
                 'class'         => MediaObjectImage::class,
                 'expanded'      => false,
                 'multiple'      => true,
                 'placeholder' => 'app.ui_element.field.select_option',
-                'attr' => ['class' => 'select2-image'],
+                'attr' => [
+                    'class' => 'select2-image'
+                ]
+               
             ])
             // ->add('category', EntityType::class, [
             //     'class' => Category::class,

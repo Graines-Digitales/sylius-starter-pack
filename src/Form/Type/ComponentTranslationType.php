@@ -21,6 +21,9 @@ class ComponentTranslationType extends AbstractResourceType
         $builder
             ->add('slug', TextType::class, [
                 'disabled' => true,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
         ;
         $builder->remove('components');

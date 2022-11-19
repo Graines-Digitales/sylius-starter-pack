@@ -1,0 +1,14 @@
+<h2 class="ui huge header">
+    {% if element.icon is defined and element.icon is not empty %}
+        <img class="ui huge rounded image" src="{{ asset('media/icon/' ~ element.icon.filename) }}"/>
+    {% elseif element.primaryImage is defined and element.primaryImage is not empty %}
+        <img class="ui huge rounded image" src="{{ element.primaryImage.filename|imagine_filter('thumbnail_webp') }}" />
+    {% endif %}
+    <div class="content">
+        {% if element.designation is defined and element.designation is not empty %}
+            {{element.designation}}
+        {% else %}
+            {{element.title}}
+        {% endif %}
+    </div>
+</h2>

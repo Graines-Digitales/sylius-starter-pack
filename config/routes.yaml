@@ -37,6 +37,12 @@ app_nuxt_fetch:
     defaults:
         _controller: app.controller.nuxt::fetch
 
+app_admin_travel_duplicate:
+    path: /admin/travel/{id}/duplicate
+    methods: [GET]
+    defaults:
+        _controller: app.controller.travel::duplicateAction
+
 # app_sitemap:
 #     path: /sitemap
 #     methods: [GET]

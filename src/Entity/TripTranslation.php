@@ -42,9 +42,9 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
 
      /**
      * @ Gedmo\Slug(fields={"headline"}, updatable=false)
-     * @ORM\Column(type="string", length=128, unique=true)
+     * @ORM\Column(type="string", length=128)
      *
-     * @ApiProperty(identifier=true)
+     * @ piProperty(identifier=true)
      */
     private $slug;
 

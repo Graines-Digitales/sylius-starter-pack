@@ -51,14 +51,17 @@ class ArticleListener
             return;
         }
 
-        $translatedData = $this->translate($entity);
-        if(!empty($translatedData)) {
-            $this->articleDataAction->hydrate(
-                $translatedData,
-                $entity->getTranslatable(),
-                $entity->getLocale()
-            );
+        if ($entity->getLocale() !== $this->container->getParameter('locale')) {
+            $translatedData = $this->translate($entity);
+            if (!empty($translatedData)) {
+                $this->articleDataAction->hydrate(
+                    $translatedData,
+                    $entity->getTranslatable(),
+                    $entity->getLocale()
+                );
+            }
         }
+        
         $entity = $this->enrich($entity);
     }
 
@@ -90,6 +93,12 @@ class ArticleListener
             $entity->getTranslatable()->getTranslation($this->container->getParameter('locale')), 
             null
         );
+
+        if(!empty($referenceData['components'])) {
+            $translatedComponents = $this->syliusTranslator->translateComponents($currentData, $referenceData, $entity->getLocale());
+        }
+        // dump($translatedComponents);die;
+        $entity->setComponents(json_encode($translatedComponents));
 
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }

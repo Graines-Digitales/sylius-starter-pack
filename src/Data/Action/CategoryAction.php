@@ -53,8 +53,8 @@ class CategoryAction
     
     public function hydrate($data, $entity, $locale) 
     {
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
+        // $entity->getTranslation()->setLocale($locale);
+        // $entity->getTranslation()->setTranslatable($entity);
 
         if(isset($data['name'])) {
             $entity->getTranslation($locale)->setName($data['name']);

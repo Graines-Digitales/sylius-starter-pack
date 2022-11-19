@@ -76,8 +76,8 @@ class RoomAction
 
     public function hydrate($data, $entity, $locale)
     {   
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
+        // $entity->getTranslation()->setLocale($locale);
+        // $entity->getTranslation()->setTranslatable($entity);
 
         if(isset($data['primaryImage']) && !empty($data['primaryImage'])){
             $image = $this->mediaObjectImageAction->extract($data['primaryImage']);

@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\Entity\Category;
 use App\WebContent\Component;
 use App\Entity\MediaObjectImage;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,28 +18,35 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Form\DataTransformer\MediaObjectImagesTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-
-class ComponentImagesType extends AbstractType
+class ComponentCardTriptychType extends AbstractType
 {
-    private $slugger;
-
     private $manager;
+    
+    private $container;
+
+    private $slugger;
 
     private $componentService;
 
-    public function __construct(EntityManagerInterface $manager, Component $componentService)
-    {
-        $this->slugger = new AsciiSlugger();
+    public function __construct(
+        EntityManagerInterface $manager,
+        ContainerInterface $container,
+        Component $componentService
+    ){
         $this->manager = $manager;
+        $this->container = $container;
         $this->componentService = $componentService;
+        $this->slugger = new AsciiSlugger();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $views = $this->componentService->getComponentViews();
-
+        
         $builder
             ->add('_slug', TextType::class, [
                 'disabled' => true,
@@ -62,19 +67,33 @@ class ComponentImagesType extends AbstractType
             ])
             ->add('designation', TextType::class, [
                 'required' => true,
-                'constraints' => [
-                    new NotBlank(['groups' => ['component_contact_form_validation']])
-                ],
                 'label' => 'app.ui_element.field.designation',
+                'constraints' => [
+                    new NotBlank(['groups' => ['component_card_validation']])
+                ],
+            ])
+            ->add('title', TextType::class, [
+                'required' => false,
+                'label' => 'app.ui_element.field.title',
+            ])
+            ->add('subtitle', TextType::class, [
+                'required' => false,
+                'label' => 'app.ui_element.field.subtitle',
+            ])
+            ->add('content', WysiwygType::class, [
+                'required' => false,
+                'label' => 'app.ui_element.field.content',
             ])
             ->add('images', EntityType::class, [
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ],
                 'class'         => MediaObjectImage::class,
                 'expanded'      => false,
                 'multiple'      => true,
                 'placeholder' => 'app.ui_element.field.select_option',
-                'attr' => ['class' => 'select2-image'],
-                'attr_translation_parameters' => [
-                    'translatable' => false
+                'attr' => [
+                    'class' => 'select2-image'
                 ]
             ])
         ;
@@ -94,12 +113,13 @@ class ComponentImagesType extends AbstractType
             unset($data['_slug']);
             $event->setData($data);
         });
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'validation_groups' => ['component_images_validation'],
+            'validation_groups' => ['component_card_triptych_validation'],
         ]);
     }
 }

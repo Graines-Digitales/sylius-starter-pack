@@ -58,8 +58,8 @@ class HotelServiceAction
 
     public function hydrate($data, $entity, $locale)
     {   
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
+        // $entity->getTranslation()->setLocale($locale);
+        // $entity->getTranslation()->setTranslatable($entity);
 
         if (isset($data['withPicto'])) {
             $entity->setWithPicto($data['withPicto']);

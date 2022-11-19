@@ -133,6 +133,58 @@ monsieurbiz_sylius_richeditor:
                 admin_render: '@App/admin/UiElement/component_card.html.twig'
                 front_render: '/shop/UiElement/component_card.html.twig'
             tags: []
+        app.component_card_image:
+            alias: app.ui_element.component_card_image.alias
+            # section: 'app.ui_element.component_card.section'
+            title: 'app.ui_element.component_card_image.title'
+            description: 'app.ui_element.component_card_image.description'
+            icon: image outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentCardImageType
+                # ui_element: App\UiElement\TestUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_card_image.html.twig'
+                front_render: '/shop/UiElement/component_card.html.twig'
+            tags: []
+        app.component_headband:
+            alias: app.ui_element.component_headband.alias
+            # section: 'app.ui_element.component_card.section'
+            title: 'app.ui_element.component_headband.title'
+            description: 'app.ui_element.component_headband.description'
+            icon: image outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentHeadbandType
+                # ui_element: App\UiElement\TestUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_headband.html.twig'
+                front_render: '/shop/UiElement/component_card.html.twig'
+            tags: []
+        app.component_card_paragraph:
+            alias: app.ui_element.component_card_paragraph.alias
+            # section: 'app.ui_element.component_card.section'
+            title: 'app.ui_element.component_card_paragraph.title'
+            description: 'app.ui_element.component_card_paragraph.description'
+            icon: font
+            classes:
+                form: App\Form\Type\UiElement\ComponentCardParagraphType
+                # ui_element: App\UiElement\TestUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_card_paragraph.html.twig'
+                front_render: '/shop/UiElement/component_card.html.twig'
+            tags: []
+        app.component_card_triptych:
+            alias: app.ui_element.component_card_triptych.alias
+            # section: 'app.ui_element.component_card.section'
+            title: 'app.ui_element.component_card_triptych.title'
+            description: 'app.ui_element.component_card_triptych.description'
+            icon: images outline
+            classes:
+                form: App\Form\Type\UiElement\ComponentCardTriptychType
+                # ui_element: App\UiElement\TestUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_card_triptych.html.twig'
+                front_render: '/shop/UiElement/component_card.html.twig'
+            tags: []
         app.component_call_to_action:
             title: 'app.ui_element.component_call_to_action.title'
             description: 'app.ui_element.component_call_to_action.description'

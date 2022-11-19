@@ -6,6 +6,7 @@ namespace App\Form\Type\UiElement;
 
 use App\WebContent\Component;
 use App\Entity\MediaObjectIcon;
+use App\Entity\MediaObjectImage;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -18,12 +19,13 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Form\DataTransformer\MediaObjectImageTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-
-class ComponentIconType extends AbstractType
+class ComponentCardImageType extends AbstractType
 {
     private $manager;
     
@@ -68,10 +70,50 @@ class ComponentIconType extends AbstractType
             ])
             ->add('designation', TextType::class, [
                 'required' => true,
-                'constraints' => [
-                    new NotBlank(['groups' => ['component_contact_form_validation']])
-                ],
                 'label' => 'app.ui_element.field.designation',
+                'constraints' => [
+                    new NotBlank(['groups' => ['component_card_validation']])
+                ],
+            ])
+            ->add('title', TextType::class, [
+                'required' => false,
+                'label' => 'app.ui_element.field.title',
+            ])
+            ->add('subtitle', TextType::class, [
+                'required' => false,
+                'label' => 'app.ui_element.field.subtitle',
+            ])
+            ->add('content', WysiwygType::class, [
+                'required' => false,
+                'label' => 'app.ui_element.field.content',
+            ])
+            ->add('primaryImage', EntityType::class, [
+                'required' => false,
+                'class' => MediaObjectImage::class,
+                'placeholder' => 'app.ui_element.field.choose',
+                'attr' => ['class' => 'select2-image'],
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                },
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
+            ])
+            ->add('secondaryImage', EntityType::class, [
+                'required' => false,
+                'attr' => ['class' => 'select2-image'],
+                'class' => MediaObjectImage::class,
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                },
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('icon', EntityType::class, [
                 'required' => false,
@@ -87,7 +129,16 @@ class ComponentIconType extends AbstractType
                     'translatable' => false
                 ]
             ])
-          
+        ;
+
+        $builder
+            ->get('primaryImage')
+            ->addModelTransformer(new MediaObjectImageTransformer($this->manager))
+        ;
+
+        $builder
+            ->get('secondaryImage')
+            ->addModelTransformer(new MediaObjectImageTransformer($this->manager))
         ;
 
         $builder
@@ -99,8 +150,7 @@ class ComponentIconType extends AbstractType
             $data = $event->getData();
             $form = $event->getForm();
             if(empty($data['slug'])) {
-                
-                $string = $form->getConfig()->getName() . ' ' . $data['icon'];
+                $string = $form->getConfig()->getName() . ' ' . $data['designation'];
                 $data['slug'] = $this->slugger->slug($string)->lower()->toString();
             }
             unset($data['_slug']);
@@ -112,7 +162,7 @@ class ComponentIconType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'validation_groups' => ['component_icon_validation'],
+            'validation_groups' => ['component_card_image_validation'],
         ]);
     }
 }

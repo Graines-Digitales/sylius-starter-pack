@@ -55,9 +55,15 @@ class ComponentYoutubeType extends AbstractType
                 'mapped' => false,
                 'help' => 'This field will be automatically edited',
                 'required' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('slug', HiddenType::class, [
                 'disabled' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('designation', TextType::class, [
                 'required' => true,
@@ -75,7 +81,10 @@ class ComponentYoutubeType extends AbstractType
                     return $er->createQueryBuilder('c')
                         ->orderBy('c.updatedAt', 'DESC')
                     ;
-                }
+                },
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
           
         ;

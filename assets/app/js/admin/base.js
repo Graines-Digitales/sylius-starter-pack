@@ -55,13 +55,12 @@ $('.ui.image').on('click', function () {
     .modal('show');
 });
 
-$('.ui.labeled.icon.button.orange').on('click', function (e) {
-  e.preventDefault();
+// $('.ui.labeled.icon.button.orange').on('click', function (e) {
+//   e.preventDefault();
   
-  $('.ui.modal.test').modal('show');
-});
+//   $('.ui.modal.test').modal('show');
+// });
 const initComponent = (mutations) => {
-  console.log('initComponent')
   initSelect2();
   initAccordion();
 };
@@ -93,11 +92,10 @@ const initAccordion = () => {
 };
 
 const initSelect2 = () => {
-  $('.select2-image').each(function (index) {
+  $('.select2-image').each(function () {
     const elem = $(this);
-    const attr = elem.attr('data-select2-id');
-    // console.log(".select2-image")
-    // console.log(attr)
+    const attr = elem.attr('data-select2-id')
+
     if (typeof attr === 'undefined' || attr === false) {
       elem.select2({
         templateResult: formatState,
@@ -105,7 +103,7 @@ const initSelect2 = () => {
       });
     }
   });
-  $('.select2-icon').each(function (index) {
+  $('.select2-icon').each(function () {
     const elem = $(this);
     const attr = elem.attr('data-select2-id');
     // console.log(".select2-icon")
@@ -130,15 +128,15 @@ const initSelect2 = () => {
 
 
 const componentsContainerObserver = new MutationObserver(initComponent);
-const componentsContainer = document.querySelectorAll('body');
-componentsContainer.forEach((element) => {
+const componentsContainer = document.querySelector('body');
+
   
-  componentsContainerObserver.observe(element, {
+  componentsContainerObserver.observe(componentsContainer, {
     childList: true,
     subtree: true
-  });
+  })
 
-});
+
 
 jQuery(() => {
   initSelect2();
