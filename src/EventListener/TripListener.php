@@ -109,9 +109,10 @@ class TripListener
 
         if(!empty($referenceData['components'])) {
             $translatedComponents = $this->syliusTranslator->translateComponents($currentData, $referenceData, $entity->getLocale());
+            $entity->setComponents(json_encode($translatedComponents));
         }
 
-        $entity->setComponents(json_encode($translatedComponents));
+        
 
 
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());

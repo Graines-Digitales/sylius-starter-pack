@@ -71,6 +71,7 @@ class WebPageListener
         if(false === $entity->getTranslatable()->getIsLocked()) {
             $entity = $this->webContentWebPageService->updateSlug($entity);  
         }
+        
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -103,12 +104,15 @@ class WebPageListener
             null
         );
         
+       
         if(!empty($referenceData['components'])) {
+            
             $translatedComponents = $this->syliusTranslator->translateComponents($currentData, $referenceData, $entity->getLocale());
+            // dump($translatedComponents);die;
+            $entity->setComponents(json_encode($translatedComponents));
         }
-
-        // dump($translatedComponents);die;
-        $entity->setComponents(json_encode($translatedComponents));
+        
+        
 
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }

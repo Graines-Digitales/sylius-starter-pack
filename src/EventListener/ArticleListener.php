@@ -96,9 +96,10 @@ class ArticleListener
 
         if(!empty($referenceData['components'])) {
             $translatedComponents = $this->syliusTranslator->translateComponents($currentData, $referenceData, $entity->getLocale());
+            // dump($translatedComponents);die;
+            $entity->setComponents(json_encode($translatedComponents));
         }
-        // dump($translatedComponents);die;
-        $entity->setComponents(json_encode($translatedComponents));
+        
 
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }
