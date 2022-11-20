@@ -85,6 +85,9 @@ class ComponentCardType extends AbstractType
                 'constraints' => [
                     new NotBlank(['groups' => ['component_card_validation']])
                 ],
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('title', TextType::class, [
                 'required' => false,

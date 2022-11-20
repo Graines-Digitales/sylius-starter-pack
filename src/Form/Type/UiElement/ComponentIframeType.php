@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ComponentIframeType extends AbstractType
 {
@@ -50,9 +50,11 @@ class ComponentIframeType extends AbstractType
                     new NotBlank(['groups' => ['component_iframe_validation']])
                 ],
                 'label' => 'app.ui_element.field.designation',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
-            ->add('url', TextType::class, [
-                'label' => 'app.ui_element.field.url',
+            ->add('html', TextareaType::class, [
                 'required' => true,
                 'constraints' => [
                     new NotBlank(['groups' => ['component_iframe_validation']])

@@ -74,6 +74,9 @@ class ComponentCardParagraphType extends AbstractType
                 'constraints' => [
                     new NotBlank(['groups' => ['component_card_paragraph_validation']])
                 ],
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('title', TextType::class, [
                 'required' => false,

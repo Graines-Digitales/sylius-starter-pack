@@ -74,6 +74,9 @@ class ComponentHeadbandType extends AbstractType
                 'constraints' => [
                     new NotBlank(['groups' => ['component_headband_validation']])
                 ],
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('title', TextType::class, [
                 'required' => false,

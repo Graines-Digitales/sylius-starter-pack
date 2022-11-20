@@ -71,6 +71,9 @@ class ComponentCardTriptychType extends AbstractType
                 'constraints' => [
                     new NotBlank(['groups' => ['component_card_triptych_validation']])
                 ],
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('title', TextType::class, [
                 'required' => false,

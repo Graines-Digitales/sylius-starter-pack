@@ -50,6 +50,9 @@ class ComponentSearchActionType extends AbstractType
                     new NotBlank(['groups' => ['component_search_action_validation']])
                 ],
                 'label' => 'app.ui_element.field.designation',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('searchAction', SearchActionType::class, [
                 'by_reference' => false,

@@ -67,6 +67,9 @@ class ComponentTitleType extends AbstractType
                     new NotBlank(['groups' => ['component_contact_form_validation']])
                 ],
                 'label' => 'app.ui_element.field.designation',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('title', TextType::class, [
                 'required' => false,
