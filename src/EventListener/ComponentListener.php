@@ -46,13 +46,15 @@ class ComponentListener
             return;
         }
 
-        $translatedData = $this->translate($entity);
-        if(!empty($translatedData)) {
-            $this->componentDataAction->hydrate(
-                $translatedData,
-                $entity->getTranslatable(),
-                $entity->getLocale()
-            );
+        if ($entity->getLocale() !== $this->container->getParameter('locale')) {
+            $translatedData = $this->translate($entity);
+            if (!empty($translatedData)) {
+                $this->componentDataAction->hydrate(
+                    $translatedData,
+                    $entity->getTranslatable(),
+                    $entity->getLocale()
+                );
+            }
         }
 
         if(false === $entity->getTranslatable()->getIsLocked()) {

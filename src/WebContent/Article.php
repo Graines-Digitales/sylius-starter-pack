@@ -10,10 +10,12 @@ class Article extends AbstractWebContent
         if (empty($entity->getAlternativeHeadline())) {
             $entity->setAlternativeHeadline($entity->getHeadline());
         }
+
         if (empty($entity->getArticleResume())) {
-            $resume = strip_tags($entity->getArticleBody());
-            $resume = substr($resume, 0, 350);
-            $resume = html_entity_decode($resume, ENT_QUOTES);
+            
+            $resume = $this->contentTools->shapeSpace_truncate_string_at_word(
+                $entity->getArticleBody(), 350, ' ', ''
+            );
             $entity->setArticleResume(trim($resume));
         }
     }

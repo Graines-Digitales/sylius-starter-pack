@@ -93,7 +93,7 @@ AmenityFeatures: Commodités
 Hotel Activities: Hotel activités
 Hotel Services: Hotel services
 Contact point: GPS
-
+Orders: Commandes
 
 sylius:
     ui:
