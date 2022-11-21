@@ -39,6 +39,7 @@ sylius_resource:
                 classes:
                     model: App\Entity\ComponentTranslation
                     form: App\Form\Type\ComponentTranslationType
+                    repository: App\Repository\ComponentTranslationRepository
                     
         app.cms_component:
             driver: doctrine/orm # You can use also different driver here
