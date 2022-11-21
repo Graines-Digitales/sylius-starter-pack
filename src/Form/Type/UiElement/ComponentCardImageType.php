@@ -104,6 +104,15 @@ class ComponentCardImageType extends AbstractType
                     'translatable' => false
                 ]
             ])
+            ->add('align', ChoiceType::class, [
+                'choices' => [
+                    'top' => 'top',
+                    'center' => 'center',
+                    'bottom' => 'bottom'
+                ],
+                'required' => true,
+                'placeholder' => 'app.ui_element.field.choose',
+            ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],

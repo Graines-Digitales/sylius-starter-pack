@@ -33,7 +33,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
 class ComponentCardType extends AbstractType
@@ -114,6 +113,15 @@ class ComponentCardType extends AbstractType
                 'attr_translation_parameters' => [
                     'translatable' => false
                 ]
+            ])
+            ->add('align', ChoiceType::class, [
+                'choices' => [
+                    'top' => 'top',
+                    'center' => 'center',
+                    'bottom' => 'bottom'
+                ],
+                'required' => true,
+                'placeholder' => 'app.ui_element.field.choose',
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,

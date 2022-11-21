@@ -14,6 +14,7 @@ use App\Form\Type\WebPageTranslationType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
@@ -63,6 +64,15 @@ class WebPageType extends AbstractResourceType
                         ->orderBy('c.updatedAt', 'DESC')
                     ;
                 }
+            ])
+            ->add('alignPrimaryImage', ChoiceType::class, [
+                'choices' => [
+                    'top' => 'top',
+                    'center' => 'center',
+                    'bottom' => 'bottom'
+                ],
+                'required' => true,
+                'placeholder' => 'app.ui_element.field.choose',
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,

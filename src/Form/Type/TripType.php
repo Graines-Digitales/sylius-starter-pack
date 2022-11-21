@@ -14,8 +14,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
@@ -79,6 +80,15 @@ class TripType extends AbstractType
                         ->orderBy('c.updatedAt', 'DESC')
                     ;
                 }
+            ])
+            ->add('alignPrimaryImage', ChoiceType::class, [
+                'choices' => [
+                    'top' => 'top',
+                    'center' => 'center',
+                    'bottom' => 'bottom'
+                ],
+                'required' => true,
+                'placeholder' => 'app.ui_element.field.choose',
             ])
             ->add('category', EntityType::class, [
                 'required' => false,

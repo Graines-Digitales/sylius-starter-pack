@@ -122,6 +122,11 @@ class Trip  implements ResourceInterface, TranslatableInterface
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alignPrimaryImage;
+
     public function __toString()
     {
         return $this->getTranslation()->getAlternativeHeadline();
@@ -250,6 +255,18 @@ class Trip  implements ResourceInterface, TranslatableInterface
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getAlignPrimaryImage(): ?string
+    {
+        return $this->alignPrimaryImage;
+    }
+
+    public function setAlignPrimaryImage(?string $alignPrimaryImage): self
+    {
+        $this->alignPrimaryImage = $alignPrimaryImage;
 
         return $this;
     }

@@ -139,7 +139,7 @@ class WebPageAction
         if(isset($data['textResume'])){
             $entity->getTranslation($locale)->setTextResume($data['textResume']);
         }
-        
+            
         if (isset($data['components']) && !empty($data['components']) && null !== $data['components']) {
             dump($data);die;
             $components = $this->componentAction->createComponents($data['components']);

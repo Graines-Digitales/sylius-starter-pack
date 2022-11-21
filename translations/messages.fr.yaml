@@ -298,6 +298,11 @@ app:
             short_description: 'Une section pour afficher une Iframe'
             description: 'Une section pour afficher une Iframe'
             link: 'Link'
+        component_translate:
+            title: 'Composant Translate'
+            short_description: 'Un composant pour gérer les mots isolés à traduire'
+            description: 'Un composant pour gérer les mots isolés à traduire'
+            link: 'Link'
         component_card:
             title: 'Composant Carte'
             short_description: 'Une section pour afficher de multiples éléments'

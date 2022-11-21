@@ -230,3 +230,14 @@ monsieurbiz_sylius_richeditor:
                 admin_render: '@App/admin/UiElement/component_iframe.html.twig'
                 front_render: '/app/UiElement/component_iframe.html.twig'
             tags: []
+        app.component_translate:
+            title: 'app.ui_element.component_translate.title'
+            description: 'app.ui_element.component_translate.description'
+            icon: language
+            classes:
+                form: App\Form\Type\UiElement\ComponentTranslateType
+                #ui_element: App\UiElement\MyUiElement
+            templates:
+                admin_render: '@App/admin/UiElement/component_translate.html.twig'
+                front_render: '/app/UiElement/component_translate.html.twig'
+            tags: []

@@ -4,58 +4,28 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
-use App\Entity\Category;
-use App\WebContent\Component;
-use App\Entity\MediaObjectIcon;
-use App\Entity\MediaObjectImage;
-use App\Entity\MediaObjectVideo;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
-use App\Form\DataTransformer\TagsTransformer;
-use App\Form\Type\UiElement\ComponentLinkType;
 use Symfony\Component\Form\FormBuilderInterface;
-use App\Form\DataTransformer\CategoryTransformer;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use App\Form\DataTransformer\MediaObjectImageTransformer;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-
-class ComponentImageType extends AbstractType
+class ComponentTranslateType extends AbstractType
 {
-    private $manager;
-    
-    private $container;
-
     private $slugger;
 
-    private $componentService;
-
-    public function __construct(
-        EntityManagerInterface $manager,
-        ContainerInterface $container,
-        Component $componentService
-    ){
-        $this->manager = $manager;
-        $this->container = $container;
-        $this->componentService = $componentService;
+    public function __construct()
+    {
         $this->slugger = new AsciiSlugger();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $views = $this->componentService->getComponentViews();
-        
         $builder
             ->add('_slug', TextType::class, [
                 'disabled' => true,
@@ -77,42 +47,22 @@ class ComponentImageType extends AbstractType
             ->add('designation', TextType::class, [
                 'required' => true,
                 'constraints' => [
-                    new NotBlank(['groups' => ['component_contact_form_validation']])
+                    new NotBlank(['groups' => ['component_iframe_validation']])
                 ],
                 'label' => 'app.ui_element.field.designation',
                 'attr_translation_parameters' => [
                     'translatable' => false
                 ]
             ])
-            ->add('image', EntityType::class, [
-                'required' => false,
-                'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.choose',
-                'attr' => ['class' => 'select2-image'],
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('c')
-                        ->orderBy('c.updatedAt', 'DESC')
-                    ;
-                },
+            ->add('words', TextareaType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(['groups' => ['component_translate_validation']])
+                ],
                 'attr_translation_parameters' => [
                     'translatable' => false
                 ]
             ])
-            ->add('align', ChoiceType::class, [
-                'choices' => [
-                    'top' => 'top',
-                    'center' => 'center',
-                    'bottom' => 'bottom'
-                ],
-                'required' => true,
-                'placeholder' => 'app.ui_element.field.choose',
-            ])
-          
-        ;
-
-        $builder
-            ->get('image')
-            ->addModelTransformer(new MediaObjectImageTransformer($this->manager))
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
@@ -125,13 +75,12 @@ class ComponentImageType extends AbstractType
             unset($data['_slug']);
             $event->setData($data);
         });
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'validation_groups' => ['component_image_validation'],
+            'validation_groups' => ['component_translate_validation'],
         ]);
     }
 }

@@ -114,6 +114,11 @@ class WebPage implements ResourceInterface, TranslatableInterface
      */
     private $icon;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alignPrimaryImage;
+
     public function __toString()
     {
         if(null !== $this->getTranslation()->getHeadline()) {
@@ -272,6 +277,18 @@ class WebPage implements ResourceInterface, TranslatableInterface
     public function setIcon(?MediaObjectIcon $icon): self
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getAlignPrimaryImage(): ?string
+    {
+        return $this->alignPrimaryImage;
+    }
+
+    public function setAlignPrimaryImage(?string $alignPrimaryImage): self
+    {
+        $this->alignPrimaryImage = $alignPrimaryImage;
 
         return $this;
     }

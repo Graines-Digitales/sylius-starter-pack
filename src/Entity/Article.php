@@ -102,6 +102,11 @@ class Article implements ResourceInterface, TranslatableInterface
      */
     private $video;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alignPrimaryImage;
+
 
     public function __toString()
     {
@@ -252,6 +257,18 @@ class Article implements ResourceInterface, TranslatableInterface
     public function setVideo(?MediaObjectVideo $video): self
     {
         $this->video = $video;
+
+        return $this;
+    }
+
+    public function getAlignPrimaryImage(): ?string
+    {
+        return $this->alignPrimaryImage;
+    }
+
+    public function setAlignPrimaryImage(?string $alignPrimaryImage): self
+    {
+        $this->alignPrimaryImage = $alignPrimaryImage;
 
         return $this;
     }
