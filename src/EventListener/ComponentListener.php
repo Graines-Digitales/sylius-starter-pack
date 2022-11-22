@@ -45,10 +45,14 @@ class ComponentListener
         if (!$entity instanceof ComponentTranslation) {
             return;
         }
-
+dump($entity->getLocale());
+dump($this->container->getParameter('locale'));
         if ($entity->getLocale() !== $this->container->getParameter('locale')) {
             $translatedData = $this->translate($entity);
+            dump($translatedData);
+            // die;
             if (!empty($translatedData)) {
+                
                 $this->componentDataAction->hydrate(
                     $translatedData,
                     $entity->getTranslatable(),
@@ -86,6 +90,8 @@ class ComponentListener
 
         if(!empty($referenceData['components'])) {
             $translatedComponents = $this->syliusTranslator->translateComponents($currentData, $referenceData, $entity->getLocale());
+            dump($entity);
+            dump($translatedComponents);
             $entity->setComponents(json_encode($translatedComponents));
         }
 

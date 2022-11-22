@@ -55,10 +55,7 @@ class ComponentTranslateType extends AbstractType
                 ]
             ])
             ->add('words', TextareaType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(['groups' => ['component_translate_validation']])
-                ],
+                'required' => false,
                 'attr_translation_parameters' => [
                     'translatable' => false
                 ]

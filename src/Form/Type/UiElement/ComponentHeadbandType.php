@@ -111,8 +111,11 @@ class ComponentHeadbandType extends AbstractType
                     'center' => 'center',
                     'bottom' => 'bottom'
                 ],
-                'required' => true,
+                'required' => false,
                 'placeholder' => 'app.ui_element.field.choose',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
         ;
 
