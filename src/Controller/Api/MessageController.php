@@ -100,14 +100,14 @@ class MessageController extends AbstractController
         $data['headline'].= ' - ' . $data['slug-product'];
 
         // dump($data);die;
-        dump(...$this->organization->getEmails(true));die;
+        dump(...$this->organization->getEmails());die;
+
         /**
          * Send email
          **/
         $email = (new Email())
             ->from($data['email'])
-            ->to(...$this->organization->getEmails(true))
-            // ->to('johan.remy@graines-digitales.online')
+            ->to(...$this->organization->getEmails())
             ->subject($data['headline'])
             ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
             ->html($this->renderView(
@@ -118,6 +118,21 @@ class MessageController extends AbstractController
         ;
     
         try {
+            $this->mailer->send($email);
+
+
+            $data['headline'] = $configurationProject['forms']['contact_default']['headline_confirm'];
+            $email = (new Email())
+                ->from($this->organization->getEmail())
+                ->to($data['email'])
+                ->subject($data['headline'])
+                ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
+                ->html($this->renderView(
+                        '@App/web/components/email_confirm.html.twig',
+                        ['data' => $data]
+                    )
+                )
+            ;
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
             
@@ -193,14 +208,12 @@ class MessageController extends AbstractController
         $configurationProject = $this->getParameter('configuration_project');
         $data['headline'] = $configurationProject['forms']['contact_default']['headline'];
 
-        dump(...$this->organization->getEmails(true));die;
         /**
          * Send email
          **/
         $email = (new Email())
             ->from($data['email'])
-            ->to(...$this->organization->getEmails(true))
-            // ->to('johan.remy@graines-digitales.online')
+            ->to(...$this->organization->getEmails())
             ->subject($data['headline'])
             ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
             ->html($this->renderView(
@@ -212,6 +225,21 @@ class MessageController extends AbstractController
     
         try {
             $this->mailer->send($email);
+
+            $data['headline'] = $configurationProject['forms']['contact_default']['headline_confirm'];
+            $email = (new Email())
+                ->from($this->organization->getEmail())
+                ->to($data['email'])
+                ->subject($data['headline'])
+                ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
+                ->html($this->renderView(
+                        '@App/web/components/email_confirm.html.twig',
+                        ['data' => $data]
+                    )
+                )
+            ;
+            $this->mailer->send($email);
+
         } catch (TransportExceptionInterface $e) {
             
             $response = json_decode($e->getResponseBody(), true);

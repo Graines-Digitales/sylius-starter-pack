@@ -17,4 +17,13 @@ class Organization extends AbstractWebContent
 
         return [ ...$this->container->getParameter('developers'), ...[ $organization->getEmail() ] ];
     }
+
+    public function getEmail()
+    {
+        $configurationProject = $this->container->getParameter('configuration_project');
+        $organization = $this->manager->getRepository(\App\Entity\Organization::class)
+                ->findOneBy(['slug' => $configurationProject['slug']]);
+
+        return $organization->getEmail();
+    }
 }
