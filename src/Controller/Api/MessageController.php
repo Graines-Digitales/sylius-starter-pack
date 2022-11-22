@@ -100,6 +100,7 @@ class MessageController extends AbstractController
         $data['headline'].= ' - ' . $data['slug-product'];
 
         // dump($data);die;
+        dump(...$this->organization->getEmails(true));die;
         /**
          * Send email
          **/
@@ -192,7 +193,7 @@ class MessageController extends AbstractController
         $configurationProject = $this->getParameter('configuration_project');
         $data['headline'] = $configurationProject['forms']['contact_default']['headline'];
 
-
+        dump(...$this->organization->getEmails(true));die;
         /**
          * Send email
          **/
@@ -212,7 +213,7 @@ class MessageController extends AbstractController
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
-            dump($e);die;
+            
             $response = json_decode($e->getResponseBody(), true);
             return new JsonResponse(
                 [ 
