@@ -103,8 +103,6 @@ class WebPageListener
             $entity->getTranslatable()->getTranslation($this->container->getParameter('locale')), 
             null
         );
-        
-       
         if(!empty($referenceData['components'])) {
             
             $translatedComponents = $this->syliusTranslator->translateComponents($currentData, $referenceData, $entity->getLocale());
@@ -112,8 +110,6 @@ class WebPageListener
             $entity->setComponents(json_encode($translatedComponents));
         }
         
-        
-
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }
 

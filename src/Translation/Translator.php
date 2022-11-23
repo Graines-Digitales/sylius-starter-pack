@@ -32,11 +32,10 @@ class Translator
             $translate = new TranslateClient([
                 'key' => $this->apiKey
             ]);
-            
             $result = $translate->translate($chain, [
                 'target' => $locale
             ]);
-
+             
             if(isset($result['text'])) {
                 return $result['text'];
             }
