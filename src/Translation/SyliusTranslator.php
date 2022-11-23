@@ -20,7 +20,7 @@ class SyliusTranslator
 
     public function translateEntity($currentData, $referenceData, $form, $locale)
     {
-       
+    //    dump($locale);die;
         // die;
         $translatedData = [];
         foreach($referenceData as $field=>$value) {
@@ -36,7 +36,7 @@ class SyliusTranslator
             if(empty($currentData[$field])
                 && !empty($referenceData[$field])
             ) {
-                $translatedData[$field] = $this->translator->translate($referenceData[$field]);
+                $translatedData[$field] = $this->translator->translate($referenceData[$field], $locale);
             } 
             // else {
             //     $translatedData[$field] = $translatedData[$field];
