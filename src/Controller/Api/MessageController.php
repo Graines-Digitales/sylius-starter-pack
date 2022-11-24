@@ -58,8 +58,8 @@ class MessageController extends AbstractController
 
             return new JsonResponse(
                 [ 
-                    'title' => 'An error has occurred',
-                    'message' => 'email not found',
+                    'title' => 'une erreur est survenue',
+                    'message' => 'email non trouvé',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
@@ -70,7 +70,7 @@ class MessageController extends AbstractController
 
             return new JsonResponse(
                 [ 
-                    'title' => 'An error has occurred',
+                    'title' => 'une erreur est survenue',
                     'message' => 'slug product not found',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
@@ -86,7 +86,7 @@ class MessageController extends AbstractController
 
             return new JsonResponse(
                 [ 
-                    'title' => 'An error has occurred',
+                    'title' => 'une erreur est survenue',
                     'message' => $data['errors'],
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
@@ -139,7 +139,7 @@ class MessageController extends AbstractController
             $response = json_decode($e->getResponseBody(), true);
             return new JsonResponse(
                 [ 
-                    'title' => 'An error has occurred',
+                    'title' => 'une erreur est survenue',
                     'message' => $response['message'],
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
@@ -151,7 +151,7 @@ class MessageController extends AbstractController
         return new JsonResponse(
             [
                 'title' => 'Success',
-                'message' => 'Your form has been registered',
+                'message' => 'votre formulaire a été enregistré',
                 'statutCode' => JsonResponse::HTTP_OK
             ]
             , JsonResponse::HTTP_OK
@@ -179,8 +179,8 @@ class MessageController extends AbstractController
 
             return new JsonResponse(
                 [ 
-                    'title' => 'An error has occurred',
-                    'message' => 'email not found',
+                    'title' => 'une erreur est survenue',
+                    'message' => 'email non trouvé',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
@@ -196,7 +196,7 @@ class MessageController extends AbstractController
 
             return new JsonResponse(
                 [ 
-                    'title' => 'An error has occurred',
+                    'title' => 'une erreur est survenue',
                     'message' => $data['errors'],
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
@@ -245,7 +245,7 @@ class MessageController extends AbstractController
             $response = json_decode($e->getResponseBody(), true);
             return new JsonResponse(
                 [ 
-                    'title' => 'An error has occurred',
+                    'title' => 'une erreur est survenue',
                     'message' => $response['message'],
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
@@ -257,7 +257,7 @@ class MessageController extends AbstractController
         return new JsonResponse(
             [
                 'title' => 'Success',
-                'message' => 'Your form has been registered',
+                'message' => 'votre formulaire a été enregistré',
                 'statutCode' => JsonResponse::HTTP_OK
             ]
             , JsonResponse::HTTP_OK
@@ -285,8 +285,8 @@ class MessageController extends AbstractController
 
             return new JsonResponse(
                 [ 
-                    'title' => 'An error has occurred',
-                    'message' => 'email not found',
+                    'title' => 'une erreur est survenue',
+                    'message' => 'email non trouvé',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
@@ -329,7 +329,7 @@ class MessageController extends AbstractController
 
                 return new JsonResponse(
                     [ 
-                        'title' => 'An error has occurred',
+                        'title' => 'une erreur est survenue',
                         'message' => 'email already exist',
                         'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                     ]
@@ -341,7 +341,7 @@ class MessageController extends AbstractController
             $response = json_decode($e->getResponseBody(), true);
             return new JsonResponse(
                 [ 
-                    'title' => 'An error has occurred',
+                    'title' => 'une erreur est survenue',
                     'message' => $response['message'],
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
