@@ -11,6 +11,7 @@ use App\WebContent\SEO;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use App\WebContent\Trip as WebContentTrip;
 
 class TripListener
 {
@@ -33,6 +34,7 @@ class TripListener
         , TripDataAction $tripDataAction
         , MetaData $metaDataService
         , SluggerInterface $slugger
+        , WebContentTrip $webContentTripService
     )
     {
         $this->container = $container;
@@ -40,6 +42,7 @@ class TripListener
         $this->syliusTranslator = $syliusTranslator;
         $this->tripDataAction = $tripDataAction;
         $this->metaDataService = $metaDataService;
+        $this->webContentTripService = $webContentTripService;
         $this->slugger = $slugger;
 
     }
@@ -84,7 +87,7 @@ class TripListener
     private function enrich($entity)
     {
         $this->createSlug($entity);
-        
+        $this->webContentTripService->moreData($entity);
         if(empty($entity->getAlternativeHeadline())) {
             $entity->setAlternativeHeadline($entity->getHeadline() . ' ' . $entity->getTranslatable()->getArrivalTime()->format('Y-m-d'));
         }
