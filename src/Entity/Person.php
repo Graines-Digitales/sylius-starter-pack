@@ -36,7 +36,7 @@ class Person implements ResourceInterface
      * @ORM\Column(name="firstname", type="string", length=255, nullable=true, options={"comment":"Firstname"})
      *
      * @Assert\NotBlank(
-     *  message="Enter a first name please"
+     *  message="entrez un prénom s'il vous plait"
      * )
      */
     private $firstname;
@@ -46,7 +46,7 @@ class Person implements ResourceInterface
      *
      * @ORM\Column(name="lastname", type="string", length=255, options={"comment":"Lastname"})
      * @Assert\NotBlank(
-     *  message="Enter a name please"
+     *  message="entrez un nom s'il vous plait"
      * )
      */
     private $lastname;
@@ -55,7 +55,7 @@ class Person implements ResourceInterface
      * @ ORM\ManyToOne(targetEntity="Gender", inversedBy="persons")
      * @ ORM\JoinColumn(name="gender_id", referencedColumnName="id", nullable=true)
      *
-     * @ Assert\NotBlank(message="Enter a gender please")
+     * @ Assert\NotBlank(message="entrez un sexe s'il vous plaît")
      */
     private $gender;
 
@@ -80,15 +80,15 @@ class Person implements ResourceInterface
      *
      * @ Assert\Expression(
      *     "this.getEmail() || this.getPhone()",
-     *     message="Please, enter email or phone"
+     *     message="s'il vous plaît, entrez email ou téléphone"
      * )
      *
      * @ Assert\Regex(
      *  pattern="/^(0)[0-9]{9}$/",
      *  match=true,
-     *  message="This phone number is invalid"
+     *  message="ce numéro de téléphone est invalide"
      * )
-     * @ Assert\NotBlank(message="Enter a phone please")
+     * @ Assert\NotBlank(message="entrez un téléphone s'il vous plaît")
      */
     private $phone;
 
@@ -100,7 +100,7 @@ class Person implements ResourceInterface
      * @Assert\Email(
      *  message = "This email is invalid"
      * )
-     * @Assert\NotBlank(message="Enter an email please")
+     * @Assert\NotBlank(message="entrez un e-mail s'il vous plaît")
      */
     private $email;
 

@@ -59,12 +59,12 @@ class RealEstateAgent implements ResourceInterface
      * @ORM\Column(name="phone", type="string", length=255, options={"comment":"Phone"}, nullable=true)
      *
      * @ Assert\NotBlank(
-     *  message="Please enter your phone number"
+     *  message="veuillez entrer votre numéro de téléphone"
      * )
      * @ Assert\Regex(
      *  pattern="/^(0)[0-9]{9}$/",
      *  match=true,
-     *  message="Your phone number is invalid"
+     *  message="votre numéro de téléphone est invalide"
      * )
      */
     private $phone;
@@ -76,11 +76,11 @@ class RealEstateAgent implements ResourceInterface
      *
      * @ Assert\Expression(
      *     "this.getEmail() == null && !this.getPhone() == null",
-     *     message="Please, enter email or phone."
+     *     message="s'il vous plaît, entrez email ou téléphone"
      * )
      *
      * @ Assert\Email(
-     *  message = "This email is invalid"
+     *  message = "cette adresse email est invalide"
      * )
      */
     private $email;

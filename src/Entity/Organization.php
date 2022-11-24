@@ -77,12 +77,12 @@ class Organization implements ResourceInterface
      * @ORM\Column(name="phone", type="string", length=255, options={"comment":"Phone"}, nullable=true)
      *
      * @ Assert\NotBlank(
-     *  message="Please enter your phone number"
+     *  message="veuillez entrer votre numéro de téléphone"
      * )
      * @ Assert\Regex(
      *  pattern="/^(0)[0-9]{9}$/",
      *  match=true,
-     *  message="Your phone number is invalid"
+     *  message="votre numéro de téléphone est invalide"
      * )
      *
      */
@@ -93,10 +93,10 @@ class Organization implements ResourceInterface
      *
      * @ORM\Column(name="email", type="string", length=255, options={"comment":"Email"}, nullable=true)
      * @ Assert\NotBlank(
-     *      message="Please enter an email"
+     *      message="veuillez saisir un e-mail"
      * )
      * @ Assert\Email(
-     *      message = "Your email is invalid"
+     *      message = "votre email est invalide"
      * )
      *
      */
@@ -150,12 +150,12 @@ class Organization implements ResourceInterface
      * @ORM\Column(name="mobile_phone", type="string", length=255, options={"comment":"Mobile Phone"}, nullable=true)
      *
      * @ Assert\NotBlank(
-     *  message="Please enter your mobile phone number"
+     *  message="veuillez entrer votre numéro de téléphone portable"
      * )
      * @ Assert\Regex(
      *  pattern="/^(0)[0-9]{9}$/",
      *  match=true,
-     *  message="Your mobile phone number is invalid"
+     *  message="votre numéro de téléphone portable est invalide"
      * )
      *
      */

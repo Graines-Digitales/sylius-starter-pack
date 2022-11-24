@@ -70,7 +70,7 @@ trait AccommodationTrait
      *
      * @ORM\Column(name="numberOfRooms", type="smallint")
      *
-     * @Assert\NotBlank(message="Enter the number of rooms")
+     * @Assert\NotBlank(message="entrez le nombre de chambres")
      */
     private $numberOfRooms;
 
@@ -84,7 +84,7 @@ trait AccommodationTrait
     /**
      * @ORM\Column(name="maximumOccupants", type="smallint", nullable=true)
      *
-     * @ Assert\NotBlank(message="Enter the number of occupants")
+     * @ Assert\NotBlank(message="entrez le nombre d'occupants")
      */
     private $maximumOccupants;
 
@@ -93,7 +93,7 @@ trait AccommodationTrait
      *
      * @ORM\Column(name="price", type="float", length=6)
      * 
-     * @Assert\NotBlank(message="Enter the price of the property")
+     * @Assert\NotBlank(message="entrez le prix du bien")
      */
     private $price;
 
@@ -107,7 +107,7 @@ trait AccommodationTrait
     /**
      * @ORM\Column(name="floorSize", type="smallint")
      * 
-     * @Assert\NotBlank(message="Enter the living space")
+     * @Assert\NotBlank(message="entrez dans l'espace de vie")
      */
     private $floorSize;
 
@@ -127,7 +127,7 @@ trait AccommodationTrait
      * @ORM\JoinColumn(name="place_id", referencedColumnName="id")
      * choice(campagne, golf-mogador, médina, nouvelle-ville)
      *
-     * @Assert\NotBlank(message="Enter the place of the property")
+     * @Assert\NotBlank(message="entrez le lieu de la propriété")
      */
     private $place;
 
@@ -149,7 +149,7 @@ trait AccommodationTrait
      * @ORM\JoinColumn(name="nature_id", referencedColumnName="id")
      * choice(location, achat ... etc)
      *
-     * @Assert\NotBlank(message="Select the nature of the property")
+     * @Assert\NotBlank(message="sélectionnez la nature du bien")
      */
     private $nature;
 
@@ -158,7 +158,7 @@ trait AccommodationTrait
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
      * choice(maison, appart ... etc)
      *
-     * @Assert\NotBlank(message="Select the type of property")
+     * @Assert\NotBlank(message="sélectionnez le type de propriété")
      */
     private $type;
 
@@ -168,7 +168,7 @@ trait AccommodationTrait
      *
      * @Assert\Expression(
      *     "(this.getDuration() && this.getNature() == 'Location') || (this.getNature() == 'Vente')",
-     *     message="Please, enter a duration"
+     *     message="veuillez entrer une durée"
      * )
      */
     private $duration;
