@@ -64,7 +64,7 @@ class ComponentTitleType extends AbstractType
             ->add('designation', TextType::class, [
                 'required' => true,
                 'constraints' => [
-                    new NotBlank(['groups' => ['component_contact_form_validation']])
+                    new NotBlank(['groups' => ['component_title_validation']])
                 ],
                 'label' => 'app.ui_element.field.designation',
                 'attr_translation_parameters' => [
@@ -98,7 +98,7 @@ class ComponentTitleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'validation_groups' => ['component_image_validation'],
+            'validation_groups' => ['component_title_validation'],
         ]);
     }
 }

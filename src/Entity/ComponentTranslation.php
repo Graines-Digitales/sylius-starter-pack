@@ -49,7 +49,9 @@ class ComponentTranslation extends AbstractTranslation implements ResourceInterf
 
     public function setSlug($slug)
     {
-        $this->slug = $slug;
+        if(empty($this->slug)) {
+            $this->slug = $slug;
+        }
     }
 
     public function getComponents(): ?string

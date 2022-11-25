@@ -114,3 +114,6 @@ img.ui.tiny.image {
 	white-space: normal;
 }
 
+#component_images_images + .select2-container {
+	max-height: 200px;
+}

@@ -70,7 +70,7 @@ class ComponentCardsType extends AbstractType
             ->add('designation', TextType::class, [
                 'required' => true,
                 'constraints' => [
-                    new NotBlank(['groups' => ['component_contact_form_validation']])
+                    new NotBlank(['groups' => ['component_cards_validation']])
                 ],
                 'label' => 'app.ui_element.field.designation',
                 'attr_translation_parameters' => [

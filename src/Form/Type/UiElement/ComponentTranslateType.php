@@ -47,7 +47,7 @@ class ComponentTranslateType extends AbstractType
             ->add('designation', TextType::class, [
                 'required' => true,
                 'constraints' => [
-                    new NotBlank(['groups' => ['component_iframe_validation']])
+                    new NotBlank(['groups' => ['component_translate_validation']])
                 ],
                 'label' => 'app.ui_element.field.designation',
                 'attr_translation_parameters' => [
