@@ -81,6 +81,11 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
         return $this->slug;
     }
 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
     public function getArticleBody(): ?string
     {
         return $this->articleBody;
