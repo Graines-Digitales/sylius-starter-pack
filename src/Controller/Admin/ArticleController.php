@@ -20,12 +20,15 @@ class ArticleController extends ResourceController
         $resource = $this->findOr404($configuration);
         $newResource = clone $resource;
         $newResource->setId(null);
+        $newResource->setCreatedAt(new DateTime());
+        $newResource->setUpdatedAt(new DateTime());
         $this->manager->persist($newResource);
         $this->manager->flush();
         foreach($newResource->getTranslations()->getValues() as $translation) {
             $newTranslation = clone $translation;
             $newTranslation->setId(null);
             $newTranslation->setSlug(null);
+            $newTranslation->setHeadline('New Article');
             $newTranslation->setTranslatable($newResource);
             $this->manager->persist($newTranslation);
             $this->manager->flush();

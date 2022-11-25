@@ -25,6 +25,16 @@ class ArticleRepository extends EntityRepository
         ;
     }
 
+    public function findSortByDate($configurationProject)
+    {
+        // $slug = $configurationProject['forms']['contact_default']['slug'];
+
+        return $this->createQueryBuilder('entity')
+            
+            ->orderBy('entity.updatedAt', 'DESC')
+        ;
+    }
+    
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

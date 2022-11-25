@@ -1,3 +1,7 @@
+<h5 class="ui tiny header">
+    {{element.designation}}
+</h5>
+{% if element.icon is defined and element.icon is not empty or element.primaryImage is defined and element.primaryImage is not empty or element.title is defined and element.title is not empty %}
 <h2 class="ui huge header">
     {% if element.icon is defined and element.icon is not empty %}
         <img class="ui huge rounded image" src="{{ asset('media/icon/' ~ element.icon.filename) }}"/>
@@ -7,8 +11,15 @@
     <div class="content">
         {% if element.title is defined and element.title is not empty %}
             {{element.title}}
-        {% else %}
-            {{element.designation}}
         {% endif %}
     </div>
 </h2>
+{% endif %}
+{% if element.content is defined and element.content is not empty %}
+<div class="content">
+    <p>{{ element.content|raw }}</p>
+</div>
+{% endif %}
+
+
+

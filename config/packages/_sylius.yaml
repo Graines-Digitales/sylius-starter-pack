@@ -532,7 +532,10 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\Article
-
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
             fields:
                 is_enabled:
                     type: twig

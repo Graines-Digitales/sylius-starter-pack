@@ -104,11 +104,6 @@ class MediaObjectImage implements ResourceInterface
 
     public function __toString()
     {   
-        if(!empty($this->getName())) {
-            
-            return $this->getName();
-        }
-
         return $this->getFilename();
     }
     
