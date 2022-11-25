@@ -5,10 +5,10 @@
         <img class="ui huge rounded image" src="{{ element.primaryImage.filename|imagine_filter('thumbnail_webp') }}" />
     {% endif %}
     <div class="content">
-        {% if element.designation is defined and element.designation is not empty %}
-            {{element.designation}}
-        {% else %}
+        {% if element.title is defined and element.title is not empty %}
             {{element.title}}
+        {% else %}
+            {{element.designation}}
         {% endif %}
     </div>
 </h2>

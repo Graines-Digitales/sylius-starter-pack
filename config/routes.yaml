@@ -43,6 +43,12 @@ app_admin_travel_duplicate:
     defaults:
         _controller: app.controller.travel::duplicateAction
 
+app_admin_article_duplicate:
+    path: /admin/article/{id}/duplicate
+    methods: [GET]
+    defaults:
+        _controller: app.controller.article::duplicateAction
+
 # app_sitemap:
 #     path: /sitemap
 #     methods: [GET]

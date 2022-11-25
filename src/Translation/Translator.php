@@ -37,7 +37,7 @@ class Translator
             ]);
              
             if(isset($result['text'])) {
-                return $result['text'];
+                return html_entity_decode($result['text']);
             }
 
             return $chain; 

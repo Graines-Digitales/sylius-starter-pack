@@ -608,7 +608,15 @@ sylius_grid:
                     update:
                         type: update
                     delete:
-                        type: delete    
+                        type: delete
+                    duplicate:
+                        type: duplicate
+                        label: duplicate
+                        options:
+                            link:
+                                route: app_admin_article_duplicate
+                                parameters:
+                                    id: resource.id
 
         app_admin_category:
             driver:
@@ -1160,6 +1168,10 @@ sylius_grid:
                 url:
                     type: string
                     label: app.ui_element.field.url
+
+                name:
+                    type: string
+                    label: sylius.ui.name
 
                 category:
                     type: twig # Type of filter
