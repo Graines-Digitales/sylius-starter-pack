@@ -116,4 +116,10 @@ img.ui.tiny.image {
 
 #component_images_images + .select2-container {
 	max-height: 200px;
+	overflow-y: scroll;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+	max-height: 300px;
+	overflow-y: auto;
 }
