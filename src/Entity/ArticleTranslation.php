@@ -29,14 +29,14 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     use CreativeWorkTrait;
     use TimestampableEntity;
 
-    /** 
-     * @var TranslatableInterface|null 
-     * 
-     * @ApiProperty(
-     *    readableLink=true
-     * )
-    */
-    protected $translatable;
+    // /** 
+    //  * @var TranslatableInterface|null 
+    //  * 
+    //  * @ApiProperty(
+    //  *    readableLink=true
+    //  * )
+    // */
+    // protected $translatable;
 
     /**
      * @Gedmo\Slug(fields={"headline"}, updatable=true)
