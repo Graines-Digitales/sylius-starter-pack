@@ -87,11 +87,13 @@ class TripListener
     private function enrich($entity)
     {
         $this->createSlug($entity);
-        $this->webContentTripService->moreData($entity);
+        
         if(empty($entity->getAlternativeHeadline())) {
             $entity->setAlternativeHeadline($entity->getHeadline() . ' ' . $entity->getTranslatable()->getArrivalTime()->format('Y-m-d'));
         }
-        
+        $this->webContentTripService->moreData($entity);
+       
+       
         $this->webContentSEOService->defineMetaData($entity);
         $metaData = $this->metaDataService->getData($entity);
         $this->webContentSEOService->defineStructuredData($metaData, $entity);
