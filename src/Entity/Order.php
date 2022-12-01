@@ -34,7 +34,7 @@ class Order implements ResourceInterface
     private $confirmationNumber;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Person::class)
+     * @ORM\ManyToOne(targetEntity=Person::class, cascade= {"persist", "remove"})
      */
     private $customer;
 
@@ -55,7 +55,7 @@ class Order implements ResourceInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Trip::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $orderItem;
 

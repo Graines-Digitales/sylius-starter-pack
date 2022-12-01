@@ -99,6 +99,8 @@ class Trip  implements ResourceInterface, TranslatableInterface
      */
     private $tags;
 
+
+
     /**
      * @ORM\ManyToMany(targetEntity=AggregateOffer::class, inversedBy="trips", cascade={"persist"})
      * @ORM\JoinTable(name="app_trips_offers")
