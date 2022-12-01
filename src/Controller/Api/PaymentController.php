@@ -54,7 +54,7 @@ class PaymentController extends AbstractController
         // $data = $request->request->all();
         $data = json_decode($request->getContent(), true);
         // dump($args);
-        
+        dump($data);die;
         $product = $this->entityManager->getRepository(Trip::class)
             ->findOneBySlug($data['slug-product'])
         ;
