@@ -20,12 +20,10 @@ class NuxtController extends AbstractController
         $response = [];
         $kernelProjectDir = $this->getParameter('kernel.project_dir');
         $command = $kernelProjectDir . DIRECTORY_SEPARATOR . 'fetch.sh';
-        $lockFilePath = $kernelProjectDir.'/fetch.txt';
+        $lockFilePath = $kernelProjectDir . DIRECTORY_SEPARATOR . '/fetch.txt';
+
         $filesystem = new Filesystem();
-        if (!$filesystem->exists($lockFilePath)) {
-            
-            $filesystem->dumpFile($lockFilePath, 'Fetch is running');
-        } else {
+        if ($filesystem->exists($lockFilePath)) {
             $response['error'] = 'process fetch is already running!';
             
             return new JsonResponse(
@@ -42,10 +40,9 @@ class NuxtController extends AbstractController
         $process->setTimeout(10800); // 3 heures
 
         try {
-// dump($command);die;
+
             $process->mustRun();
             $response['success'] = $process->getOutput();
-            $filesystem->remove($lockFilePath);
 
             return new JsonResponse(
                 $response,
@@ -55,7 +52,6 @@ class NuxtController extends AbstractController
         } catch (ProcessFailedException $exception) {
 
             $response['error'] = $exception->getMessage();
-            $filesystem->remove($lockFilePath);
 
             return new JsonResponse(
                 $response,
@@ -67,20 +63,13 @@ class NuxtController extends AbstractController
 
     public function build(): JsonResponse
     {
-        $kernelProjectDir = $this->getParameter('kernel.project_dir');
         $response = [];
-        $command = $kernelProjectDir.'/build.sh';
-        $lockFilePath = $kernelProjectDir.'/build.txt';
-
-        $process = new Process(
-            [$command, $kernelProjectDir]
-        );
-        $process->setTimeout(10800); // 3 heures
+        $kernelProjectDir = $this->getParameter('kernel.project_dir');
+        $command = $kernelProjectDir . DIRECTORY_SEPARATOR . '/build.sh';
+        $lockFilePath = $kernelProjectDir . DIRECTORY_SEPARATOR . '/build.txt';
 
         $filesystem = new Filesystem();
-        if (!$filesystem->exists($lockFilePath)) {
-            $filesystem->dumpFile($lockFilePath, 'Build is running');
-        } else {
+        if ($filesystem->exists($lockFilePath)) {
             $response['error'] = 'process build is already running!';
 
             return new JsonResponse(
@@ -89,19 +78,25 @@ class NuxtController extends AbstractController
             );
         }
 
+        $process = new Process(
+            [
+                $command, 
+                $kernelProjectDir
+            ]
+        );
+        $process->setTimeout(10800); // 3 heures
         try {
+
             $process->mustRun();
             $response['success'] = $process->getOutput();
-            $filesystem->remove($lockFilePath);
-
+       
             return new JsonResponse(
                 $response,
                 JsonResponse::HTTP_OK
             );
         } catch (ProcessFailedException $exception) {
             $response['error'] = $exception->getMessage();
-            $filesystem->remove($lockFilePath);
-
+ 
             return new JsonResponse(
                 $response,
                 JsonResponse::HTTP_BAD_REQUEST
