@@ -34,4 +34,14 @@ class TripRepository extends EntityRepository
             ->orderBy('entity.arrivalTime', 'DESC')
         ;
     }
+
+    public function findSortById($configurationProject)
+    {
+        // $slug = $configurationProject['forms']['contact_default']['slug'];
+
+        return $this->createQueryBuilder('entity')
+            
+            ->orderBy('entity.id', 'DESC')
+        ;
+    }
 }

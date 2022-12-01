@@ -1727,10 +1727,14 @@ sylius_grid:
                 options:
                     class: App\Entity\Trip
                     repository:
-                        method: findSortByDate
+                        method: findSortById
                         arguments:
                             parameters: '%configuration_project%'
+            # sorting:
+            #     id: desc
             fields:
+                id:
+                    type: string
                 is_enabled:
                     type: twig
                     label: sylius.ui.is_enabled
