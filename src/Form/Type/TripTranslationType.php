@@ -27,7 +27,8 @@ class TripTranslationType extends AbstractType
                 ]
             ])
             ->add('alternativeHeadline', TextType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('pushForward', TextType::class, [
                 'required' => false
@@ -42,7 +43,8 @@ class TripTranslationType extends AbstractType
                 'required' => false
             ])
             ->add('textResume', TextAreaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
@@ -51,10 +53,12 @@ class TripTranslationType extends AbstractType
                 ]
             ])
             ->add('metaTitle', TextType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('metaDescription', TextAreaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
         ;
         
