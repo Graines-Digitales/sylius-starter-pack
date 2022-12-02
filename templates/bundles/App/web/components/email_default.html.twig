@@ -18,7 +18,7 @@
 			width: 100%;
 		}
 		tr {
-			border-bottom: 1px solid #c9002b;
+			border-bottom: 1px solid #6D8764;
 		}
 		td {
 			padding: 5px 10px;
@@ -32,10 +32,12 @@
 	</p>
 	<table>
 		{% for key, item in data %}
+			{% if key not in ['headline']%}
 			<tr>
 				<td><strong>{{ key }}</strong></td>
 				<td>{{ item }}</td>
 			</tr>
+			{% endif %}
 		{% endfor %}
 	</table>
 </div>

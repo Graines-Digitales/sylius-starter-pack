@@ -99,7 +99,7 @@ class MessageController extends AbstractController
         $data['headline'] = $configurationProject['forms']['contact_product']['headline'];
         $data['headline'].= ' - ' . $data['slug-product'];
 
-        // dump($data);die;
+        dump($data);die;
         // dump(...$this->organization->getEmails());die;
 
         /**
@@ -358,5 +358,24 @@ class MessageController extends AbstractController
             ]
             , JsonResponse::HTTP_OK
         );
+    }
+
+    /**
+     * @Route("/template/email", name="web_template_email")
+    */
+    public function email()
+    {
+        $data = [
+            "prénom" => "remy",
+            "nom" => "johan",
+            "objet" => "mon sujet",
+            "text" => "mon message",
+            "provenance" => "form-product",
+            "slug-product" => "slug-product",
+            "email" => "johan13.remy+1@gmail.com",
+            "headline" => "New message product - slug-product",
+        ];
+
+        return $this->render('@App/web/components/email_default.html.twig', [ 'data' => $data ]);
     }
 }
