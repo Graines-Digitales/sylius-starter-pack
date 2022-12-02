@@ -99,7 +99,7 @@ class MessageController extends AbstractController
         $data['headline'] = $configurationProject['forms']['contact_product']['headline'];
         $data['headline'].= ' - ' . $data['slug-product'];
 
-        dump($data);die;
+        // dump($data);die;
         // dump(...$this->organization->getEmails());die;
 
         /**

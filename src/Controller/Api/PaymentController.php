@@ -67,6 +67,31 @@ class PaymentController extends AbstractController
         // $data = $request->request->all();
         $data = json_decode($request->getContent(), true);
 
+
+        if (!isset($data['email']) || empty($data['email'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'email non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!isset($data['phone']) || empty($data['phone'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'téléphone non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
         if (!isset($data['amount']) || empty($data['amount'])) {
 
             return new JsonResponse(
@@ -84,7 +109,7 @@ class PaymentController extends AbstractController
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
-                    'message' => 'montant non trouvé',
+                    'message' => 'adresse non trouvé',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
@@ -121,30 +146,6 @@ class PaymentController extends AbstractController
                 [ 
                     'title' => 'une erreur est survenue',
                     'message' => 'pays non trouvé',
-                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
-                ]
-                , JsonResponse::HTTP_BAD_REQUEST
-            );
-        }
-
-        if (!isset($data['phone']) || empty($data['phone'])) {
-
-            return new JsonResponse(
-                [ 
-                    'title' => 'une erreur est survenue',
-                    'message' => 'téléphone non trouvé',
-                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
-                ]
-                , JsonResponse::HTTP_BAD_REQUEST
-            );
-        }
-
-        if (!isset($data['email']) || empty($data['email'])) {
-
-            return new JsonResponse(
-                [ 
-                    'title' => 'une erreur est survenue',
-                    'message' => 'email non trouvé',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
@@ -215,7 +216,7 @@ class PaymentController extends AbstractController
                 'title' => 'Success',
                 'message' => 'Votre commandé à bien été créer',
                 'statutCode' => JsonResponse::HTTP_OK,
-                'response' => $response
+                'html_form' => $response['html_form']
             ]
             , JsonResponse::HTTP_OK
         );
