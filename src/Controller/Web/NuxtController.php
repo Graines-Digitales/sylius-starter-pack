@@ -20,11 +20,12 @@ class NuxtController extends AbstractController
         $response = [];
         $kernelProjectDir = $this->getParameter('kernel.project_dir');
         $command = $kernelProjectDir . DIRECTORY_SEPARATOR . 'fetch.sh';
-        $lockFilePath = $kernelProjectDir . DIRECTORY_SEPARATOR . '/fetch.txt';
+        $lockFilePathFetch = $kernelProjectDir . DIRECTORY_SEPARATOR . '/fetch.txt';
+        $lockFilePathBuild = $kernelProjectDir . DIRECTORY_SEPARATOR . '/build.txt';
 
         $filesystem = new Filesystem();
-        if ($filesystem->exists($lockFilePath)) {
-            $response['error'] = 'process fetch is already running!';
+        if ($filesystem->exists($lockFilePathFetch) || $filesystem->exists($lockFilePathBuild)) {
+            $response['error'] = 'process is already running!';
             
             return new JsonResponse(
                 $response,
@@ -66,11 +67,12 @@ class NuxtController extends AbstractController
         $response = [];
         $kernelProjectDir = $this->getParameter('kernel.project_dir');
         $command = $kernelProjectDir . DIRECTORY_SEPARATOR . '/build.sh';
-        $lockFilePath = $kernelProjectDir . DIRECTORY_SEPARATOR . '/build.txt';
+        $lockFilePathFetch = $kernelProjectDir . DIRECTORY_SEPARATOR . '/fetch.txt';
+        $lockFilePathBuild = $kernelProjectDir . DIRECTORY_SEPARATOR . '/build.txt';
 
         $filesystem = new Filesystem();
-        if ($filesystem->exists($lockFilePath)) {
-            $response['error'] = 'process build is already running!';
+        if ($filesystem->exists($lockFilePathFetch) || $filesystem->exists($lockFilePathBuild)) {
+            $response['error'] = 'process is already running!';
 
             return new JsonResponse(
                 $response,

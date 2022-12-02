@@ -45,7 +45,7 @@ class Person implements ResourceInterface
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=255, options={"comment":"Lastname"})
-     * @Assert\NotBlank(
+     * @ Assert\NotBlank(
      *  message="entrez un nom s'il vous plait"
      * )
      */

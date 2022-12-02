@@ -100,7 +100,7 @@ class MessageController extends AbstractController
         $data['headline'].= ' - ' . $data['slug-product'];
 
         // dump($data);die;
-        dump(...$this->organization->getEmails());die;
+        // dump(...$this->organization->getEmails());die;
 
         /**
          * Send email

@@ -82,7 +82,7 @@ class Message implements ResourceInterface
      *
      * @ORM\Column(type="string", length=255)
      * 
-     * @Assert\NotBlank(message="veuillez saisir un sujet")
+     * @ Assert\NotBlank(message="veuillez saisir un sujet")
      */
     private $subject;
 

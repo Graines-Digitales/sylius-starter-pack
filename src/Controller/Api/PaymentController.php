@@ -8,12 +8,13 @@ use App\Payment\Payment;
 use App\Data\Action\OrderAction;
 use App\WebContent\Organization;
 use App\Data\Action\PersonAction;
+use App\WebContent\Form;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class PaymentController extends AbstractController
 {
@@ -27,18 +28,26 @@ class PaymentController extends AbstractController
 
     private $orderAction;
 
+    private $validator;
+
+    private $form;
+
     public function __construct(
         EntityManagerInterface $entityManager
         , Organization $organization
         , Payment $payment
         , PersonAction $personAction
         , OrderAction $orderAction
+        , ValidatorInterface $validator
+        , Form $form
     ) {
         $this->entityManager = $entityManager;
         $this->organization = $organization;
         $this->payment = $payment;
         $this->personAction = $personAction;
         $this->orderAction = $orderAction;
+        $this->validator = $validator;
+        $this->form = $form;
     }
 
    /**
@@ -57,28 +66,154 @@ class PaymentController extends AbstractController
         **/
         // $data = $request->request->all();
         $data = json_decode($request->getContent(), true);
-        // dump($args);
-        return new JsonResponse(
-            [
-                'data' => $data,
-                'statutCode' => JsonResponse::HTTP_OK
-            ]
-            , JsonResponse::HTTP_OK
-        );
+
+        if (!isset($data['amount']) || empty($data['amount'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'montant non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!isset($data['streetAddress']) || empty($data['streetAddress'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'montant non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!isset($data['postalCode']) || empty($data['postalCode'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'code postal non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!isset($data['addressLocality']) || empty($data['addressLocality'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'ville non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!isset($data['addressCountry']) || empty($data['addressCountry'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'pays non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!isset($data['phone']) || empty($data['phone'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'téléphone non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!isset($data['email']) || empty($data['email'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'email non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!isset($data['slug-product']) || empty($data['slug-product'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'identifiant du produit non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
         
+
         $product = $this->entityManager->getRepository(Trip::class)
             ->findOneBySlug($data['slug-product'])
         ;
+
+
+
+        if (empty($product)) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'produit non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+        
         $customer = $this->personAction->create($data);
         $order = $this->orderAction->create($data, $customer, $product);
         $data = $this->mergeData($data);
+
+        $errors = $this->validator->validate($customer);
+        if (count($errors) > 0) {
+            $data['errors'] = $errors[0]->getMessage();
+        }
+        // $errors = $this->validator->validate($message);
+        // if (count($errors) > 0) {
+        //     $data['errors'] = $errors[0]->getMessage();
+        // }
+        if (isset($data['errors'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => $data['errors'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+        $data = $this->form->dataFieldTranslation($data);
         $response = $this->payment->getFormData($data);
         $response['html_form'] = $this->outputHtmlForm($response);
  
         return new JsonResponse(
             [
                 'title' => 'Success',
-                'message' => 'Your order has been created',
+                'message' => 'Votre commandé à bien été créer',
                 'statutCode' => JsonResponse::HTTP_OK,
                 'response' => $response
             ]
