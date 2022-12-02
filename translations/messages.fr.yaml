@@ -94,6 +94,8 @@ Hotel Activities: Hotel activités
 Hotel Services: Hotel services
 Contact point: GPS
 Orders: Commandes
+If empty this field will be automatically edited: Si vide ce champ sera automatiquement édité
+Align primary image: Alignemement de l'image principale
 
 sylius:
     ui:

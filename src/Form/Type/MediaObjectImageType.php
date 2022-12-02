@@ -41,10 +41,12 @@ class MediaObjectImageType extends AbstractType
                 'required' => false,
                 'data' => true
             ])
-            ->add('name')
+            ->add('name', null, [
+                'help' => 'If empty this field will be automatically edited'
+            ])
             ->add('caption', null, [ 
                     'label' => 'Alt balise',
-                    'help' => 'If empty, the file name will be generated automatically',
+                    'help' => 'If empty this field will be automatically edited'
                 ]
             )
             ->add('encodingFormat',
@@ -74,7 +76,7 @@ class MediaObjectImageType extends AbstractType
                 null,
                 [
                     'disabled' => true,
-                    'help' => 'This field will be automatically edited',
+                    'help' => 'If empty this field will be automatically edited'
                 ]
             )
         ;

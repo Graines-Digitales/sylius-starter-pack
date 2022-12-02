@@ -28,10 +28,12 @@ class ArticleTranslationType extends AbstractResourceType
                 'required' => false
             ])
             ->add('textResume', TextAreaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('alternativeHeadline', TextType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('pushForward', TextType::class, [
                 'required' => false
@@ -40,7 +42,8 @@ class ArticleTranslationType extends AbstractResourceType
                 'required' => false
             ])
             ->add('articleResume', TextareaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
