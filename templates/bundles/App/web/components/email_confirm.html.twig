@@ -33,10 +33,12 @@
 	</p>
 	<table>
 		{% for key, item in data %}
+			{% if key not in ['headline']%}
 			<tr>
 				<td><strong>{{ key }}</strong></td>
 				<td>{{ item }}</td>
 			</tr>
+			{% endif %}
 		{% endfor %}
 	</table>
 </div>

@@ -99,7 +99,7 @@ class MessageController extends AbstractController
         $data['headline'] = $configurationProject['forms']['contact_product']['headline'];
         $data['headline'].= ' - ' . $data['slug-product'];
 
-        // dump($data);die;
+        
         // dump(...$this->organization->getEmails());die;
 
         /**
@@ -116,7 +116,7 @@ class MessageController extends AbstractController
                 )
             )
         ;
-    
+        
         try {
             $this->mailer->send($email);
 
@@ -136,7 +136,7 @@ class MessageController extends AbstractController
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
             
-            $response = json_decode($e->getResponseBody(), true);
+            $response['message'] = $e->getMessage();
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
@@ -243,7 +243,7 @@ class MessageController extends AbstractController
 
         } catch (TransportExceptionInterface $e) {
             
-            $response = json_decode($e->getResponseBody(), true);
+            $response['message'] = $e->getMessage();
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
@@ -339,7 +339,7 @@ class MessageController extends AbstractController
             }
         } catch (Exception $e) {
             
-            $response = json_decode($e->getResponseBody(), true);
+            $response['message'] = $e->getMessage();
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
