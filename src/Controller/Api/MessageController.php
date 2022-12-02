@@ -175,6 +175,7 @@ class MessageController extends AbstractController
          **/
         // $data = $request->request->all();
         $data = json_decode($request->getContent(), true);
+        
         if (!isset($data['email']) || empty($data['email'])) {
 
             return new JsonResponse(

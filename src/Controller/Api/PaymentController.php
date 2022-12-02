@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\Trip;
+use App\Entity\Order;
 use App\Payment\Payment;
 use App\Data\Action\OrderAction;
 use App\WebContent\Organization;
@@ -44,6 +45,9 @@ class PaymentController extends AbstractController
      * @Route("/api/v2/payment/create",
      *   name="payment_create",
      *   methods = { "POST" },
+     *     defaults={
+     *          "_api_resource_class"= Order::class
+     *     }
      * )
     */
     public function create(Request $request)//: Message
@@ -54,7 +58,14 @@ class PaymentController extends AbstractController
         // $data = $request->request->all();
         $data = json_decode($request->getContent(), true);
         // dump($args);
-        dump($data);die;
+        return new JsonResponse(
+            [
+                'data' => $data,
+                'statutCode' => JsonResponse::HTTP_OK
+            ]
+            , JsonResponse::HTTP_OK
+        );
+        
         $product = $this->entityManager->getRepository(Trip::class)
             ->findOneBySlug($data['slug-product'])
         ;

@@ -18,7 +18,16 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *
  * @ORM\Entity()
  * @ORM\table(name="app_order_trip")
- * @ApiResource(iri="http://schema.org/Order")
+ * @ApiResource(
+ *  iri="http://schema.org/Order",
+ *  collectionOperations={
+ *       "payment_create"={
+ *         "method"= "POST",
+ *         "path"= "/api/v2/payment/create",
+ *         "controller"= PaymentController::class 
+ *       }
+ *     }
+ * )
  */
 class Order implements ResourceInterface
 {
