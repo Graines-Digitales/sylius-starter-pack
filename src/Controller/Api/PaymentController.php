@@ -186,7 +186,7 @@ class PaymentController extends AbstractController
         
         $customer = $this->personAction->create($data);
         $order = $this->orderAction->create($data, $customer, $product);
-        $data = $this->mergeData($data);
+        $data = $this->mergeData($data, $order, $customer);
 
         $errors = $this->validator->validate($customer);
         if (count($errors) > 0) {
@@ -242,19 +242,20 @@ class PaymentController extends AbstractController
         return $form;
     }
 
-    private function mergeData($data)
+    private function mergeData($data, $order, $customer)
     {
+
         return [
             "vads_amount" => $data['amount'],
-            "vads_order_id" => "1234",
-            "vads_cust_id" => "aze",
+            "vads_order_id" => $order->getId(),
+            "vads_cust_id" => $customer->getId(),
             "vads_cust_name" => $data['firstname'] . ' ' . $data['lastname'],
             "vads_cust_address" => $data['streetAddress'],
             "vads_cust_zip" => $data['postalCode'],
             "vads_cust_city" => $data['addressLocality'],
             "vads_cust_country" => $data['addressCountry'],
             "vads_cust_phone" => $data['phone'],
-            "vads_cust_email" => $data['firstname'],
+            "vads_cust_email" => $data['email'],
             "vads_url_return" => 'https://preprod.kazengarden.com/payment_confirmation',
             "vads_redirect_success_timeout" => 10
         ];
