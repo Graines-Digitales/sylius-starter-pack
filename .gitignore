@@ -73,7 +73,8 @@ site-sync-preprod.sh
 site-sync-prod.sh
 site-sync.sh
 build.sh
-deploy.sh
+deploy_prod.sh
+deploy_preprod.sh
 fetch.sh
 
 ### folder à insérer dans deploy.sh
