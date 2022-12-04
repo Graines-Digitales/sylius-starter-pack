@@ -216,7 +216,8 @@ class PaymentController extends AbstractController
                 'title' => 'Success',
                 'message' => 'Votre commandé à bien été créer',
                 'statutCode' => JsonResponse::HTTP_OK,
-                'html_form' => $response['html_form']
+                'html_form' => $response['html_form'],
+                'response' => $response
             ]
             , JsonResponse::HTTP_OK
         );
@@ -256,7 +257,7 @@ class PaymentController extends AbstractController
             "vads_cust_country" => $data['addressCountry'],
             "vads_cust_phone" => $data['phone'],
             "vads_cust_email" => $data['email'],
-            "vads_url_return" => 'https://preprod.kazengarden.com/payment_confirmation',
+            "vads_url_return" => 'https://preprod.kazengarden.com/booking_confirmation',
             "vads_redirect_success_timeout" => 10
         ];
     }

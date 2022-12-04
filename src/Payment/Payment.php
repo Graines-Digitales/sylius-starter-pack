@@ -129,7 +129,9 @@ class Payment
      *      )
      *
      */
-    public function getFormData($args){
+    public function getFormData($args)
+    {
+
         return array(
             "form" => array(
                 "action" => $this->account['platform'],
