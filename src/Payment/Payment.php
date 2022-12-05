@@ -183,7 +183,7 @@ class Payment
             "vads_version" => "V2",
             "vads_capture_delay" => "0",
             "vads_validation_mode" => "0",
-            "vads_return_mode"    => 'POST',
+            "vads_return_mode"    => 'GET',
             "vads_payment_config" => "SINGLE",
             "vads_amount" => "1000.00",
             "vads_currency" => 978

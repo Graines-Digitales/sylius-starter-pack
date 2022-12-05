@@ -258,6 +258,10 @@ class PaymentController extends AbstractController
             "vads_cust_phone" => $data['phone'],
             "vads_cust_email" => $data['email'],
             "vads_url_return" => $this->getParameter('web_host'),
+            "vads_url_cancel" => $this->getParameter('web_host') . '/booking_cancel',
+            "vads_url_error" => $this->getParameter('web_host') . '/booking_error',
+            "vads_url_refused" => $this->getParameter('web_host') . '/booking_refused',
+            "vads_url_success" => $this->getParameter('web_host') . '/booking_success',
             "vads_redirect_success_timeout" => 10
         ];
     }
