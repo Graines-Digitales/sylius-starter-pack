@@ -257,7 +257,7 @@ class PaymentController extends AbstractController
             "vads_cust_country" => $data['addressCountry'],
             "vads_cust_phone" => $data['phone'],
             "vads_cust_email" => $data['email'],
-            "vads_url_return" => 'https://preprod.kazengarden.com/booking_confirmation',
+            "vads_url_return" => $this->getParameter('web_host'),
             "vads_redirect_success_timeout" => 10
         ];
     }
