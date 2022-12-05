@@ -150,8 +150,8 @@ class MessageController extends AbstractController
     
         return new JsonResponse(
             [
-                'title' => 'Success',
-                'message' => 'votre formulaire a été enregistré',
+                'title' => 'félicitations',
+                'message' => 'votre mail à bien été envoyé, nous vous répondrons dans les meilleurs délais',
                 'statutCode' => JsonResponse::HTTP_OK
             ]
             , JsonResponse::HTTP_OK
@@ -257,8 +257,8 @@ class MessageController extends AbstractController
     
         return new JsonResponse(
             [
-                'title' => 'Success',
-                'message' => 'votre formulaire a été enregistré',
+                'title' => 'félicitations',
+                'message' => 'votre mail à bien été envoyé, nous vous répondrons dans les meilleurs délais',
                 'statutCode' => JsonResponse::HTTP_OK
             ]
             , JsonResponse::HTTP_OK
@@ -331,7 +331,7 @@ class MessageController extends AbstractController
                 return new JsonResponse(
                     [ 
                         'title' => 'une erreur est survenue',
-                        'message' => 'email already exist',
+                        'message' => 'l\'e-mail existe déjà',
                         'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                     ]
                     , JsonResponse::HTTP_BAD_REQUEST
@@ -352,8 +352,8 @@ class MessageController extends AbstractController
 
         return new JsonResponse(
             [
-                'title' => 'Success',
-                'message' => 'Your email has been registered',
+                'title' => 'félicitations',
+                'message' => 'your email has been registered',
                 'statutCode' => JsonResponse::HTTP_OK
             ]
             , JsonResponse::HTTP_OK

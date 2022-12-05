@@ -76,6 +76,8 @@ build.sh
 deploy_prod.sh
 deploy_preprod.sh
 fetch.sh
+build.txt
+fetch.txt
 
 ### folder à insérer dans deploy.sh
 /assets/images/
