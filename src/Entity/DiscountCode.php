@@ -6,7 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdentifiableTrait;
 use App\Repository\DiscountCodeRepository;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -49,6 +51,11 @@ class DiscountCode implements ResourceInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Trip::class, mappedBy="discountCode")
+     * 
+     * @ApiSubresource(maxDepth=1)
+     * @ApiProperty(
+     *    readableLink=true
+     * )
      */
     private $trips;
 
