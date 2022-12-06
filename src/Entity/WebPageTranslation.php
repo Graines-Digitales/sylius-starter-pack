@@ -18,7 +18,6 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 /**
  * @ApiResource(iri="https://schema.org/WebPage",
- * itemOperations={
  *    "get",
  *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
  *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
