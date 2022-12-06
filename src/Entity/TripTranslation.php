@@ -23,15 +23,7 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
  *
  * @see https://schema.org/Trip
  * 
- * @ApiResource(iri="https://schema.org/Trip",
- * itemOperations={
- *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
- *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
- *  },
- *  collectionOperations={
- *    "post"={"security"="is_granted('ROLE_ADMIN')"}
- *  }
- * )
+ * @ApiResource(iri="https://schema.org/Trip")
  * @ORM\Table(name="app_trip_translation")
  * @ORM\Entity()
  */

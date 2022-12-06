@@ -17,15 +17,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 
 
 /**
- * @ApiResource(iri="http://schema.org/Category",
- * itemOperations={
- *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
- *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
- *  },
- *  collectionOperations={
- *    "post"={"security"="is_granted('ROLE_ADMIN')"}
- *  }
- * )
+ * @ApiResource(iri="http://schema.org/Category")
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  * @ORM\Table(name="app_category")
  */

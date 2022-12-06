@@ -17,15 +17,7 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 
 /**
- * @ApiResource(iri="https://schema.org/WebPage",
- * itemOperations={
- *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
- *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
- *  },
- *  collectionOperations={
- *    "post"={"security"="is_granted('ROLE_ADMIN')"}
- *  }
- * )
+ * @ApiResource(iri="https://schema.org/WebPage")
  * @ORM\Entity(repositoryClass=WebPageTranslationRepository::class)
  * @ORM\Table(name="app_web_page_translation")
  */

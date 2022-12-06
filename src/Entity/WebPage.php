@@ -23,15 +23,7 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  * A web page. Every web page is implicitly assumed to be declared to be of type WebPage, so the various properties about that webpage, such as `breadcrumb` may be used. We recommend explicit declaration if these properties are specified, but if they are found outside of an itemscope, they will be assumed to be about the page.
  *
  * @see https://schema.org/WebPage
- * @ApiResource(iri="https://schema.org/WebPage",
- * itemOperations={
- *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
- *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
- *  },
- *  collectionOperations={
- *    "post"={"security"="is_granted('ROLE_ADMIN')"}
- *  }
- * )
+ * @ApiResource(iri="https://schema.org/WebPage")
  * @ORM\Entity(repositoryClass=WebPageRepository::class)
  * @ORM\Table(name="app_web_page")
  */
