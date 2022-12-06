@@ -15,7 +15,16 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  * @ORM\Entity(repositoryClass=DiscountCodeRepository::class)
  *  @ORM\table(name="app_discount_code")
  * @ApiResource(
- *  iri="http://schema.org/DiscountCode"
+ *  iri="http://schema.org/DiscountCode",
+ * itemOperations={
+ *    "get",
+ *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
+ *  },
+ *  collectionOperations={
+ *    "get",
+ *    "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *  }
  * )
  */
 class DiscountCode implements ResourceInterface
