@@ -129,6 +129,11 @@ class Trip  implements ResourceInterface, TranslatableInterface
      */
     private $alignPrimaryImage;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=DiscountCode::class, inversedBy="trips")
+     */
+    private $discountCode;
+
     public function __toString()
     {
         return $this->getTranslation()->getAlternativeHeadline();
@@ -269,6 +274,18 @@ class Trip  implements ResourceInterface, TranslatableInterface
     public function setAlignPrimaryImage(?string $alignPrimaryImage): self
     {
         $this->alignPrimaryImage = $alignPrimaryImage;
+
+        return $this;
+    }
+
+    public function getDiscountCode(): ?DiscountCode
+    {
+        return $this->discountCode;
+    }
+
+    public function setDiscountCode(?DiscountCode $discountCode): self
+    {
+        $this->discountCode = $discountCode;
 
         return $this;
     }

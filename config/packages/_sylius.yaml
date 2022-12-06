@@ -1767,7 +1767,7 @@ sylius_grid:
                 arrivalTime:
                     type: datetime
                     label: app.ui.arrivalTime
-                
+                    sortable: arrivalTime
                 # offers:
                 #     type: twig
                 #     label: app.ui_element.field.offers
@@ -2031,6 +2031,40 @@ sylius_grid:
                     sortable: translation.name
                 
                
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+        app_admin_discount_code:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\DiscountCode
+
+            fields:
+               
+                code:
+                    type: string
+                    label: app.ui.code
+                
+                type:
+                    type: string
+                    label: app.ui.type
+
+                expirationDate:
+                    type: datetime
+                    label: app.ui.expirationDate
+
+                value:
+                    type: string
+                    label: app.ui.value
 
             actions:
                 main:

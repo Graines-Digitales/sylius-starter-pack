@@ -457,3 +457,18 @@ app_admin_hotel_typical_day:
     type: sylius.resource
     prefix: /admin
 
+app_admin_discount_code:
+    resource: |
+        alias: app.discount_code
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: app_admin_discount_code
+        vars:
+            all:
+                header: app.ui.discount_code
+                subheader: app.ui.discount_code
+            index:
+                icon: 'discount_code'
+    type: sylius.resource
+    prefix: /admin

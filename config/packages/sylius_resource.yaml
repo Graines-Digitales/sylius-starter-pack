@@ -372,4 +372,10 @@ sylius_resource:
                 model: App\Entity\Trip
                 form: App\Form\Type\TripType
                 repository: App\Repository\TripRepository
-            
+
+        app.discount_code:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\DiscountCode
+                form: App\Form\Type\DiscountCodeType
+                repository: App\Repository\DiscountCodeRepository

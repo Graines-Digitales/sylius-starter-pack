@@ -122,7 +122,7 @@ class TripType extends AbstractType
         ]);
     }
 
-     /**
+    /**
      * {@inheritdoc}
      */
     public function getBlockPrefix()

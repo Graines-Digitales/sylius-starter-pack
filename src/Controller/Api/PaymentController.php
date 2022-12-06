@@ -208,6 +208,7 @@ class PaymentController extends AbstractController
             );
         }
         $data = $this->form->dataFieldTranslation($data);
+        // dump($data);die;
         $response = $this->payment->getFormData($data);
         $response['html_form'] = $this->outputHtmlForm($response);
  
@@ -257,6 +258,7 @@ class PaymentController extends AbstractController
             "vads_cust_country" => $data['addressCountry'],
             "vads_cust_phone" => $data['phone'],
             "vads_cust_email" => $data['email'],
+            "vads_payment_config" => $data['vads_payment_config'],
             "vads_url_return" => $this->getParameter('web_host'),
             "vads_url_cancel" => $this->getParameter('web_host') . '/booking_cancel',
             "vads_url_error" => $this->getParameter('web_host') . '/booking_error',
