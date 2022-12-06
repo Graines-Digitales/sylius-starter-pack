@@ -30,7 +30,6 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *
  * @ApiResource(
  *  *  itemOperations={
- *    "get",
  *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
  *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
  *  },

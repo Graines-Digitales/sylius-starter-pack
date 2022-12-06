@@ -25,12 +25,10 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  * @see https://schema.org/WebPage
  * @ApiResource(iri="https://schema.org/WebPage",
  * itemOperations={
- *    "get",
  *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
  *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
  *  },
  *  collectionOperations={
- *    "get",
  *    "post"={"security"="is_granted('ROLE_ADMIN')"}
  *  }
  * )
