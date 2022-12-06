@@ -22,7 +22,18 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  * An article, such as a news article or piece of investigative report. Newspapers and magazines have articles of many different types and this is intended to cover them all.\\n\\nSee also \[blog post\](http://blog.schema.org/2014/09/schemaorg-support-for-bibliographic\_2.html).
  *
  * @see https://schema.org/Article
- * @ApiResource(iri="https://schema.org/Article")
+ * @ApiResource(
+ * iri="https://schema.org/Article",
+ * itemOperations={
+ *    "get",
+ *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
+ *  },
+ *  collectionOperations={
+ *    "get",
+ *    "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *  }
+ * )
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  * @ORM\Table(name="app_article")
  */

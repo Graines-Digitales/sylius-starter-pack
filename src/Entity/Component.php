@@ -23,7 +23,17 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
 
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * itemOperations={
+ *    "get",
+ *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
+ *  },
+ *  collectionOperations={
+ *    "get",
+ *    "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *  }
+ * )
  * @ORM\Entity(repositoryClass=ComponentRepository::class)
  * @ORM\Table(name="app_component")
  */

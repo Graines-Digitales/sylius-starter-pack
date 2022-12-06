@@ -267,6 +267,12 @@ services:
             - { name: form.type }
         arguments: ['%app.model.cms_link_translation.class%', ['sylius']]
 
+    app.discount_code.form.type:
+        class: App\Form\Type\DiscountCodeType
+        tags:
+            - { name: form.type }
+        arguments: ['@service_container', '%app.model.discount_code.class%', ['sylius']]
+
     # Override LandingPageController
     sylius.controller.shop.homepage:
         class: App\Controller\Shop\HomepageController
