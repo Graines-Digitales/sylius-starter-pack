@@ -208,7 +208,7 @@ class MessageController extends AbstractController
         
         $configurationProject = $this->getParameter('configuration_project');
         $data['headline'] = $configurationProject['forms']['contact_default']['headline'];
-
+  
         /**
          * Send email
          **/
