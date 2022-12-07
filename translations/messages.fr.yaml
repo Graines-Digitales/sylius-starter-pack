@@ -123,8 +123,8 @@ app:
         orderQuantity: Quantité
         orderItem: Produit
         notes: Notes
-        order_trips: Commandes
-        order_trip: Commande
+        orders: Commandes
+        order: Commande
         updatedAt: Mis à jour à
         createdAt: Crée à
         landing_page: Landing Page
@@ -142,6 +142,7 @@ app:
         messages: Messages
         media: Média
         medias: Médias
+        people: Personnes
         person: Personne
         persons: Personnes
         new_web_page: Nouvelle page
@@ -150,7 +151,7 @@ app:
         new_cms_menu: Nouveau menu
         edit_cms_menu: Édition du menu
         media_icons: Icônes
-        new_order_trip: Nouvelle commande
+        new_order: Nouvelle commande
         new_media_icon: Nouvel icon
         edit_media_icon: Édition de l'icône
         media_icon: Icône

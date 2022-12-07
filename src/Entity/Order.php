@@ -17,10 +17,12 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  * @see http://schema.org/Order Documentation on Schema.org
  *
  * @ORM\Entity()
- * @ORM\table(name="app_order_trip")
+ * @ORM\table(name="app_order")
  * @ApiResource(
  *  iri="http://schema.org/Order",
  *  collectionOperations={
+ *       "get",
+ *       "post"={"security"="is_granted('ROLE_ADMIN')"},
  *       "payment_create"={
  *         "method"= "POST",
  *         "path"= "/api/v2/payment/create",
@@ -31,6 +33,11 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *         "path"= "/api/v2/payment/sucess",
  *         "controller"= PaymentController::class 
  *       }
+ *   },
+ *   itemOperations={
+ *       "get",
+ *       "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *       "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
  *   }
  * )
  */

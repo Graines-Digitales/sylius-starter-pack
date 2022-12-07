@@ -1023,7 +1023,7 @@ sylius_grid:
                         position: 100
                         options: { }
 
-        app_admin_order_trip:
+        app_admin_order:
             driver:
                 name: doctrine/orm
                 options:

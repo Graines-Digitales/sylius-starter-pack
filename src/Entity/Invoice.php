@@ -35,9 +35,9 @@ class Invoice implements ResourceInterface
     /**
      * @var Collection<Order>|null The Order(s) related to this Invoice. One or more Orders may be combined into a single Invoice.
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\Order")
-     * @ORM\JoinTable(name="app_invoices_orders",inverseJoinColumns={@ORM\JoinColumn(unique=true)})
-     * @ApiProperty(iri="http://schema.org/referencesOrder")
+     * @ ORM\ManyToMany(targetEntity="App\Entity\Order")
+     * @ ORM\JoinTable(name="app_invoices_orders",inverseJoinColumns={@ORM\JoinColumn(unique=true)})
+     * @ ApiProperty(iri="http://schema.org/referencesOrder")
      */
     private $referencesOrders;
 
