@@ -104,6 +104,7 @@ sylius:
 
 app:
     ui:
+        additionalText: Texte additionnel
         origin: Provenance
         discount_code: Code promo
         discount_codes: Codes promo

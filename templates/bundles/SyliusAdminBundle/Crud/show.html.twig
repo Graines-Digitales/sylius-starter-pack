@@ -50,6 +50,12 @@
                 <td>{{ resource.origin }}</td>
             </tr>
             {% endif %}
+             {% if resource.additionalText is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.additionalText'|trans }}</td>
+                <td>{{ resource.additionalText }}</td>
+            </tr>
+            {% endif %}
             {% if resource.localBusiness.name is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.local_business'|trans }}</td>
