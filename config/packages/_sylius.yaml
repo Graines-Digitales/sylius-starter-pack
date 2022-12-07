@@ -1076,11 +1076,6 @@ sylius_grid:
                     show:
                         type: show
                         label: sylius.ui.show
-                        # options:
-                        #     link:
-                        #         route: app_order_trip_show
-                        #         parameters:
-                        #             id: resource.id
                     delete:
                         type: delete 
                 bulk:

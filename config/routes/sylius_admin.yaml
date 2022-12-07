@@ -187,16 +187,16 @@ app_admin_person:
     type: sylius.resource
     prefix: /admin   
 
-app_admin_order_trip:
+app_admin_order:
     resource: |
-        alias: app.order_trip
+        alias: app.order
         section: admin
         templates: "@SyliusAdmin\\Crud"
         redirect: update
-        grid: app_admin_order_trip
+        grid: app_admin_order
         vars:
             all:
-                subheader: app.ui.order_trip
+                subheader: app.ui.order
             index:
                 icon: 'shopping cart'
     type: sylius.resource
