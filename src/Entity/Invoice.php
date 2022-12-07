@@ -711,18 +711,18 @@ class Invoice implements ResourceInterface
         $this->supplierName = $supplierName;
     }
 
-    public function addReferencesOrder(Order $referencesOrder): void
-    {
-        $this->referencesOrders[] = $referencesOrder;
-    }
+    // public function addReferencesOrder(Order $referencesOrder): void
+    // {
+    //     $this->referencesOrders[] = $referencesOrder;
+    // }
 
-    public function removeReferencesOrder(Order $referencesOrder): void
-    {
-        $this->referencesOrders->removeElement($referencesOrder);
-    }
+    // public function removeReferencesOrder(Order $referencesOrder): void
+    // {
+    //     $this->referencesOrders->removeElement($referencesOrder);
+    // }
 
-    public function getReferencesOrders(): Collection
-    {
-        return $this->referencesOrders;
-    }
+    // public function getReferencesOrders(): Collection
+    // {
+    //     return $this->referencesOrders;
+    // }
 }
