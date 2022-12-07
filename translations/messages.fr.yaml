@@ -96,6 +96,7 @@ Contact point: GPS
 Orders: Commandes
 If empty this field will be automatically edited: Si vide ce champ sera automatiquement édité
 Align primary image: Alignemement de l'image principale
+Discount codes: Codes promo
 
 sylius:
     ui:
@@ -103,6 +104,25 @@ sylius:
 
 app:
     ui:
+        discount_code: Code promo
+        discount_codes: Codes promo
+        code: Code
+        type: Type
+        expirationDate: Date d'expiration
+        value: Valeur
+        confirmationNumber: Numéro de confirmation
+        orderDate: Date de commande
+        orderNumber: Numéro de commande
+        orderStatus: Statut de la commande
+        acceptedOffer: Montant total
+        discount: Remise
+        paymentSplit: Paiement en 2x
+        discountCode: Code promo
+        orderQuantity: Quantité
+        orderItem: Produit
+        notes: Notes
+        order_trips: Commandes
+        order_trip: Commande
         updatedAt: Mis à jour à
         createdAt: Crée à
         landing_page: Landing Page
@@ -128,6 +148,7 @@ app:
         new_cms_menu: Nouveau menu
         edit_cms_menu: Édition du menu
         media_icons: Icônes
+        new_order_trip: Nouvelle commande
         new_media_icon: Nouvel icon
         edit_media_icon: Édition de l'icône
         media_icon: Icône

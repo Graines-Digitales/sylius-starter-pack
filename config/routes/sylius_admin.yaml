@@ -198,7 +198,7 @@ app_admin_order_trip:
             all:
                 subheader: app.ui.order_trip
             index:
-                icon: 'address card outline'
+                icon: 'shopping cart'
     type: sylius.resource
     prefix: /admin   
 
@@ -469,6 +469,6 @@ app_admin_discount_code:
                 header: app.ui.discount_code
                 subheader: app.ui.discount_code
             index:
-                icon: 'discount_code'
+                icon: 'gift'
     type: sylius.resource
     prefix: /admin

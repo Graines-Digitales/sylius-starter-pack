@@ -678,6 +678,13 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete         
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_category_product_type:
             driver:
@@ -763,7 +770,7 @@ sylius_grid:
                 dateSent:
                     type: datetime
                     label: sylius.ui.date
-                sender.email:
+                sender:
                     type: string
                     label: app.ui.sender
                 subject:
@@ -786,6 +793,13 @@ sylius_grid:
                     #     type: update
                     delete:
                         type: delete    
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_message_product:
             driver:
@@ -800,7 +814,7 @@ sylius_grid:
                 dateSent:
                     type: datetime
                     label: sylius.ui.date
-                sender.email:
+                sender:
                     type: string
                     label: app.ui.sender
                 subject:
@@ -828,6 +842,13 @@ sylius_grid:
             #             type: update
                     delete:
                         type: delete  
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_message_quote:
             driver:
@@ -994,6 +1015,13 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete 
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_order_trip:
             driver:
@@ -1005,32 +1033,63 @@ sylius_grid:
                         arguments:
                             parameters: '%configuration_project%'
             fields:
+                # id:
+                #     type: string
                 createdAt:
                     type: datetime
                     label: app.ui.createdAt
                     sortable: createdAt
 
-                customer:
-                    type: string
-                    label: app.ui.person
+                # customer:
+                #     type: string
+                #     label: app.ui.person
   
                 orderItem:
                     type: string
-                    label: app.ui.product
+                    label: app.ui.orderItem
                     
                 orderStatus:
-                    type: string
-                    label: app.ui.product
+                    type: twig
+                    label: app.ui.orderStatus
+                    options:
+                        template:  "@App/admin/Grid/Field/rawStatusLabel.html.twig"
 
+                acceptedOffer:
+                    type: twig
+                    label: app.ui.acceptedOffer
+                    options:
+                        template:  "@App/admin/Grid/Field/amount.html.twig"
+                discount:
+                    type: string
+                    label: app.ui.discount
+                
+                paymentSplit:
+                    type: twig
+                    label: app.ui.paymentSplit
+                    options:
+                        template: "@SyliusUi/Grid/Field/yesNo.html.twig"
             actions:
-                main:
-                    create:
-                        type: create
+                # main:
+                #     create:
+                #         type: create
                 item:
-                    update:
-                        type: update
+                    show:
+                        type: show
+                        label: sylius.ui.show
+                        # options:
+                        #     link:
+                        #         route: app_order_trip_show
+                        #         parameters:
+                        #             id: resource.id
                     delete:
                         type: delete 
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         # app_admin_media_object:
         #     driver:
@@ -1156,7 +1215,14 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
-                    
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
+
         app_admin_media_video:
             driver:
                 name: doctrine/orm
@@ -1223,6 +1289,13 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_media_icon:
             driver:
@@ -1293,6 +1366,13 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_media_document:
             driver:
@@ -1365,6 +1445,13 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         # app_admin_organizations:
         #     driver:
@@ -2055,9 +2142,11 @@ sylius_grid:
                     label: app.ui.code
                 
                 type:
-                    type: string
+                    type: twig
                     label: app.ui.type
-
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+ 
                 expirationDate:
                     type: datetime
                     label: app.ui.expirationDate
@@ -2075,3 +2164,10 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }                        

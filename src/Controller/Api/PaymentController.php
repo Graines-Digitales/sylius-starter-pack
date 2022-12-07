@@ -92,7 +92,7 @@ class PaymentController extends AbstractController
             );
         }
 
-        if (!isset($data['amount']) || empty($data['amount'])) {
+        if (!isset($data['acceptedOffer']) || empty($data['acceptedOffer'])) {
 
             return new JsonResponse(
                 [ 
@@ -211,6 +211,92 @@ class PaymentController extends AbstractController
         // dump($data);die;
         $response = $this->payment->getFormData($data);
         $response['html_form'] = $this->outputHtmlForm($response);
+        
+        return new JsonResponse(
+            [
+                'title' => 'Success',
+                'message' => 'Votre commandé à bien été créer',
+                'statutCode' => JsonResponse::HTTP_OK,
+                'response' => $response,
+                'html_form' => $response['html_form']
+            ]
+            , JsonResponse::HTTP_OK
+        );
+    }
+
+    /**
+     * @Route("/api/v2/payment/success",
+     *   name="payment_success",
+     *   methods = { "POST" },
+     *     defaults={
+     *          "_api_resource_class"= Order::class
+     *     }
+     * )
+    */
+    public function success(Request $request)//: Message
+    {
+        /**
+         * Check Data
+        **/
+        // $data = $request->request->all();
+        $data = json_decode($request->getContent(), true);
+
+dump($data);die;
+        if (!isset($data['vads_cust_email']) || empty($data['vads_cust_email'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'email non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        $product = $this->entityManager->getRepository(Trip::class)
+            ->findOneBySlug($data['slug-product'])
+        ;
+
+        if (empty($product)) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'produit non trouvé',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+        
+        $customer = $this->personAction->create($data);
+        $order = $this->orderAction->create($data, $customer, $product);
+        $data = $this->mergeData($data, $order, $customer);
+
+        $errors = $this->validator->validate($customer);
+        if (count($errors) > 0) {
+            $data['errors'] = $errors[0]->getMessage();
+        }
+        // $errors = $this->validator->validate($message);
+        // if (count($errors) > 0) {
+        //     $data['errors'] = $errors[0]->getMessage();
+        // }
+        if (isset($data['errors'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => $data['errors'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+        $data = $this->form->dataFieldTranslation($data);
+        // dump($data);die;
+        $response = $this->payment->getFormData($data);
+        $response['html_form'] = $this->outputHtmlForm($response);
  
         return new JsonResponse(
             [
@@ -248,7 +334,7 @@ class PaymentController extends AbstractController
     {
 
         return [
-            "vads_amount" => $data['amount'],
+            "vads_amount" => $data['acceptedOffer'],
             "vads_order_id" => $order->getId(),
             "vads_cust_id" => $customer->getId(),
             "vads_cust_name" => $data['firstname'] . ' ' . $data['lastname'],

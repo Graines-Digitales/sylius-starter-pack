@@ -32,40 +32,55 @@
 
     <table class="ui sortable stackable very basic celled table">
         <tbody>
+            {% if resource.subject is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.subject'|trans }}</td>
                 <td>{{ resource.subject }}</td>
             </tr>
+            {% endif %}
+            {% if resource.text is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.message'|trans }}</td>
                 <td>{{ resource.text }}</td>
             </tr>
+            {% endif %}
+            {% if resource.origin is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.origin'|trans }}</td>
                 <td>{{ resource.origin }}</td>
             </tr>
+            {% endif %}
             {% if resource.localBusiness.name is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.local_business'|trans }}</td>
                 <td>{{ resource.localBusiness.name }}</td>
             </tr>
             {% endif %}
+            {% if resource.sender is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.sender.firstname'|trans }}</td>
                 <td>{{ resource.sender.firstname }}</td>
             </tr>
+            {% endif %}
+            {% if resource.sender is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.sender.lastname'|trans }}</td>
                 <td>{{ resource.sender.lastname }}</td>
             </tr>
+            {% endif %}
+            {% if resource.sender is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.sender.email'|trans }}</td>
                 <td>{{ resource.sender.email }}</td>
             </tr>
+            {% endif %}
+            {% if resource.sender is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.sender.phone'|trans }}</td>
                 <td>{{ resource.sender.phone }}</td>
             </tr>
+            {% endif %}
+            {% if resource.messageAttachments is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.messageAttachments'|trans }}</td>
                 <td>
@@ -76,6 +91,73 @@
                 {% endif %}
                 </td>
             </tr>
+            {% endif %}
+            {% if resource.confirmationNumber is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.confirmationNumber'|trans }}</td>
+                <td>{{ resource.confirmationNumber }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.orderDate is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.orderDate'|trans }}</td>
+                <td>{{ resource.orderDate|date("m/d/Y")  }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.orderNumber is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.orderNumber'|trans }}</td>
+                <td>{{ resource.orderNumber }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.orderStatus is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.orderStatus'|trans }}</td>
+                <td>{{ resource.orderStatus }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.acceptedOffer is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.acceptedOffer'|trans }}</td>
+                <td>{{ resource.acceptedOffer }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.discountCode is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.discountCode'|trans }}</td>
+                <td>{{ resource.discountCode }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.discount is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.discount'|trans }}</td>
+                <td>{{ resource.discount }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.paymentSplit is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.paymentSplit'|trans }}</td>
+                <td>{{ resource.paymentSplit }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.orderQuantity is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.orderQuantity'|trans }}</td>
+                <td>{{ resource.orderQuantity }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.orderItem is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.orderItem'|trans }}</td>
+                <td>{{ resource.orderItem }}</td>
+            </tr>
+            {% endif %}
+            {% if resource.notes is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.notes'|trans }}</td>
+                <td>{{ resource.notes }}</td>
+            </tr>
+            {% endif %}
         </tbody>
     </table>
 

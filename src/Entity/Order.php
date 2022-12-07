@@ -25,8 +25,13 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *         "method"= "POST",
  *         "path"= "/api/v2/payment/create",
  *         "controller"= PaymentController::class 
+ *       },
+ *       "payment_sucess"={
+ *         "method"= "POST",
+ *         "path"= "/api/v2/payment/sucess",
+ *         "controller"= PaymentController::class 
  *       }
- *     }
+ *   }
  * )
  */
 class Order implements ResourceInterface
@@ -43,7 +48,8 @@ class Order implements ResourceInterface
     private $confirmationNumber;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Person::class, cascade= {"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Person::class, cascade= {"persist"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $customer;
 
@@ -77,6 +83,26 @@ class Order implements ResourceInterface
      * @ORM\Column(type="text", nullable=true)
      */
     private $notes;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $discount;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $discountCode;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $paymentSplit;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $orderQuantity;
 
     public function setConfirmationNumber(?string $confirmationNumber): void
     {
@@ -168,6 +194,54 @@ class Order implements ResourceInterface
     public function setNotes(?string $notes): self
     {
         $this->notes = $notes;
+
+        return $this;
+    }
+
+    public function getDiscount(): ?float
+    {
+        return $this->discount;
+    }
+
+    public function setDiscount(float $discount): self
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    public function getDiscountCode(): ?string
+    {
+        return $this->discountCode;
+    }
+
+    public function setDiscountCode(string $discountCode): self
+    {
+        $this->discountCode = $discountCode;
+
+        return $this;
+    }
+
+    public function getPaymentSplit(): ?bool
+    {
+        return $this->paymentSplit;
+    }
+
+    public function setPaymentSplit(bool $paymentSplit): self
+    {
+        $this->paymentSplit = $paymentSplit;
+
+        return $this;
+    }
+
+    public function getOrderQuantity(): ?int
+    {
+        return $this->orderQuantity;
+    }
+
+    public function setOrderQuantity(int $orderQuantity): self
+    {
+        $this->orderQuantity = $orderQuantity;
 
         return $this;
     }

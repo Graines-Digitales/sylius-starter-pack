@@ -141,6 +141,7 @@ class Trip  implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=DiscountCode::class, inversedBy="trips")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $discountCode;
 

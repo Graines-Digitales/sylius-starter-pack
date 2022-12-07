@@ -73,6 +73,7 @@ class Message implements ResourceInterface
      * @var Organization|null A sub property of participant. The participant who is at the sending end of the action.
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Person")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @ApiProperty(iri="http://schema.org/sender")
      */
     private $sender;

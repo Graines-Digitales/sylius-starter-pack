@@ -151,7 +151,8 @@ class Category implements ResourceInterface , TranslatableInterface
     private $trips;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $parent;
     

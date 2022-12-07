@@ -45,10 +45,18 @@ class OrderAction
     public function hydrate($data = [], $customer, $product, $entity, $locale)
     {
        
+        // dump($data);die;
+        $paymentSplit = ($data['vads_payment_config'] !== 'SINGLE')? true: false;
         $entity->setCustomer($customer);
         $entity->setOrderDate(new \DateTime());
         $entity->setOrderStatus('en cours');
         $entity->setOrderItem($product);
+        $entity->setNotes($data['notes']);
+        $entity->setDiscount($data['discount']);
+        $entity->setDiscountCode($data['discountCode']);
+        $entity->setAcceptedOffer($data['acceptedOffer']);
+        $entity->setOrderQuantity($data['orderQuantity']);
+        $entity->setPaymentSplit($paymentSplit);
 
         return $entity;
     }

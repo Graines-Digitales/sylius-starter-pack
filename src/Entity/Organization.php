@@ -169,6 +169,7 @@ class Organization implements ResourceInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
