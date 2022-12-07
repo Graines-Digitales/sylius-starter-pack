@@ -12,6 +12,7 @@ class Form extends AbstractWebContent
     {
         if(isset($data['email'])) {
 
+           
             $message = $this->messageAction->create($data);
             
             $person = $this->manager->getRepository(Person::class)

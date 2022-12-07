@@ -81,7 +81,7 @@ class MessageController extends AbstractController
         /**
          * Save form
         **/
-        $data['origin'] = $data['slug-product'];
+        
         $data = $this->form->saveFormContact($data);
         if (isset($data['errors'])) {
 

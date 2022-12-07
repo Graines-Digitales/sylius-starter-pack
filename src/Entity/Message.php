@@ -102,6 +102,11 @@ class Message implements ResourceInterface
      */
     private $origin;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $additionalText;
+
 
     public function __construct()
     {
@@ -166,6 +171,18 @@ class Message implements ResourceInterface
     public function setOrigin(?string $origin): self
     {
         $this->origin = $origin;
+
+        return $this;
+    }
+
+    public function getAdditionalText(): ?string
+    {
+        return $this->additionalText;
+    }
+
+    public function setAdditionalText(string $additionalText): self
+    {
+        $this->additionalText = $additionalText;
 
         return $this;
     }
