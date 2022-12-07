@@ -81,6 +81,7 @@ class MessageController extends AbstractController
         /**
          * Save form
         **/
+        $data['origin'] = $data['slug-product'];
         $data = $this->form->saveFormContact($data);
         if (isset($data['errors'])) {
 
@@ -98,7 +99,7 @@ class MessageController extends AbstractController
         $configurationProject = $this->getParameter('configuration_project');
         $data['headline'] = $configurationProject['forms']['contact_product']['headline'];
         $data['headline'].= ' - ' . $data['slug-product'];
-
+        
         
         // dump(...$this->organization->getEmails());die;
 
