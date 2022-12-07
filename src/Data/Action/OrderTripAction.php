@@ -2,12 +2,12 @@
 
 namespace App\Data\Action;
 
-use App\Entity\Order;
+use App\Entity\OrderTrip;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 
-class OrderAction
+class OrderTripAction
 {
     private $slugger;
 
@@ -26,12 +26,12 @@ class OrderAction
         $entity = null;
         if(isset($data['id'])) {
             $entity = $this->entityManager
-                ->getRepository(Order::class)
+                ->getRepository(OrderTrip::class)
                 ->find($data['id'])
             ;
         }
         if(null === $entity) {
-            $entity = new Order();
+            $entity = new OrderTrip();
         }
         $entity = $this->hydrate($data, $customer, $product, $entity, $locale);
         if($persist) {

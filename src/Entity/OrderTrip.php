@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderTripRepository;
 use App\Entity\Traits\IdentifiableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -16,8 +17,8 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *
  * @see http://schema.org/Order Documentation on Schema.org
  *
- * @ORM\Entity()
- * @ORM\table(name="app_order")
+ * @ORM\Entity(repositoryClass=OrderTripRepository::class)
+ * @ORM\table(name="app_order_trip")
  * @ApiResource(
  *  iri="http://schema.org/Order",
  *  collectionOperations={
@@ -41,7 +42,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  *   }
  * )
  */
-class Order implements ResourceInterface
+class OrderTrip implements ResourceInterface
 {
     use IdentifiableTrait;
     use TimestampableEntity;

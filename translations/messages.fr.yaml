@@ -124,7 +124,9 @@ app:
         orderItem: Produit
         notes: Notes
         orders: Commandes
+        order_trips: Commandes
         order: Commande
+        order_trip: Commande
         updatedAt: Mis à jour à
         createdAt: Crée à
         landing_page: Landing Page

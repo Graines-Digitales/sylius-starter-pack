@@ -2,17 +2,17 @@
 
 namespace App\Repository;
 
-use App\Entity\Order;
+use App\Entity\OrderTrip;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 
 /**
- * @method Order|null find($id, $lockMode = null, $lockVersion = null)
- * @method Order|null findOneBy(array $criteria, array $orderBy = null)
- * @method Order[]    findAll()
- * @method Order[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method OrderTrip|null find($id, $lockMode = null, $lockVersion = null)
+ * @method OrderTrip|null findOneBy(array $criteria, array $orderBy = null)
+ * @method OrderTrip[]    findAll()
+ * @method OrderTrip[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class OrderRepository extends EntityRepository
+class OrderTripRepository extends EntityRepository
 {
     public function findSortByDate($configurationProject)
     {

@@ -3,9 +3,9 @@
 namespace App\Controller\Api;
 
 use App\Entity\Trip;
-use App\Entity\Order;
+use App\Entity\OrderTrip;
 use App\Payment\Payment;
-use App\Data\Action\OrderAction;
+use App\Data\Action\OrderTripAction;
 use App\WebContent\Organization;
 use App\Data\Action\PersonAction;
 use App\WebContent\Form;
@@ -26,7 +26,7 @@ class PaymentController extends AbstractController
 
     private $personAction;
 
-    private $orderAction;
+    private $orderTripAction;
 
     private $validator;
 
@@ -37,7 +37,7 @@ class PaymentController extends AbstractController
         , Organization $organization
         , Payment $payment
         , PersonAction $personAction
-        , OrderAction $orderAction
+        , OrderTripAction $orderTripAction
         , ValidatorInterface $validator
         , Form $form
     ) {
@@ -45,7 +45,7 @@ class PaymentController extends AbstractController
         $this->organization = $organization;
         $this->payment = $payment;
         $this->personAction = $personAction;
-        $this->orderAction = $orderAction;
+        $this->orderTripAction = $orderTripAction;
         $this->validator = $validator;
         $this->form = $form;
     }
@@ -55,7 +55,7 @@ class PaymentController extends AbstractController
      *   name="payment_create",
      *   methods = { "POST" },
      *     defaults={
-     *          "_api_resource_class"= Order::class
+     *          "_api_resource_class"= OrderTrip::class
      *     }
      * )
     */
@@ -185,7 +185,7 @@ class PaymentController extends AbstractController
         }
         
         $customer = $this->personAction->create($data);
-        $order = $this->orderAction->create($data, $customer, $product);
+        $order = $this->orderTripAction->create($data, $customer, $product);
         $data = $this->mergeData($data, $order, $customer);
 
         $errors = $this->validator->validate($customer);
@@ -229,7 +229,7 @@ class PaymentController extends AbstractController
      *   name="payment_success",
      *   methods = { "POST" },
      *     defaults={
-     *          "_api_resource_class"= Order::class
+     *          "_api_resource_class"= OrderTrip::class
      *     }
      * )
     */
@@ -271,7 +271,7 @@ dump($data);die;
         }
         
         $customer = $this->personAction->create($data);
-        $order = $this->orderAction->create($data, $customer, $product);
+        $order = $this->orderTripAction->create($data, $customer, $product);
         $data = $this->mergeData($data, $order, $customer);
 
         $errors = $this->validator->validate($customer);

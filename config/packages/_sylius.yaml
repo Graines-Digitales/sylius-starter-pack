@@ -1023,11 +1023,11 @@ sylius_grid:
                         position: 100
                         options: { }
 
-        app_admin_order:
+        app_admin_order_trip:
             driver:
                 name: doctrine/orm
                 options:
-                    class: App\Entity\Order
+                    class: App\Entity\OrderTrip
                     repository:
                         method: findSortByDate
                         arguments:
