@@ -56,13 +56,13 @@
                 <td>{{ resource.localBusiness.name }}</td>
             </tr>
             {% endif %}
-            {% if resource.sender is defined %}
+            {% if resource.sender.firstname is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.sender.firstname'|trans }}</td>
                 <td>{{ resource.sender.firstname }}</td>
             </tr>
             {% endif %}
-            {% if resource.sender is defined %}
+            {% if resource.sender.lastname is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.sender.lastname'|trans }}</td>
                 <td>{{ resource.sender.lastname }}</td>
