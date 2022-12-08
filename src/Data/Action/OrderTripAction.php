@@ -61,4 +61,36 @@ class OrderTripAction
         return $entity;
     }
 
+    public function setOrderNumber($entity, $number) 
+    {
+        $entity->setOrderNumber($number);
+        
+        $this->entityManager->persist($entity);
+        $this->entityManager->flush();
+    }
+
+    public function setIdentifier($entity, $identifier) 
+    {
+        $entity->setIdentifier($identifier);
+        
+        $this->entityManager->persist($entity);
+        $this->entityManager->flush();
+    }
+
+    public function validate($entity) 
+    {
+        $entity->setOrderStatus('validé');
+        
+        $this->entityManager->persist($entity);
+        $this->entityManager->flush();
+    }
+
+    public function cancel($entity) 
+    {
+        $entity->setOrderStatus('annulé');
+        
+        $this->entityManager->persist($entity);
+        $this->entityManager->flush();
+    }
+
 }

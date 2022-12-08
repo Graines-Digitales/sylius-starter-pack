@@ -9,6 +9,7 @@ use App\Repository\OrderTripRepository;
 use App\Entity\Traits\IdentifiableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Traits\ThingTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
@@ -45,6 +46,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 class OrderTrip implements ResourceInterface
 {
     use IdentifiableTrait;
+    use ThingTrait;
     use TimestampableEntity;
 
     /**
@@ -112,6 +114,11 @@ class OrderTrip implements ResourceInterface
      */
     private $orderQuantity;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $identifier = [];
+
     public function setConfirmationNumber(?string $confirmationNumber): void
     {
         $this->confirmationNumber = $confirmationNumber;
@@ -153,7 +160,7 @@ class OrderTrip implements ResourceInterface
 
     public function setOrderNumber(?string $orderNumber): self
     {
-        $this->orderNumber = $this->getId();
+        $this->orderNumber = $orderNumber;
 
         return $this;
     }
@@ -250,6 +257,18 @@ class OrderTrip implements ResourceInterface
     public function setOrderQuantity(int $orderQuantity): self
     {
         $this->orderQuantity = $orderQuantity;
+
+        return $this;
+    }
+
+    public function getIdentifier(): ?array
+    {
+        return $this->identifier;
+    }
+
+    public function setIdentifier(?array $identifier): self
+    {
+        $this->identifier = $identifier;
 
         return $this;
     }

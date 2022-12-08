@@ -3,18 +3,21 @@
 namespace App\Controller\Api;
 
 use App\Entity\Trip;
-use App\Entity\OrderTrip;
 use App\Payment\Payment;
-use App\Data\Action\OrderTripAction;
+use App\WebContent\Form;
+use App\Entity\OrderTrip;
 use App\WebContent\Organization;
 use App\Data\Action\PersonAction;
-use App\WebContent\Form;
+use Symfony\Component\Mime\Email;
+use App\Data\Action\OrderTripAction;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class PaymentController extends AbstractController
 {
@@ -40,6 +43,7 @@ class PaymentController extends AbstractController
         , OrderTripAction $orderTripAction
         , ValidatorInterface $validator
         , Form $form
+        , MailerInterface $mailer
     ) {
         $this->entityManager = $entityManager;
         $this->organization = $organization;
@@ -48,6 +52,7 @@ class PaymentController extends AbstractController
         $this->orderTripAction = $orderTripAction;
         $this->validator = $validator;
         $this->form = $form;
+        $this->mailer = $mailer;
     }
 
    /**
@@ -208,10 +213,13 @@ class PaymentController extends AbstractController
             );
         }
         $data = $this->form->dataFieldTranslation($data);
-        // dump($data);die;
+        
         $response = $this->payment->getFormData($data);
         $response['html_form'] = $this->outputHtmlForm($response);
+        $this->orderTripAction->setOrderNumber($order, $response['fields']['vads_trans_id']);
+        $this->orderTripAction->setIdentifier($order, $response['fields']);
         
+// dump(json_encode($response['fields']));die;
         return new JsonResponse(
             [
                 'title' => 'Success',
@@ -241,7 +249,7 @@ class PaymentController extends AbstractController
         // $data = $request->request->all();
         $data = json_decode($request->getContent(), true);
 
-dump($data);die;
+
         if (!isset($data['vads_cust_email']) || empty($data['vads_cust_email'])) {
 
             return new JsonResponse(
@@ -253,28 +261,28 @@ dump($data);die;
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
-
-        $product = $this->entityManager->getRepository(Trip::class)
-            ->findOneBySlug($data['slug-product'])
+        
+        $order = $this->entityManager->getRepository(OrderTrip::class)
+            ->find($data['vads_order_id'])
         ;
 
-        if (empty($product)) {
+        
+        if (empty($order)) {
 
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
-                    'message' => 'produit non trouvé',
+                    'message' => 'commande non trouvé',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
         
-        $customer = $this->personAction->create($data);
-        $order = $this->orderTripAction->create($data, $customer, $product);
-        $data = $this->mergeData($data, $order, $customer);
-
-        $errors = $this->validator->validate($customer);
+        $this->orderTripAction->setIdentifier($order, $data);
+        $this->orderTripAction->validate($order);
+        
+        $errors = $this->validator->validate($order);
         if (count($errors) > 0) {
             $data['errors'] = $errors[0]->getMessage();
         }
@@ -293,18 +301,41 @@ dump($data);die;
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
-        $data = $this->form->dataFieldTranslation($data);
-        // dump($data);die;
-        $response = $this->payment->getFormData($data);
-        $response['html_form'] = $this->outputHtmlForm($response);
- 
+
+        $email = (new Email())
+            ->from($this->organization->getEmail())
+            ->to($order->getCustomer()->getEmail())
+            ->subject('Confirmation de votre commande')
+            ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
+            ->html($this->renderView(
+                    '@App/web/components/email_order_success.html.twig',
+                    [ 'data' => [ 'headline' => 'Confirmation de votre commande'] ]
+                )
+            )
+        ;
+
+        try {
+            $this->mailer->send($email);
+
+        } catch (TransportExceptionInterface $e) {
+            
+            $response['message'] = $e->getMessage();
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => $response['message'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
         return new JsonResponse(
             [
                 'title' => 'Success',
-                'message' => 'Votre commandé à bien été créer',
+                'message' => 'Votre commandé à bien été validé',
                 'statutCode' => JsonResponse::HTTP_OK,
-                'html_form' => $response['html_form'],
-                'response' => $response
+                'response' => $data
             ]
             , JsonResponse::HTTP_OK
         );

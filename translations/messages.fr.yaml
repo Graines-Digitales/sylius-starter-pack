@@ -104,6 +104,7 @@ sylius:
 
 app:
     ui:
+        identifier: Identifiant
         additionalText: Texte additionnel
         origin: Provenance
         discount_code: Code promo
@@ -114,7 +115,7 @@ app:
         value: Valeur
         confirmationNumber: Numéro de confirmation
         orderDate: Date de commande
-        orderNumber: Numéro de commande
+        orderNumber: Numéro de la transaction
         orderStatus: Statut de la commande
         acceptedOffer: Montant total
         discount: Remise

@@ -37,6 +37,12 @@ app_nuxt_fetch:
     defaults:
         _controller: app.controller.nuxt::fetch
 
+app_admin_order_trip_validate:
+    path: /admin/order-trip/{id}/validate
+    methods: [GET]
+    defaults:
+        _controller: app.controller.order_trip::validateAction
+
 app_admin_travel_duplicate:
     path: /admin/travel/{id}/duplicate
     methods: [GET]

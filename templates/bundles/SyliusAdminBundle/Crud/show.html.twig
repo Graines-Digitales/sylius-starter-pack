@@ -164,6 +164,18 @@
                 <td>{{ resource.notes }}</td>
             </tr>
             {% endif %}
+            {% if resource.identifier is defined %}
+            <tr class="item">
+                <td>{{ 'app.ui.identifier'|trans }}</td>
+                <td>
+                <ul style="text-align:left;">
+                    {% for key,value in resource.identifier %}
+                        <li>{{ key }} => <b>{{ value }}</b></li>
+                    {% endfor %}
+                </ul>
+                </td>
+            </tr>
+            {% endif %}
         </tbody>
     </table>
 

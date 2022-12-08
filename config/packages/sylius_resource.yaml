@@ -172,7 +172,8 @@ sylius_resource:
             classes:
                 model: App\Entity\OrderTrip
                 form: App\Form\Type\OrderTripType
-                repository: App\Repository\OrderTripRepository  
+                repository: App\Repository\OrderTripRepository
+                controller: App\Controller\Admin\OrderTripController
 
         app.media_image:
             driver: doctrine/orm # You can use also different driver here

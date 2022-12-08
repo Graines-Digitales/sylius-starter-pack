@@ -249,8 +249,9 @@ sylius_api:
 sylius_grid:
     templates:
             action:
-                upload_images: "@App/admin/Grid/Action/button_images.html.twig"
-                duplicate: "@App/admin/Grid/Action/button_images.html.twig"
+                # upload_images: "@App/admin/Grid/Action/button_images.html.twig"
+                duplicate: "@App/admin/Grid/Action/button_duplicate.html.twig"
+                validate: "@App/admin/Grid/Action/button_validate.html.twig"
 
 
     grids:        
@@ -614,7 +615,7 @@ sylius_grid:
                         type: delete
                     duplicate:
                         type: duplicate
-                        label: duplicate
+                        label: Dupliquer
                         options:
                             link:
                                 route: app_admin_article_duplicate
@@ -1059,15 +1060,15 @@ sylius_grid:
                     label: app.ui.acceptedOffer
                     options:
                         template:  "@App/admin/Grid/Field/amount.html.twig"
-                discount:
-                    type: string
-                    label: app.ui.discount
+                # discount:
+                #     type: string
+                #     label: app.ui.discount
                 
-                paymentSplit:
-                    type: twig
-                    label: app.ui.paymentSplit
-                    options:
-                        template: "@SyliusUi/Grid/Field/yesNo.html.twig"
+                # paymentSplit:
+                #     type: twig
+                #     label: app.ui.paymentSplit
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/yesNo.html.twig"
             actions:
                 # main:
                 #     create:
@@ -1078,6 +1079,14 @@ sylius_grid:
                         label: sylius.ui.show
                     delete:
                         type: delete 
+                    validate:
+                        type: validate
+                        label: Valider
+                        options:
+                            link:
+                                route: app_admin_order_trip_validate
+                                parameters:
+                                    id: resource.id
                 bulk:
                     delete:
                         type: delete
@@ -1868,7 +1877,7 @@ sylius_grid:
                         type: delete
                     duplicate:
                         type: duplicate
-                        label: duplicate
+                        label: Dupliquer
                         options:
                             link:
                                 route: app_admin_travel_duplicate
