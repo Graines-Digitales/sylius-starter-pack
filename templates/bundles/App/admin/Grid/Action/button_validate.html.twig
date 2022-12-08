@@ -1,0 +1,7 @@
+{% import '@SyliusUi/Macro/buttons.html.twig' as buttons %}
+
+
+{% set label = ('validé' == data.orderStatus)? 'Annuler': action.label %}
+{% set path = options.link.url|default(path(options.link.route|default(grid.requestConfiguration.getRouteName('validate')), options.link.parameters|default({'id': data.id}))) %}
+{{ buttons.default(path, label, null, 'clone', 'orange') }}
+
