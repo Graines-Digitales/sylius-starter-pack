@@ -119,13 +119,34 @@
             {% if resource.orderStatus is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.orderStatus'|trans }}</td>
-                <td>{{ resource.orderStatus }}</td>
+                <td>
+                    {% if "en cours" == resource.orderStatus %}
+                    <span class="ui basic label">
+                        {{ resource.orderStatus }}
+                    </span>
+                    {% endif %}
+
+                    {% if "validé" == resource.orderStatus %}
+                    <span class="ui teal label">
+                        {{ resource.orderStatus }}
+                    </span>
+                    {% endif %}
+
+                    {% if "annulé" == resource.orderStatus %}
+                    <span class="ui red label">
+                        {{ resource.orderStatus }}
+                    </span>
+                    {% endif %}
+                </td>
             </tr>
             {% endif %}
             {% if resource.acceptedOffer is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.acceptedOffer'|trans }}</td>
-                <td>{{ resource.acceptedOffer }}</td>
+                <td>
+                    {% set amount = resource.acceptedOffer / 100 %}
+                    {{ amount|format_currency('EUR', {fraction_digit: 2}) }}
+                </td>
             </tr>
             {% endif %}
             {% if resource.discountCode is defined %}
@@ -137,13 +158,25 @@
             {% if resource.discount is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.discount'|trans }}</td>
-                <td>{{ resource.discount }}</td>
+                <td>
+                    {{ resource.discount|format_currency('EUR', {fraction_digit: 2}) }}
+                </td>
             </tr>
             {% endif %}
             {% if resource.paymentSplit is defined %}
             <tr class="item">
                 <td>{{ 'app.ui.paymentSplit'|trans }}</td>
-                <td>{{ resource.paymentSplit }}</td>
+                <td>
+                {% if 1 == resource.paymentSplit %}
+                    <span class="ui basic label">
+                        oui
+                    </span>
+                {% else %}
+                    <span class="ui basic label">
+                        non
+                    </span>
+                {% endif %}
+                </td>
             </tr>
             {% endif %}
             {% if resource.orderQuantity is defined %}
