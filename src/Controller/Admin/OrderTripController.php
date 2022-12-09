@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use DateTime;
-use App\Entity\TripTranslation;
+use App\Entity\OrderTrip;
 use App\WebContent\Organization;
 use Symfony\Component\Mime\Email;
 use App\Data\Action\OrderTripAction;
