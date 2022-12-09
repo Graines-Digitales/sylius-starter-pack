@@ -164,7 +164,7 @@ app:
             page_translation: Contenu traduisible
             page_info: Informations de la page
             page_content: Contenu
-            page_meta_data: Méta données
+            page_meta_data: Méta données (SEO)
         cms_components: Composants CMS
         cms_component: Composant CMS
         new_cms_component: Nouveau composant CMS

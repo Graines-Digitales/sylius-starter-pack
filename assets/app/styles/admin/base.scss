@@ -123,3 +123,23 @@ img.ui.tiny.image {
 	max-height: 300px;
 	overflow-y: auto;
 }
+
+.accordion_alt > div[data-locale="fr"] {
+	> .title {
+		color: #0369a1 !important;
+		text-transform: uppercase;
+	}
+	border: 2px solid #0369a1;
+	border-radius: 0.28571429rem;
+}
+
+.accordion_alt > div[data-locale="en"] {
+	> .title {
+		color: #b91c1c !important;
+		text-transform: uppercase;
+	}
+	border: 2px solid #b91c1c;
+	border-radius: 0.28571429rem;
+}
+
+// #b91c1c
