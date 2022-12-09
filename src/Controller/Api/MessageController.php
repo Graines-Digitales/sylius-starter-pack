@@ -341,10 +341,11 @@ class MessageController extends AbstractController
         } catch (Exception $e) {
             
             $response['message'] = $e->getMessage();
+            // dump($response);die;
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
-                    'message' => $response['message'],
+                    'message' => 'email non valide',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
