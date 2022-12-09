@@ -117,8 +117,7 @@ class TripListener
             $entity->setComponents(json_encode($translatedComponents));
         }
 
-        
-
+ 
 
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }
