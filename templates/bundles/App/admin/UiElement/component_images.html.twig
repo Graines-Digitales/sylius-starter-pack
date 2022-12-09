@@ -1,5 +1,5 @@
 <h5 class="ui tiny header">
-    {{element.designation}}
+    {{ element.designation }}
 </h5>
 {% if element.icon is defined and element.icon is not empty or element.primaryImage is defined and element.primaryImage is not empty or element.title is defined and element.title is not empty %}
 <h2 class="ui huge header">
@@ -10,8 +10,19 @@
     {% endif %}
     <div class="content">
         {% if element.title is defined and element.title is not empty %}
-            {{element.title}}
+            {{ element.title }}
         {% endif %}
     </div>
+  
 </h2>
+{% endif %}
+
+{% if element.images is defined and element.images is not empty %}
+    <div class="ui items">
+        {% for image in element.images %}
+            <div class="ui image">
+                <img class="ui rounded image" src="{{ image.filename|imagine_filter('thumbnail_webp') }}" />
+            </div>
+        {% endfor %}
+    </div>
 {% endif %}
