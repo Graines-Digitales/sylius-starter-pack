@@ -19,7 +19,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  * @see http://schema.org/Order Documentation on Schema.org
  *
  * @ORM\Entity(repositoryClass=OrderTripRepository::class)
- * @ORM\table(name="app_order_trip")
+ * @ORM\Table(name="app_order_trip")
  * @ApiResource(
  *  iri="http://schema.org/Order",
  *  collectionOperations={
