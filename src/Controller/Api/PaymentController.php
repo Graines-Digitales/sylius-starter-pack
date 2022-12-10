@@ -192,7 +192,7 @@ class PaymentController extends AbstractController
         $customer = $this->personAction->create($data);
         $order = $this->orderTripAction->create($data, $customer, $product);
         $data = $this->mergeData($data, $order, $customer);
-dump($customer);die;
+// dump($customer);die;
         $errors = $this->validator->validate($customer);
         if (count($errors) > 0) {
             $data['errors'] = $errors[0]->getMessage();
