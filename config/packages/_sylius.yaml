@@ -2150,14 +2150,14 @@ sylius_grid:
                     label: app.ui.type
                     options:
                         template:  "@App/admin/Grid/Field/rawLabel.html.twig"
- 
-                expirationDate:
-                    type: datetime
-                    label: app.ui.expirationDate
-
+                        
                 value:
                     type: string
                     label: app.ui.value
+
+                expirationDate:
+                    type: datetime
+                    label: app.ui.expirationDate
 
             actions:
                 main:
