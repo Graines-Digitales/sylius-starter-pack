@@ -59,7 +59,7 @@ class MessageController extends AbstractController
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
-                    'message' => 'email non trouvé',
+                    'message' => 'veuillez saisir un e-mail',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
@@ -182,7 +182,7 @@ class MessageController extends AbstractController
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
-                    'message' => 'email non trouvé',
+                    'message' => 'veuillez saisir un e-mail',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
@@ -288,7 +288,7 @@ class MessageController extends AbstractController
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
-                    'message' => 'email non trouvé',
+                    'message' => 'veuillez saisir un e-mail',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
@@ -345,7 +345,7 @@ class MessageController extends AbstractController
             return new JsonResponse(
                 [ 
                     'title' => 'une erreur est survenue',
-                    'message' => 'email non valide',
+                    'message' => 'votre email est invalide',
                     'statutCode' => JsonResponse::HTTP_BAD_REQUEST
                 ]
                 , JsonResponse::HTTP_BAD_REQUEST
