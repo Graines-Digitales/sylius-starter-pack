@@ -83,7 +83,7 @@ class Person implements ResourceInterface
      *     message="s'il vous plaît, entrez email ou téléphone"
      * )
      *
-     * @Assert\Regex(
+     * @ Assert\Regex(
      *  pattern="/^(0)[0-9]{9}$/",
      *  match=true,
      *  message="ce numéro de téléphone est invalide"
