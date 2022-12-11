@@ -35,7 +35,7 @@ class StructuredData extends AbstractWebContent
             throw new \Exception('Please define the URL of your organization');
         }
 
-        $this->cdn = $this->container->getParameter('cdn_media');
+        $this->cdn = $this->container->getParameter('image_cdn');
         if(null === $this->cdn) {
             throw new \Exception('Please define the CDN of your organization');
         }
