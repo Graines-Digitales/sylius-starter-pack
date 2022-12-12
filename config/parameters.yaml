@@ -20,7 +20,7 @@ parameters:
     google_cloud_api_key: '%env(resolve:GOOGLE_CLOUD_API_KEY)%'
     image_cdn: '%env(resolve:IMAGE_CDN)%'
     website_host: '%env(resolve:WEBSITE_HOST)%'
-    website_directory: '%env(resolve:WEBISTE_DIRECTORY)%'
+    website_directory: '%env(resolve:WEBSITE_DIRECTORY)%'
     shop_id: '%env(resolve:SHOP_ID)%'
     shop_testing_key: '%env(resolve:SHOP_TESTING_KEY)%'
     shop_production_key: '%env(resolve:SHOP_PRODUCTION_KEY)%'
