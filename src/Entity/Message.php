@@ -103,7 +103,7 @@ class Message implements ResourceInterface
     private $origin;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $additionalText;
 
