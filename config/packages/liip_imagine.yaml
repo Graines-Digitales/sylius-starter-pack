@@ -93,7 +93,7 @@ liip_imagine:
         
         horizontal:
             format: jpg
-            jpeg_quality:          70
+            jpeg_quality:          50
             png_compression_level: 7
             # setup the filter steps to apply for this transformation
             filters:
@@ -102,7 +102,7 @@ liip_imagine:
 
         vertical:
             format: jpg
-            jpeg_quality:          70
+            jpeg_quality:          50
             png_compression_level: 7
             # setup the filter steps to apply for this transformation
             filters:

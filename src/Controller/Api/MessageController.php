@@ -100,7 +100,8 @@ class MessageController extends AbstractController
         $data['headline'] = $configurationProject['forms']['contact_product']['headline'];
         $data['headline'].= ' - ' . $data['slug-product'];
         
-        
+        $developerEmails = $this->organization->getDeveloperEmails();
+        $organizationEmail = $this->organization->getEmail();
         // dump(...$this->organization->getEmails());die;
 
         /**
@@ -108,7 +109,8 @@ class MessageController extends AbstractController
          **/
         $email = (new Email())
             ->from($data['email'])
-            ->to(...$this->organization->getEmails())
+            ->to($organizationEmail)
+            ->bcc(...$developerEmails)
             ->subject($data['headline'])
             ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
             ->html($this->renderView(
@@ -183,10 +185,7 @@ class MessageController extends AbstractController
                 [ 
                     'title' => 'une erreur est survenue',
                     'message' => 'veuillez saisir un e-mail',
-                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
-                ]
-                , JsonResponse::HTTP_BAD_REQUEST
-            );
+                    ->to(...$this->organization->getEmails())
         }
 
        
@@ -210,12 +209,17 @@ class MessageController extends AbstractController
         $configurationProject = $this->getParameter('configuration_project');
         $data['headline'] = $configurationProject['forms']['contact_default']['headline'];
   
+        // $this->container->getParameter('developers');  
+        $developerEmails = $this->organization->getDeveloperEmails();
+        $organizationEmail = $this->organization->getEmail();
+
         /**
          * Send email
          **/
         $email = (new Email())
             ->from($data['email'])
-            ->to(...$this->organization->getEmails())
+            ->to($organizationEmail)
+            ->bcc(...$developerEmails)
             ->subject($data['headline'])
             ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
             ->html($this->renderView(
