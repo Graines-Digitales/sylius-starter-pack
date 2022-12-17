@@ -359,7 +359,7 @@ class MessageController extends AbstractController
         return new JsonResponse(
             [
                 'title' => 'félicitations',
-                'message' => 'your email has been registered',
+                'message' => 'votre email a bien été enregistré',
                 'statutCode' => JsonResponse::HTTP_OK
             ]
             , JsonResponse::HTTP_OK
