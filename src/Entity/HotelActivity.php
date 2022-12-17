@@ -40,7 +40,7 @@ class HotelActivity implements ResourceInterface, TranslatableInterface
 
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -50,7 +50,7 @@ class HotelActivity implements ResourceInterface, TranslatableInterface
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="hotelActivities", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="hotelActivities", cascade={"persist"})
      * @ORM\JoinTable(name="app_hotel_activities_categories")
      */
     private $tags;

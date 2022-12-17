@@ -1,4 +1,10 @@
 doctrine:
+    dbal:
+        driver: 'pdo_mysql'
+        server_version: 'mariadb-10.6.11'
+        charset: utf8mb4
+
+        url: '%env(resolve:DATABASE_URL)%'
     orm:
         entity_managers:
             default:

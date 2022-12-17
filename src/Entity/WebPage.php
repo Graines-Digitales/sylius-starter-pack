@@ -23,7 +23,17 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  * A web page. Every web page is implicitly assumed to be declared to be of type WebPage, so the various properties about that webpage, such as `breadcrumb` may be used. We recommend explicit declaration if these properties are specified, but if they are found outside of an itemscope, they will be assumed to be about the page.
  *
  * @see https://schema.org/WebPage
- * @ApiResource(iri="https://schema.org/WebPage")
+ * @ApiResource(iri="https://schema.org/WebPage",
+ * itemOperations={
+ *    "get",
+ *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
+ *  },
+ *  collectionOperations={
+ *    "get",
+ *    "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *  }
+ * )
  * @ORM\Entity(repositoryClass=WebPageRepository::class)
  * @ORM\Table(name="app_web_page")
  */
@@ -53,7 +63,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -63,7 +73,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="webPages", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="webPages", cascade={"persist"})
      * @ORM\JoinTable(name="app_web_page_category")
      * 
      * @ApiSubresource(maxDepth=1)
@@ -94,7 +104,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -105,6 +115,7 @@ class WebPage implements ResourceInterface, TranslatableInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=MediaObjectIcon::class)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -112,6 +123,11 @@ class WebPage implements ResourceInterface, TranslatableInterface
      * )
      */
     private $icon;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alignPrimaryImage;
 
     public function __toString()
     {
@@ -271,6 +287,18 @@ class WebPage implements ResourceInterface, TranslatableInterface
     public function setIcon(?MediaObjectIcon $icon): self
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getAlignPrimaryImage(): ?string
+    {
+        return $this->alignPrimaryImage;
+    }
+
+    public function setAlignPrimaryImage(?string $alignPrimaryImage): self
+    {
+        $this->alignPrimaryImage = $alignPrimaryImage;
 
         return $this;
     }

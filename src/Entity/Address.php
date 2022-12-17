@@ -32,7 +32,7 @@ class Address implements ResourceInterface
 
 
     /**
-     * @ ORM\ManyToMany(targetEntity="Person", mappedBy="addresses")
+     * @ORM\ManyToMany(targetEntity="Person", mappedBy="addresses")
      */
     private $persons;
 

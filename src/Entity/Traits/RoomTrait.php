@@ -12,7 +12,7 @@ trait RoomTrait
     /**
      * @ORM\Column(name="maximumOccupants", type="smallint", nullable=true)
      *
-     * @ Assert\NotBlank(message="Enter the number of occupants")
+     * @ Assert\NotBlank(message="entrez le nombre d'occupants")
      */
     private $maximumOccupants;
 

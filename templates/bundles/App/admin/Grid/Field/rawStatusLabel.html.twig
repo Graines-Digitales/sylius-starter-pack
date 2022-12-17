@@ -1,0 +1,17 @@
+{% if "en cours" == data %}
+ <span class="ui basic label">
+    {{ data }}
+</span>
+{% endif %}
+
+{% if "validé" == data %}
+ <span class="ui teal label">
+    {{ data }}
+</span>
+{% endif %}
+
+{% if "annulé" == data %}
+ <span class="ui red label">
+    {{ data }}
+</span>
+{% endif %}

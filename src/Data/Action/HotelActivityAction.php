@@ -62,8 +62,8 @@ class HotelActivityAction
 
     public function hydrate($data, $entity, $locale)
     {   
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
+        // $entity->getTranslation()->setLocale($locale);
+        // $entity->getTranslation()->setTranslatable($entity);
 
         if (isset($data['isLocked'])) {
             $entity->setIsLocked($data['isLocked']);

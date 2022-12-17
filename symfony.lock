@@ -17,7 +17,7 @@
         "version": "v2.11.0"
     },
     "doctrine/annotations": {
-        "version": "1.13",
+        "version": "1.14",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -34,7 +34,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "2.4",
-            "ref": "da713d006953b90d1c085c1be480ecdd6c4a95e0"
+            "ref": "d562b46dd8075ab2de3d58bf7895cf6b8365cb72"
         },
         "files": [
             "config/packages/doctrine.yaml",
@@ -56,7 +56,7 @@
         ]
     },
     "friends-of-behat/symfony-extension": {
-        "version": "2.3",
+        "version": "2.4",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
@@ -127,7 +127,7 @@
         ]
     },
     "liip/imagine-bundle": {
-        "version": "2.9",
+        "version": "2.10",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
@@ -203,7 +203,7 @@
         ]
     },
     "sonata-project/block-bundle": {
-        "version": "4.18",
+        "version": "4.19",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
@@ -359,7 +359,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "5.2",
-            "ref": "a1c8800e40ae735206bb14586fdd6c4630a51b8d"
+            "ref": "8e937ff2b4735d110af1770f242c1107fdab4c8e"
         },
         "files": [
             "config/packages/lock.yaml"
@@ -501,12 +501,12 @@
         ]
     },
     "symfony/webpack-encore-bundle": {
-        "version": "1.15",
+        "version": "1.16",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "1.10",
-            "ref": "5878c7c28468ca0fdce2497a04cfc66bab0dc3ef"
+            "ref": "160f0a23c9c2bdd3f264bb4d841b51f900a3572e"
         },
         "files": [
             "assets/app.js",

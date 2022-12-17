@@ -35,9 +35,15 @@ class ComponentContactFormType extends AbstractType
                 'mapped' => false,
                 'help' => 'This field will be automatically edited',
                 'required' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('slug', HiddenType::class, [
                 'disabled' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('designation', TextType::class, [
                 'required' => true,
@@ -45,6 +51,9 @@ class ComponentContactFormType extends AbstractType
                     new NotBlank(['groups' => ['component_contact_form_validation']])
                 ],
                 'label' => 'app.ui_element.field.designation',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('title', TextType::class, [
                 'required' => false,

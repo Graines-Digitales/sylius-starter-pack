@@ -67,8 +67,7 @@ class TripAction
     
     public function hydrate($data, $entity, $locale) 
     {   
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
+        
 
         if (isset($data['isLocked'])) {
             $entity->setIsLocked($data['isLocked']);
@@ -104,6 +103,10 @@ class TripAction
             $entity->getTranslation($locale)->setText($data['text']);
         }
 
+        if(isset($data['description'])){
+            $entity->getTranslation($locale)->setDescription($data['description']);
+        }
+
         if (isset($data['pushForward'])) {
             $entity->getTranslation($locale)->setPushForward($data['pushForward']);
         }
@@ -133,7 +136,7 @@ class TripAction
             }
         }
 
-        if (isset($data['components']) && !empty($data['components'])) {
+        if (isset($data['components']) && !empty($data['components']) && null !== $data['components']) {
             $components = $this->componentAction->createComponents($data['components']);
             $entity->getTranslation($locale)->setComponents(
                 json_encode($components, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)

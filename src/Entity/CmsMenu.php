@@ -52,7 +52,7 @@ class CmsMenu implements ResourceInterface
     private $menus;
 
     /**
-     * @ORM\OneToMany(targetEntity=CmsLink::class, mappedBy="cmsMenu", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=CmsLink::class, mappedBy="cmsMenu", cascade={"persist"})
      */
     private $cmsLinks;
 
@@ -64,7 +64,7 @@ class CmsMenu implements ResourceInterface
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObjectImage::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=MediaObjectImage::class, cascade={"persist"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $primaryImage;

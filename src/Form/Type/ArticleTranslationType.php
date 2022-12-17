@@ -24,14 +24,9 @@ class ArticleTranslationType extends AbstractResourceType
                     new NotBlank(['groups' => ['article_translation_validation']])
                 ]
             ])
-            ->add('text', WysiwygType::class, [
-                'required' => false
-            ])
-            ->add('textResume', TextAreaType::class, [
-                'required' => false
-            ])
             ->add('alternativeHeadline', TextType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('pushForward', TextType::class, [
                 'required' => false
@@ -40,7 +35,8 @@ class ArticleTranslationType extends AbstractResourceType
                 'required' => false
             ])
             ->add('articleResume', TextareaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
@@ -49,15 +45,20 @@ class ArticleTranslationType extends AbstractResourceType
                 ]
             ])
             ->add('metaTitle', TextType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('metaDescription', TextAreaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
         ;
         $builder->remove('components');
         $builder->add('components', RichEditorType::class, [
             'required' => false,
+            'attr_translation_parameters' => [
+                'translatable' => false
+            ]
         ]);
     }
 

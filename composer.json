@@ -28,7 +28,7 @@
         "friendsofsymfony/ckeditor-bundle": "^2.4",
         "google/cloud-translate": "^1.12",
         "mnapoli/front-yaml": "^2.0",
-        "monsieurbiz/sylius-rich-editor-plugin": "^2.0.11",
+        "monsieurbiz/sylius-rich-editor-plugin": "2.0.11",
         "nelmio/cors-bundle": "^2.2",
         "portphp/csv": "^2.0",
         "portphp/spreadsheet": "^1.0",

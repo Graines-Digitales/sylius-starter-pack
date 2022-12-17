@@ -35,9 +35,9 @@ class Invoice implements ResourceInterface
     /**
      * @var Collection<Order>|null The Order(s) related to this Invoice. One or more Orders may be combined into a single Invoice.
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\Order")
-     * @ORM\JoinTable(name="app_invoices_orders",inverseJoinColumns={@ORM\JoinColumn(unique=true)})
-     * @ApiProperty(iri="http://schema.org/referencesOrder")
+     * @ ORM\ManyToMany(targetEntity="App\Entity\Order")
+     * @ ORM\JoinTable(name="app_invoices_orders",inverseJoinColumns={@ORM\JoinColumn(unique=true)})
+     * @ ApiProperty(iri="http://schema.org/referencesOrder")
      */
     private $referencesOrders;
 
@@ -53,7 +53,7 @@ class Invoice implements ResourceInterface
      *
      * @ORM\Column(name="customer_lastname", type="string", length=255)
      *
-     * @Assert\NotBlank(message="Enter a last name please")
+     * @Assert\NotBlank(message="entrez un nom de famille s'il vous plaît")
      */
     private $customerLastname;
 
@@ -62,7 +62,7 @@ class Invoice implements ResourceInterface
      *
      * @ORM\Column(name="customer_firstname", type="string", length=255)
      *
-     * @Assert\NotBlank(message="Enter a first name please")
+     * @Assert\NotBlank(message="entrez un prénom s'il vous plait")
      */
     private $customerFirstname;
 
@@ -103,7 +103,7 @@ class Invoice implements ResourceInterface
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
-     * @Assert\NotBlank(message="Choose a date invoice please")
+     * @Assert\NotBlank(message="choisissez une date de facture s'il vous plait")
      */
     private $date;
 
@@ -118,7 +118,7 @@ class Invoice implements ResourceInterface
      * @ORM\ManyToOne(targetEntity="PaymentMethod", inversedBy="invoices")
      * @ORM\JoinColumn(name="method_payment_id", referencedColumnName="id", nullable=true)
      *
-     * @Assert\NotBlank(message="Choose a method please")
+     * @Assert\NotBlank(message="choisissez une méthode s'il vous plaît")
      */
     private $paymentMethod;
 
@@ -711,18 +711,18 @@ class Invoice implements ResourceInterface
         $this->supplierName = $supplierName;
     }
 
-    public function addReferencesOrder(Order $referencesOrder): void
-    {
-        $this->referencesOrders[] = $referencesOrder;
-    }
+    // public function addReferencesOrder(Order $referencesOrder): void
+    // {
+    //     $this->referencesOrders[] = $referencesOrder;
+    // }
 
-    public function removeReferencesOrder(Order $referencesOrder): void
-    {
-        $this->referencesOrders->removeElement($referencesOrder);
-    }
+    // public function removeReferencesOrder(Order $referencesOrder): void
+    // {
+    //     $this->referencesOrders->removeElement($referencesOrder);
+    // }
 
-    public function getReferencesOrders(): Collection
-    {
-        return $this->referencesOrders;
-    }
+    // public function getReferencesOrders(): Collection
+    // {
+    //     return $this->referencesOrders;
+    // }
 }

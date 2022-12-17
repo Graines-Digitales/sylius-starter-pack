@@ -11,28 +11,98 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 
 class NuxtController extends AbstractController
 {
-    public function build(): JsonResponse
+    public function fetch(): JsonResponse
     {
-        $kernelProjectDir = $this->getParameter('kernel.project_dir');
         $response = [];
-        $command = $kernelProjectDir.'/build.sh';
+        $kernelProjectDir = $this->getParameter('kernel.project_dir');
+        $command = $kernelProjectDir . DIRECTORY_SEPARATOR . 'fetch.sh';
+        $lockFilePathFetch = $kernelProjectDir . DIRECTORY_SEPARATOR . '/fetch.txt';
+        $lockFilePathBuild = $kernelProjectDir . DIRECTORY_SEPARATOR . '/build.txt';
+
+        $filesystem = new Filesystem();
+        if ($filesystem->exists($lockFilePathFetch) || $filesystem->exists($lockFilePathBuild)) {
+            $response['error'] = 'process is already running!';
+            
+            return new JsonResponse(
+                $response,
+                JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
         
         $process = new Process(
-            [$command, $kernelProjectDir]
+            [
+                $command
+            ]
+        );
+        $process->setTimeout(10800); // 3 heures
+
+        try {
+
+            $process->mustRun();
+            $response['success'] = $process->getOutput();
+
+            return new JsonResponse(
+                $response,
+                JsonResponse::HTTP_OK
+            );
+
+        } catch (ProcessFailedException $exception) {
+
+            $response['error'] = $exception->getMessage();
+
+            return new JsonResponse(
+                $response,
+                JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+        
+    }
+
+    public function build(): JsonResponse
+    {
+        $response = [];
+        $kernelProjectDir = $this->getParameter('kernel.project_dir');
+        $command = $kernelProjectDir . DIRECTORY_SEPARATOR . '/build.sh';
+        $lockFilePathFetch = $kernelProjectDir . DIRECTORY_SEPARATOR . '/fetch.txt';
+        $lockFilePathBuild = $kernelProjectDir . DIRECTORY_SEPARATOR . '/build.txt';
+
+        $filesystem = new Filesystem();
+        if ($filesystem->exists($lockFilePathFetch) || $filesystem->exists($lockFilePathBuild)) {
+            $response['error'] = 'process is already running!';
+
+            return new JsonResponse(
+                $response,
+                JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+
+        $process = new Process(
+            [
+                $command, 
+                $kernelProjectDir
+            ]
         );
         $process->setTimeout(10800); // 3 heures
         try {
+
             $process->mustRun();
             $response['success'] = $process->getOutput();
+       
+            return new JsonResponse(
+                $response,
+                JsonResponse::HTTP_OK
+            );
         } catch (ProcessFailedException $exception) {
             $response['error'] = $exception->getMessage();
+ 
+            return new JsonResponse(
+                $response,
+                JsonResponse::HTTP_BAD_REQUEST
+            );
         }
-        return new JsonResponse(
-            $response,
-            JsonResponse::HTTP_OK
-        );
     }
 }

@@ -16,15 +16,19 @@ class MediaObjectImageAction
     private $entityManager;
 
     private $container;
+    
+    private $categoryAction;
 
     public function __construct(
         SluggerInterface $slugger
         , EntityManagerInterface $entityManager
         , ContainerInterface $container
+        , CategoryAction $categoryAction
     ){
         $this->slugger = $slugger;
         $this->entityManager = $entityManager;
         $this->container = $container;
+        $this->categoryAction = $categoryAction;
     }
 
     public function create($data = [], $locale = 'fr', $persist = true)
@@ -44,6 +48,7 @@ class MediaObjectImageAction
         $filepath = $directoryProject . DIRECTORY_SEPARATOR . 'public' .  $folderImage;
         $filepath.= DIRECTORY_SEPARATOR . $filename;
         $filesystem = new Filesystem();
+        
         if(!$filesystem->exists($filepath)) {
             throw new \Exception(sprintf('Error form MediaObjectImageAction filepath image %s', $filepath));
         }
@@ -71,8 +76,10 @@ class MediaObjectImageAction
         return $entity;
     }
 
-    public function hydrate($data, $entity, $locale)
+    public function hydrate($data, $entity, $locale = 'fr')
     {
+       
+        
         if (isset($data['name'])) {
             $entity->setName($data['name']);
         }
@@ -84,6 +91,30 @@ class MediaObjectImageAction
         }
         if (isset($data['filename'])) {
             $entity->setFilename($data['filename']);
+        }
+        
+        if(isset($data['category']) && !empty($data['category'])){
+            
+            $array = explode( '\\', get_class($entity));
+       
+            $data['category']['type'] = [ "name" => end($array) ];
+            $data['category'] = $this->categoryAction->create($data['category']);
+            if(null === $data['category']) {
+                throw new \Exception('Error form WebPageAction relation field category');
+            }
+            $entity->setCategory($data['category']);
+        }
+
+        if(isset($data['tags'])){
+            foreach ($data['tags'] as $key => $category) {
+                $array = explode( '\\', get_class($entity));
+                $category['type'] = [ "name" => end($array) ];
+                $category = $this->categoryAction->create($category);
+                if(null === $category) {
+                    throw new \Exception('Error form MediaImageAction relation field tags');
+                }
+                $entity->addTag($category);
+            }
         }
         
         if (null !== $entity->getFile()) {
@@ -129,7 +160,9 @@ class MediaObjectImageAction
 
         $name = null;
         if (empty($entity->getName())) {
-            $name = $this->slugger->slug($entity->getFilename())->lower()->toString();
+            $basename = pathinfo($entity->getFilename(), PATHINFO_BASENAME);
+            
+            $name = $this->slugger->slug($basename)->lower()->toString();
             $name = ucwords(str_replace('-', ' ', $name));
             $entity->setName($name);
         }

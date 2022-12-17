@@ -3,30 +3,41 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\ThingTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\Traits\CreativeWorkTrait;
+use App\Entity\Traits\IdentifiableTrait;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\IdentifiableTrait;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ * itemOperations={
+ *    "get",
+ *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
+ *  },
+ *  collectionOperations={
+ *    "get",
+ *    "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *  }
+ * )
  * @ORM\Entity(repositoryClass=ComponentTranslationRepository::class)
  * @ORM\Table(name="app_component_translation")
  */
 class ComponentTranslation extends AbstractTranslation implements ResourceInterface
 {
     use IdentifiableTrait;
+    use ThingTrait;
     use CreativeWorkTrait;
     use TimestampableEntity;
 
-
     /**
-     * @Gedmo\Slug(fields={"headline"}, prefix="")
+     * @ Gedmo\Slug(fields={"name"}, prefix="", updatable=false)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
@@ -44,6 +55,13 @@ class ComponentTranslation extends AbstractTranslation implements ResourceInterf
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    public function setSlug($slug)
+    {
+        if(empty($this->slug)) {
+            $this->slug = $slug;
+        }
     }
 
     public function getComponents(): ?string

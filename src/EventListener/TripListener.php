@@ -10,7 +10,8 @@ use App\WebContent\MetaData;
 use App\WebContent\SEO;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
+use Symfony\Component\String\Slugger\SluggerInterface;
+use App\WebContent\Trip as WebContentTrip;
 
 class TripListener
 {
@@ -23,6 +24,8 @@ class TripListener
     protected $tripDataAction;
 
     protected $metaDataService;
+    
+    protected $slugger;
 
     public function __construct(
         ContainerInterface $container
@@ -30,6 +33,8 @@ class TripListener
         , SyliusTranslator $syliusTranslator
         , TripDataAction $tripDataAction
         , MetaData $metaDataService
+        , SluggerInterface $slugger
+        , WebContentTrip $webContentTripService
     )
     {
         $this->container = $container;
@@ -37,6 +42,8 @@ class TripListener
         $this->syliusTranslator = $syliusTranslator;
         $this->tripDataAction = $tripDataAction;
         $this->metaDataService = $metaDataService;
+        $this->webContentTripService = $webContentTripService;
+        $this->slugger = $slugger;
 
     }
 
@@ -47,15 +54,23 @@ class TripListener
             return;
         }
 
-        // $translatedData = $this->translate($entity);
-        // if(!empty($translatedData)) {
-        //     $this->tripDataAction->hydrate(
-        //         $translatedData,
-        //         $entity->getTranslatable(),
-        //         $entity->getLocale()
-        //     );
-        // }
-
+        if ($entity->getLocale() !== $this->container->getParameter('locale')) {
+           
+            $translatedData = $this->translate($entity);
+            
+            if (!empty($translatedData)) {
+              
+                $this->tripDataAction->hydrate(
+                    $translatedData,
+                    $entity->getTranslatable(),
+                    $entity->getLocale()
+                );
+            }
+        }
+        // dump($entity);
+        // dump($entity->getLocale());
+        // dump($entity->getTranslatable());
+        // die;
         $entity = $this->enrich($entity);
     }
 
@@ -71,9 +86,18 @@ class TripListener
 
     private function enrich($entity)
     {
+        $this->createSlug($entity);
+        
+        if(empty($entity->getAlternativeHeadline())) {
+            $entity->setAlternativeHeadline($entity->getHeadline() . ' ' . $entity->getTranslatable()->getArrivalTime()->format('Y-m-d'));
+        }
+        $this->webContentTripService->moreData($entity);
+       
+       
         $this->webContentSEOService->defineMetaData($entity);
         $metaData = $this->metaDataService->getData($entity);
         $this->webContentSEOService->defineStructuredData($metaData, $entity);
+        
 
         return $entity;
     }
@@ -88,6 +112,22 @@ class TripListener
             null
         );
 
+        if(!empty($referenceData['components'])) {
+            $translatedComponents = $this->syliusTranslator->translateComponents($currentData, $referenceData, $entity->getLocale());
+            $entity->setComponents(json_encode($translatedComponents));
+        }
+
+ 
+
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
+    }
+
+    public function createSlug($entity)
+    {
+        $slug = $this->slugger->slug($entity->getHeadline() . ' ' . $entity->getTranslatable()->getArrivalTime()->format('Y-m-d'))->lower()->toString();
+        
+        $entity->setSlug($slug);
+
+        return $entity;
     }
 }

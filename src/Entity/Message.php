@@ -73,6 +73,7 @@ class Message implements ResourceInterface
      * @var Organization|null A sub property of participant. The participant who is at the sending end of the action.
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Person")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @ApiProperty(iri="http://schema.org/sender")
      */
     private $sender;
@@ -82,7 +83,7 @@ class Message implements ResourceInterface
      *
      * @ORM\Column(type="string", length=255)
      * 
-     * @Assert\NotBlank(message="Veuillez saisir un sujet")
+     * @ Assert\NotBlank(message="veuillez saisir un sujet")
      */
     private $subject;
 
@@ -92,7 +93,7 @@ class Message implements ResourceInterface
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/text")
      * 
-     * @Assert\NotBlank(message="Veuillez saisir un message")
+     * @Assert\NotBlank(message="veuillez saisir un message")
      */
     private $text;
 
@@ -100,6 +101,11 @@ class Message implements ResourceInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $origin;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $additionalText;
 
 
     public function __construct()
@@ -165,6 +171,18 @@ class Message implements ResourceInterface
     public function setOrigin(?string $origin): self
     {
         $this->origin = $origin;
+
+        return $this;
+    }
+
+    public function getAdditionalText(): ?string
+    {
+        return $this->additionalText;
+    }
+
+    public function setAdditionalText(string $additionalText): self
+    {
+        $this->additionalText = $additionalText;
 
         return $this;
     }

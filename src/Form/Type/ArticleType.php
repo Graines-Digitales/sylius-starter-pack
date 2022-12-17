@@ -8,19 +8,16 @@ use App\Entity\MediaObjectImage;
 use App\Entity\MediaObjectVideo;
 use App\Repository\CategoryRepository;
 use App\Form\Type\ArticleTranslationType;
-use App\Repository\MediaObjectRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
+
 
 class ArticleType extends AbstractResourceType
 {
@@ -55,19 +52,46 @@ class ArticleType extends AbstractResourceType
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image'
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
+            ])
+            ->add('alignPrimaryImage', ChoiceType::class, [
+                'choices' => [
+                    'top' => 'top',
+                    'center' => 'center',
+                    'bottom' => 'bottom'
+                ],
+                'required' => false,
+                'placeholder' => 'app.ui_element.field.choose',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('secondaryImage', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.choose'
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('video', EntityType::class, [
                 'required' => false,
                 'attr' => ['class' => 'select2-standard'],
                 'class' => MediaObjectVideo::class,
                 'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('category', EntityType::class, [
                 'required' => false,

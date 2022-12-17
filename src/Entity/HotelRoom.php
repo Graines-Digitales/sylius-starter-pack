@@ -40,7 +40,7 @@ class HotelRoom implements ResourceInterface, TranslatableInterface
     use TimestampableEntity;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -62,7 +62,7 @@ class HotelRoom implements ResourceInterface, TranslatableInterface
     private $events;
 
     /**
-     * @ORM\ManyToMany(targetEntity=AggregateOffer::class, inversedBy="rooms", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=AggregateOffer::class, inversedBy="rooms", cascade={"persist"})
      * @ORM\JoinTable(name="app_rooms_offers")
      */
     private $offers;

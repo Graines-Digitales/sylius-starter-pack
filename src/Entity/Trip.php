@@ -29,7 +29,17 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  *
  * @see https://schema.org/Trip
  * 
- * @ApiResource(iri="https://schema.org/Trip")
+ * @ApiResource(iri="https://schema.org/Trip",
+ * itemOperations={
+ *    "get",
+ *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
+ *  },
+ *  collectionOperations={
+ *    "get",
+ *    "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *  }
+ * )
  * @ORM\Table(name="app_trip")
  * @ORM\Entity(repositoryClass=TripRepository::class)
  */
@@ -99,6 +109,8 @@ class Trip  implements ResourceInterface, TranslatableInterface
      */
     private $tags;
 
+
+
     /**
      * @ORM\ManyToMany(targetEntity=AggregateOffer::class, inversedBy="trips", cascade={"persist"})
      * @ORM\JoinTable(name="app_trips_offers")
@@ -117,10 +129,25 @@ class Trip  implements ResourceInterface, TranslatableInterface
      */
     private $offers;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alignPrimaryImage;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=DiscountCode::class, inversedBy="trips")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $discountCode;
 
     public function __toString()
     {
-        return $this->getTranslation()->getHeadline();
+        return $this->getTranslation()->getAlternativeHeadline();
     }
 
     public function getHeadline(): ?string
@@ -234,6 +261,42 @@ class Trip  implements ResourceInterface, TranslatableInterface
     public function removeOffer(AggregateOffer $offer): self
     {
         $this->offers->removeElement($offer);
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getAlignPrimaryImage(): ?string
+    {
+        return $this->alignPrimaryImage;
+    }
+
+    public function setAlignPrimaryImage(?string $alignPrimaryImage): self
+    {
+        $this->alignPrimaryImage = $alignPrimaryImage;
+
+        return $this;
+    }
+
+    public function getDiscountCode(): ?DiscountCode
+    {
+        return $this->discountCode;
+    }
+
+    public function setDiscountCode(?DiscountCode $discountCode): self
+    {
+        $this->discountCode = $discountCode;
 
         return $this;
     }

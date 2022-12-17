@@ -33,7 +33,7 @@ class ServiceType extends AbstractType
             ->add('name')
             ->add('icon', EntityType::class, [
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_icon',
+                'placeholder' => 'app.ui_element.field.choose',
                 'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
                     return $repo->createQueryBuilderByEncodingSvg($configurationProject);
                 }

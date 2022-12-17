@@ -53,6 +53,9 @@ class LandingPageTranslationType extends AbstractResourceType
         $builder->remove('components');
         $builder->add('components', RichEditorType::class, [
                 'required' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
         ]);
     }
 

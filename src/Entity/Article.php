@@ -22,7 +22,17 @@ use Sylius\Component\Resource\Model\TranslatableInterface;
  * An article, such as a news article or piece of investigative report. Newspapers and magazines have articles of many different types and this is intended to cover them all.\\n\\nSee also \[blog post\](http://blog.schema.org/2014/09/schemaorg-support-for-bibliographic\_2.html).
  *
  * @see https://schema.org/Article
- * @ApiResource(iri="https://schema.org/Article")
+ * @ApiResource(iri="https://schema.org/Article",
+ * itemOperations={
+ *    "get",
+ *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
+ *  },
+ *  collectionOperations={
+ *    "get",
+ *    "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *  }
+ * )
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  * @ORM\Table(name="app_article")
  */
@@ -62,7 +72,7 @@ class Article implements ResourceInterface, TranslatableInterface
     private $lastReview;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -72,7 +82,7 @@ class Article implements ResourceInterface, TranslatableInterface
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles", cascade={"persist"})
      * @ORM\JoinTable(name="app_articles_categories")
      * 
      * @ApiSubresource(maxDepth=1)
@@ -93,7 +103,7 @@ class Article implements ResourceInterface, TranslatableInterface
     private $propertyValues;
 
     /**
-     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=MediaObjectVideo::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(
@@ -101,6 +111,11 @@ class Article implements ResourceInterface, TranslatableInterface
      * )
      */
     private $video;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alignPrimaryImage;
 
 
     public function __toString()
@@ -252,6 +267,18 @@ class Article implements ResourceInterface, TranslatableInterface
     public function setVideo(?MediaObjectVideo $video): self
     {
         $this->video = $video;
+
+        return $this;
+    }
+
+    public function getAlignPrimaryImage(): ?string
+    {
+        return $this->alignPrimaryImage;
+    }
+
+    public function setAlignPrimaryImage(?string $alignPrimaryImage): self
+    {
+        $this->alignPrimaryImage = $alignPrimaryImage;
 
         return $this;
     }

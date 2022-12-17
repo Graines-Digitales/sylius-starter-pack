@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Organization;
 use App\Entity\MediaObjectIcon;
 use App\Entity\MediaObjectImage;
+use Doctrine\ORM\EntityRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -45,7 +46,12 @@ class SocialLinkType extends AbstractResourceType
             ->add('primaryImage', EntityType::class, [
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.select_primary_image'
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('name', TextType::class, [
                 'required' => true,

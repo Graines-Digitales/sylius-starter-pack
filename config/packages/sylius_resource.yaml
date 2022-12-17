@@ -39,6 +39,7 @@ sylius_resource:
                 classes:
                     model: App\Entity\ComponentTranslation
                     form: App\Form\Type\ComponentTranslationType
+                    repository: App\Repository\ComponentTranslationRepository
                     
         app.cms_component:
             driver: doctrine/orm # You can use also different driver here
@@ -93,10 +94,12 @@ sylius_resource:
                 model: App\Entity\Article
                 form: App\Form\Type\ArticleType
                 repository: App\Repository\ArticleRepository 
+                controller: App\Controller\Admin\ArticleController
             translation:
                 classes:
                     model: App\Entity\ArticleTranslation 
-                    form: App\Form\Type\ArticleTranslationType     
+                    form: App\Form\Type\ArticleTranslationType
+
 
         app.category:
             driver: doctrine/orm # You can use also different driver here
@@ -161,8 +164,16 @@ sylius_resource:
             driver: doctrine/orm # You can use also different driver here
             classes:
                 model: App\Entity\Person
-                # form: App\Form\Type\MessageType
-                # repository: App\Repository\MessageRepository  
+                form: App\Form\Type\PersonType
+                repository: App\Repository\PersonRepository  
+
+        app.order_trip:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\OrderTrip
+                form: App\Form\Type\OrderTripType
+                repository: App\Repository\OrderTripRepository
+                controller: App\Controller\Admin\OrderTripController
 
         app.media_image:
             driver: doctrine/orm # You can use also different driver here
@@ -306,6 +317,7 @@ sylius_resource:
                 model: App\Entity\Trip
                 form: App\Form\Type\TripType
                 repository: App\Repository\TripRepository
+                controller: App\Controller\Admin\TripController
             translation:
                 classes:
                     model: App\Entity\TripTranslation 
@@ -361,4 +373,10 @@ sylius_resource:
                 model: App\Entity\Trip
                 form: App\Form\Type\TripType
                 repository: App\Repository\TripRepository
-            
+
+        app.discount_code:
+            driver: doctrine/orm # You can use also different driver here
+            classes:
+                model: App\Entity\DiscountCode
+                form: App\Form\Type\DiscountCodeType
+                repository: App\Repository\DiscountCodeRepository

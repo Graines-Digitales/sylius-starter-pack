@@ -23,7 +23,17 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
  *
  * @see https://schema.org/Trip
  * 
- * @ApiResource(iri="https://schema.org/Trip")
+ * @ApiResource(iri="https://schema.org/Trip",
+ * itemOperations={
+ *    "get",
+ *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
+ *  },
+ *  collectionOperations={
+ *    "get",
+ *    "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *  }
+ * )
  * @ORM\Table(name="app_trip_translation")
  * @ORM\Entity()
  */
@@ -41,10 +51,10 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
     private $components;
 
      /**
-     * @Gedmo\Slug(fields={"headline"}, updatable=false)
-     * @ORM\Column(type="string", length=128, unique=true)
+     * @ Gedmo\Slug(fields={"headline"}, updatable=false)
+     * @ORM\Column(type="string", length=128)
      *
-     * @ApiProperty(identifier=true)
+     * @ piProperty(identifier=true)
      */
     private $slug;
 
@@ -52,6 +62,11 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
      * @ORM\Column(type="json", nullable=true)
      */
     private $structuredData = [];
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $activities;
 
     public function getComponents(): ?string
     {
@@ -73,6 +88,11 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
         return $this->slug;
     }
 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
     public function getStructuredData(): ?array
     {
         return $this->structuredData;
@@ -81,6 +101,18 @@ class TripTranslation extends AbstractTranslation implements ResourceInterface
     public function setStructuredData(?array $structuredData): self
     {
         $this->structuredData = $structuredData;
+
+        return $this;
+    }
+
+    public function getActivities(): ?string
+    {
+        return $this->activities;
+    }
+
+    public function setActivities(?string $activities): self
+    {
+        $this->activities = $activities;
 
         return $this;
     }

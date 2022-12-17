@@ -35,12 +35,12 @@ class HotelTypicalDay implements ResourceInterface, TranslatableInterface
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="HotelTypicalDayElement", mappedBy="hotelTypicalDay", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="HotelTypicalDayElement", mappedBy="hotelTypicalDay", cascade={"persist"})
      */
     private $elements;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(

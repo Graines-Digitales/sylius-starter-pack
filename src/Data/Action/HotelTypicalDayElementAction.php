@@ -62,8 +62,8 @@ class HotelTypicalDayElementAction
 
     public function hydrate($data, $entity, $locale)
     {
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
+        // $entity->getTranslation()->setLocale($locale);
+        // $entity->getTranslation()->setTranslatable($entity);
 
         if(isset($data['category']) && !empty($data['category'])){
             $array = explode( '\\', get_class($entity));

@@ -7,6 +7,7 @@ namespace App\Form\Type\UiElement;
 use App\Entity\MediaObjectIcon;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -17,15 +18,19 @@ use App\Form\DataTransformer\MediaObjectIconTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
 class ComponentCallToActionType extends AbstractType
 {
     private $slugger;
 
-    public function __construct()
+    private $manager;
+
+    public function __construct(EntityManagerInterface $manager)
     {
         $this->slugger = new AsciiSlugger();
+        $this->manager = $manager;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -38,16 +43,25 @@ class ComponentCallToActionType extends AbstractType
                 'mapped' => false,
                 'help' => 'This field will be automatically edited',
                 'required' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('slug', HiddenType::class, [
                 'disabled' => false,
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('designation', TextType::class, [
                 'required' => true,
                 'constraints' => [
-                    new NotBlank(['groups' => ['component_contact_form_validation']])
+                    new NotBlank(['groups' => ['component_call_to_action_validation']])
                 ],
                 'label' => 'app.ui_element.field.designation',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
             ->add('title', TextType::class, [
                 'required' => false,
@@ -66,6 +80,24 @@ class ComponentCallToActionType extends AbstractType
                 'attr' => ['class' => 'select2-icon'],
                 'class' => MediaObjectIcon::class,
                 'placeholder' => 'app.ui_element.field.choose',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
+            ])
+            ->add('links', CollectionType::class, [
+                'entry_type' => ComponentLinkType::class,
+                'button_add_label' => 'app.ui_element.form.add_link',
+                'attr' => [
+                    'data-type' => 'sub_accordion'
+                ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'delete_empty' => true,
+                'label' => 'app.ui_element.field.link_collection.default',
+                'attr_translation_parameters' => [
+                    'translatable' => false
+                ]
             ])
         ;
 
@@ -89,7 +121,7 @@ class ComponentCallToActionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'validation_groups' => ['component_contact_form_validation'],
+            'validation_groups' => ['component_call_to_action_validation'],
         ]);
     }
 }

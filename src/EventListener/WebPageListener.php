@@ -55,18 +55,23 @@ class WebPageListener
             return;
         }
 
-        $translatedData = $this->translate($entity);
-        if(!empty($translatedData)) {
-            $this->webPageDataAction->hydrate(
-                $translatedData,
-                $entity->getTranslatable(),
-                $entity->getLocale()
-            );
+        if($entity->getLocale() !== $this->container->getParameter('locale')) {
+            $translatedData = $this->translate($entity);
+            if(!empty($translatedData)) {
+                $this->webPageDataAction->hydrate(
+                    $translatedData,
+                    $entity->getTranslatable(),
+                    $entity->getLocale()
+                );
+            }
         }
+        
+        
         $entity = $this->enrich($entity);
         if(false === $entity->getTranslatable()->getIsLocked()) {
             $entity = $this->webContentWebPageService->updateSlug($entity);  
         }
+        
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -98,7 +103,13 @@ class WebPageListener
             $entity->getTranslatable()->getTranslation($this->container->getParameter('locale')), 
             null
         );
-
+        if(!empty($referenceData['components'])) {
+            
+            $translatedComponents = $this->syliusTranslator->translateComponents($currentData, $referenceData, $entity->getLocale());
+            // dump($translatedComponents);die;
+            $entity->setComponents(json_encode($translatedComponents));
+        }
+        
         return $this->syliusTranslator->translateEntity($currentData, $referenceData, $form, $entity->getLocale());
     }
 

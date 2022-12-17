@@ -2,9 +2,10 @@
 
 namespace App\Form\Type;
 
-use App\Configuration\Project;
 use App\Entity\Category;
+use App\Configuration\Project;
 use App\Entity\MediaObjectImage;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\MediaObjectRepository;
 use App\Form\Type\CategoryTranslationType;
@@ -57,7 +58,7 @@ class CategoryType extends AbstractResourceType
             ])
             // ->add('icon', EntityType::class, [
             //     'class' => MediaObjectImage::class,
-            //     'placeholder' => 'app.ui_element.field.select_icon',
+            //     'placeholder' => 'app.ui_element.field.choose',
             //     'query_builder' => function(MediaObjectRepository $repo) use ($configurationProject){
             //         return $repo->createQueryBuilderByEncodingSvg($configurationProject);
             //     }
@@ -66,7 +67,12 @@ class CategoryType extends AbstractResourceType
                 'required' => false,
                 'attr' => ['class' => 'select2-image'],
                 'class' => MediaObjectImage::class,
-                'placeholder' => 'app.ui_element.field.choose'
+                'placeholder' => 'app.ui_element.field.choose',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.updatedAt', 'DESC')
+                    ;
+                }
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'entry_type' => CategoryTranslationType::class,

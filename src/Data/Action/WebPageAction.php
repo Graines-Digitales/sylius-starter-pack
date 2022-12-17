@@ -64,7 +64,7 @@ class WebPageAction
         $entity = $this->hydrate($data, $entity, $locale);
         if($persist) {
             $this->entityManager->persist($entity);
-            $this->entityManager->flush();
+            $this->entityManager->flush();  
         }
 
         return $entity;
@@ -72,8 +72,8 @@ class WebPageAction
 
     public function hydrate($data, $entity, $locale)
     {   
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
+        // $entity->getTranslation()->setLocale($locale);
+        // $entity->getTranslation()->setTranslatable($entity);
 
         if (isset($data['isLocked'])) {
             $entity->setIsLocked($data['isLocked']);
@@ -139,9 +139,9 @@ class WebPageAction
         if(isset($data['textResume'])){
             $entity->getTranslation($locale)->setTextResume($data['textResume']);
         }
-        
-        if (isset($data['components']) && !empty($data['components'])) {
-           
+            
+        if (isset($data['components']) && !empty($data['components']) && null !== $data['components']) {
+            dump($data);die;
             $components = $this->componentAction->createComponents($data['components']);
             // dump($components);die;   
             $entity->getTranslation($locale)->setComponents(

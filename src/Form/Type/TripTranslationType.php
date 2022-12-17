@@ -27,16 +27,24 @@ class TripTranslationType extends AbstractType
                 ]
             ])
             ->add('alternativeHeadline', TextType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('pushForward', TextType::class, [
+                'required' => false
+            ])
+            ->add('description', CKEditorType::class, [
+                'required' => false
+            ])
+            ->add('activities', TextType::class, [
                 'required' => false
             ])
             ->add('text', CKEditorType::class, [
                 'required' => false
             ])
             ->add('textResume', TextAreaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
@@ -45,16 +53,21 @@ class TripTranslationType extends AbstractType
                 ]
             ])
             ->add('metaTitle', TextType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('metaDescription', TextAreaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
         ;
         
         $builder->remove('components');
         $builder->add('components', RichEditorType::class, [
             'required' => false,
+            'attr_translation_parameters' => [
+                'translatable' => false
+            ]
         ]);
     }
 

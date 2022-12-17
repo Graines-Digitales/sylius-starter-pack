@@ -37,7 +37,7 @@ class MessageController extends AbstractController
         $this->mailer = $mailer;
     }
 
-        /**
+    /**
      * @Route("/api/v2/message/product/create",
      * name="message_product_create",
      * methods = { "POST" },
@@ -57,7 +57,11 @@ class MessageController extends AbstractController
         if (!isset($data['email']) || empty($data['email'])) {
 
             return new JsonResponse(
-                [ 'message' => 'email not found' ]
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'veuillez saisir un e-mail',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
@@ -65,7 +69,11 @@ class MessageController extends AbstractController
         if (!isset($data['slug-product']) || empty($data['slug-product'])) {
 
             return new JsonResponse(
-                [ 'message' => 'slug product not found' ]
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'slug product not found',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
@@ -73,21 +81,36 @@ class MessageController extends AbstractController
         /**
          * Save form
         **/
+        
         $data = $this->form->saveFormContact($data);
+        if (isset($data['errors'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => $data['errors'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
         $data = $this->form->dataFieldTranslation($data);
      
         $configurationProject = $this->getParameter('configuration_project');
         $data['headline'] = $configurationProject['forms']['contact_product']['headline'];
         $data['headline'].= ' - ' . $data['slug-product'];
+        
+        $developerEmails = $this->organization->getDeveloperEmails();
+        $organizationEmail = $this->organization->getEmail();
+        // dump(...$this->organization->getEmails());die;
 
-        // dump($data);die;
         /**
          * Send email
          **/
         $email = (new Email())
             ->from($data['email'])
-            ->to(...$this->organization->getEmails(true))
-            // ->to('johan.remy@graines-digitales.online')
+            ->to($organizationEmail)
+            ->bcc(...$developerEmails)
             ->subject($data['headline'])
             ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
             ->html($this->renderView(
@@ -96,20 +119,44 @@ class MessageController extends AbstractController
                 )
             )
         ;
-    
+        
         try {
+            $this->mailer->send($email);
+
+
+            $data['headline'] = $configurationProject['forms']['contact_default']['headline_confirm'];
+            $email = (new Email())
+                ->from($this->organization->getEmail())
+                ->to($data['email'])
+                ->subject($data['headline'])
+                ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
+                ->html($this->renderView(
+                        '@App/web/components/email_confirm.html.twig',
+                        ['data' => $data]
+                    )
+                )
+            ;
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
             
+            $response['message'] = $e->getMessage();
             return new JsonResponse(
-                [ 'message' => $e->getMessage() ]
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => $response['message'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
                 , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
             );
         }
         
     
         return new JsonResponse(
-            [ 'message' => 'success' ]
+            [
+                'title' => 'félicitations',
+                'message' => 'votre mail à bien été envoyé, nous vous répondrons dans les meilleurs délais',
+                'statutCode' => JsonResponse::HTTP_OK
+            ]
             , JsonResponse::HTTP_OK
         );
     }
@@ -131,10 +178,14 @@ class MessageController extends AbstractController
          **/
         // $data = $request->request->all();
         $data = json_decode($request->getContent(), true);
+        
         if (!isset($data['email']) || empty($data['email'])) {
 
             return new JsonResponse(
-                [ 'message' => 'email not found' ]
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'veuillez saisir un e-mail',
+                ]
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
@@ -144,19 +195,33 @@ class MessageController extends AbstractController
          * Save form
         **/
         $data = $this->form->saveFormContact($data);
+        if (isset($data['errors'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => $data['errors'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
         $data = $this->form->dataFieldTranslation($data);
         
         $configurationProject = $this->getParameter('configuration_project');
         $data['headline'] = $configurationProject['forms']['contact_default']['headline'];
-
+  
+        // $this->container->getParameter('developers');  
+        $developerEmails = $this->organization->getDeveloperEmails();
+        $organizationEmail = $this->organization->getEmail();
 
         /**
          * Send email
          **/
         $email = (new Email())
             ->from($data['email'])
-            ->to(...$this->organization->getEmails(true))
-            // ->to('johan.remy@graines-digitales.online')
+            ->to($organizationEmail)
+            ->bcc(...$developerEmails)
             ->subject($data['headline'])
             ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
             ->html($this->renderView(
@@ -168,17 +233,41 @@ class MessageController extends AbstractController
     
         try {
             $this->mailer->send($email);
+
+            $data['headline'] = $configurationProject['forms']['contact_default']['headline_confirm'];
+            $email = (new Email())
+                ->from($this->organization->getEmail())
+                ->to($data['email'])
+                ->subject($data['headline'])
+                ->embedFromPath($this->getParameter('kernel.project_dir') . '/public/build/app/images/admin-logo.png', 'logo')
+                ->html($this->renderView(
+                        '@App/web/components/email_confirm.html.twig',
+                        ['data' => $data]
+                    )
+                )
+            ;
+            $this->mailer->send($email);
+
         } catch (TransportExceptionInterface $e) {
             
+            $response['message'] = $e->getMessage();
             return new JsonResponse(
-                [ 'message' => $e->getMessage() ]
-                , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => $response['message'],
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
             );
         }
         
     
         return new JsonResponse(
-            [ 'message' => 'success' ]
+            [
+                'title' => 'félicitations',
+                'message' => 'votre mail à bien été envoyé, nous vous répondrons dans les meilleurs délais',
+                'statutCode' => JsonResponse::HTTP_OK
+            ]
             , JsonResponse::HTTP_OK
         );
     }
@@ -199,11 +288,26 @@ class MessageController extends AbstractController
         **/
         // $data = $request->request->all();
         $data = json_decode($request->getContent(), true);
+
+        if (!isset($data['email']) || empty($data['email'])) {
+
+            return new JsonResponse(
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'veuillez saisir un e-mail',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
+        
         // dump($data);die;
         if(!$this->getParameter('sendinblue_api_key')) {
 
             return new JsonResponse(
-                [ 'message' => 'api sendinblue not configured' ]
+                [ 
+                    'message' => 'api sendinblue not configured' 
+                ]
                 , JsonResponse::HTTP_BAD_REQUEST
             );
         }
@@ -232,21 +336,54 @@ class MessageController extends AbstractController
             if(null === $response) {
 
                 return new JsonResponse(
-                    [ 'message' => 'email already exist' ]
+                    [ 
+                        'title' => 'une erreur est survenue',
+                        'message' => 'l\'e-mail existe déjà',
+                        'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                    ]
                     , JsonResponse::HTTP_BAD_REQUEST
                 );
             }
         } catch (Exception $e) {
             
+            $response['message'] = $e->getMessage();
+            // dump($response);die;
             return new JsonResponse(
-                [ 'message' => $e->getMessage() ]
-                , JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+                [ 
+                    'title' => 'une erreur est survenue',
+                    'message' => 'votre email est invalide',
+                    'statutCode' => JsonResponse::HTTP_BAD_REQUEST
+                ]
+                , JsonResponse::HTTP_BAD_REQUEST
             );
         }
 
         return new JsonResponse(
-            [ 'message' => 'success' ]
+            [
+                'title' => 'félicitations',
+                'message' => 'votre email a bien été enregistré',
+                'statutCode' => JsonResponse::HTTP_OK
+            ]
             , JsonResponse::HTTP_OK
         );
+    }
+
+    /**
+     * @Route("/template/email", name="web_template_email")
+    */
+    public function email()
+    {
+        $data = [
+            "prénom" => "remy",
+            "nom" => "johan",
+            "objet" => "mon sujet",
+            "text" => "mon message",
+            "provenance" => "form-product",
+            "slug-product" => "slug-product",
+            "email" => "johan13.remy+1@gmail.com",
+            "headline" => "New message product - slug-product",
+        ];
+
+        return $this->render('@App/web/components/email_default.html.twig', [ 'data' => $data ]);
     }
 }

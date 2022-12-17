@@ -92,6 +92,11 @@ Persons: Personnes
 AmenityFeatures: Commodités
 Hotel Activities: Hotel activités
 Hotel Services: Hotel services
+Contact point: GPS
+Orders: Commandes
+If empty this field will be automatically edited: Si vide ce champ sera automatiquement édité
+Align primary image: Alignemement de l'image principale
+Discount codes: Codes promo
 
 sylius:
     ui:
@@ -99,6 +104,30 @@ sylius:
 
 app:
     ui:
+        identifier: Identifiant
+        additionalText: Texte additionnel
+        origin: Provenance
+        discount_code: Code promo
+        discount_codes: Codes promo
+        code: Code
+        type: Type
+        expirationDate: Date d'expiration
+        value: Valeur
+        confirmationNumber: Numéro de confirmation
+        orderDate: Date de commande
+        orderNumber: Numéro de la transaction
+        orderStatus: Statut de la commande
+        acceptedOffer: Montant total
+        discount: Remise
+        paymentSplit: Paiement en 2x
+        discountCode: Code promo
+        orderQuantity: Quantité
+        orderItem: Produit
+        notes: Notes
+        orders: Commandes
+        order_trips: Commandes
+        order: Commande
+        order_trip: Commande
         updatedAt: Mis à jour à
         createdAt: Crée à
         landing_page: Landing Page
@@ -116,6 +145,7 @@ app:
         messages: Messages
         media: Média
         medias: Médias
+        people: Personnes
         person: Personne
         persons: Personnes
         new_web_page: Nouvelle page
@@ -124,6 +154,7 @@ app:
         new_cms_menu: Nouveau menu
         edit_cms_menu: Édition du menu
         media_icons: Icônes
+        new_order: Nouvelle commande
         new_media_icon: Nouvel icon
         edit_media_icon: Édition de l'icône
         media_icon: Icône
@@ -133,7 +164,7 @@ app:
             page_translation: Contenu traduisible
             page_info: Informations de la page
             page_content: Contenu
-            page_meta_data: Méta données
+            page_meta_data: Méta données (SEO)
         cms_components: Composants CMS
         cms_component: Composant CMS
         new_cms_component: Nouveau composant CMS
@@ -224,6 +255,9 @@ app:
         arrivalTime: Date d'arrivée
         
     ui_element:
+        monsieurbiz.youtube:
+            title: 'Lame Youtube'
+
         field:
             key: Clé
             value: Valeur
@@ -232,7 +266,7 @@ app:
             name: Nom
             slug: Slug
             description: Description
-            subtitle: Sous-titre
+            subtitle: Titre alternatif
             link: 'Lien'
             content: Contenu
             image: Image
@@ -286,31 +320,85 @@ app:
             item_list: Liste des éléments
             item_params: Liste des paramètres
             add_item: Ajouter un élément
+            add_link: Ajouter un lien
             add_params: Ajouter un paramètre
         component_iframe:
             title: 'Composant Iframe'
-            short_description: 'Pour insérer une Iframe'
-            description: 'Une section avec un lien Iframe (Google, Facebook, Youtube...)'
+            short_description: 'Une section pour afficher une Iframe'
+            description: 'Une section pour afficher une Iframe'
+            link: 'Link'
+        component_translate:
+            title: 'Composant Translate'
+            short_description: 'Un composant pour gérer les mots isolés à traduire'
+            description: 'Un composant pour gérer les mots isolés à traduire'
             link: 'Link'
         component_card:
             title: 'Composant Carte'
-            short_description: 'Carte avec image et textes'
-            description: 'Une section avec titre texte et une collection de carte'
+            short_description: 'Une section pour afficher de multiples éléments'
+            description: 'Une section pour afficher de multiples éléments'
+        component_card_image:
+            title: 'Composant Carte Image'
+            short_description: 'Une section pour afficher un titre, icon, paragraphe + une image de coté'
+            description: 'Une section pour afficher un titre, icon, paragraphe + une image de coté'
+        component_card_paragraph:
+            title: 'Composant Carte Paragraphe'
+            short_description: 'Une section pour afficher un titre et un paragraphe'
+            description: 'Une section pour afficher un titre et un paragraphe'
+        component_headband:
+            title: 'Composant Carte Bandeau'
+            short_description: 'Une section pour afficher une image avec titre et un paragraphe par dessus'
+            description: 'Une section pour afficher une image avec titre et un paragraphe par dessus'
+        component_card_triptych:
+            title: 'Composant Carte Triptyque'
+            short_description: 'Une section pour afficher un titre, icon, paragraphe + 3 images de coté'
+            description: 'Une section pour afficher un titre, icon, paragraphe + 3 images de coté'
+        component_images:
+            title: 'Composant Galerie d Images'
+            short_description: 'Une section pour afficher une liste d images'
+            description: 'Une section pour afficher une liste d images'
+        component_image:
+            title: 'Composant Image'
+            short_description: 'Une section pour afficher une image'
+            description: 'Une section pour afficher une image'
+        component_icon:
+            title: 'Composant Icône'
+            short_description: 'Une section pour afficher un icône'
+            description: 'Une section pour afficher un icône'
+        component_youtube:
+            title: 'Composant Youtube'
+            short_description: 'Une section pour afficher une vidéo youtube'
+            description: 'Une section pour afficher une vidéo youtube'
+        component_blockquote:
+            title: 'Composant Citation'
+            short_description: 'Une section pour afficher une citation'
+            description: 'Une section pour afficher une citation'
+        component_text:
+            title: 'Composant Texte'
+            short_description: 'Une section pour afficher un texte'
+            description: 'Une section pour afficher un texte'
+        component_title:
+            title: 'Composant Titre'
+            short_description: 'Une section pour afficher un titre'        
+            description: 'Une section pour afficher un titre'        
         component_cards:
-            title: 'Composant Cartes Liste'
-            short_description: 'Liste de cartes avec image et textes'
-            description: 'Une section avec titre texte et une collection de cartes'
+            title: 'Composant Liste'
+            short_description: 'Liste de cartes avec icons, images, textes ...etc'
+            description: 'Une section avec titre texte et une collection d icons, images, textes ...etc'
         component_documents:
-            title: 'Composant Documents'
+            title: 'Composant Document'
+            short_description: 'Une section pour télécharger des documents'
             description: 'Une section pour télécharger des documents'
         component_call_to_action:
             title: 'Composant Call To Action'
-            description: 'Une section avec titre, texte, bouton et Call to Action'
+            short_description: 'Une section pour afficher un titre, un texte et un bouton'
+            description: 'Une section pour afficher un titre, un texte et un bouton'
         component_contact:
             title: 'Composant Contact'
-            description: 'Carte coordonnées'
+            short_description: 'Une section pour afficher des coordonnées de contact'
+            description: 'Une section pour afficher des coordonnées de contact'
         component_search_action:
             title: 'Composant Search Action'
+            short_description: 'Composant pour créer une collection sur différent type de données'
             description: 'Composant pour créer une collection sur différent type de données'
         component_contact_form:
             title: 'Composant Contact Form'

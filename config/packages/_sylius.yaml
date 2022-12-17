@@ -247,6 +247,13 @@ sylius_api:
 
 #APP
 sylius_grid:
+    templates:
+            action:
+                # upload_images: "@App/admin/Grid/Action/button_images.html.twig"
+                duplicate: "@App/admin/Grid/Action/button_duplicate.html.twig"
+                validate: "@App/admin/Grid/Action/button_validate.html.twig"
+
+
     grids:        
         app_admin_web_page:
             driver:
@@ -301,7 +308,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [ category.translations.name ]
+                        fields: [ category ]
                     form_options:
                         class: "%app.model.category.class%"  
 
@@ -526,7 +533,10 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\Article
-
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
             fields:
                 is_enabled:
                     type: twig
@@ -568,7 +578,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [ category.translations.name ]
+                        fields: [ category ]
                     form_options:
                         class: "%app.model.category.class%"  
 
@@ -602,7 +612,15 @@ sylius_grid:
                     update:
                         type: update
                     delete:
-                        type: delete    
+                        type: delete
+                    duplicate:
+                        type: duplicate
+                        label: Dupliquer
+                        options:
+                            link:
+                                route: app_admin_article_duplicate
+                                parameters:
+                                    id: resource.id
 
         app_admin_category:
             driver:
@@ -648,7 +666,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [ category.translations.name ]
+                        fields: [ category ]
                     form_options:
                         class: "%app.model.category.class%"  
 
@@ -661,6 +679,13 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete         
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_category_product_type:
             driver:
@@ -746,7 +771,7 @@ sylius_grid:
                 dateSent:
                     type: datetime
                     label: sylius.ui.date
-                sender.email:
+                sender:
                     type: string
                     label: app.ui.sender
                 subject:
@@ -769,6 +794,13 @@ sylius_grid:
                     #     type: update
                     delete:
                         type: delete    
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_message_product:
             driver:
@@ -783,7 +815,7 @@ sylius_grid:
                 dateSent:
                     type: datetime
                     label: sylius.ui.date
-                sender.email:
+                sender:
                     type: string
                     label: app.ui.sender
                 subject:
@@ -811,6 +843,13 @@ sylius_grid:
             #             type: update
                     delete:
                         type: delete  
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_message_quote:
             driver:
@@ -940,20 +979,34 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\Person
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
             fields:
-                name:
+                createdAt:
+                    type: datetime
+                    label: app.ui.createdAt
+                    sortable: createdAt
+                
+                firstname:
                     type: string
-                    label: sylius.ui.name
-                    sortable: translation.name
-                description:
+                    label: sylius.ui.firstname
+                    sortable: translation.firstname
+                
+                email:
                     type: string
-                    label: sylius.ui.description
-                    sortable: translation.description
-                is_enabled:
-                    type: twig
-                    label: app.ui_element.field.enabled
-                    options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                    label: sylius.ui.email
+                    sortable: translation.email
+                # description:
+                #     type: string
+                #     label: sylius.ui.description
+                #     sortable: translation.description
+                # is_enabled:
+                #     type: twig
+                #     label: app.ui_element.field.enabled
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/enabled.html.twig"
             actions:
                 main:
                     create:
@@ -963,6 +1016,84 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete 
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
+
+        app_admin_order_trip:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\OrderTrip
+                    repository:
+                        method: findSortByDate
+                        arguments:
+                            parameters: '%configuration_project%'
+            fields:
+                # id:
+                #     type: string
+                createdAt:
+                    type: datetime
+                    label: app.ui.createdAt
+                    sortable: createdAt
+
+                # customer:
+                #     type: string
+                #     label: app.ui.person
+  
+                orderItem:
+                    type: string
+                    label: app.ui.orderItem
+                    
+                orderStatus:
+                    type: twig
+                    label: app.ui.orderStatus
+                    options:
+                        template:  "@App/admin/Grid/Field/rawStatusLabel.html.twig"
+
+                acceptedOffer:
+                    type: twig
+                    label: app.ui.acceptedOffer
+                    options:
+                        template:  "@App/admin/Grid/Field/amount.html.twig"
+                # discount:
+                #     type: string
+                #     label: app.ui.discount
+                
+                # paymentSplit:
+                #     type: twig
+                #     label: app.ui.paymentSplit
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/yesNo.html.twig"
+            actions:
+                # main:
+                #     create:
+                #         type: create
+                item:
+                    show:
+                        type: show
+                        label: sylius.ui.show
+                    delete:
+                        type: delete 
+                    validate:
+                        type: validate
+                        label: Valider
+                        options:
+                            link:
+                                route: app_admin_order_trip_validate
+                                parameters:
+                                    id: resource.id
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         # app_admin_media_object:
         #     driver:
@@ -1054,7 +1185,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [category.translations.name]
+                        fields: [category]
                     form_options:
                         class: "%app.model.category.class%"
 
@@ -1070,14 +1201,31 @@ sylius_grid:
                     default_value: ~
 
             actions:
+                
+                    
                 main:
                     create:
                         type: create
+                    # upload_images:
+                    #     type: upload_images
+                    #     label: upload_images
+                    #     options:
+                    #         link:
+                    #             route: app_admin_media_image_index
+                    #             parameters:
+                    #                 format: csv
                 item:
                     update:
                         type: update
                     delete:
                         type: delete
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_media_video:
             driver:
@@ -1093,6 +1241,10 @@ sylius_grid:
                 url:
                     type: string
                     label: app.ui_element.field.url
+
+                name:
+                    type: string
+                    label: sylius.ui.name
 
                 category:
                     type: twig # Type of filter
@@ -1117,7 +1269,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [category.translations.name]
+                        fields: [category]
                     form_options:
                         class: "%app.model.category.class%"
 
@@ -1141,6 +1293,13 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_media_icon:
             driver:
@@ -1187,7 +1346,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [category.translations.name]
+                        fields: [category]
                     form_options:
                         class: "%app.model.category.class%"
 
@@ -1211,6 +1370,13 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         app_admin_media_document:
             driver:
@@ -1259,7 +1425,7 @@ sylius_grid:
                     type: entity
                     label: false
                     options:
-                        fields: [category.translations.name]
+                        fields: [category]
                     form_options:
                         class: "%app.model.category.class%"
 
@@ -1283,6 +1449,13 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }
 
         # app_admin_organizations:
         #     driver:
@@ -1644,8 +1817,15 @@ sylius_grid:
                 name: doctrine/orm
                 options:
                     class: App\Entity\Trip
-
+                    repository:
+                        method: findSortById
+                        arguments:
+                            parameters: '%configuration_project%'
+            # sorting:
+            #     id: desc
             fields:
+                id:
+                    type: string
                 is_enabled:
                     type: twig
                     label: sylius.ui.is_enabled
@@ -1662,7 +1842,7 @@ sylius_grid:
                     options:
                         template: "@App/admin/Grid/Field/thumbnail.html.twig"
 
-                translation.headline:
+                translation.alternativeHeadline:
                     type: string
                     label: app.ui.headline
                     sortable: translation.name
@@ -1671,13 +1851,20 @@ sylius_grid:
                 #     type: string
                 #     label: sylius.ui.slug
 
-                departureTime:
-                    type: datetime
-                    label: app.ui.departureTime
+                # departureTime:
+                #     type: datetime
+                #     label: app.ui.departureTime
 
                 arrivalTime:
                     type: datetime
                     label: app.ui.arrivalTime
+                    sortable: arrivalTime
+                # offers:
+                #     type: twig
+                #     label: app.ui_element.field.offers
+                #     options:
+                #         template: "@SyliusUi/Grid/Field/rawLabel.html.twig"
+         
 
             actions:
                 main:
@@ -1688,6 +1875,14 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                    duplicate:
+                        type: duplicate
+                        label: Dupliquer
+                        options:
+                            link:
+                                route: app_admin_travel_duplicate
+                                parameters:
+                                    id: resource.id
 
         app_admin_hotel_room:
             driver:
@@ -1937,3 +2132,46 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+
+        app_admin_discount_code:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\DiscountCode
+
+            fields:
+               
+                code:
+                    type: string
+                    label: app.ui.code
+                
+                type:
+                    type: twig
+                    label: app.ui.type
+                    options:
+                        template:  "@App/admin/Grid/Field/rawLabel.html.twig"
+                        
+                value:
+                    type: string
+                    label: app.ui.value
+
+                expirationDate:
+                    type: datetime
+                    label: app.ui.expirationDate
+
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete
+                        label: sylius.ui.delete
+                        enabled: true
+                        position: 100
+                        options: { }                        

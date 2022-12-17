@@ -82,3 +82,64 @@ img.ui.tiny.image {
 .ui.role-dev .content .button.js-uie-add {
 	display: block;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+	display: block;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+	max-width: 100px;
+	padding-left:0;
+	background: $color-primary;
+	padding: 0;
+	button span {
+		color:#000;
+	}
+
+	b.img-text {
+		display:block;
+		padding: 2px;
+		font-size: 0.75rem;
+		margin: 0 !important;
+	}
+
+	.select2-selection__choice__display {
+		padding: 0;
+		div {
+			display:block !important;
+			flex: none !important;
+		}
+	}
+
+	white-space: normal;
+}
+
+#component_images_images + .select2-container {
+	max-height: 200px;
+	overflow-y: scroll;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+.accordion_alt > div[data-locale="fr"] {
+	> .title {
+		color: #0369a1 !important;
+		text-transform: uppercase;
+	}
+	border: 2px solid #0369a1;
+	border-radius: 0.28571429rem;
+}
+
+.accordion_alt > div[data-locale="en"] {
+	> .title {
+		color: #b91c1c !important;
+		text-transform: uppercase;
+	}
+	border: 2px solid #b91c1c;
+	border-radius: 0.28571429rem;
+}
+
+// #b91c1c

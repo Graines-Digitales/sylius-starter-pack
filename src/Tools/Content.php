@@ -8,7 +8,7 @@ class Content
     {
         $string = strip_tags($string);
         if (strlen($string) <= $limit) {
-            return $string;
+            return preg_replace( "/\r|\n/", "", $string );
         }
 
         if (false !== ($max = strpos($string, $break, $limit))) {
@@ -17,6 +17,6 @@ class Content
             }
         }
 
-        return $string;
+        return preg_replace( "/\r|\n/", "", $string );
     }
 }

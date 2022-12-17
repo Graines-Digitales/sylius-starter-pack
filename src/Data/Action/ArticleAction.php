@@ -66,8 +66,8 @@ class ArticleAction
 
     public function hydrate($data, $entity, $locale)
     {
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
+        // $entity->getTranslation()->setLocale($locale);
+        // $entity->getTranslation()->setTranslatable($entity);
 
         if(isset($data['headline'])){
             $entity->getTranslation($locale)->setHeadline($data['headline']);
@@ -125,7 +125,7 @@ class ArticleAction
             $entity->setIsLocked($data['isLocked']);
         }
 
-        if (isset($data['components']) && !empty($data['components'])) {
+        if (isset($data['components']) && !empty($data['components']) && null !== $data['components']) {
             $components = $this->componentAction->createComponents($data['components']);
             $entity->getTranslation($locale)->setComponents(
                 json_encode($components, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)

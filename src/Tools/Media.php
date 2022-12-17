@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\MediaObjectIcon;
 use App\WebContent\SEO;
 use App\Entity\MediaObjectImage;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Filesystem\Filesystem;
@@ -43,6 +44,8 @@ class Media
      * @var [FilterService]
      */
     private $imagine;
+    
+    private $cacheManager;
 
     public function __construct(
         Filesystem $filesystem
@@ -50,6 +53,7 @@ class Media
         , SluggerInterface $slugger
         , SEO $webContentSEOService
         , FilterService $imagine
+        , CacheManager $cacheManager
     ) {
 
         $this->filesystem = $filesystem;
@@ -57,6 +61,7 @@ class Media
         $this->webContentSEOService = $webContentSEOService;
         $this->slugger = $slugger;
         $this->imagine = $imagine;
+        $this->cacheManager = $cacheManager;
     }
 
 
@@ -133,18 +138,24 @@ class Media
 
         return $url;
     }
+    public function removeIcon($media)
+    {
+        $folderUploadedImages = $this->container->getParameter('path_directory_icon');
+        $filename = $media->getOriginalFilename();
+        $uploadedFilePath = $folderUploadedImages . DIRECTORY_SEPARATOR . $filename;
+  
+        $this->filesystem->remove($uploadedFilePath);
+    }
 
     public function remove($media)
     {
-      $webpFilename = pathinfo($media->getFilename(), PATHINFO_FILENAME).'.'.'webp';
-      $webpFileCachePath = $this->parameters['assetsUploadsMediaFolder'].'/'.$webpFilename;
-
-      $fileCachePath = $this->parameters['assetsUploadsMediaFolder'].'/'.$media->getFilename();
-      $fileUploadsMediaPath = $this->parameters['assetsUploadsMediaFolderPath'].'/'.$media->getFilename();
-
-      $this->cacheManager->remove($fileCachePath);
-      $this->cacheManager->remove($webpFileCachePath);
-      $this->filesystem->remove($fileUploadsMediaPath);
+        $folderUploadedImages = $this->container->getParameter('path_directory_media');
+        $filename = $media->getOriginalFilename();
+        $uploadedFilePath = $folderUploadedImages . DIRECTORY_SEPARATOR . $filename;
+    
+        $this->cacheManager->remove($filename);
+        $this->cacheManager->remove($filename . '.webp');
+        $this->filesystem->remove($uploadedFilePath);
     }
 
     public function checkIfFileAlreadyUploaded($filename)

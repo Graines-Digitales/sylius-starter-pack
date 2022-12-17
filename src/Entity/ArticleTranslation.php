@@ -17,7 +17,17 @@ use Sylius\Component\Resource\Model\AbstractTranslation;
 
 
 /**
- * @ApiResource(iri="https://schema.org/Article")
+ * @ApiResource(iri="https://schema.org/Article",
+ * itemOperations={
+ *    "get",
+ *    "put"={"security"="is_granted('ROLE_ADMIN') or object.author == user"},
+ *    "delete"={"security"="is_granted('ROLE_ADMIN') or object.author == user"}
+ *  },
+ *  collectionOperations={
+ *    "get",
+ *    "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *  }
+ * )
  * @ORM\Entity(repositoryClass=ArticleTranslationRepository::class)
  * @ORM\Table(name="app_article_translation")
  */
@@ -29,17 +39,17 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     use CreativeWorkTrait;
     use TimestampableEntity;
 
-    /** 
-     * @var TranslatableInterface|null 
-     * 
-     * @ApiProperty(
-     *    readableLink=true
-     * )
-    */
-    protected $translatable;
+    // /** 
+    //  * @var TranslatableInterface|null 
+    //  * 
+    //  * @ApiProperty(
+    //  *    readableLink=true
+    //  * )
+    // */
+    // protected $translatable;
 
     /**
-     * @Gedmo\Slug(fields={"headline"}, updatable=false)
+     * @Gedmo\Slug(fields={"headline"}, updatable=true)
      * @ORM\Column(type="string", length=128, unique=true)
      *
      * @ApiProperty(identifier=true)
@@ -79,6 +89,11 @@ class ArticleTranslation  extends AbstractTranslation implements ResourceInterfa
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
     public function getArticleBody(): ?string

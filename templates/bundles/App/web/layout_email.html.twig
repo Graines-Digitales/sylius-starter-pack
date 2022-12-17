@@ -8,25 +8,19 @@
 		<meta name="language" content="fr">
 	</head>
 	<body style="margin: 0;">
-		<header style="background-color: #6D8764; color: #fff; text-align: center;">
-			<nav style="padding: 10px 20px; margin: 0 auto;">
-				<div style="padding: 0.5rem; min-height: inherit; margin: 0 auto; text-transform: uppercase;">
-                	{{ data.headline }}
-            	</div>
-			</nav>
+		<header style="background-color: #95a595;  margin: 0 auto; padding: 15px; color: #000 !important; font-weight: 700; text-align: center;">
+			<img 
+				src="cid:logo" 
+				class="ui tiny centered image"
+				width="90"
+			>
+			<div style="  margin: 0 auto; margin-top: 10px; text-transform: uppercase; color: #000 !important;">
+				{{ data.headline }}
+			</div>
 		</header>
 		{% block body %}{% endblock %}
-		<footer style="background-color: #6D8764; width:100%; text-align: center;">
-			<div style="padding: 10px 20px;">
-				<div style="color:#fff;">
-					<span class="main-logo-wrap">
-						<img 
-							src="cid:logo" 
-							class="ui tiny centered image"
-						>
-					</span>
-				</div>
-			</div>
+		<footer style="background-color: #95a595;  color: #000 !important; margin: 0 auto; width:100%; padding: 15px; text-align: center;">		
+			Copyright © {{ 'now' | date('Y') }} Kazen Garden. All rights reserved. 
 		</footer>
 	</body>
 </html>

@@ -63,7 +63,7 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
     private $datePosted;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * 
      * @ApiSubresource(maxDepth=1)
      * @ApiProperty(

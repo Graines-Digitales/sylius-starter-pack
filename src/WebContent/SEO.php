@@ -48,40 +48,67 @@ class SEO
 
 
         if ($entity instanceof CategoryTranslation) {
-            $metaTitle = ucfirst(substr($entity->getName(), 0, 50) . $suffixe);
-            $entity->setMetaTitle($metaTitle);
-            $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
-                $entity->getDescription(), 150, ' ', ''
-            );
-            $entity->setMetaDescription($metaDescription);
+            if(empty($entity->getMetaTitle())) {
+                $metaTitle = ucfirst(substr($entity->getName(), 0, 50) . $suffixe);
+                $entity->setMetaTitle($metaTitle);
+            }
+           
+            if (empty($entity->getMetaDescription())) {
+                $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
+                    $entity->getDescription(),
+                    150,
+                    ' ',
+                    ''
+                );
+                $entity->setMetaDescription($metaDescription);
+            }
         } 
         else if ($entity instanceof ArticleTranslation) {
-            $metaTitle = ucfirst(substr($entity->getHeadline(), 0, 50) . $suffixe);
-            $entity->setMetaTitle($metaTitle);
-            $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
-                $entity->getArticleBody(), 150, ' ', ''
-            );
-            $entity->setMetaDescription($metaDescription);
+            if (empty($entity->getMetaTitle())) {
+                $metaTitle = ucfirst(substr($entity->getHeadline(), 0, 50) . $suffixe);
+                $entity->setMetaTitle($metaTitle);
+            }
+            if (empty($entity->getMetaDescription())) {
+                $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
+                    $entity->getArticleBody(),
+                    150,
+                    ' ',
+                    ''
+                );
+                $entity->setMetaDescription($metaDescription);
+            }
         } 
         else if ($entity instanceof WebPageTranslation) {
-            
-            $metaTitle = ucfirst(substr($entity->getHeadline(), 0, 50) . $suffixe);
-            $entity->setMetaTitle($metaTitle);
-            $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
-                $entity->getText(), 150, ' ', ''
-            );
-            $entity->setMetaDescription($metaDescription);
+            if (empty($entity->getMetaTitle())) {
+                $metaTitle = ucfirst(substr($entity->getHeadline(), 0, 50) . $suffixe);
+                $entity->setMetaTitle($metaTitle);
+            }
+            if (empty($entity->getMetaDescription())) {
+                $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
+                    $entity->getText(),
+                    150,
+                    ' ',
+                    ''
+                );
+                $entity->setMetaDescription($metaDescription);
+            }
         } 
         else if ($entity instanceof TripTranslation) {
-            
-            $metaTitle = ucfirst(substr($entity->getHeadline(), 0, 50) . $suffixe);
-            $entity->setMetaTitle($metaTitle);
-            $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
-                $entity->getText(), 150, ' ', ''
-            );
-            $entity->setMetaDescription($metaDescription);
+            if (empty($entity->getMetaTitle())) {
+                $metaTitle = ucfirst(substr($entity->getAlternativeHeadline(), 0, 50) . $suffixe);
+                $entity->setMetaTitle($metaTitle);
+            }
+            if (empty($entity->getMetaDescription())) {
+                $metaDescription = $this->contentTools->shapeSpace_truncate_string_at_word(
+                    $entity->getDescription(),
+                    150,
+                    ' ',
+                    ''
+                );
+                $entity->setMetaDescription($metaDescription);
+            }
         }
-        
+
         return $entity;
     }
 

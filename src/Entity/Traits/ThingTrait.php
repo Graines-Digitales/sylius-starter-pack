@@ -16,7 +16,7 @@ trait ThingTrait
      * @ORM\Column(type="string", length=255, nullable=true)
      * @ApiProperty(iri="http://schema.org/name")
      * @ Assert\NotNull(groups="thing")
-     * @ Assert\NotBlank(message="Select a name")
+     * @ Assert\NotBlank(message="sélectionnez un nom")
      */
     private $name;
 
@@ -33,7 +33,7 @@ trait ThingTrait
      *
      * @ORM\Column(type="text", nullable=true)
      * @ApiProperty(iri="http://schema.org/description")
-     * @ Assert\NotBlank(message="Select a description")
+     * @ Assert\NotBlank(message="sélectionnez un descriptif")
      */
     private $description;
 

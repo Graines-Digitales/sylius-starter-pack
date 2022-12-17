@@ -19,12 +19,42 @@ app_schema_save_form_contact:
     defaults:
         _controller: app.controller.schema::saveFormMessage
 
+# app_payment_create:
+#     path: /payment/create
+#     methods: [POST]
+#     defaults:
+#         _controller: app.controller.payment::create
+
 app_nuxt_build:
     path: /nuxt/build
     methods: [POST]
     defaults:
         _controller: app.controller.nuxt::build
-        
+
+app_nuxt_fetch:
+    path: /nuxt/fetch
+    methods: [POST]
+    defaults:
+        _controller: app.controller.nuxt::fetch
+
+app_admin_order_trip_validate:
+    path: /admin/order-trip/{id}/validate
+    methods: [GET]
+    defaults:
+        _controller: app.controller.order_trip::validateAction
+
+app_admin_travel_duplicate:
+    path: /admin/travel/{id}/duplicate
+    methods: [GET]
+    defaults:
+        _controller: app.controller.travel::duplicateAction
+
+app_admin_article_duplicate:
+    path: /admin/article/{id}/duplicate
+    methods: [GET]
+    defaults:
+        _controller: app.controller.article::duplicateAction
+
 # app_sitemap:
 #     path: /sitemap
 #     methods: [GET]

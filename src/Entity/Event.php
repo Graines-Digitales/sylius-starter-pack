@@ -53,7 +53,7 @@ class Event implements ResourceInterface, TranslatableInterface
      *
      * @ORM\Column(name="begin_at", type="datetime")
      *
-     * @Assert\NotBlank(message="Enter a rental start date")
+     * @Assert\NotBlank(message="entrez une date de début de location")
      */
     private $beginAt;
 
@@ -62,7 +62,7 @@ class Event implements ResourceInterface, TranslatableInterface
      *
      * @ORM\Column(name="end_at", type="datetime")
      *
-     * @Assert\NotBlank(message="Enter a rental end date")
+     * @Assert\NotBlank(message="entrez une date de fin de location")
      */
     private $endAt;
 
@@ -70,7 +70,7 @@ class Event implements ResourceInterface, TranslatableInterface
      * @ORM\ManyToOne(targetEntity="Accommodation", inversedBy="rentals")
      * @ORM\JoinColumn(name="accommodation_id", referencedColumnName="id", nullable=true)
      *
-     * @ Assert\NotBlank(message="Select an accommodation")
+     * @ Assert\NotBlank(message="sélectionnez un logement")
      */
     private $accommodation;
 
@@ -80,7 +80,7 @@ class Event implements ResourceInterface, TranslatableInterface
      * @ORM\ManyToOne(targetEntity="RentalType")
      * @ORM\JoinColumn(name="rental_type_id", referencedColumnName="id")
      *
-     * @ Assert\NotBlank(message="Select a rental type")
+     * @ Assert\NotBlank(message="sélectionnez un type de location")
      */
     private $rentalType;
 

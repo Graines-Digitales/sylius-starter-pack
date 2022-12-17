@@ -1,0 +1,13 @@
+<h5 class="ui tiny header">
+    {{element.designation}}
+</h5>
+{% if element.title is defined and element.title is not empty %}
+<h2 class="ui huge header">
+    {{element.title}}
+</h2>
+{% endif %}
+{% if element.subtitle is defined and element.subtitle is not empty %}
+<h2 class="ui huge header">
+    {{element.subtitle}}
+</h2>
+{% endif %}

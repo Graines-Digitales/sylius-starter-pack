@@ -104,7 +104,7 @@ class Component extends AbstractWebContent
     public function getComponentViews()
     {
         $views = [];
-        $path = $this->container->getParameter('directory_web') . DIRECTORY_SEPARATOR . 'components';
+        $path = $this->container->getParameter('website_directory') . DIRECTORY_SEPARATOR . 'components';
         if($this->filesystem->exists($path)) {
             $this->finder->depth('== 0');
             $this->finder->files()->in($path);
@@ -120,6 +120,7 @@ class Component extends AbstractWebContent
             }
     
         }
+        ksort($views);
         
         return $views;
     }
@@ -325,5 +326,14 @@ class Component extends AbstractWebContent
         }
 
         return $results;
+    }
+
+    public function updateSlug($entity)
+    {
+        $slug = $this->slugger->slug($entity->getTranslatable()->getName() . ' ' . $entity->getLocale())->lower()->toString();
+        
+        $entity->setSlug($slug);
+
+        return $entity;
     }
 }

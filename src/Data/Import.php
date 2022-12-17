@@ -6,6 +6,8 @@ use App\Tools\Media;
 use Mni\FrontYAML\Parser;
 use App\Data\Action\RoomAction;
 use App\Data\Action\TripAction;
+use App\Data\Action\EventAction;
+use App\Data\Action\PersonAction;
 use App\Data\Action\ArticleAction;
 use App\Data\Action\WebPageAction;
 use App\Data\Action\CategoryAction;
@@ -15,11 +17,12 @@ use App\Data\Action\OrganizationAction;
 use App\Data\Action\HotelActivityAction;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Data\Action\AmenityFeatureAction;
-use App\Data\Action\EventAction;
 use App\Data\Action\HotelTypicalDayAction;
-use App\Data\Action\HotelTypicalDayElementAction;
-use App\Data\Action\PersonAction;
+use App\Data\Action\MediaObjectIconAction;
+use App\Data\Action\MediaObjectImageAction;
 use Symfony\Component\Filesystem\Filesystem;
+use App\Data\Action\HotelTypicalDayElementAction;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
@@ -39,7 +42,9 @@ class Import
 
     protected $organizationAction;
 
-    protected $mediaService;
+    protected $mediaImageService;
+    
+    protected $mediaIconService;
 
     protected $hotelActivityAction;
 
@@ -56,6 +61,8 @@ class Import
     protected $personAction;
 
     protected $eventAction;
+    
+    protected $slugger;
 
     public function __construct(
         ContainerInterface $container
@@ -66,7 +73,8 @@ class Import
         , ComponentAction $componentAction
         , TripAction $tripAction
         , OrganizationAction $organizationAction
-        , Media $mediaService
+        , MediaObjectImageAction $mediaImageService
+        , MediaObjectIconAction $mediaIconService
         , HotelActivityAction $hotelActivityAction
         , HotelServiceAction $hotelServiceAction
         , AmenityFeatureAction $amenityFeatureAction
@@ -84,7 +92,8 @@ class Import
         $this->componentAction = $componentAction;
         $this->tripAction = $tripAction;
         $this->organizationAction = $organizationAction;
-        $this->mediaService = $mediaService;
+        $this->mediaImageService = $mediaImageService;
+        $this->mediaIconService = $mediaIconService;
         $this->hotelActivityAction = $hotelActivityAction;
         $this->hotelServiceAction = $hotelServiceAction;
         $this->amenityFeatureAction = $amenityFeatureAction;
@@ -93,6 +102,7 @@ class Import
         $this->roomAction = $roomAction;
         $this->personAction = $personAction;
         $this->eventAction = $eventAction;
+        $this->slugger = new AsciiSlugger();
     }
 
     public function getMainOrganization($contentPath)

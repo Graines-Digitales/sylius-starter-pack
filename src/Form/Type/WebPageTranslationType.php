@@ -28,7 +28,8 @@ class WebPageTranslationType extends AbstractResourceType
                 ]
             ])
             ->add('alternativeHeadline', TextType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('pushForward', TextType::class, [
                 'required' => false
@@ -37,7 +38,8 @@ class WebPageTranslationType extends AbstractResourceType
                 'required' => false
             ])
             ->add('textResume', TextAreaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('slug', TextType::class, [
                 'disabled' => true,
@@ -47,17 +49,21 @@ class WebPageTranslationType extends AbstractResourceType
                 
             ])
             ->add('metaTitle', TextType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
             ->add('metaDescription', TextAreaType::class, [
-                'required' => false
+                'required' => false,
+                'help' => 'If empty this field will be automatically edited'
             ])
         ;
 
         $builder->remove('components');
         $builder->add('components', RichEditorType::class, [
-                'required' => false,
-                
+            'required' => false,
+            'attr_translation_parameters' => [
+                'translatable' => false
+            ]
         ]);
     }
 

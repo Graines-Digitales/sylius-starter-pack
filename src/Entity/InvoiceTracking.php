@@ -33,7 +33,7 @@ class InvoiceTracking implements ResourceInterface
      * @var \DateTime
      *
      * @ORM\Column(name="invoiceDate", type="datetime")
-     * @ Assert\NotBlank(message="Choose a date invoice please")
+     * @ Assert\NotBlank(message="choisissez une date de facture s'il vous plait")
      */
     private $invoiceDate;
 
@@ -48,7 +48,7 @@ class InvoiceTracking implements ResourceInterface
      * @ORM\ManyToOne(targetEntity="PaymentMethod", inversedBy="invoices")
      * @ORM\JoinColumn(name="method_payment_id", referencedColumnName="id", nullable=true)
      *
-     * @ Assert\NotBlank(message="Choose a method please")
+     * @ Assert\NotBlank(message="choisissez une méthode s'il vous plaît")
      */
     private $paymentMethod;
 

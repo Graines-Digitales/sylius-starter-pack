@@ -24,6 +24,7 @@
 			<div class="row">
 				<div class="column">
 					{{ form_row(form.primaryImage) }}
+                    {{ form_row(form.alignPrimaryImage) }}
 				</div>
 				<div class="column">
 				{% if web_page.primaryImage is not null and web_page.primaryImage.filename is not null and web_page.primaryImage.filename != '' %}

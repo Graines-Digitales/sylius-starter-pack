@@ -11,29 +11,37 @@ class Translator
 
     private $isEnabled = false;
 
+    private $apiKey = null;
+
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
         $this->isEnabled = false;
         if(!empty($this->container->getParameter('google_cloud_api_key'))) {
+            $this->apiKey = $this->container->getParameter('google_cloud_api_key');
             $this->isEnabled = true;
         }
     }
 
-    public function translate($chain)
+    public function translate($chain, $locale)
     {
         if(!$this->isEnabled) {
 
             return $chain;
         } else {
-            dump('attention mon ami!');die;
+            $translate = new TranslateClient([
+                'key' => $this->apiKey
+            ]);
+            $result = $translate->translate($chain, [
+                'target' => $locale
+            ]);
+             
+            if(isset($result['text'])) {
+                return html_entity_decode($result['text']);
+            }
+
+            return $chain; 
         }
-        $translate = new TranslateClient([
-            'key' => 'your_key'
-        ]);
-        $result = $translate->translate('Hello world!', [
-            'target' => 'fr'
-        ]);
     }
 
     private function isHTML($string){

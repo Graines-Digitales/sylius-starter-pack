@@ -76,8 +76,8 @@ class RoomAction
 
     public function hydrate($data, $entity, $locale)
     {   
-        $entity->getTranslation()->setLocale($locale);
-        $entity->getTranslation()->setTranslatable($entity);
+        // $entity->getTranslation()->setLocale($locale);
+        // $entity->getTranslation()->setTranslatable($entity);
 
         if(isset($data['primaryImage']) && !empty($data['primaryImage'])){
             $image = $this->mediaObjectImageAction->extract($data['primaryImage']);
@@ -150,7 +150,7 @@ class RoomAction
         }
 
 
-        if (isset($data['components']) && !empty($data['components'])) {
+        if (isset($data['components']) && !empty($data['components']) && null !== $data['components']) {
             $components = $this->componentAction->createComponents($data['components']);
             $entity->getTranslation($locale)->setComponents(
                 json_encode($components, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)

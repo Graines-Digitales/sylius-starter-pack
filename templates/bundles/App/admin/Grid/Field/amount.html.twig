@@ -1,0 +1,3 @@
+{% set amount = data / 100 %}
+{{ amount|format_currency('EUR', {fraction_digit: 2}) }}
+

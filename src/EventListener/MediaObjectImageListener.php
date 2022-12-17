@@ -58,4 +58,14 @@ class MediaObjectImageListener
         $this->mediaObjectImageAction->hydrate([], $entity, 'fr');
     }
 
+    public function postRemove(LifecycleEventArgs $args): void
+    {
+        $entity = $args->getObject();
+        if (!$entity instanceof MediaObjectImage) {
+            return;
+        }
+
+        $this->toolsMediaService->remove($entity);
+    }
+
 }

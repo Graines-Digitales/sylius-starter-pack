@@ -77,12 +77,12 @@ class MediaObjectImage implements ResourceInterface
     private $file;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Message::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Message::class, cascade={"persist"})
      */
     private $message;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class, cascade={"persist"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $category;

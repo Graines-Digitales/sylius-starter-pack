@@ -39,12 +39,12 @@ class CmsComponent implements ResourceInterface, CodeAwareInterface
     private $code;
 
     /**
-     * @ORM\OneToMany(targetEntity=CmsTemplate::class, mappedBy="cmsComponent", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=CmsTemplate::class, mappedBy="cmsComponent", cascade={"persist"}, orphanRemoval=true)
      */
     private $templates;
 
     /**
-     * @ORM\OneToMany(targetEntity=CmsStyle::class, mappedBy="cmsComponent", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=CmsStyle::class, mappedBy="cmsComponent", cascade={"persist"}, orphanRemoval=true)
      */
     private $styles;
 
