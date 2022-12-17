@@ -29,7 +29,7 @@ class Organization extends AbstractWebContent
 
     public function getDeveloperEmails()
     {
-        return $this->container->getParameter('developers')
+        return $this->container->getParameter('developers');
     }
 
 }
