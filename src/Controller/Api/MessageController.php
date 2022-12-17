@@ -186,6 +186,8 @@ class MessageController extends AbstractController
                     'title' => 'une erreur est survenue',
                     'message' => 'veuillez saisir un e-mail',
                 ]
+                , JsonResponse::HTTP_BAD_REQUEST
+            );
         }
 
        
