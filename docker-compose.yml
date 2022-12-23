@@ -1,6 +1,6 @@
 services:
   php:
-    container_name: php
+    # container_name: php
     build:
       context: .
       target: sylius_php_dev
@@ -24,7 +24,7 @@ services:
       # - public-media:/srv/sylius/public/media:rw
 
   migrations:
-    container_name: migrations
+    # container_name: migrations
     build:
       context: .
       target: sylius_migrations_dev
@@ -39,7 +39,7 @@ services:
       - PHP_DATE_TIMEZONE=${PHP_DATE_TIMEZONE:-UTC}
 
   mysql:
-    container_name: mysql
+    # container_name: mysql
     image: mysql:5.7 # Sylius is fully working on mysql 8.0 version
     platform: linux/amd64
     environment:
@@ -57,7 +57,7 @@ services:
       - SYS_NICE # prevent "mbind: Operation not permitted" errors
 
   node:
-    container_name: node
+    # container_name: node
     build:
       context: .
       target: sylius_node
@@ -75,7 +75,7 @@ services:
       - "${NODE_PORT:-35729}:35729"
 
   nginx:
-    container_name: nginx
+    # container_name: nginx
     build:
       context: .
       target: sylius_nginx
