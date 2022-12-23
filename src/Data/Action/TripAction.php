@@ -67,7 +67,7 @@ class TripAction
     
     public function hydrate($data, $entity, $locale) 
     {   
-        
+        $entity->getTranslation()->setLocale($locale);
 
         if (isset($data['isLocked'])) {
             $entity->setIsLocked($data['isLocked']);

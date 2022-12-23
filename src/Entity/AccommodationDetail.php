@@ -4,10 +4,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdentifiableTrait;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
+use Sylius\Component\Resource\Model\TranslationInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
 /**
@@ -44,7 +45,7 @@ class AccommodationDetail implements ResourceInterface, TranslatableInterface
     /**
      * {@inheritdoc}
      */
-    protected function createTranslation()
+    protected function createTranslation(): TranslationInterface
     {
         return new AmenityFeatureTranslation();
     }

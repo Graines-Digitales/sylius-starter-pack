@@ -2,17 +2,18 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\IdentifiableTrait;
 use App\Entity\Traits\ImagesTrait;
 use App\Entity\Traits\LockableTrait;
-use App\Entity\Traits\SeoTrait;
+use App\Entity\Traits\IdentifiableTrait;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
+use Sylius\Component\Resource\Model\TranslationInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
 
@@ -159,7 +160,7 @@ class Category implements ResourceInterface , TranslatableInterface
     /**
      * {@inheritdoc}
      */
-    protected function createTranslation()
+    protected function createTranslation(): TranslationInterface
     {
         return new CategoryTranslation();
     }

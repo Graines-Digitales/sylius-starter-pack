@@ -7,6 +7,7 @@ use App\Repository\CmsLinkRepository;
 use App\Entity\Traits\IdentifiableTrait;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
+use Sylius\Component\Resource\Model\TranslationInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
 /**
@@ -68,7 +69,7 @@ class CmsLink implements ResourceInterface, TranslatableInterface
     /**
      * {@inheritdoc}
      */
-    protected function createTranslation()
+    protected function createTranslation(): TranslationInterface
     {
         return new CmsLinkTranslation();
     }

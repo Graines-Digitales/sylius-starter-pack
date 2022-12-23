@@ -18,6 +18,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
+use Sylius\Component\Resource\Model\TranslationInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
 
@@ -67,7 +68,7 @@ class HotelActivity implements ResourceInterface, TranslatableInterface
     /**
      * {@inheritdoc}
      */
-    protected function createTranslation()
+    protected function createTranslation(): TranslationInterface
     {
         return new HotelActivityTranslation();
     }

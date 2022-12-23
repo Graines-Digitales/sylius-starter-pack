@@ -34,7 +34,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "2.4",
-            "ref": "d562b46dd8075ab2de3d58bf7895cf6b8365cb72"
+            "ref": "5b7882dd9d05ef9b7e71fceed66af1ea573a70d4"
         },
         "files": [
             "config/packages/doctrine.yaml",
@@ -109,7 +109,7 @@
         ]
     },
     "knplabs/knp-gaufrette-bundle": {
-        "version": "v0.7.1"
+        "version": "v0.8.0"
     },
     "knplabs/knp-menu-bundle": {
         "version": "v3.2.0"
@@ -144,8 +144,8 @@
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
-            "version": "1.0",
-            "ref": "6658acdeb3fabab4929d25cd7209444a36a5c912"
+            "version": "2.0",
+            "ref": "e4d7cf0fc492ff63d6f136eb0e5cead10452b088"
         },
         "files": [
             "config/packages/monsieurbiz_sylius_rich_editor_plugin.yaml",
@@ -153,7 +153,7 @@
         ]
     },
     "nelmio/alice": {
-        "version": "3.9",
+        "version": "3.12",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -271,17 +271,20 @@
     "sylius-labs/doctrine-migrations-extra-bundle": {
         "version": "v0.1.4"
     },
+    "sylius/calendar": {
+        "version": "v0.3.0"
+    },
     "sylius/fixtures-bundle": {
-        "version": "v1.7.0"
+        "version": "v1.8.0"
     },
     "sylius/grid-bundle": {
-        "version": "v1.10.2"
+        "version": "v1.11.0"
     },
     "sylius/mailer-bundle": {
-        "version": "v1.6.0"
+        "version": "v1.8.1"
     },
     "sylius/paypal-plugin": {
-        "version": "v1.4.2"
+        "version": "v1.5.0"
     },
     "sylius/resource-bundle": {
         "version": "1.8",
@@ -296,7 +299,7 @@
         ]
     },
     "sylius/theme-bundle": {
-        "version": "v2.2.0"
+        "version": "v2.3.0"
     },
     "symfony/console": {
         "version": "5.4",
@@ -520,7 +523,7 @@
         ]
     },
     "theofidry/alice-data-fixtures": {
-        "version": "1.5",
+        "version": "1.6",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -536,8 +539,8 @@
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
-            "version": "1.7",
-            "ref": "c4f5755b37fb65b9c6a3cbdae91205c15a137ed4"
+            "version": "1.13",
+            "ref": "1b3064c2f6b255c2bc2f56461aaeb76b11e07e36"
         },
         "files": [
             "config/packages/vich_uploader.yaml"

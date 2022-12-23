@@ -69,4 +69,5 @@ return [
     Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle::class => ['all' => true],
     Sonata\Twig\Bridge\Symfony\SonataTwigBundle::class => ['all' => true],
     Nelmio\CorsBundle\NelmioCorsBundle::class => ['all' => true],
+    Sylius\Calendar\SyliusCalendarBundle::class => ['all' => true],
 ];

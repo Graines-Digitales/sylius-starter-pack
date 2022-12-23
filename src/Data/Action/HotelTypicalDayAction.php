@@ -62,7 +62,7 @@ class HotelTypicalDayAction
 
     public function hydrate($data, $entity, $locale)
     {   
-        // $entity->getTranslation()->setLocale($locale);
+        $entity->getTranslation()->setLocale($locale);
         // $entity->getTranslation()->setTranslatable($entity);
 
         if(isset($data['category']) && !empty($data['category'])){

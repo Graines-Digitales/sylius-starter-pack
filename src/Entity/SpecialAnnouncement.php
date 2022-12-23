@@ -14,6 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
+use Sylius\Component\Resource\Model\TranslationInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 
 
@@ -45,7 +46,7 @@ class SpecialAnnouncement implements ResourceInterface, TranslatableInterface
     /**
      * {@inheritdoc}
      */
-    protected function createTranslation()
+    protected function createTranslation(): TranslationInterface
     {
         return new WebPageTranslation();
     }
