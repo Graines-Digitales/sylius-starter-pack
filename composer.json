@@ -39,7 +39,7 @@
         "symfony/dotenv": "^4.4 || ^5.2",
         "symfony/filesystem": "^5.4",
         "symfony/finder": "^5.4",
-        "symfony/flex": "^1.11",
+        "symfony/flex": "^2.2",
         "symfony/form": "^5.4",
         "symfony/http-foundation": "^5.4",
         "symfony/lock": "^5.4",
