@@ -33,7 +33,7 @@
         "portphp/csv": "^2.0",
         "portphp/spreadsheet": "^1.0",
         "sendinblue/api-v3-sdk": "7.0.0",
-        "sonata-project/twig-extensions": "^1.10",
+        "sonata-project/twig-extensions": "^2.0",
         "sylius/paypal-plugin": "^1.2.1",
         "sylius/sylius": "^1.11.1",
         "symfony/dotenv": "^4.4 || ^5.2",
